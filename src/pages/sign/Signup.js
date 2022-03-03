@@ -43,7 +43,7 @@ const Signup=()=>{
 
 
     return (
-      <div style={{ }}>
+      <div style={{position:"relative" ,left:"35%", right:"35%"}}>
         <div
           style={{
             justifyContent: 'center',
