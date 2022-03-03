@@ -2,6 +2,7 @@
   "name": "readme",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://hsureadme.herokuapp.com",
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.8.1",
@@ -15,6 +16,7 @@
     "react-query": "^3.34.16",
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
+    "react-toastify": "^8.2.0",
     "reset-css": "^5.0.1",
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.4"
