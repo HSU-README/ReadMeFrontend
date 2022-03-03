@@ -1,6 +1,7 @@
-<<<<<<< HEAD
+
 import {BrowserRouter,Routes,Route } from 'react-router-dom';
-import Signup from 'pages/sign/Signup';
+import Signup from './pages/sign/Signup.js';
+import Login from './pages/login/index.jsx'
 function App() {
   return (
     <div className="App">
@@ -8,20 +9,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route exact path="/signup" element={<Signup/>}/>
-        </Routes>
+          <Route exact path="/login" element={<Login/>}/>
+          </Routes>
       </BrowserRouter>
-=======
-import LogIn from 'pages/login';
-import { Routes, Route } from 'react-router-dom';
-
-function App() {
-  return (
-    <div className="App">
-      <Routes>
-        <Route path="/login" element={<LogIn />} />
-      </Routes>
->>>>>>> 8359c967f03384a4607a769229101861e5facc6e
-    </div>
+      </div>
   );
 }
 
