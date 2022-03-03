@@ -7,6 +7,7 @@ import Logo from 'assets/images/logo.jpg';
 import { TextField, FormControlLabel, Checkbox } from '@mui/material';
 import { Button, Error, Input, textFieldStyle } from 'pages/login/styles';
 import { Link } from 'react-router-dom';
+import Footer from 'components/footer';
 
 const LogIn = () => {
   const [email, onChangeEmail] = useInput('');
@@ -74,6 +75,7 @@ const LogIn = () => {
           </Link>
         </div>
       </LoginContainer>
+      <Footer />
     </Container>
   );
 };
@@ -109,6 +111,7 @@ const LoginContainer = styled.div`
     flex-direction: column;
     align-items: center;
     max-width: 800px;
+    margin: 0px auto;
     padding: 0px 50px 0px 50px;
   }
 
@@ -116,6 +119,7 @@ const LoginContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     max-width: 800px;
+    margin: 0px auto;
     padding: 0px 50px 0px 50px;
     color: ${colors.loginText};
   }
@@ -123,7 +127,8 @@ const LoginContainer = styled.div`
   .button-wrapper {
     display: flex;
     justify-content: center;
-    margin: 20px 0px 20px 0px;
+    margin: 0px auto;
+    padding: 30px 0px 20px 0px;
     max-width: 800px;
   }
 
