@@ -1,22 +1,57 @@
 import React, { useCallback, useState } from 'react';
+import axios from 'axios';
 import useInput from 'hooks/useInput';
 import styled from 'styled-components';
 import colors from 'styles/colors';
 import { maxWidth } from 'styles/mixin';
 import Logo from 'assets/images/logo.jpg';
-import { TextField, FormControlLabel, Checkbox } from '@mui/material';
-import { Button, Error, Input, textFieldStyle } from 'pages/login/styles';
-import { Link } from 'react-router-dom';
+import { FormControlLabel, Checkbox } from '@mui/material';
+import { Button, Error, Input } from 'pages/login/styles';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastError, ToastSuccess } from 'hooks/toastHook';
+import { API_ENDPOINT } from 'apis/constant';
+import Footer from 'components/footer';
 
 const LogIn = () => {
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [logInError, setLogInError] = useState(false);
 
+  const navigate = useNavigate();
+  const serverApi = axios.create({
+    baseURL: `${API_ENDPOINT}`,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const login = async () => {
+    await serverApi
+      .post(`/api/v1/members/login`, {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+        const userInfo = JSON.stringify(response.data.result);
+        const successMessage = JSON.stringify(response.data.message);
+
+        localStorage.setItem('readme_login', 'true');
+        localStorage.setItem('readme_userInfo', userInfo);
+
+        navigate('/');
+        ToastSuccess(successMessage);
+      })
+      .catch((error) => {
+        const errorMessage = JSON.stringify(error.response.data.errorMessage);
+        ToastError(errorMessage);
+      });
+  };
+
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
       setLogInError(false);
+      login();
     },
     [email, password],
   );
@@ -53,9 +88,7 @@ const LogIn = () => {
         </div>
         {logInError && <Error>이메일과 비밀번호 조합이 일치하지 않습니다.</Error>}
         <div className="button-wrapper">
-          <Button type="submit" onSubmit={onSubmit}>
-            로그인
-          </Button>
+          <Button onClick={onSubmit}>로그인</Button>
         </div>
         <div className="login-find">
           <Link to="/signup">
@@ -74,6 +107,7 @@ const LogIn = () => {
           </Link>
         </div>
       </LoginContainer>
+      <Footer />
     </Container>
   );
 };
@@ -109,6 +143,7 @@ const LoginContainer = styled.div`
     flex-direction: column;
     align-items: center;
     max-width: 800px;
+    margin: 0px auto;
     padding: 0px 50px 0px 50px;
   }
 
@@ -116,6 +151,7 @@ const LoginContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     max-width: 800px;
+    margin: 0px auto;
     padding: 0px 50px 0px 50px;
     color: ${colors.loginText};
   }
@@ -123,7 +159,8 @@ const LoginContainer = styled.div`
   .button-wrapper {
     display: flex;
     justify-content: center;
-    margin: 20px 0px 20px 0px;
+    margin: 0px auto;
+    padding: 30px 0px 20px 0px;
     max-width: 800px;
   }
 
