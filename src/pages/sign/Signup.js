@@ -22,7 +22,7 @@ const Signup=()=>{
       axios.post('https://hsureadme.herokuapp.com/api/v1/members/new',{
         name:id,
         password:password,
-        email:email,
+        email:id,
         nickname:nickname
       }).then(response=>{
         toast.success("정보를 올바르게 입력해주세요",{
