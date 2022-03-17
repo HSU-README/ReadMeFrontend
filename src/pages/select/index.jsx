@@ -9,6 +9,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Footer from 'components/footer';
 import SelectCard from 'components/selectCard';
 import Button from 'components/button';
+import Header from 'components/header';
 
 const formats = [
   {
@@ -63,7 +64,7 @@ const Select = () => {
 
   return (
     <Container>
-      <div className="section-title">타이틀</div>
+      <Header />
       <div className="section-select">
         {formats.map((format, index) => (
           <SelectCard
