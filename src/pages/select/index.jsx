@@ -57,39 +57,40 @@ const Select = () => {
     setSelectedFormat(format);
   };
 
-  const onSubmit = useCallback((e) => {
+  const onReset = useCallback((e) => {
     e.preventDefault();
     setSelectedFormat('');
+    console.log('test');
   }, []);
 
   return (
     <Container>
       <Header />
-      <div className="section-select">
-        {formats.map((format, index) => (
-          <SelectCard
-            key={index}
-            format={format}
-            selectedFormat={selectedFormat}
-            getSelectedFormat={getSelectedFormat}
-            isSelected={index !== selectedFormat ? false : true}
-          />
-        ))}
+      <div className="selectWrapper">
+        <div className="section-select">
+          {formats.map((format, index) => (
+            <SelectCard
+              key={index}
+              format={format}
+              selectedFormat={selectedFormat}
+              getSelectedFormat={getSelectedFormat}
+              isSelected={index !== selectedFormat ? false : true}
+            />
+          ))}
+        </div>
+      </div>
+      <div className="buttonWrapper">
         <div className="section-button">
-          <div style={{ margin: '40px 0px 40px 0px' }}>
-            <Link to="/">
-              <Button size="xl">취소</Button>
-            </Link>
+          <div onClick={onReset}>
+            <Button size="xl">취소</Button>
           </div>
-
-          <div style={{ margin: '40px 0px 40px 0px' }}>
+          <div>
             <Link to={`/design/${selectedFormat}`}>
               <Button size="xl">만들기</Button>
             </Link>
           </div>
         </div>
       </div>
-      <div>{selectedFormat}</div>
       <Footer />
     </Container>
   );
@@ -110,17 +111,31 @@ const Container = styled.div`
   .section-select {
     display: flex;
     flex-wrap: wrap;
-    width: 960px;
+    width: 840px;
+    height: 740px;
     justify-content: space-between;
-    margin: 0px auto;
     gap: 20px;
   }
   .section-button {
     display: flex;
-    width: 960px;
+    width: 400px;
     justify-content: flex-end;
-    margin: 0px auto;
-    padding: 10px;
+    align-items: flex-end;
+    padding: 10px 150px 10px 0px;
     gap: 40px;
+  }
+
+  .selectWrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 0px auto;
+    justify-content: center;
+  }
+
+  .buttonWrapper {
+    display: flex;
+    flex-direction: row;
+    margin: 0px auto;
+    justify-content: flex-end;
   }
 `;

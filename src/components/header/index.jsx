@@ -7,11 +7,12 @@ import colors from 'styles/colors';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
+  const moveHome = () => {
+    window.location.href = '/';
+  };
   return (
     <Container>
-      <Link to={`/`}>
-        <img src={logo} className="logo" />
-      </Link>
+      <img src={logo} className="logo" onClick={moveHome} />
 
       <div className="section-login">
         <Link to={`/login`}>

@@ -25,9 +25,9 @@ const Container = styled.div`
   background-image: url(${require('assets/images/dummy-select-image.jpeg')});
   background-size: cover;
   background-position: center;
-  height: ${(props) => (props.isSelected ? '370px' : '350px')};
-  width: ${(props) => (props.isSelected ? '300px' : '280px')};
-  margin: 40px auto;
+  height: ${(props) => (props.isSelected ? '270px' : '250px')};
+  width: ${(props) => (props.isSelected ? '240px' : '220px')};
+  margin: 50px auto;
 
   border-radius: 10px;
 
@@ -38,7 +38,7 @@ const Container = styled.div`
   justify-content: flex-end;
 
   .card-content {
-    padding: 20px;
+    padding: 10px;
     color: white;
     z-index: 1;
   }
