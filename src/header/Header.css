@@ -1,0 +1,17 @@
+.headerMain{
+    margin-top:20px;
+    margin-bottom: 10px;  
+}
+
+.logo{
+    width:160px;
+    height:64px;
+    margin-right:40px;
+}
+
+.inputRounded .MuiOutlinedInput-root{
+    width:700px;
+    margin-top:14px;
+    border-radius: 50px;
+    margin-right:150px;
+}
