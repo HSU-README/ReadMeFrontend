@@ -12,6 +12,7 @@
   
   border-radius: 6px;
   display: inline-block;
+<<<<<<< HEAD
 }
 
 .community-tag-container {
@@ -19,4 +20,6 @@
   justify-content: flex-start;
   gap: 10px;
   padding: 10px;
+=======
+>>>>>>> 844ddb6927a1ddbd1ccbf20bb2739bab59efd67f
 }
