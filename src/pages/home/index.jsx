@@ -52,8 +52,7 @@ const Home = () => {
     marginTop:"30px",
     marginBottom:"20px",
     marginLeft:"90px",
-    fontWeight:"bold",
-    boxShadow:"5px 5px 5px 5px"
+    fontWeight:"bold",  
   }
   const settings = {
     arrows:true,
