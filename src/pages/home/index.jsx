@@ -12,6 +12,7 @@ import nextArrow from '../../assets/images/nextArrow.png';
 const Home = () => {
   const SamplePrevArrow=(props)=> {
     const { className, style, onClick } = props;
+    
     return (
       <div
         className={className}
