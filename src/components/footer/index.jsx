@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { maxWidth } from 'styles/mixin';
-import colors from 'styles/colors';
+import { maxWidth } from '../../styles/mixin';
+import colors from '../../styles//colors';
 
 export default function Footer() {
   return (
