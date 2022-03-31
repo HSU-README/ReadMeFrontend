@@ -11,15 +11,12 @@
   margin: 3px 0;
   
   border-radius: 6px;
-  display: inline-block;
-<<<<<<< HEAD
+    display: inline-block;
 }
 
 .community-tag-container {
   display: flex;
   justify-content: flex-start;
   gap: 10px;
-  padding: 10px;
-=======
->>>>>>> 844ddb6927a1ddbd1ccbf20bb2739bab59efd67f
+  padding: 10px;  
 }

@@ -1,6 +1,10 @@
 .headerMain{
     margin-top:20px;
-    margin-bottom: 10px;  
+    text-align: center;
+}
+
+.inner{
+    display:inline-block;
 }
 
 .logo{
@@ -11,7 +15,6 @@
 
 .inputRounded .MuiOutlinedInput-root{
     width:700px;
-    margin-top:14px;
     border-radius: 50px;
-    margin-right:150px;
+    margin-right:30px;
 }

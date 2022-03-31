@@ -1,7 +1,7 @@
 import React, { useCallback, useState,useEffect } from 'react';
 import Header from '../../header/Header.js';
 import 'react-toastify/dist/ReactToastify.css';
-import SimpleImageSlider from 'react-simple-image-slider';
+
 import './index.css';
 import DocCard from './DoCard.js';
 import Slider from 'react-slick';
@@ -34,10 +34,7 @@ const Home = () => {
     </div>
     );
   }
-  const dummyImages=[
-    {url:"https://placeimg.com/640/480/any"},
-    {url:"https://placeimg.com/640/480/any"}
-  ];
+
   const dummyData=[
     {img:'../../assets/images/dummyBlack.jpg',tag:["대학교", "컴공"]},
     {img:'../../assets/images/dummyRed.jpeg',tag:["대학교", "컴공"]},
@@ -52,7 +49,8 @@ const Home = () => {
     marginBottom:"20px",
     marginLeft:"90px",
     fontWeight:"bold",
-    boxShadow:"5px 5px 5px 5px"
+    border:"1px solid lightGray",
+    boxShadow:"2px 2px 2px 2px lightGray"
   }
   const settings = {
     arrows:true,
@@ -66,8 +64,10 @@ const Home = () => {
   };
   return (
     <div  >
-      <Header />
-      <SimpleImageSlider width="100%" height="300px" images={dummyImages} showBullets={true} showNavs={true} />
+      <Header/>
+      <div style={{marginTop:"20px"}}>
+      
+      </div>
       <div style={formFont}>추천 양식</div>
       <Slider {...settings} style={{marginLeft:"50px", marginRight:"50px"}}>
         {dummyData.map((data,index) => (
