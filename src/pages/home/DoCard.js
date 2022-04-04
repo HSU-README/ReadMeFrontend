@@ -14,11 +14,22 @@ const DocCard =()=>{
     const clickForm=()=>{
         alert('아직 개발 x')
     }
-  
+    
+    const keywordTag = {
+      backgroundColor: 'lightGray',
+      width: '50px',
+      marginLeft: '5px',
+      marginRight: '26px',
+      color: 'black',
+      marginTop: '13px',
+      marginBottom:'13px',
+      boxShadow:'1px 1px gray'
+    };
+    var count=5;
     return (
       <div style={{marginLeft: '80px', marginRight:"80px",display:"inline-flex"}}>
         <Card
-          sx={{ maxWidth: 330 }}  
+          sx={{ maxWidth: 330 ,minWidth:330}}  
           onClick={clickForm}
         >
           <CardActionArea>
@@ -27,10 +38,23 @@ const DocCard =()=>{
               <Typography gutterBottom variant="h5" component="div">
                 Lizard
               </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging across all
-                continents except Antarctica
-              </Typography>
+              <hr/>
+                <Typography variant="body2" color="text.secondary" sx={{display:'inline'}}>
+                  <Button style={keywordTag}>공대</Button>
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{display:'inline'}}>
+                  <Button style={keywordTag}>공대</Button>
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{display:'inline'}}>
+                  <Button style={keywordTag}>공대</Button>
+                {
+                  count>4 &&
+                  <Button style={keywordTag}>
+                    ...
+                  </Button>
+                 
+                }
+                </Typography>
             </CardContent>
           </CardActionArea>
         </Card>

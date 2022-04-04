@@ -10,6 +10,21 @@ import "slick-carousel/slick/slick-theme.css";
 import prevArrow from '../../assets/images/prevArrow.png';
 import nextArrow from '../../assets/images/nextArrow.png';
 const Home = () => {
+  const [sliderCount, setSliderCount]= useState(4);//기본화면에서 4개
+  useEffect(()=>{
+
+  },window.addEventListener('resize',()=>{
+    if(window.outerWidth>1320){
+      setSliderCount(4)
+    }else if(window.outerWidth>1000 && window.outerWidth<=1320){
+      setSliderCount(3);
+    }else if(window.outerWidth>660 &&window.outerWidth<=1000){
+      setSliderCount(2);
+    }else if(window.outerWidth<=660){
+      setSliderCount(1);
+    }
+      console.log(window.outerWidth)
+  }))
   const SamplePrevArrow=(props)=> {
     const { className, style, onClick } = props;
     return (
@@ -47,7 +62,10 @@ const Home = () => {
     fontSize:"23px",
     marginTop:"30px",
     marginBottom:"20px",
-    marginLeft:"90px",
+    padding:"8px",
+    borderRadius:"15px",
+    marginLeft:"125px",
+    marginRight:"98px",
     fontWeight:"bold",
     border:"1px solid lightGray",
     boxShadow:"2px 2px 2px 2px lightGray"
@@ -57,11 +75,13 @@ const Home = () => {
     dots: false,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: sliderCount,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />
   };
+
+  var count=4;
   return (
     <div  >
       <Header/>
