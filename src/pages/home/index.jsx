@@ -12,6 +12,7 @@ import nextArrow from '../../assets/images/nextArrow.png';
 const Home = () => {
   const SamplePrevArrow=(props)=> {
     const { className, style, onClick } = props;
+    
     return (
       <div
         className={className}
@@ -51,7 +52,7 @@ const Home = () => {
     marginTop:"30px",
     marginBottom:"20px",
     marginLeft:"90px",
-    fontWeight:"bold"
+    fontWeight:"bold",  
   }
   const settings = {
     arrows:true,
@@ -92,3 +93,4 @@ const Home = () => {
 };
 
 export default Home;
+

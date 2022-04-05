@@ -2,6 +2,7 @@ import React from 'react'
 import dummy1 from '../../assets/images/dummyBlack.jpg'
 import { Card,CardActionArea, CardMedia, CardContent, Typography,Button,CardActions } from '@mui/material'
 import Slider from 'react-slick';
+
 const DocCard =()=>{
     const formFont={
         fontSize:"20px",
