@@ -1,16 +1,16 @@
 import React, { useCallback, useState } from 'react';
 import axios from 'axios';
-import useInput from 'hooks/useInput';
+import useInput from '../../hooks/useInput';
 import styled from 'styled-components';
-import colors from 'styles/colors';
-import { maxWidth } from 'styles/mixin';
-import Logo from 'assets/images/logo.jpg';
+import colors from '../../styles/colors';
+import { maxWidth } from '../../styles/mixin';
+import Logo from '../../assets/images/logo.jpg';
 import { FormControlLabel, Checkbox } from '@mui/material';
-import { Button, Error, Input } from 'pages/login/styles';
+import { Button, Error, Input } from '../../pages/login/styles';
 import { Link, useNavigate } from 'react-router-dom';
-import { ToastError, ToastSuccess } from 'hooks/toastHook';
-import { API_ENDPOINT } from 'apis/constant';
-import Footer from 'components/footer';
+import { ToastError, ToastSuccess } from '../../hooks/toastHook';
+import { API_ENDPOINT } from '../../apis/constant';
+import Footer from '../../components/footer/index.jsx';
 
 const LogIn = () => {
   const [email, onChangeEmail] = useInput('');
