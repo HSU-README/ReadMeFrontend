@@ -15,6 +15,7 @@ const Header=()=>{
         borderRadius:"15px",
         width:"700px",
         zIndex:"1",
+        marginTop:"14px",
         boxShadow:"2px 2px lightGray",
         textAlign:"left", 
         left:keywordBoxLeft,

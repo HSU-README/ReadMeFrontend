@@ -27,6 +27,7 @@ const Home = () => {
   }))
   const SamplePrevArrow=(props)=> {
     const { className, style, onClick } = props;
+    
     return (
       <div
         className={className}
@@ -64,11 +65,11 @@ const Home = () => {
     marginBottom:"20px",
     padding:"8px",
     borderRadius:"15px",
-    marginLeft:"125px",
     marginRight:"98px",
     fontWeight:"bold",
     border:"1px solid lightGray",
-    boxShadow:"2px 2px 2px 2px lightGray"
+    boxShadow:"2px 2px 2px 2px lightGray",
+    marginLeft:"90px",
   }
   const settings = {
     arrows:true,
