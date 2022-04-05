@@ -68,21 +68,21 @@ const Home = () => {
     <div  >
       <Header />
       <SimpleImageSlider width="100%" height="300px" images={dummyImages} showBullets={true} showNavs={true} />
-      <div style={formFont}>추천 양식</div>
+      <div style={formFont}>인기 디자인</div>
       <Slider {...settings} style={{marginLeft:"50px", marginRight:"50px"}}>
         {dummyData.map((data,index) => (
           <DocCard id={index}/>
         ))}
       </Slider>
 
-      <div style={formFont}>나의 양식</div>
+      <div style={formFont}>마이 디자인</div>
       <Slider {...settings} style={{marginLeft:"50px", marginRight:"50px"}}>
         {dummyData.map((data,index) => (
           <DocCard id={index}/>
         ))}
       </Slider>
 
-      <div style={formFont}>학과별 양식</div>
+      <div style={formFont}>전공별 디자인</div>
       <Slider {...settings} style={{marginLeft:"50px", marginRight:"50px"}}>
         {dummyData.map((data,index) => (
           <DocCard id={index}/>
