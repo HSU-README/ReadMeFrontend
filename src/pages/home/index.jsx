@@ -25,24 +25,24 @@ const Home = () => {
     setDetailFormId('');
   };
 
-  const SamplePrevArrow = (props) => {
-  const [sliderCount, setSliderCount]= useState(4);//기본화면에서 4개
-  useEffect(()=>{
+  const [sliderCount, setSliderCount] = useState(4); //기본화면에서 4개
+  useEffect(
+    () => {},
+    window.addEventListener('resize', () => {
+      if (window.outerWidth > 1320) {
+        setSliderCount(4);
+      } else if (window.outerWidth > 1000 && window.outerWidth <= 1320) {
+        setSliderCount(3);
+      } else if (window.outerWidth > 660 && window.outerWidth <= 1000) {
+        setSliderCount(2);
+      } else if (window.outerWidth <= 660) {
+        setSliderCount(1);
+      }
+      console.log(window.outerWidth);
+    }),
+  );
 
-  },window.addEventListener('resize',()=>{
-    if(window.outerWidth>1320){
-      setSliderCount(4)
-    }else if(window.outerWidth>1000 && window.outerWidth<=1320){
-      setSliderCount(3);
-    }else if(window.outerWidth>660 &&window.outerWidth<=1000){
-      setSliderCount(2);
-    }else if(window.outerWidth<=660){
-      setSliderCount(1);
-    }
-      console.log(window.outerWidth)
-  }))
-    
-  const SamplePrevArrow=(props)=> {
+  const SamplePrevArrow = (props) => {
     const { className, style, onClick } = props;
 
     return (
@@ -55,6 +55,7 @@ const Home = () => {
       </div>
     );
   };
+
   const SampleNextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
@@ -67,6 +68,7 @@ const Home = () => {
       </div>
     );
   };
+
   const dummyImages = [{ url: 'https://placeimg.com/640/480/any' }, { url: 'https://placeimg.com/640/480/any' }];
   const dummyData = [
     { img: '../../assets/images/dummyBlack.jpg', tag: ['대학교', '컴공'], name: '김한성', id: '0' },
@@ -76,27 +78,19 @@ const Home = () => {
     { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '스프링', id: '4' },
     { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '홍길동', id: '5' },
   ];
+
   const formFont = {
     fontSize: '23px',
     marginTop: '30px',
     marginBottom: '20px',
-    marginLeft: '90px',
+    padding: '8px',
+    borderRadius: '15px',
+    marginRight: '98px',
     fontWeight: 'bold',
+    border: '1px solid lightGray',
+    boxShadow: '2px 2px 2px 2px lightGray',
+    marginLeft: '90px',
   };
-  }
-
-  const formFont={
-    fontSize:"23px",
-    marginTop:"30px",
-    marginBottom:"20px",
-    padding:"8px",
-    borderRadius:"15px",
-    marginRight:"98px",
-    fontWeight:"bold",
-    border:"1px solid lightGray",
-    boxShadow:"2px 2px 2px 2px lightGray",
-    marginLeft:"90px",
-  }
 
   const settings = {
     arrows: true,
@@ -109,7 +103,7 @@ const Home = () => {
     prevArrow: <SamplePrevArrow />,
   };
 
-  var count=4;
+  var count = 4;
   return (
     <div style={{ position: 'relative' }}>
       {showDetailForm === true ? (
@@ -118,7 +112,7 @@ const Home = () => {
         <></>
       )}
       <Header />
-      <SimpleImageSlider width="100%" height="300px" images={dummyImages} showBullets={true} showNavs={true} />
+      <div style={{ marginTop: '20px' }}></div>
 
       <div style={formFont}>추천 양식</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
