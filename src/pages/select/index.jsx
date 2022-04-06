@@ -60,7 +60,6 @@ const Select = () => {
   const onReset = useCallback((e) => {
     e.preventDefault();
     setSelectedFormat('');
-    console.log('test');
   }, []);
 
   return (
