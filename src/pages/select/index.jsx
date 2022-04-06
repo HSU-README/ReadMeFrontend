@@ -1,15 +1,15 @@
 import React, { useCallback, useState } from 'react';
 import axios from 'axios';
-import useInput from 'hooks/useInput';
+import useInput from '../../hooks/useInput';
 import styled from 'styled-components';
-import colors from 'styles/colors';
-import { maxWidth } from 'styles/mixin';
-import Logo from 'assets/images/logo.jpg';
+import colors from '../../styles/colors';
+import { maxWidth } from '../../styles/mixin';
+import Logo from '../../assets/images/logo.jpg';
 import { Link, useNavigate } from 'react-router-dom';
-import Footer from 'components/footer';
-import SelectCard from 'components/selectCard';
-import Button from 'components/button';
-import Header from 'components/header';
+import Footer from '../../components/footer';
+import SelectCard from '../../components/selectCard';
+import Button from '../../components/button';
+import Header from '../../components/header';
 
 const formats = [
   {
@@ -60,7 +60,6 @@ const Select = () => {
   const onReset = useCallback((e) => {
     e.preventDefault();
     setSelectedFormat('');
-    console.log('test');
   }, []);
 
   return (

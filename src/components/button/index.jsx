@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import colors from 'styles/colors';
+import colors from '../../styles/colors';
 const SIZES = {
   sm: css`
     --button-font-size: 0.875rem;
