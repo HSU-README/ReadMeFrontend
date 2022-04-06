@@ -1,8 +1,9 @@
+
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Signup from 'pages/sign/Signup';
-import Login from 'pages/login';
-import Main from 'pages/home';
-import Select from 'pages/select';
+import Signup from './pages/sign/Signup';
+import Login from './pages/login';
+import Main from './pages/home';
+import Select from './pages/select';
 
 function App() {
   return (

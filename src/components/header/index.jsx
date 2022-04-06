@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from 'assets/images/logo.jpg';
+import logo from '../../assets/images/logo.jpg';
 import { Button } from '@mui/material';
-import { maxWidth } from 'styles/mixin';
-import colors from 'styles/colors';
+import { maxWidth } from '../../styles/mixin';
+import colors from '../../styles/colors';
 import { Link } from 'react-router-dom';
 
 export default function Header() {
