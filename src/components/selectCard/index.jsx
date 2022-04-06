@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react';
 import styled, { css } from 'styled-components';
-import fonts from 'styles/fonts';
-import { maxWidth } from 'styles/mixin';
+import fonts from '../../styles/fonts';
+import { maxWidth } from '../../styles/mixin';
 
 export default function SelectCard(props) {
   const setSelectedFormat = () => {
@@ -22,7 +22,7 @@ export default function SelectCard(props) {
 
 const Container = styled.div`
   position: relative;
-  background-image: url(${require('assets/images/dummy-select-image.jpeg')});
+  background-image: url(${require('../../assets/images/dummy-select-image.jpeg')});
   background-size: cover;
   background-position: center;
   height: ${(props) => (props.isSelected ? '270px' : '250px')};

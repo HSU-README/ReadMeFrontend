@@ -1,6 +1,11 @@
-.headerMain {
-  margin-top: 20px;
-  margin-bottom: 10px;
+
+.headerMain{
+    margin-top:20px;
+    text-align: center;
+}
+
+.inner{
+    display:inline-block;
 }
 
 .logo {
@@ -15,3 +20,4 @@
   border-radius: 50px;
   margin-right: 150px;
 }
+
