@@ -1,0 +1,22 @@
+.tags
+{
+  display: block;
+  justify-content: center;
+  text-align: center;
+  background: #B8DCDB;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  padding: 5px 10px;
+  margin: 3px 0;
+  border-radius: 6px;
+}
+
+.community-tag-container {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px;  
+
+  display: inline-block;
+}
