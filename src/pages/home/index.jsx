@@ -114,21 +114,21 @@ const Home = () => {
       <Header />
       <div style={{ marginTop: '20px' }}></div>
 
-      <div style={formFont}>추천 양식</div>
+      <div style={formFont}>인기 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
           <DocCard key={index} id={index} openDetailForm={openDetailForm} />
         ))}
       </Slider>
 
-      <div style={formFont}>나의 양식</div>
+      <div style={formFont}>나의 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
           <DocCard key={index} id={index} openDetailForm={openDetailForm} />
         ))}
       </Slider>
 
-      <div style={formFont}>학과별 양식</div>
+      <div style={formFont}>전공별 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
           <DocCard key={index} id={index} openDetailForm={openDetailForm} />

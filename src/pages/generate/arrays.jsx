@@ -6,15 +6,15 @@ const text = [
   },
   {
     cmd: 'bold',
-    label: '굵기',
+    label: 'Bold',
   },
   {
     cmd: 'delete',
-    label: '삭제',
+    label: 'Del',
   },
   {
     cmd: 'fontSize',
-    label: '폰트 사이즈',
+    label: 'Size',
     val: '1-10',
   },
   {
@@ -39,7 +39,7 @@ const text = [
 const image = [
   {
     cmd: 'insertImage',
-    label: '이미지 추가',
+    label: 'IMG',
     val: 'http://dummyimage.com/160x90',
   },
 ];
@@ -48,10 +48,6 @@ const align = [
   {
     cmd: 'justifyCenter',
     label: '중앙 정렬',
-  },
-  {
-    cmd: 'justifyFull',
-    label: '양쪽 정렬',
   },
   {
     cmd: 'justifyLeft',
