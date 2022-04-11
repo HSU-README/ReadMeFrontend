@@ -1,10 +1,10 @@
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Signup from './pages/sign/Signup';
 import Login from './pages/login';
 import Main from './pages/home';
 import Select from './pages/select';
 import EditPortFolio from 'pages/editPortfolio/EditPortfolio';
+import Generate from './pages/generate/generate';
 function App() {
   return (
     <div className="App">
@@ -15,6 +15,8 @@ function App() {
           <Route exact path="/login" element={<Login />} />
           <Route path="/select" element={<Select />} />
           <Route path="/editpofol" element={<EditPortFolio />} />
+          <Route path="/generate" element={<Generate />} />
+          
         </Routes>
       </BrowserRouter>
     </div>

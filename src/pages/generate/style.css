@@ -1,0 +1,81 @@
+.wrap {
+    width: 1200px;
+    margin: auto;
+  }
+  .parent{
+    position:absolute;
+    width: 175px;
+    margin-top: 5px;
+    margin-right: 150px;
+    right: 0;
+  }
+  .parent > div {
+    width: 300px;
+    margin-bottom: 30px;
+  }
+  .first {
+      border: 3px solid rgb(99, 85, 85);
+      padding: 10px;
+      box-sizing: border-box;
+  }
+  
+  .second{
+      border: 3px solid rgb(99, 85, 85);
+      padding: 10px;
+      box-sizing: border-box;
+  }
+  
+  .third{
+      border: 3px solid rgb(99, 85, 85);
+      padding: 10px;
+      box-sizing: border-box;
+
+  }
+  
+  .save{
+      float: left;
+      margin-left: 100px;
+      padding: 10px;
+      width:15%;
+      background-color: rgb(235, 124, 34);
+  }
+  
+  button {
+    border: 1px solid rgb(99, 85, 85);
+    padding: 5px 10px;
+  }
+  .editor_buttons {
+    padding: 10px 0;
+  }
+  .editor_buttons1 {
+      padding: 10px 0;
+    }
+    
+    .editor_buttons2 {
+      padding: 10px 0;
+    }
+  .editor_buttons button {
+    margin: 5px;
+    background-color: #f0f0f0;
+  }
+  
+  .editor_buttons1 button {
+      margin: 5px;
+      background-color: #f0f0f0;
+    }
+  
+    .editor_buttons2 button {
+      margin: 5px;
+      background-color: #f0f0f0;
+    }
+  .editor {
+    display: none;
+    width: 100%;
+    height: 800px;
+    margin-top: 120px;
+    background-color: #f8f8f8;
+  }
+  .show {
+    display: block;
+  }
+  
