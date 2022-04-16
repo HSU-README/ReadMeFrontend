@@ -84,6 +84,7 @@ const Container = styled.div`
   display: flex;
   z-index: 100;
   justify-content: center;
+  background-color: rgba(149, 165, 166, 0.9);
 
   .exit-img {
     width: 30px;
@@ -94,7 +95,6 @@ const Container = styled.div`
     left: 100px;
     background-size: cover;
     background-position: center;
-    cursor: pointer;
   }
 
   .section-modal {
