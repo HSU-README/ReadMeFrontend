@@ -4,7 +4,7 @@ import Signup from './pages/sign/Signup';
 import Login from './pages/login';
 import Main from './pages/home';
 import Select from './pages/select';
-import EditPortFolio from 'pages/editPortfolio/EditPortfolio';
+import ShowPortfolio from './pages/editPortfolio/ShowPortfolio.js'
 function App() {
   return (
     <div className="App">
@@ -14,7 +14,7 @@ function App() {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
           <Route path="/select" element={<Select />} />
-          <Route path="/editpofol" element={<EditPortFolio />} />
+          <Route path="/editpofol" element={<ShowPortfolio />} />
         </Routes>
       </BrowserRouter>
     </div>
