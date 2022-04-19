@@ -69,7 +69,6 @@ const Home = () => {
     );
   };
 
-  const dummyImages = [{ url: 'https://placeimg.com/640/480/any' }, { url: 'https://placeimg.com/640/480/any' }];
   const dummyData = [
     { img: '../../assets/images/dummyBlack.jpg', tag: ['대학교', '컴공'], name: '김한성', id: '0' },
     { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '이한성', id: '1' },
@@ -114,21 +113,21 @@ const Home = () => {
       <Header />
       <div style={{ marginTop: '20px' }}></div>
 
-      <div style={formFont}>추천 양식</div>
+      <div style={formFont}>인기 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
           <DocCard key={index} id={index} openDetailForm={openDetailForm} />
         ))}
       </Slider>
 
-      <div style={formFont}>나의 양식</div>
+      <div style={formFont}>나의 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
           <DocCard key={index} id={index} openDetailForm={openDetailForm} />
         ))}
       </Slider>
 
-      <div style={formFont}>학과별 양식</div>
+      <div style={formFont}>전공별 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
           <DocCard key={index} id={index} openDetailForm={openDetailForm} />
