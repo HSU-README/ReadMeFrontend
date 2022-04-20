@@ -1,9 +1,8 @@
 
 import React,{useState} from 'react';
-import ShowPortfolio from './ShowPortfolio';
-import { PDFDownloadLink } from "@react-pdf/renderer";
+import EditPortfolio from './EditPortfolio';
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import ExportPdf from './ExportPdf.js'
+import ExportPdf from './DownloadPdf.js'
 const DownloadPortfolio=()=>{
     const [title, setTitle] = useState("")
     return(

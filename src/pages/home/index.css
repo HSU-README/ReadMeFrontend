@@ -12,6 +12,16 @@
   border-radius: 6px;
 }
 
+.grayTag{
+  color:black;
+  border:2px 2px 2px 2px;
+  padding:5px 5px 5px 5px;
+  border-radius:4px;
+  background-color:#D3D3D3;
+  margin-right:4px;
+  margin-left:4px;
+}
+
 .community-tag-container {
   display: flex;
   justify-content: flex-start;

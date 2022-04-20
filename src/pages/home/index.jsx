@@ -70,11 +70,11 @@ const Home = () => {
   };
 
   const dummyData = [
-    { img: '../../assets/images/dummyBlack.jpg', tag: ['대학교', '컴공'], name: '김한성', id: '0' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '이한성', id: '1' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '아무개', id: '2' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '리액트', id: '3' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '스프링', id: '4' },
+    { img: '../../assets/images/dummyBlack.jpg', tag: ['대학교', '컴공','프론트','JS'], name: '김한성', id: '0' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공','프론트','JS'], name: '이한성', id: '1' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공','프론트','JS'], name: '아무개', id: '2' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공','프론트','JS'], name: '리액트', id: '3' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공','프론트','JS'], name: '스프링', id: '4' },
     { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '홍길동', id: '5' },
   ];
 
@@ -116,21 +116,21 @@ const Home = () => {
       <div style={formFont}>인기 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
-          <DocCard key={index} id={index} openDetailForm={openDetailForm} />
+          <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
         ))}
       </Slider>
 
       <div style={formFont}>나의 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
-          <DocCard key={index} id={index} openDetailForm={openDetailForm} />
+          <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
         ))}
       </Slider>
 
       <div style={formFont}>전공별 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
-          <DocCard key={index} id={index} openDetailForm={openDetailForm} />
+          <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data}/>
         ))}
       </Slider>
     </div>

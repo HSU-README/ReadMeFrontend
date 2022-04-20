@@ -12,7 +12,7 @@ const Searchbar=()=>{
         setSearchText(event.target.value)
     }
     return (
-      <div>
+      <div style={{position:"relative", zIndex:"1"}}>
         <TextField
           className="inputRounded"
           placeholder="Search"
@@ -27,13 +27,7 @@ const Searchbar=()=>{
           }}
           value={searchText}
           onChange={searchChange}
-          onClick={() => {
-            
-          }}
         />
-        
-        <br />
-        <br />
       </div>
     );
 }
