@@ -19,23 +19,12 @@
   .parent > div > details > button:hover{
     cursor: pointer;
   }
-  .first {
-      border: 3px solid rgb(99, 85, 85);
-      padding: 10px;
-      box-sizing: border-box;
-  }
-  
-  .second{
-      border: 3px solid rgb(99, 85, 85);
-      padding: 10px;
-      box-sizing: border-box;
-  }
-  
-  .third{
-      border: 3px solid rgb(99, 85, 85);
-      padding: 10px;
-      box-sizing: border-box;
 
+  /*아이템 박스*/
+  .itemBoxCss {
+      border: 3px solid rgb(99, 85, 85);
+      padding: 10px;
+      box-sizing: border-box;
   }
   
   .save{
@@ -54,14 +43,6 @@
     margin-left: 10px;
     margin-top: 10px;
   }
-  .editor_buttons1 {
-    margin-left: 10px;
-    margin-top: 10px;
-  }
-    .editor_buttons2 {
-      margin-left: 10px;
-      margin-top: 10px;
-    }
     
     .editor {
       font-family: 'Roboto', sans-serif;
@@ -76,3 +57,21 @@
     .show {
   display: block;
 }
+
+  /*menu 버튼 css */
+  .menuBtn {
+    all: unset;
+    padding: 8px;
+  }
+  
+  /*edit menu bar*/
+  .menuBar{
+    position: absolute;
+    margin-top: -50px;
+    left: -280px;
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    color: #707070;
+    z-index: 9999;
+  }

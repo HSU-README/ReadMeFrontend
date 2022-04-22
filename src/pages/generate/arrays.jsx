@@ -34,13 +34,28 @@ const text = [
     cmd: 'underline',
     label: '밑줄',
   },
+
+  {
+    cmd: 'insertHorizontalRule',
+    label: '가로줄',
+  },
+
+  {
+    cmd: 'indent',
+    label: '들여쓰기',
+  },
+
+  {
+    cmd: 'strikeThrough',
+    label: '취소선',
+  }
 ];
 
 const image = [
   {
     cmd: 'insertImage',
     label: 'IMG',
-    val: 'http://dummyimage.com/160x90',
+    val: 'https://unsplash.com/photos/8kqtv6dMNSg',
   },
 ];
 
@@ -57,6 +72,20 @@ const align = [
     cmd: 'justifyRight',
     label: '우측 정렬',
   },
+
+  {
+    cmd: 'formatBlock',
+    label: '블럭 영역',
+    val: "<blockquote>",
+  },
 ];
 
-export { text, image, align };
+const emoji = [
+  { 
+    cmd: 'insertImage',
+    label: 'img',
+    val: 'http://dummyimage.com/160x90',
+  },
+];
+
+export { text, image, align, emoji };
