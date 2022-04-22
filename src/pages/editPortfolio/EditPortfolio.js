@@ -6,7 +6,8 @@ import { text, image, align, emoji } from 'pages/generate/arrays';
 const EditPortfolio = (props) => {
   const doCommand = (cmd) => {
     const val = typeof cmd.val !== 'undefined' ? prompt('Value for ' + cmd.cmd + '?', cmd.val) : '';
-    document.execCommand(cmd.cmd, false, val || '');
+    //const val = typeof cmd.val !== 'undefined' ? cmd.val : '';
+    document.execCommand(cmd.cmd, true, val || '');
   };
 
   const handleBtnClick = (item) => {
@@ -23,7 +24,7 @@ const EditPortfolio = (props) => {
             <br />
             {text.map((item) => {
               return (
-                <button className="editor_buttons" onClick={() => handleBtnClick(item)}>
+                <button className="button_box editor_buttons" onClick={() => handleBtnClick(item)}>
                   {item.label}
                 </button>
               );
@@ -37,7 +38,7 @@ const EditPortfolio = (props) => {
             <br />
             {image.map((item) => {
               return (
-                <button className="editor_buttons" onClick={() => handleBtnClick(item)}>
+                <button className="button_box editor_buttons" onClick={() => handleBtnClick(item)}>
                   {' '}
                   {item.label}{' '}
                 </button>
@@ -52,7 +53,7 @@ const EditPortfolio = (props) => {
             <br />
             {align.map((item) => {
               return (
-                <button className="editor_buttons" onClick={() => handleBtnClick(item)}>
+                <button className="button_box editor_buttons" onClick={() => handleBtnClick(item)}>
                   {' '}
                   {item.label}{' '}
                 </button>
@@ -67,9 +68,8 @@ const EditPortfolio = (props) => {
             <br />
             {emoji.map((item) => {
               return (
-                <button className="editor_buttons" onClick={() => handleBtnClick(item)}>
-                  {' '}
-                  {item.label}{' '}
+                <button className="button_none editor_buttons1" onClick={() => handleBtnClick(item)}>
+                  <img src={item.val} />
                 </button>
               );
             })}

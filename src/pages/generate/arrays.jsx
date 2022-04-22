@@ -48,7 +48,7 @@ const text = [
   {
     cmd: 'strikeThrough',
     label: '취소선',
-  }
+  },
 ];
 
 const image = [
@@ -76,16 +76,71 @@ const align = [
   {
     cmd: 'formatBlock',
     label: '블럭 영역',
-    val: "<blockquote>",
+    val: '<H1>',
   },
 ];
 
 const emoji = [
   { 
     cmd: 'insertImage',
-    label: 'img',
-    val: 'http://dummyimage.com/160x90',
+    val:'https://tigerlcw.github.io/CapStoneImg/hansung/%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B0.png',
+    label:'상상부기',
   },
+
+  { 
+    cmd: 'insertImage',
+    val:'https://tigerlcw.github.io/CapStoneImg/hansung/%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B02.png',
+    label:'상상부기1',
+  },
+
+  { 
+    cmd: 'insertImage',
+    val:'https://tigerlcw.github.io/CapStoneImg/hansung/%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B03.png',
+    label:'상상부기2',
+  },
+
+  { 
+    cmd: 'insertImage',
+    val:'https://tigerlcw.github.io/CapStoneImg/hansung/%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B04.png',
+    label:'상상부기3',
+  },
+
+  { 
+    cmd: 'insertImage',
+    val:'https://tigerlcw.github.io/CapStoneImg/hansung/%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B05.png',
+    label:'상상부기4',
+  },
+
+  { 
+    cmd: 'insertImage',
+    val:'https://tigerlcw.github.io/CapStoneImg/hansung/%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B06.png',
+    label:'상상부기5',
+  },
+
+  { 
+    cmd: 'insertImage',
+    val:'https://tigerlcw.github.io/CapStoneImg/hansung/%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B07.png',
+    label:'상상부기6',
+  },
+
+  { 
+    cmd: 'insertImage',
+    val:'https://tigerlcw.github.io/CapStoneImg/hansung/%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B08.png',
+    label:'상상부기7',
+  },
+
+  { 
+    cmd: 'insertImage',
+    val:'https://tigerlcw.github.io/CapStoneImg/hansung/%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B09.png',
+    label:'상상부기8',
+  },
+
+  { 
+    cmd: 'insertImage',
+    val:'https://tigerlcw.github.io/CapStoneImg/hansung/%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B010.png',
+    label:'상상부기9',
+  },
+
 ];
 
 export { text, image, align, emoji };
