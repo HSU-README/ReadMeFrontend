@@ -1,5 +1,67 @@
 import styled from 'styled-components';
-import colors from '../../styles/colors';
+import colors from 'styles/colors';
+import { maxWidth } from 'styles/mixin';
+
+export const Container = styled.div`
+  ${maxWidth}
+`;
+
+export const LoginContainer = styled.div`
+  border: 5px solid;
+  border-color: ${colors.loginBorder};
+  border-radius: 15px;
+  max-width: 900px;
+  max-height: 800px;
+  width: 60%;
+  height: auto;
+  margin: 100px auto;
+  box-shadow: 25% 0px 20px 10px rgba(0, 0, 0, 0.2);
+
+  .logo-wrapper {
+    text-align: center;
+    padding: 30px 0px 50px 0px;
+  }
+  .logo {
+    width: 250px;
+    height: 107px;
+  }
+
+  .input-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0px auto;
+    padding: 0px 50px 0px 50px;
+  }
+
+  .checkbox-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    max-width: 800px;
+    margin: 0px auto;
+    padding: 0px 50px 0px 50px;
+    color: ${colors.loginText};
+  }
+
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 0px auto;
+    padding: 30px 0px 20px 0px;
+    max-width: 800px;
+  }
+
+  .login-find {
+    text-align: center;
+    margin-bottom: 100px;
+  }
+  .login-find-content {
+    padding: 0px 15px;
+    color: ${colors.loginText};
+    font-size: 15px;
+  }
+`;
 
 export const Input = styled.input`
   border-radius: 4px;

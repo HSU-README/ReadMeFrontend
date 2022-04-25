@@ -1,15 +1,10 @@
 import React, { useCallback, useState } from 'react';
-import axios from 'axios';
-import useInput from '../../hooks/useInput';
-import styled from 'styled-components';
-import colors from '../../styles/colors';
-import { maxWidth } from '../../styles/mixin';
-import Logo from '../../assets/images/logo.jpg';
-import { Link, useNavigate } from 'react-router-dom';
-import Footer from '../../components/footer';
-import SelectCard from '../../components/selectCard';
-import Button from '../../components/button';
-import Header from '../../components/header';
+import { Link } from 'react-router-dom';
+import { Container } from './styles';
+import Footer from 'components/footer';
+import SelectCard from 'components/selectCard';
+import Button from 'components/button';
+import Header from 'components/header';
 
 const formats = [
   {
@@ -96,45 +91,3 @@ const Select = () => {
 };
 
 export default Select;
-
-const Container = styled.div`
-  ${maxWidth}
-  padding: "0px 24px 48px";
-
-  a {
-    flex: 1;
-    margin: 0px 0px;
-    padding: 0px 0px;
-  }
-
-  .section-select {
-    display: flex;
-    flex-wrap: wrap;
-    width: 840px;
-    height: 740px;
-    justify-content: space-between;
-    gap: 20px;
-  }
-  .section-button {
-    display: flex;
-    width: 400px;
-    justify-content: flex-end;
-    align-items: flex-end;
-    padding: 10px 150px 10px 0px;
-    gap: 40px;
-  }
-
-  .selectWrapper {
-    display: flex;
-    flex-direction: row;
-    margin: 0px auto;
-    justify-content: center;
-  }
-
-  .buttonWrapper {
-    display: flex;
-    flex-direction: row;
-    margin: 0px auto;
-    justify-content: flex-end;
-  }
-`;

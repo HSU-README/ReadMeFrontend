@@ -1,16 +1,14 @@
 import React, { useCallback, useState } from 'react';
 import axios from 'axios';
-import useInput from '../../hooks/useInput';
-import styled from 'styled-components';
-import colors from '../../styles/colors';
-import { maxWidth } from '../../styles/mixin';
-import Logo from '../../assets/images/logo.jpg';
+import useInput from 'hooks/useInput';
+import colors from 'styles/colors';
+import Logo from 'assets/images/logo.jpg';
 import { FormControlLabel, Checkbox } from '@mui/material';
-import { Button, Error, Input } from '../../pages/login/styles';
+import { Container, LoginContainer, Button, Error, Input } from 'pages/login/styles';
+import Footer from 'components/footer/index.jsx';
 import { Link, useNavigate } from 'react-router-dom';
-import { ToastError, ToastSuccess } from '../../hooks/toastHook';
-import { API_ENDPOINT } from '../../apis/constant';
-import Footer from '../../components/footer/index.jsx';
+import { ToastError, ToastSuccess } from 'hooks/toastHook';
+import { API_ENDPOINT } from 'apis/constant';
 
 const LogIn = () => {
   const [email, onChangeEmail] = useInput('');
@@ -113,64 +111,3 @@ const LogIn = () => {
 };
 
 export default LogIn;
-
-const Container = styled.div`
-  ${maxWidth}
-`;
-
-const LoginContainer = styled.div`
-  border: 5px solid;
-  border-color: ${colors.loginBorder};
-  border-radius: 15px;
-  max-width: 900px;
-  max-height: 800px;
-  width: 60%;
-  height: auto;
-  margin: 100px auto;
-  box-shadow: 25% 0px 20px 10px rgba(0, 0, 0, 0.2);
-
-  .logo-wrapper {
-    text-align: center;
-    padding: 30px 0px 50px 0px;
-  }
-  .logo {
-    width: 250px;
-    height: 107px;
-  }
-
-  .input-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: 800px;
-    margin: 0px auto;
-    padding: 0px 50px 0px 50px;
-  }
-
-  .checkbox-wrapper {
-    display: flex;
-    justify-content: flex-start;
-    max-width: 800px;
-    margin: 0px auto;
-    padding: 0px 50px 0px 50px;
-    color: ${colors.loginText};
-  }
-
-  .button-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 0px auto;
-    padding: 30px 0px 20px 0px;
-    max-width: 800px;
-  }
-
-  .login-find {
-    text-align: center;
-    margin-bottom: 100px;
-  }
-  .login-find-content {
-    padding: 0px 15px;
-    color: ${colors.loginText};
-    font-size: 15px;
-  }
-`;
