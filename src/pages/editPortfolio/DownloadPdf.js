@@ -1,19 +1,20 @@
-import React,{useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import ShowPortfolio from './EditPortfolio.js';
 import ReactToPrint from 'react-to-print';
 
-const SimpleComponent = props => { const { printRef } = props; return <div ref={printRef}>아주 간단한 컴포넌트입니다.</div>; };
-
-
-const ExportPdf=()=>{
-    const componentRef = useRef(null);
-    return(
-        <div>   
-        <ReactToPrint trigger={() => <button>프린트하기</button>} content={() => componentRef.current} />
-
-        <ShowPortfolio printRef={componentRef} />
-        </div>
-    );
-}
+const ExportPdf = () => {
+  const componentRef = useRef(null);
+  return (
+    <div>
+      <center className="menuBar">
+        <ReactToPrint trigger={() => <button className="menuBtn">저장</button>} content={() => componentRef.current} />
+        <button className="menuBtn">|&nbsp;&nbsp;표</button>
+        <button className="menuBtn">|&nbsp;&nbsp;파일 업로드</button>
+        <button className="menuBtn">|&nbsp;&nbsp;도움말</button>
+      </center>
+      <ShowPortfolio printRef={componentRef} />
+    </div>
+  );
+};
 
 export default ExportPdf;

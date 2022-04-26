@@ -19,23 +19,12 @@
   .parent > div > details > button:hover{
     cursor: pointer;
   }
-  .first {
-      border: 3px solid rgb(99, 85, 85);
-      padding: 10px;
-      box-sizing: border-box;
-  }
-  
-  .second{
-      border: 3px solid rgb(99, 85, 85);
-      padding: 10px;
-      box-sizing: border-box;
-  }
-  
-  .third{
-      border: 3px solid rgb(99, 85, 85);
-      padding: 10px;
-      box-sizing: border-box;
 
+  /*아이템 박스*/
+  .itemBoxCss {
+      border: 3px solid rgb(99, 85, 85);
+      padding: 10px;
+      box-sizing: border-box;
   }
   
   .save{
@@ -46,22 +35,27 @@
       background-color: rgb(235, 124, 34);
   }
   
-  button {
+  .button_box {
     border: 1px solid rgb(99, 85, 85);
     padding: 5px 10px;
   }
+
+  /* 이모지 박스 */
+  .button_none{
+    background-color: white;
+    border: 1px solid rgb(0, 47, 255);
+  }
+
+
   .editor_buttons {
     margin-left: 10px;
     margin-top: 10px;
   }
+
   .editor_buttons1 {
-    margin-left: 10px;
-    margin-top: 10px;
+    margin-left: 5px;
+    margin-top: 5px;
   }
-    .editor_buttons2 {
-      margin-left: 10px;
-      margin-top: 10px;
-    }
     
     .editor {
       font-family: 'Roboto', sans-serif;
@@ -76,3 +70,21 @@
     .show {
   display: block;
 }
+
+  /*menu 버튼 css */
+  .menuBtn {
+    all: unset;
+    padding: 8px;
+  }
+  
+  /*edit menu bar*/
+  .menuBar{
+    position: absolute;
+    margin-top: -50px;
+    left: -280px;
+    width: 100%;
+    height: 30px;
+    font-size: 20px;
+    color: #707070;
+    z-index: 9999;
+  }

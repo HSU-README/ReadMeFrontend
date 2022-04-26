@@ -3,7 +3,9 @@ import './style.css';
 import { text, image, align } from './arrays';
 import TextEditArea from './TextEditArea';
 
+
 const Generate = () => {
+  /*
   const doCommand = (cmd) => {
     const val =  typeof cmd.val !== 'undefined'
     ? prompt('Value for ' + cmd.cmd + '?', cmd.val)
@@ -64,9 +66,9 @@ const Generate = () => {
           </div>
         </div>
       </div>
-      <TextEditArea />
+      <TextEditArea /> 
     </>
   );
+*/
 };
-
 export default Generate;
