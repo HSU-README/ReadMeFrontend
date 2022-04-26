@@ -1,43 +1,47 @@
 import React,{useState,useEffect} from 'react';
 import { Input,TextField,Button,Stack,Alert,Error} from '@mui/material';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast} from 'react-toastify';
+import { ToastError, ToastSuccess } from '../../hooks/toastHook';
 import logo from '../../assets/images/logo.jpg';
 import "react-toastify/dist/ReactToastify.css"
 import axios from 'axios';
+import { API_ENDPOINT } from '../../apis/constant';
+import { useNavigate } from 'react-router-dom';
 
 const Signup=()=>{
+    const [name,setName]=useState("")
     const [id, setId]= useState("");
     const [password, setPassword] = useState("");
     const [nickname, setNickname] =useState("");
-    const [email, setEmail]= useState("");
+    const [email,setEmail]= useState("")
+    const [university, setUniversity]= useState("");
+    const [major,setMajor] =useState("")
     const [loginSuccess, setLoginSuccess]=useState(true);
-        
-    const sign = () => {
-     if(id==="" || password==="" || email==="" || nickname===""){
-        toast.error("정보를 올바르게 입력해주세요",{
-          autoClose:3000,
-          position:toast.POSITION.TOP_RIGHT
-        })
-      }
-      axios.post('https://hsureadme.herokuapp.com/api/v1/members/new',{
-        name:id,
-        password:password,
-        email:id,
-        nickname:nickname
+    const navigate = useNavigate();
+    const serverApi = axios.create({
+      baseURL: `${API_ENDPOINT}`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const sign = async() => {
+      console.log(name)
+      console.log(password)
+      console.log(email)
+      await serverApi.post('/api/v1/members/new',{
+        name:`${name}`,
+        email:`${email}`,
+        password:`${password}`,
+        university:`${university}`,
+        major:`${major}`,
       }).then(response=>{
-        toast.success("정보를 올바르게 입력해주세요",{
-          autoClose:3000,
-          position:toast.POSITION.TOP_RIGHT
-        })
-        setId("")
-        setPassword("")
-        setEmail("")
-        setNickname("")
+        const successMessage = JSON.stringify(response.data.message);
+        ToastSuccess(successMessage)
+        navigate('/')
       }).catch(err=>{
-        toast.error("정보를 올바르게 입력해주세요",{
-          autoClose:3000,
-          position:toast.POSITION.TOP_RIGHT
-        })
+        const errorMessage = JSON.stringify(err.response.data.errorMessage);
+        ToastError(errorMessage);
       })
     };
 
@@ -57,15 +61,28 @@ const Signup=()=>{
           }}>
           <ToastContainer/>
           <img src={logo} alt="로고" style={{ width: '35%', height: '15%',marginTop:"35px", marginBottom:"40px" }} /><br/>
+    
           <TextField
-            placeholder="아이디"
-            label="아이디"
-            value={id}
+            placeholder="이름"
+            label="이름"
+            value={name}
             variant="outlined"
             size="small"
             style={{margin:"15px",width:"300px"}}
             onChange={(event) => {
-              setId(event.target.value);
+              setName(event.target.value);
+            }}
+          />
+          <br/>
+          <TextField
+            placeholder="aaa@naver.com"
+            label="이메일"
+            value={email}
+            variant="outlined"
+            size="small"
+            style={{margin:"15px",width:"300px"}}
+            onChange={(event) => {
+              setEmail(event.target.value);
             }}
           />
           <br />
@@ -82,26 +99,26 @@ const Signup=()=>{
           />
           <br />
           <TextField
-            placeholder='닉네임'
-            label="닉네임"
+            placeholder="aaa@naver.com"
+            label="학교(선택)"
+            value={university}
             variant="outlined"
-            value={nickname}
             size="small"
             style={{margin:"15px",width:"300px"}}
             onChange={(event) => {
-              setNickname(event.target.value);
+              setUniversity(event.target.value);
             }}
           />
           <br />
           <TextField
-            placeholder="aaa@naver.com"
-            label="학교 이메일(선택)"
-            value={email}
+            placeholder="전공을 입력해주세요"
+            label="전공"
+            value={major}
             variant="outlined"
             size="small"
             style={{margin:"15px",width:"300px"}}
             onChange={(event) => {
-              setEmail(event.target.value);
+              setMajor(event.target.value);
             }}
           />
           <br />
