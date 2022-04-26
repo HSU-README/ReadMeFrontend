@@ -9,6 +9,7 @@ import Footer from 'components/footer/index.jsx';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastError, ToastSuccess } from 'hooks/toastHook';
 import { API_ENDPOINT } from 'apis/constant';
+import Header from 'components/header';
 
 const LogIn = () => {
   const [email, onChangeEmail] = useInput('');
@@ -56,6 +57,7 @@ const LogIn = () => {
 
   return (
     <Container>
+      <Header />
       <LoginContainer>
         <div className="logo-wrapper">
           <img className="logo" src={Logo} alt="logo" />
@@ -89,10 +91,10 @@ const LogIn = () => {
           <Button onClick={onSubmit}>로그인</Button>
         </div>
         <div className="login-find">
-          <Link to="/signup">
+          <Link to="/signup" style={{ textDecoration: 'none' }}>
             <span className="login-find-content">회원가입</span>
           </Link>
-          <Link to="/login">
+          <Link to="/login" style={{ textDecoration: 'none' }}>
             <span
               className="login-find-content"
               style={{ borderLeft: '1px solid', borderRight: '1px solid', borderColor: `${colors.loginText}` }}
@@ -100,7 +102,7 @@ const LogIn = () => {
               아이디찾기
             </span>
           </Link>
-          <Link to="/login">
+          <Link to="/login" style={{ textDecoration: 'none' }}>
             <span className="login-find-content">비밀번호찾기</span>
           </Link>
         </div>
