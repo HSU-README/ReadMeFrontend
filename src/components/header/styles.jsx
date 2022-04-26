@@ -3,8 +3,9 @@ import { maxWidth } from '../../styles/mixin';
 import colors from '../../styles/colors';
 
 export const headerFont = {
-  fontSize: '18px',
+  fontSize: '22px',
   color: '#646464',
+  marginRight: '20px',
 };
 
 export const Container = styled.div`
@@ -22,7 +23,7 @@ export const Container = styled.div`
 
   .logo {
     width: 120px;
-    height: 48px;
+    height: 50px;
     margin-right: 40px;
   }
 
@@ -31,6 +32,6 @@ export const Container = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 160px;
+    width: 200px;
   }
 `;
