@@ -1,4 +1,5 @@
 import React, { useState,useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import dummy1 from '../../assets/images/dummyBlack.jpg';
 import { Card, CardActionArea, CardMedia, CardContent, Typography, Button, CardActions } from '@mui/material';
 import Slider from 'react-slick';
@@ -7,12 +8,16 @@ const DocCard = (props) => {
  // const tags = props.pofolInfo.tag;
   const clickForm = () => {
     props.openDetailForm(props.id);
-   
   };
+
+  const location = useLocation();
+
   var count = 5;
   return (
-    <div style={{ marginLeft: '80px', marginRight: '80px', display: 'inline-flex' }}>
-      <Card sx={{ maxWidth: 330 ,minWidth:300 }} >
+    <div style={{ marginLeft: '80px', marginRight: '80px', display: 'inline-flex' }} >
+      <Card sx={{ maxWidth: 330 ,minWidth:300 }} onClick={()=>{
+        console.log(location)
+      }}>
         <CardActionArea >
           <CardMedia component="img" height="140" image={dummy1} alt="green iguana" onClick={clickForm} />
           <CardContent>
