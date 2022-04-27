@@ -30,10 +30,10 @@ const LogIn = () => {
         password: password,
       })
       .then((response) => {
-        console.log(JSON.stringify(response.data.data));
+        console.log(JSON.stringify(response.data.result));
         const userInfo = JSON.stringify(response.data.result.id);
         const successMessage = JSON.stringify(response.data.message);
-        
+
         localStorage.setItem('readme_login', 'true');
         localStorage.setItem('readme_userInfo', userInfo);
         navigate('/');
