@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { Button} from '@mui/material';
 import Searchbar from './Searchbar.js'
 import Banner from './Banner.js'
+import Footer from '../components/footer/index.jsx'
 const Header=()=>{
   const [keywordBoxLeft, setkeyWordBoxLeft] = useState("0px");
   const [keywordBoxTop, setkeyWordBoxTop] = useState("0px");
@@ -81,6 +82,7 @@ const Header=()=>{
         <div style={{ position: 'relative' }}>
           <Banner setKeywordBoxVisible={setKeywordBoxVisible}/>
         </div>
+        
       </div>
     );
 }

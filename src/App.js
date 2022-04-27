@@ -5,6 +5,7 @@ import Main from './pages/home';
 import Select from './pages/select';
 import DownloadPortfolio from './pages/editPortfolio/DownloadPortfolio.js'
 import Generate from './pages/generate/generate';
+import { useSelector, useDispatch } from 'react-redux';
 function App() {
   return (
     <div className="App">

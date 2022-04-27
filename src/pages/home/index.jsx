@@ -10,18 +10,34 @@ import 'slick-carousel/slick/slick-theme.css';
 import prevArrow from '../../assets/images/prevArrow.png';
 import nextArrow from '../../assets/images/nextArrow.png';
 import Modal from 'components/modal/index.jsx';
-
-const Home = () => {
+import Footer from 'components/footer/index.jsx'
+import { useSelector, useDispatch } from 'react-redux';
+const Home = ({loginCheck}) => {
   const [showDetailForm, setShowDetailForm] = useState(false);
   const [detailFormId, setDetailFormId] = useState('');
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const location = useLocation();
-
+  const dispatch = useDispatch();
+  const {loginChecking} = useSelector(state=>state.loginCheck)
   const openDetailForm = (id) => {
     setShowDetailForm(true);
     setDetailFormId(id);
   };
 
+  useEffect(()=>{
+    if(loginCheck!==undefined){
+      if(loginCheck===true){
+        dispatch({type:'signIn'})
+        return
+      }
+    }
+    console.log('come here')
+    return dispatch({type:'signIn'})
+  },[])
+  useEffect(()=>{
+    console.log(loginChecking)
+  },loginChecking)
+
+  
   const closeDetailForm = () => {
     setShowDetailForm(false);
     setDetailFormId('');
@@ -57,7 +73,7 @@ const Home = () => {
   };
 
 
-  const RecommendPortFolio=({opacity})=>{
+  const RecommendPortFolio=({opacity,loginSuccess})=>{
     return (
       <span>
         <div className="sectionFont"><span style={{opacity:`${opacity}`}}>나의 포트폴리오</span></div>
@@ -125,15 +141,17 @@ const Home = () => {
           <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
         ))}
       </Slider>
-
+      
       {loginSuccess ? (
-        <RecommendPortFolio opacity="1"/>
+        <RecommendPortFolio opacity="1" loginSuccess={loginSuccess}/>
       ) : (
         <div className="beforeLogin">
-          <RecommendPortFolio opacity="0.5"/>
+          <RecommendPortFolio opacity="0.5" loginSuccess={loginSuccess}/>
           <span className="beforeLoginAlertText">로그인 후 이용 가능합니다.</span>
         </div>
       )}
+      <br/>
+      <Footer/>
     </div>
   );
 };
