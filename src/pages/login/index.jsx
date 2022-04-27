@@ -31,7 +31,8 @@ const LogIn = () => {
         password: password,
       })
       .then((response) => {
-        const userInfo = JSON.stringify(response.data.result);
+        console.log(JSON.stringify(response.data.data));
+        const userInfo = JSON.stringify(response.data.result.id);
         const successMessage = JSON.stringify(response.data.message);
 
         localStorage.setItem('readme_login', 'true');

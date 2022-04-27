@@ -11,19 +11,17 @@ export const LoginContainer = styled.div`
   border-color: ${colors.loginBorder};
   border-radius: 15px;
   max-width: 900px;
-  max-height: 800px;
   width: 60%;
-  height: auto;
-  margin: 100px auto;
+  margin: 140px auto 180px auto;
   box-shadow: 25% 0px 20px 10px rgba(0, 0, 0, 0.2);
 
   .logo-wrapper {
     text-align: center;
-    padding: 30px 0px 50px 0px;
+    padding: 30px 0px 40px 0px;
   }
   .logo {
-    width: 250px;
-    height: 107px;
+    width: 25%;
+    margin: 0px;
   }
 
   .input-wrapper {
