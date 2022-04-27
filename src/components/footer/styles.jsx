@@ -6,12 +6,13 @@ export const Container = styled.footer`
   ${maxWidth}
   display: flex;
   justify-content: flex-end;
-  padding: 15px;
-  gap: 20px;
+  padding: 6px;
+  margin-top: auto;
   border-top: 1px solid;
   border-color: ${colors.footerLine};
 
   .copyright {
-    font-size: 18px;
+    font-size: 12px;
+    margin-right: 40px;
   }
 `;
