@@ -15,7 +15,6 @@ const LogIn = () => {
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [logInError, setLogInError] = useState(false);
-
   const navigate = useNavigate();
   const serverApi = axios.create({
     baseURL: `${API_ENDPOINT}`,
@@ -34,10 +33,9 @@ const LogIn = () => {
         console.log(JSON.stringify(response.data.data));
         const userInfo = JSON.stringify(response.data.result.id);
         const successMessage = JSON.stringify(response.data.message);
-
+        
         localStorage.setItem('readme_login', 'true');
         localStorage.setItem('readme_userInfo', userInfo);
-
         navigate('/');
         ToastSuccess(successMessage);
       })

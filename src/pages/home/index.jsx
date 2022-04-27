@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import Header from '../../header/Header.js';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useLocation } from 'react-router-dom';
 import './index.css';
 import DocCard from './DoCard.js';
 import Slider from 'react-slick';
@@ -14,6 +14,8 @@ import Modal from 'components/modal/index.jsx';
 const Home = () => {
   const [showDetailForm, setShowDetailForm] = useState(false);
   const [detailFormId, setDetailFormId] = useState('');
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const location = useLocation();
 
   const openDetailForm = (id) => {
     setShowDetailForm(true);
@@ -38,13 +40,11 @@ const Home = () => {
       } else if (window.outerWidth <= 660) {
         setSliderCount(1);
       }
-      console.log(window.outerWidth);
     }),
   );
 
   const SamplePrevArrow = (props) => {
     const { className, style, onClick } = props;
-
     return (
       <div
         className={className}
@@ -55,6 +55,27 @@ const Home = () => {
       </div>
     );
   };
+
+
+  const RecommendPortFolio=({opacity})=>{
+    return (
+      <span>
+        <div className="sectionFont"><span style={{opacity:`${opacity}`}}>나의 포트폴리오</span></div>
+        <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px',opacity:`${opacity}` }}>
+          {dummyData.map((data, index) => (
+            <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
+          ))}
+        </Slider>
+
+        <div className="sectionFont"><span style={{opacity:`${opacity}`}}>전공별 포트폴리오</span></div>
+        <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px',opacity:`${opacity}` }}>
+          {dummyData.map((data, index) => (
+            <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
+          ))}
+        </Slider>
+      </span>
+    );
+  }
 
   const SampleNextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -77,20 +98,7 @@ const Home = () => {
     { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공','프론트','JS'], name: '스프링', id: '4' },
     { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '홍길동', id: '5' },
   ];
-
-  const formFont = {
-    fontSize: '23px',
-    marginTop: '30px',
-    marginBottom: '20px',
-    padding: '8px',
-    borderRadius: '15px',
-    marginRight: '98px',
-    fontWeight: 'bold',
-    border: '1px solid lightGray',
-    boxShadow: '2px 2px 2px 2px lightGray',
-    marginLeft: '90px',
-  };
-
+  
   const settings = {
     arrows: true,
     dots: false,
@@ -101,7 +109,6 @@ const Home = () => {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
-
   var count = 4;
   return (
     <div style={{ position: 'relative' }}>
@@ -111,28 +118,22 @@ const Home = () => {
         <></>
       )}
       <Header />
-      <div style={{ marginTop: '20px' }}></div>
-
-      <div style={formFont}>인기 포트폴리오</div>
-      <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
+    
+      <div className="sectionFont">인기 포트폴리오</div>
+      <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px'}}>
         {dummyData.map((data, index) => (
           <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
         ))}
       </Slider>
 
-      <div style={formFont}>나의 포트폴리오</div>
-      <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
-        {dummyData.map((data, index) => (
-          <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
-        ))}
-      </Slider>
-
-      <div style={formFont}>전공별 포트폴리오</div>
-      <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
-        {dummyData.map((data, index) => (
-          <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data}/>
-        ))}
-      </Slider>
+      {loginSuccess ? (
+        <RecommendPortFolio opacity="1"/>
+      ) : (
+        <div className="beforeLogin">
+          <RecommendPortFolio opacity="0.5"/>
+          <span className="beforeLoginAlertText">로그인 후 이용 가능합니다.</span>
+        </div>
+      )}
     </div>
   );
 };

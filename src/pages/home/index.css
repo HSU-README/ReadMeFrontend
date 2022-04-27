@@ -11,7 +11,33 @@
   margin: 3px 0;
   border-radius: 6px;
 }
+.beforeLogin{
+  background-color:rgba(128, 128, 128, 0.5);
+}
 
+.sectionFont{
+  margin-top: 30px;
+  margin-bottom: 20px;
+  padding: 8px;
+  border-radius: 15px;
+  margin-right: 98px;
+  font-weight: bold;
+  border: 1px solid lightGray;
+  box-shadow: 2px 2px 2px 2px lightGray;
+  margin-left: 90px;
+  color:black;
+  font-Size:25px;
+  text-align:left;
+}
+
+.beforeLoginAlertText{
+  font-weight:500;
+  font-size:50px;
+  color:white;
+  position:absolute;
+  bottom:15%;
+  left:38%;
+}
 .grayTag{
   color:black;
   border:2px 2px 2px 2px;
