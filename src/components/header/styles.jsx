@@ -3,9 +3,10 @@ import { maxWidth } from '../../styles/mixin';
 import colors from '../../styles/colors';
 
 export const headerFont = {
-  fontSize: '22px',
+  fontSize: '16px',
   color: '#646464',
   marginRight: '20px',
+  cursor: 'pointer',
 };
 
 export const Container = styled.div`
@@ -22,9 +23,9 @@ export const Container = styled.div`
   }
 
   .logo {
-    width: 120px;
-    height: 50px;
-    margin-right: 40px;
+    width: 85px;
+    height: 36px;
+    margin-left: 80px;
   }
 
   .section-login {
@@ -32,6 +33,10 @@ export const Container = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 200px;
+    width: 280px;
+  }
+
+  p {
+    margin: 0px 0px;
   }
 `;
