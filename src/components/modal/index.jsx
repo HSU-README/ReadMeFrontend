@@ -2,10 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Button } from '../../pages/login/styles';
 import { Container, FormImage } from './styles';
 
+import { Document, Page } from 'react-pdf';
+import { pdfjs } from 'react-pdf';
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+
 export default function Modal(props) {
   const [formImage, setFormImage] = useState('');
   const [name, setName] = useState('');
   const [tag, setTag] = useState(['']);
+
+  const [numPages, setNumPages] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+
+  const formUrl = 'https://arxiv.org/pdf/quant-ph/0410100.pdf';
+
+  function onDocumentLoadSuccess({ numPages }) {
+    setNumPages(numPages);
+  }
 
   const onClickExitButton = () => {
     setFormImage('');
@@ -40,9 +53,10 @@ export default function Modal(props) {
         <div className="section-title">디자인 미리보기</div>
         <hr />
         <div className="section-image">
-          <FormImage img={formImage} />
+          <Document file={formUrl} onLoadSuccess={onDocumentLoadSuccess}>
+            <Page key={`page_${1}`} pageNumber={1} renderAnnotationLayer={false} renderTextLayer={false} />
+          </Document>
         </div>
-
         <div className="section-info">
           <div className="name-info">
             <span className="info-title">디자이너</span> <span className="info-content">{name}</span>

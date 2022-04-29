@@ -29,6 +29,14 @@ export const Container = styled.div`
     padding: 50px 140px 50px 140px;
   }
 
+  .react-pdf__Page__canvas {
+    border-radius: 15px;
+    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+    width: 60% !important;
+    height: 100% !important;
+  }
+
   .section-image {
     display: flex;
     justify-content: center;
@@ -42,6 +50,7 @@ export const Container = styled.div`
   .section-info {
     font-size: 24px;
     font-weight: bold;
+    margin-top: 25px;
   }
 
   .info-title {
@@ -56,12 +65,12 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
     margin: 0px auto;
-    padding: 60px 0px 40px 0px;
+    padding-top: 20px;
   }
 
   hr {
     height: 2px;
-    margin: 4px 0px 8px 0px;
+    margin: 4px 0px 20px 0px;
     background-color: #5e000d;
     border: 0px;
   }
