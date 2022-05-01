@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import Header from '../../header/Header.js';
+import Header from './header/Header.js';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation } from 'react-router-dom';
 import './index.css';
@@ -72,26 +72,29 @@ const Home = ({loginCheck}) => {
     );
   };
 
-
   const RecommendPortFolio=({opacity,loginSuccess})=>{
     return (
       <span>
-        <div className="sectionFont"><span style={{opacity:`${opacity}`}}>나의 포트폴리오</span></div>
-        <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px',opacity:`${opacity}` }}>
+        <div className="sectionFont">
+          <span style={{ opacity: `${opacity}` }}>나의 포트폴리오</span>
+        </div>
+        <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px', opacity: `${opacity}` }}>
           {dummyData.map((data, index) => (
             <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
           ))}
         </Slider>
 
-        <div className="sectionFont"><span style={{opacity:`${opacity}`}}>전공별 포트폴리오</span></div>
-        <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px',opacity:`${opacity}` }}>
+        <div className="sectionFont">
+          <span style={{ opacity: `${opacity}` }}>전공별 포트폴리오</span>
+        </div>
+        <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px', opacity: `${opacity}` }}>
           {dummyData.map((data, index) => (
             <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
           ))}
         </Slider>
       </span>
     );
-  }
+  };
 
   const SampleNextArrow = (props) => {
     const { className, style, onClick } = props;
@@ -107,14 +110,14 @@ const Home = ({loginCheck}) => {
   };
 
   const dummyData = [
-    { img: '../../assets/images/dummyBlack.jpg', tag: ['대학교', '컴공','프론트','JS'], name: '김한성', id: '0' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공','프론트','JS'], name: '이한성', id: '1' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공','프론트','JS'], name: '아무개', id: '2' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공','프론트','JS'], name: '리액트', id: '3' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공','프론트','JS'], name: '스프링', id: '4' },
+    { img: '../../assets/images/dummyBlack.jpg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '김한성', id: '0' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '이한성', id: '1' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '아무개', id: '2' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '리액트', id: '3' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '스프링', id: '4' },
     { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '홍길동', id: '5' },
   ];
-  
+
   const settings = {
     arrows: true,
     dots: false,
@@ -134,19 +137,19 @@ const Home = ({loginCheck}) => {
         <></>
       )}
       <Header />
-    
+
       <div className="sectionFont">인기 포트폴리오</div>
-      <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px'}}>
+      <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
           <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
         ))}
       </Slider>
       
       {loginSuccess ? (
-        <RecommendPortFolio opacity="1" loginSuccess={loginSuccess}/>
+        <RecommendPortFolio opacity="1" />
       ) : (
         <div className="beforeLogin">
-          <RecommendPortFolio opacity="0.5" loginSuccess={loginSuccess}/>
+          <RecommendPortFolio opacity="0.5" />
           <span className="beforeLoginAlertText">로그인 후 이용 가능합니다.</span>
         </div>
       )}
