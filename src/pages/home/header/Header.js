@@ -3,13 +3,27 @@ import './Header.css';
 import logo from 'assets/images/logo.jpg';
 import { Button } from '@mui/material';
 import Searchbar from './Searchbar.js';
+import {useSelector, useDispatch} from 'react-redux';
 import Banner from './Banner.js';
+import { Navigate } from 'react-router-dom';
 
 const Header = () => {
   //로그인 정보 state
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { loginCheck } = useSelector(state => state.loginCheck)
   const [userInfo, setUserInfo] = useState('');
 
+  const dispatch = useDispatch()
+  const signIn = ()=>{
+    dispatch({type:'signIn'})
+  }
+  const signOut =()=>{
+    dispatch({type:'signOut'})
+  }
+
+  useEffect(()=>{
+    console.log(loginCheck)
+  },loginCheck)
   const [keywordBoxLeft, setkeyWordBoxLeft] = useState('0px');
   const [keywordBoxTop, setkeyWordBoxTop] = useState('0px');
   const [keywordBoxVisible, setKeywordBoxVisible] = useState(false);
@@ -44,8 +58,8 @@ const Header = () => {
     if (readme_login && readme_userInfo) {
       setIsLoggedIn(true);
       setUserInfo(readme_userInfo);
+      signIn();
     }
-
     setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x}px`);
     setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
   }, []);
@@ -76,7 +90,8 @@ const Header = () => {
         {/* 로그인시 출력 컴포넌트 */}
         {isLoggedIn ? (
           <>
-            <Button disabled style={{ color: '#1976d2', marginTop: '43px', fontSize: '23px' }}>
+            <Button disabled style={{ color: '#1976d2', marginTop: '43px', fontSize: '23px' }}
+            > 
               {userInfo}님
             </Button>
             <Button

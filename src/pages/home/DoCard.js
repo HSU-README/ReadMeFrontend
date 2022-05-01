@@ -9,7 +9,9 @@ const DocCard = (props) => {
   const clickForm = () => {
     props.openDetailForm(props.id);
   };
-
+  useEffect(()=>{
+    console.log(props.isLogin)
+  },[])
   const location = useLocation();
 
   var count = 5;
@@ -19,14 +21,20 @@ const DocCard = (props) => {
         console.log(location)
       }}>
         <CardActionArea >
-          <CardMedia component="img" height="140" image={dummy1} alt="green iguana" onClick={clickForm} />
+          <CardMedia component="img" height="140" image={dummy1} alt="green iguana" onClick={
+           props.isLogin==="true"?clickForm:undefined
+            } />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div" onClick={clickForm}>
+            <Typography gutterBottom variant="h5" component="div" onClick={
+           props.isLogin==="true"?clickForm:undefined
+            } >
               Lizard  
             </Typography>
               {
                 props.pofolInfo.tag.map((data,index)=>{
-                  return <span className="grayTag" key={index} onClick={()=>{alert(`${data}페이지로 이동`)}}>#{data}</span>
+                  return <span className="grayTag" key={index} onClick={()=>{
+                    props.isLogin!=="false" && alert(`${data}페이지로 이동`)
+                  }}>#{data}</span>
                 })
               }
           </CardContent>

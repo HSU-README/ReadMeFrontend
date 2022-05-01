@@ -1,8 +1,7 @@
 import {combineReducers} from 'redux'
-import loginSuccess from './loginSuccess.js'
-
+import loginCheckReducer from './loginSuccess.js';
 const rootReducer = combineReducers({
-    loginCheck:loginSuccess
+    loginCheck:loginCheckReducer,
 })
 
 export default rootReducer;

@@ -36,7 +36,13 @@ const LogIn = () => {
 
         localStorage.setItem('readme_login', 'true');
         localStorage.setItem('readme_userInfo', userInfo);
-        navigate('/');
+        //로그인이 성공할 경우 props에 isLoginSuccess를 true로 보냄.
+        navigate('/',
+        {
+          state:{
+            isLoginSuccess:true
+          }
+        });
         ToastSuccess(successMessage);
       })
       .catch((error) => {
