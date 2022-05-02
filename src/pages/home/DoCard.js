@@ -9,9 +9,6 @@ const DocCard = (props) => {
   const clickForm = () => {
     props.openDetailForm(props.id);
   };
-  useEffect(()=>{
-    console.log(props.isLogin)
-  },[])
   const location = useLocation();
 
   var count = 5;

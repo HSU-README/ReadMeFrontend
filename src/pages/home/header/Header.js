@@ -5,14 +5,17 @@ import { Button } from '@mui/material';
 import Searchbar from './Searchbar.js';
 import {useSelector, useDispatch} from 'react-redux';
 import Banner from './Banner.js';
-import { Navigate } from 'react-router-dom';
-
+import { useLocation } from 'react-router-dom';
 const Header = () => {
-  //로그인 정보 state
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const { loginCheck } = useSelector(state => state.loginCheck)
+  
   const [userInfo, setUserInfo] = useState('');
-
+  const [keywordBoxLeft, setkeyWordBoxLeft] = useState('0px');
+  const [keywordBoxTop, setkeyWordBoxTop] = useState('0px');
+  //로그인 정보 state
+  const { loginCheck } = useSelector(state => state.loginCheck)
+  //추천검색어 창 나타나게하는 리덕스 전역 관리 변수
+  const {visibleCheck} = useSelector(state=>state.visibleCheck) 
+  const location = useLocation();
   const dispatch = useDispatch()
   const signIn = ()=>{
     dispatch({type:'signIn'})
@@ -20,13 +23,9 @@ const Header = () => {
   const signOut =()=>{
     dispatch({type:'signOut'})
   }
-
-  useEffect(()=>{
-    console.log(loginCheck)
-  },loginCheck)
-  const [keywordBoxLeft, setkeyWordBoxLeft] = useState('0px');
-  const [keywordBoxTop, setkeyWordBoxTop] = useState('0px');
-  const [keywordBoxVisible, setKeywordBoxVisible] = useState(false);
+  const visible=()=>{ //추천검색어를 보이게
+    dispatch({type:'visible'})
+  }
   const keywordBoxLeftRight = {
     left: keywordBoxLeft,
     top: keywordBoxTop,
@@ -56,12 +55,21 @@ const Header = () => {
     const readme_login = localStorage.getItem('readme_login');
     const readme_userInfo = localStorage.getItem('readme_userInfo');
     if (readme_login && readme_userInfo) {
-      setIsLoggedIn(true);
+      signIn()
       setUserInfo(readme_userInfo);
       signIn();
     }
     setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x}px`);
     setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
+
+    //로그인이 되었는지 안되었는지 판단
+    if(location.state!==null){
+      if(location.state.isLoginSuccess===true){
+        signIn();
+      }
+    }else{
+      signOut();
+    }
   }, []);
   const dummeyKeywords = ['컴공', '디자인', '컴공', '디자인', '컴공', '디자인', '컴공', '디자인'];
 
@@ -79,8 +87,8 @@ const Header = () => {
           <div
             style={{ display: 'relative', marginLeft: '30px', paddingTop: '10px' }}
             ref={keywordBoxRef}
-            onMouseOver={() => {
-              setKeywordBoxVisible(true);
+            onClick={() => {
+              visible()
             }}
           >
             <Searchbar />
@@ -88,7 +96,7 @@ const Header = () => {
         </span>
 
         {/* 로그인시 출력 컴포넌트 */}
-        {isLoggedIn ? (
+        {loginCheck ? (
           <>
             <Button disabled style={{ color: '#1976d2', marginTop: '43px', fontSize: '23px' }}
             > 
@@ -98,7 +106,7 @@ const Header = () => {
               href="/login"
               style={{ marginTop: '43px', fontSize: '23px' }}
               onClick={() => {
-                setIsLoggedIn(false);
+                signOut();
                 setUserInfo(undefined);
                 localStorage.clear();
               }}
@@ -122,7 +130,7 @@ const Header = () => {
         )}
       </div>
 
-      {keywordBoxVisible && (
+      {visibleCheck && (
         <div className="keywordBox" style={keywordBoxLeftRight}>
           <div
             style={{
@@ -149,7 +157,7 @@ const Header = () => {
         </div>
       )}
       <div style={{ position: 'relative' }}>
-        <Banner setKeywordBoxVisible={setKeywordBoxVisible} />
+        <Banner />
       </div>
     </div>
   );

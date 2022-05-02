@@ -9,9 +9,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import prevArrow from '../../assets/images/prevArrow.png';
 import nextArrow from '../../assets/images/nextArrow.png';
+import {useSelector, useDispatch} from 'react-redux';
 import Modal from 'components/modal/index.jsx';
 import Footer from 'components/footer/index.jsx'
-import { useSelector, useDispatch } from 'react-redux';
 
 const Home = (props) => {
   const [showDetailForm, setShowDetailForm] = useState(false);
@@ -20,21 +20,16 @@ const Home = (props) => {
   const [alertMessageVisible, setAlertMessageVisible] =useState(false)
   const { loginCheck } = useSelector(state => state.loginCheck)
   const {isntClick} = useRef(null);
+  const {visibleCheck} = useSelector(state=>state.visibleCheck) //추천검색어 창 나타나게하는 리덕스 전역 관리 변수
+  const dispatch = useDispatch()
   const openDetailForm = (id) => {
     setShowDetailForm(true);
     setDetailFormId(id);
   };
   const chagneGrayBackground = useRef(null)//로그인이 되어있지 않을 시에 클릭하면 회색화면 나오게하는 변수
-  // useEffect(()=>{
-  //   if(loginCheck!==undefined){
-  //     if(loginCheck===true){
-  //       dispatch({type:'signIn'})
-  //       return
-  //     }
-  //   }
-  //   console.log('come here')
-  //   return dispatch({type:'signIn'})
-  // },[])
+  const invisible=()=>{//추천검색어 안보이게
+    dispatch({type:'invisible'})
+  }
 
   
   const closeDetailForm = () => {
@@ -129,35 +124,36 @@ const Home = (props) => {
   };
   var count = 4;
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative' }} >
       {showDetailForm === true ? (
         <Modal detailFormId={detailFormId} dummyData={dummyData} closeDetailForm={closeDetailForm} />
       ) : (
         <></>
       )}
       <Header />
-      
+      <div onClick={()=>{invisible()}}>
       <div className="sectionFont">인기 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
           <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin="true" />
         ))}
       </Slider>
-
+          </div>
       {loginCheck ? (
         <RecommendPortFolio opacity="1"  isLogin="true"/>
       ) : (
         //로그인이 되어있지 않고 나의 포트폴리오나 전공병 포트폴리오 글을 클릭 시 회색화면으로 변경
         <div ref={chagneGrayBackground} onClick={()=>{
+            invisible()
             setAlertMessageVisible(true)
             chagneGrayBackground.current.style.background='rgba(128, 128, 128, 0.5)'
           }}>
           
           {!alertMessageVisible ?
-          <RecommendPortFolio opacity="1" isLogin="false" />:
+          <RecommendPortFolio opacity="1" isLogin="false" onClick={()=>{invisible()}}/>:
 
             <>
-            <RecommendPortFolio opacity="0.5" isLogin="false" />
+            <RecommendPortFolio opacity="0.5" isLogin="false" onClick={()=>{invisible()}}/>
             <span className="beforeLoginAlertText">로그인 후 이용 가능합니다.</span>
           </> }
           
