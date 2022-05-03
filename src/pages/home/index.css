@@ -40,10 +40,11 @@
 }
 .grayTag{
   color:black;
+  font-weight:550;
   border:2px 2px 2px 2px;
   padding:5px 5px 5px 5px;
   border-radius:4px;
-  background-color:#D3D3D3;
+  background-color:#e9ecef;
   margin-right:4px;
   margin-left:4px;
 }

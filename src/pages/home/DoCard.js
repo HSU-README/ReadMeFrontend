@@ -31,7 +31,7 @@ const DocCard = (props) => {
                 props.pofolInfo.tag.map((data,index)=>{
                   return <span className="grayTag" key={index} onClick={()=>{
                     props.isLogin!=="false" && alert(`${data}페이지로 이동`)
-                  }}>#{data}</span>
+                  }}># {data}</span>
                 })
               }
           </CardContent>

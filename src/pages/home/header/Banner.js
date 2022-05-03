@@ -16,7 +16,6 @@ const Banner = () => {
     autoplay: true,
     autoplaySpeed: 8000,
   };
-  const {visibleCheck} = useSelector(state=>state.visibleCheck) 
   const dispatch = useDispatch()
   const invisible=()=>{//추천검색어 안보이게
     dispatch({type:'invisible'})

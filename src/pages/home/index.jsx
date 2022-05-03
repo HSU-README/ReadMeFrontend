@@ -122,7 +122,6 @@ const Home = (props) => {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
-  var count = 4;
   return (
     <div style={{ position: 'relative' }} >
       {showDetailForm === true ? (
