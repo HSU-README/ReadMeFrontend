@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect,useRef } from 'react';
 import Header from './header/Header.js';
 import 'react-toastify/dist/ReactToastify.css';
 import { useLocation } from 'react-router-dom';
@@ -10,18 +10,33 @@ import 'slick-carousel/slick/slick-theme.css';
 import prevArrow from '../../assets/images/prevArrow.png';
 import nextArrow from '../../assets/images/nextArrow.png';
 import Modal from 'components/modal/index.jsx';
+import Footer from 'components/footer/index.jsx'
+import { useSelector, useDispatch } from 'react-redux';
 
-const Home = () => {
+const Home = (props) => {
   const [showDetailForm, setShowDetailForm] = useState(false);
   const [detailFormId, setDetailFormId] = useState('');
   const [loginSuccess, setLoginSuccess] = useState(false);
-  const location = useLocation();
-
+  const [alertMessageVisible, setAlertMessageVisible] =useState(false)
+  const { loginCheck } = useSelector(state => state.loginCheck)
+  const {isntClick} = useRef(null);
   const openDetailForm = (id) => {
     setShowDetailForm(true);
     setDetailFormId(id);
   };
+  const chagneGrayBackground = useRef(null)//로그인이 되어있지 않을 시에 클릭하면 회색화면 나오게하는 변수
+  // useEffect(()=>{
+  //   if(loginCheck!==undefined){
+  //     if(loginCheck===true){
+  //       dispatch({type:'signIn'})
+  //       return
+  //     }
+  //   }
+  //   console.log('come here')
+  //   return dispatch({type:'signIn'})
+  // },[])
 
+  
   const closeDetailForm = () => {
     setShowDetailForm(false);
     setDetailFormId('');
@@ -56,15 +71,15 @@ const Home = () => {
     );
   };
 
-  const RecommendPortFolio = ({ opacity }) => {
+  const RecommendPortFolio=({opacity,isLogin})=>{
     return (
-      <span>
+      <span >
         <div className="sectionFont">
           <span style={{ opacity: `${opacity}` }}>나의 포트폴리오</span>
         </div>
         <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px', opacity: `${opacity}` }}>
           {dummyData.map((data, index) => (
-            <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
+            <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin={isLogin} />
           ))}
         </Slider>
 
@@ -121,22 +136,35 @@ const Home = () => {
         <></>
       )}
       <Header />
-
+      
       <div className="sectionFont">인기 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
-          <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
+          <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin="true" />
         ))}
       </Slider>
 
-      {loginSuccess ? (
-        <RecommendPortFolio opacity="1" />
+      {loginCheck ? (
+        <RecommendPortFolio opacity="1"  isLogin="true"/>
       ) : (
-        <div className="beforeLogin">
-          <RecommendPortFolio opacity="0.5" />
-          <span className="beforeLoginAlertText">로그인 후 이용 가능합니다.</span>
+        //로그인이 되어있지 않고 나의 포트폴리오나 전공병 포트폴리오 글을 클릭 시 회색화면으로 변경
+        <div ref={chagneGrayBackground} onClick={()=>{
+            setAlertMessageVisible(true)
+            chagneGrayBackground.current.style.background='rgba(128, 128, 128, 0.5)'
+          }}>
+          
+          {!alertMessageVisible ?
+          <RecommendPortFolio opacity="1" isLogin="false" />:
+
+            <>
+            <RecommendPortFolio opacity="0.5" isLogin="false" />
+            <span className="beforeLoginAlertText">로그인 후 이용 가능합니다.</span>
+          </> }
+          
         </div>
-      )}
+      )} 
+      <br/>
+      <Footer/>
     </div>
   );
 };
