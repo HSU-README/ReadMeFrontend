@@ -3,7 +3,7 @@ const TextEditArea = () => {
     <>
       <div>
         <div className="wrap">
-          <div className="editor show" contenteditable="true"></div>
+          <div className="editor show" contenteditable="true" ></div>
         </div>
       </div>
     </>

@@ -13,20 +13,15 @@ const DocCard = (props) => {
 
   var count = 5;
   return (
-    <div style={{ marginLeft: '80px', marginRight: '80px', display: 'inline-flex' }} >
-      <Card sx={{ maxWidth: 330 ,minWidth:300 }} onClick={()=>{
+    <div  style={{ marginLeft: '80px', marginRight: '80px', display: 'inline-flex' }}  >
+      <Card sx={{ maxWidth: 330 ,minWidth:330 }}  onClick={()=>{
         console.log(location)
       }}>
         <CardActionArea >
-          <CardMedia component="img" height="140" image={dummy1} alt="green iguana" onClick={
+          <CardMedia className="cardView" component="img" height="170" image={dummy1} alt="green iguana" onClick={
            props.isLogin==="true"?clickForm:undefined
             } />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div" onClick={
-           props.isLogin==="true"?clickForm:undefined
-            } >
-              Lizard  
-            </Typography>
+          <div style={{marginTop:"14px",marginBottom:"1px", textAlign:"center" }}>
               {
                 props.pofolInfo.tag.map((data,index)=>{
                   return <span className="grayTag" key={index} onClick={()=>{
@@ -34,7 +29,7 @@ const DocCard = (props) => {
                   }}># {data}</span>
                 })
               }
-          </CardContent>
+          </div>
         </CardActionArea>
       </Card>
     </div>

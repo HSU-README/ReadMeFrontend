@@ -14,19 +14,22 @@
 .beforeLogin{
   background-color:rgba(128, 128, 128, 0.5);
 }
-
+.cardView{
+  border:0px;
+}
+.cardView:hover{
+  border:2px solid lightskyblue;
+}
 .sectionFont{
   margin-top: 30px;
   margin-bottom: 20px;
   padding: 8px;
   border-radius: 15px;
-  margin-right: 98px;
+  margin-right: 200px;
   font-weight: bold;
-  border: 1px solid lightGray;
-  box-shadow: 2px 2px 2px 2px lightGray;
-  margin-left: 90px;
+  margin-left: 120px;
   color:black;
-  font-Size:25px;
+  font-Size:35px;
   text-align:left;
 }
 

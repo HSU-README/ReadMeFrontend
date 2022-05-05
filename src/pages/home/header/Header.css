@@ -1,5 +1,4 @@
 .headerMain{
-    margin-top:5px;
     text-align: center;
 }
 .keywordBox {
@@ -7,7 +6,7 @@
   border:2px solid lightGray;
   background-color:white;
   border-radius:15px;
-  width:700px;
+  width:540px;
   z-index:1;
   margin-top:20px;
   box-shadow:2px 2px lightGray;
@@ -17,16 +16,16 @@
     display:inline-block;
 }
 .logo {
-  width: 160px;
-  height: 64px;
-  margin-top:15px;
-  margin-right: 40px;
+  width: 110px;
+  height: 46px;
+  margin-top:14px;
 }
-
 .inputRounded .MuiOutlinedInput-root {
-  width: 700px;
+  width: 560px;
+  height:36px;
   margin-top: 14px;
   border-radius: 50px;
-  margin-right: 150px;
+  margin-left:100px;
+  margin-right:100px
 }
 

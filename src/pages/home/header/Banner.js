@@ -3,7 +3,6 @@ import Slider from 'react-slick';
 import banner1 from 'assets/images/banner1.png';
 import banner2 from 'assets/images/banner2.png';
 import {useSelector, useDispatch} from 'react-redux';
-
 const Banner = () => {
   const settings = {
     dots: true,
@@ -22,7 +21,7 @@ const Banner = () => {
   }
   const dummyImages = [{ src: banner1 }, { src: banner2 }];
   return (
-    <Slider {...settings}>
+    <Slider {...settings} >
       {dummyImages.map((item, index) => (
         <img
           src={item.src}

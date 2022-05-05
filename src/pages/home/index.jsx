@@ -12,7 +12,7 @@ import nextArrow from '../../assets/images/nextArrow.png';
 import {useSelector, useDispatch} from 'react-redux';
 import Modal from 'components/modal/index.jsx';
 import Footer from 'components/footer/index.jsx'
-
+import Banner from './header/Banner.js'
 const Home = (props) => {
   const [showDetailForm, setShowDetailForm] = useState(false);
   const [detailFormId, setDetailFormId] = useState('');
@@ -31,7 +31,6 @@ const Home = (props) => {
     dispatch({type:'invisible'})
   }
 
-  
   const closeDetailForm = () => {
     setShowDetailForm(false);
     setDetailFormId('');
@@ -72,7 +71,7 @@ const Home = (props) => {
         <div className="sectionFont">
           <span style={{ opacity: `${opacity}` }}>나의 포트폴리오</span>
         </div>
-        <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px', opacity: `${opacity}` }}>
+        <Slider {...settings} style={{ marginLeft:"100px", marginRight: '50px', opacity: `${opacity}` }}>
           {dummyData.map((data, index) => (
             <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin={isLogin} />
           ))}
@@ -81,9 +80,11 @@ const Home = (props) => {
         <div className="sectionFont">
           <span style={{ opacity: `${opacity}` }}>전공별 포트폴리오</span>
         </div>
-        <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px', opacity: `${opacity}` }}>
+        <Slider {...settings} style={{ marginLeft:"100px", marginRight: '50px', opacity: `${opacity}` }}>
           {dummyData.map((data, index) => (
-            <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
+            <span key={index} id={index}>
+              <DocCard openDetailForm={openDetailForm} pofolInfo={data} />
+            </span>
           ))}
         </Slider>
       </span>
@@ -123,21 +124,25 @@ const Home = (props) => {
     prevArrow: <SamplePrevArrow />,
   };
   return (
-    <div style={{ position: 'relative' }} >
+    <div style={{position:'relative'}} >
       {showDetailForm === true ? (
         <Modal detailFormId={detailFormId} dummyData={dummyData} closeDetailForm={closeDetailForm} />
       ) : (
         <></>
       )}
       <Header />
+      <div >
+        <Banner/>
+      </div>
       <div onClick={()=>{invisible()}}>
+        </div>
+
       <div className="sectionFont">인기 포트폴리오</div>
-      <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
-        {dummyData.map((data, index) => (
-          <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin="true" />
-        ))}
-      </Slider>
-          </div>
+        <Slider {...settings} style={{marginLeft:"100px", marginRight:"50px"}}>
+          {dummyData.map((data, index) => (
+              <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin="true" />
+          ))}
+        </Slider>
       {loginCheck ? (
         <RecommendPortFolio opacity="1"  isLogin="true"/>
       ) : (

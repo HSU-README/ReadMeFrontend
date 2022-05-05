@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import TextEditArea from 'pages/generate/TextEditArea';
 import 'pages/generate/style.css';
 import { text, image, align, emoji } from 'pages/generate/arrays';
@@ -13,7 +13,7 @@ const EditPortfolio = (props) => {
   const handleBtnClick = (item) => {
     doCommand(item);
   };
-
+  const canvas=useRef(null);
   const { printRef } = props;
   return (
     <>
@@ -53,7 +53,11 @@ const EditPortfolio = (props) => {
             <br />
             {align.map((item) => {
               return (
-                <button className="button_box editor_buttons" onClick={() => handleBtnClick(item)}>
+                <button className="button_box editor_buttons" onClick={() => {
+                  console.log("aaa")
+                  console.log(item)
+                  handleBtnClick(item)
+                  }}>
                   {' '}
                   {item.label}{' '}
                 </button>
@@ -80,6 +84,12 @@ const EditPortfolio = (props) => {
       <div ref={printRef}>
         <TextEditArea />
       </div>
+
+      <canvas
+      ref={canvas}
+      width={800}
+      height={800}
+      ></canvas>
     </>
   );
 };

@@ -42,14 +42,14 @@ const Header = () => {
   };
 
   var keywordBoxRef = useRef(null);
-  useEffect(
-    () => {},
-    window.addEventListener('resize', () => {
-      setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x}px`);
-      setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
-    }),
-  );
-
+   useEffect(
+     () => {},
+      window.addEventListener('resize',()=>{
+        setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x+100}px`);
+        setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y+42}px`);
+      })  
+   );
+  
   useEffect(() => {
     //로그인&유저정보 state에 저장
     const readme_login = localStorage.getItem('readme_login');
@@ -59,9 +59,10 @@ const Header = () => {
       setUserInfo(readme_userInfo);
       signIn();
     }
-    setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x}px`);
-    setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
-
+    
+    setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x+100}px`);
+    setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y+42}px`);
+ 
     //로그인이 되었는지 안되었는지 판단
     if(location.state!==null){
       if(location.state.isLoginSuccess===true){
@@ -71,7 +72,7 @@ const Header = () => {
       signOut();
     }
   }, []);
-  const dummeyKeywords = ['컴공', '디자인', '컴공', '디자인', '컴공', '디자인', '컴공', '디자인'];
+  const dummeyKeywords = ['컴공', '디자인', '컴공', '디자인', '컴공', '디자인'];
 
   return (
     <div className="headerMain">
@@ -91,20 +92,20 @@ const Header = () => {
               visible()
             }}
           >
-            <Searchbar />
+            <Searchbar/>
           </div>
         </span>
 
         {/* 로그인시 출력 컴포넌트 */}
         {loginCheck ? (
           <>
-            <Button disabled style={{ color: '#1976d2', marginTop: '43px', fontSize: '23px' }}
+            <Button disabled style={{ color: '#1976d2', marginTop: '40px', fontSize: '23px' }}
             > 
               {userInfo}님
             </Button>
             <Button
               href="/login"
-              style={{ marginTop: '43px', fontSize: '23px' }}
+              style={{ marginTop: '40px', fontSize: '23px' }}
               onClick={() => {
                 signOut();
                 setUserInfo(undefined);
@@ -113,17 +114,17 @@ const Header = () => {
             >
               로그아웃
             </Button>
-            <Button href="/" style={{ marginTop: '43px', fontSize: '23px' }}>
+            <Button href="/" style={{ marginTop: '40px', fontSize: '23px' }}>
               마이페이지
             </Button>
           </>
         ) : (
           //  로그아웃시 출력 컴포넌트
           <span>
-            <Button href="/login" style={{ marginTop: '43px', fontSize: '23px' }}>
+            <Button href="/login" style={{ marginTop: '40px', fontSize: '23px' }}>
               로그인
             </Button>
-            <Button href="/signup" style={{ marginTop: '43px', fontSize: '23px' }}>
+            <Button href="/signup" style={{ marginTop: '40px', fontSize: '23px' }}>
               회원가입
             </Button>
           </span>
@@ -131,8 +132,8 @@ const Header = () => {
       </div>
 
       {visibleCheck && (
-        <div className="keywordBox" style={keywordBoxLeftRight}>
-          <div
+        <div className="keywordBox" style={keywordBoxLeftRight} >
+          <div 
             style={{
               textAlign: 'left',
               border: '1px solit gray',
@@ -156,9 +157,9 @@ const Header = () => {
           </div>
         </div>
       )}
-      <div style={{ position: 'relative' }}>
+      {/* <div>
         <Banner />
-      </div>
+      </div> */}
     </div>
   );
 };
