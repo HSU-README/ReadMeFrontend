@@ -86,7 +86,7 @@ const Header = () => {
         />
         <span className="inner" id="inner">
           <div
-            style={{ display: 'relative', marginLeft: '30px', paddingTop: '10px' }}
+            style={{ display: 'relative', marginLeft: '18px', paddingTop: '10px' }}
             ref={keywordBoxRef}
             onClick={() => {
               visible()

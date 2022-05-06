@@ -55,13 +55,16 @@ const Home = (props) => {
   const SamplePrevArrow = (props) => {
     const { className, style, onClick } = props;
     return (
-      <div
-        className={className}
-        style={{ ...style, display: 'block', color: 'black', background: 'white' }}
-        onClick={onClick}
-      >
-        <img src={prevArrow} alt="prev" style={{ width: '15px', height: '15px' }} />
-      </div>
+      <img className={className}  src={prevArrow} alt="next" style={{...style, width: '15px', height: '15px' }} onClick={onClick}/>
+
+    );
+  };
+
+  const SampleNextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+        <img className={className}  src={nextArrow} alt="next" style={{...style, width: '15px', height: '15px' }} onClick={onClick}/>
+
     );
   };
 
@@ -78,7 +81,7 @@ const Home = (props) => {
         </Slider>
 
         <div className="sectionFont">
-          <span style={{ opacity: `${opacity}` }}>전공별 포트폴리오</span>
+          <span style={{ opacity: `${opacity}` }}>인기 포트폴리오</span>
         </div>
         <Slider {...settings} style={{ marginLeft:"100px", marginRight: '50px', opacity: `${opacity}` }}>
           {dummyData.map((data, index) => (
@@ -91,25 +94,14 @@ const Home = (props) => {
     );
   };
 
-  const SampleNextArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{ ...style, display: 'block', color: 'black', background: 'white' }}
-        onClick={onClick}
-      >
-        <img src={nextArrow} alt="next" style={{ width: '15px', height: '15px' }} />
-      </div>
-    );
-  };
+  
 
   const dummyData = [
-    { img: '../../assets/images/dummyBlack.jpg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '김한성', id: '0' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '이한성', id: '1' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '아무개', id: '2' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '리액트', id: '3' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '스프링', id: '4' },
+    { img: '../../assets/images/dummyBlack.jpg', tag: ['대학교', '컴공', ], name: '김한성', id: '0' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트'], name: '이한성', id: '1' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트'], name: '아무개', id: '2' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트'], name: '리액트', id: '3' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트'], name: '스프링', id: '4' },
     { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '홍길동', id: '5' },
   ];
 

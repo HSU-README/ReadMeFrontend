@@ -14,11 +14,14 @@
 .beforeLogin{
   background-color:rgba(128, 128, 128, 0.5);
 }
-.cardView{
+.cardMedia{
   border:0px;
+  width:100%;
+  height:100%;
 }
-.cardView:hover{
+.cardView:hover .cardMedia{
   border:2px solid lightskyblue;
+  border-radius: 15px;
 }
 .sectionFont{
   margin-top: 30px;
@@ -42,14 +45,16 @@
   left:38%;
 }
 .grayTag{
-  color:black;
-  font-weight:550;
-  border:2px 2px 2px 2px;
-  padding:5px 5px 5px 5px;
-  border-radius:4px;
-  background-color:#e9ecef;
-  margin-right:4px;
-  margin-left:4px;
+  width:84px;
+  height:30px;
+  padding:5px;
+  border-radius:9px;
+  background-color: #e9ecef;
+  margin-left:7px;
+  margin-right:7px;
+  font-size:20px;
+  font-weight:600;
+  color:#3a3a3a;
 }
 
 .community-tag-container {
