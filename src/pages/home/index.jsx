@@ -127,7 +127,18 @@ const Home = (props) => {
         <Banner/>
       </div>
       <div onClick={()=>{invisible()}}>
-        </div>
+      </div>
+
+      {loginCheck &&
+        <>
+          <br/>
+          <div className="pofolBtnHeader">
+            <button className="pofolBtn">포트폴리오 만들기</button>
+          </div>
+        </>
+      
+      }
+
 
       <div className="sectionFont">인기 포트폴리오</div>
         <Slider {...settings} style={{marginLeft:"100px", marginRight:"50px"}}>

@@ -44,6 +44,23 @@
   bottom:20%;
   left:38%;
 }
+
+.pofolBtn{
+  background-color: #F57842;
+  color:white;
+  font-weight:900;
+  font:bold;
+  font-size:30px;
+  width:35%;
+  height:70px;
+  border:0px;
+  border-radius:16px;
+}
+
+.pofolBtnHeader{
+  margin-top:19px;
+  text-align: center;
+}
 .grayTag{
   width:84px;
   height:30px;

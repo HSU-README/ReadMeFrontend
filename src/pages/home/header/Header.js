@@ -31,14 +31,17 @@ const Header = () => {
     top: keywordBoxTop,
   };
   const keywordTag = {
-    backgroundColor: 'lightGray',
-    width: '100px',
-    marginLeft: '35px',
-    marginRight: '35px',
+    backgroundColor: '#EBEBEB',
+    borderRadius:'27px',
+    width: '80px',
+    fontSize:'14px',
+    fontWeight:'500',
+    font:'bold',
+    marginLeft: '25px',
+    marginRight: '25px',
     color: 'black',
     marginTop: '13px',
     marginBottom: '13px',
-    boxShadow: '1px 1px gray',
   };
 
   var keywordBoxRef = useRef(null);
@@ -72,11 +75,11 @@ const Header = () => {
       signOut();
     }
   }, []);
-  const dummeyKeywords = ['컴공', '디자인', '컴공', '디자인', '컴공', '디자인'];
+  const dummeyKeywords = ['#컴공', '#디자인', '#컴공', '#디자인', '#컴공', '#디자인'];
 
   return (
     <div className="headerMain">
-      <div className="inner" style={{ marginBottom: '40px' }}>
+      <div className="inner" style={{ marginBottom: '20px' }}>
         <img
           src={logo}
           className="logo"
@@ -99,13 +102,13 @@ const Header = () => {
         {/* 로그인시 출력 컴포넌트 */}
         {loginCheck ? (
           <>
-            <Button disabled style={{ color: '#1976d2', marginTop: '40px', fontSize: '23px' }}
+            <Button disabled style={{ color: '#1976d2', marginTop: '30px', fontSize: '23px' }}
             > 
               {userInfo}님
             </Button>
             <Button
               href="/login"
-              style={{ marginTop: '40px', fontSize: '23px' }}
+              style={{ marginTop: '30px', fontSize: '23px' }}
               onClick={() => {
                 signOut();
                 setUserInfo(undefined);
@@ -114,17 +117,17 @@ const Header = () => {
             >
               로그아웃
             </Button>
-            <Button href="/" style={{ marginTop: '40px', fontSize: '23px' }}>
+            <Button href="/" style={{ marginTop: '30px', fontSize: '23px' }}>
               마이페이지
             </Button>
           </>
         ) : (
           //  로그아웃시 출력 컴포넌트
           <span>
-            <Button href="/login" style={{ marginTop: '40px', fontSize: '23px' }}>
+            <Button href="/login" style={{ marginTop: '30px', fontSize: '23px' }}>
               로그인
             </Button>
-            <Button href="/signup" style={{ marginTop: '40px', fontSize: '23px' }}>
+            <Button href="/signup" style={{ marginTop: '30px', fontSize: '23px' }}>
               회원가입
             </Button>
           </span>
@@ -133,19 +136,6 @@ const Header = () => {
 
       {visibleCheck && (
         <div className="keywordBox" style={keywordBoxLeftRight} >
-          <div 
-            style={{
-              textAlign: 'left',
-              border: '1px solit gray',
-              marginLeft: '10px',
-              marginTop: '10px',
-              textAlign: 'left',
-              paddingLeft: '25px',
-            }}
-          >
-            추천 키워드
-          </div>
-          <hr style={{ backgroundColor: 'black' }} />
           <div style={{ display: 'inlineBlock' }}>
             {dummeyKeywords.map((data, index) => {
               return (
