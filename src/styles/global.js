@@ -5,7 +5,7 @@ const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
   }
-a {
+  a {
     text-decoration: none;
     color: inherit;
   }

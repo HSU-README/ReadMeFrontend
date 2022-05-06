@@ -1,60 +1,58 @@
-import React from 'react';
-import styled from 'styled-components';
-import logo from '../../assets/images/logo.jpg';
-import { Button } from '@mui/material';
-import { maxWidth } from '../../styles/mixin';
-import colors from '../../styles/colors';
+import React, { useState, useEffect } from 'react';
+import logo from 'assets/images/logo.jpg';
 import { Link } from 'react-router-dom';
+import { Container, headerFont } from './styles';
 
 export default function Header() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userInfo, setUserInfo] = useState('');
   const moveHome = () => {
     window.location.href = '/';
   };
+
+  useEffect(() => {
+    const readme_login = localStorage.getItem('readme_login');
+    const readme_userInfo = localStorage.getItem('readme_userInfo');
+    if (readme_login && readme_userInfo) {
+      setIsLoggedIn(true);
+      setUserInfo(readme_userInfo);
+    }
+  }, []);
+
   return (
     <Container>
-      <img src={logo} className="logo" onClick={moveHome} />
-
+      <img src={logo} className="logo" onClick={moveHome} style={{ cursor: 'pointer', marginTop: '0px' }} />
       <div className="section-login">
-        <Link to={`/login`}>
-          <div style={headerFont}>로그인</div>
-        </Link>
-        <Link to={`/signup`}>
-          <div style={headerFont}>회원가입</div>
-        </Link>
+        {isLoggedIn ? (
+          <>
+            <div style={headerFont}>
+              <p>{userInfo}님</p>
+            </div>
+            <div
+              style={headerFont}
+              onClick={() => {
+                setIsLoggedIn(false);
+                setUserInfo(undefined);
+                localStorage.clear();
+              }}
+            >
+              로그아웃
+            </div>
+            <Link to={`/`} style={{ textDecoration: 'none' }}>
+              <div style={headerFont}>마이페이지</div>
+            </Link>
+          </>
+        ) : (
+          <>
+            <Link to={`/login`} style={{ textDecoration: 'none' }}>
+              <div style={headerFont}>로그인</div>
+            </Link>
+            <Link to={`/signup`} style={{ textDecoration: 'none' }}>
+              <div style={headerFont}>회원가입</div>
+            </Link>
+          </>
+        )}
       </div>
     </Container>
   );
 }
-
-const headerFont = {
-  fontSize: '18px',
-  color: '#646464',
-};
-
-const Container = styled.div`
-  ${maxWidth}
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
-  gap: 20px;
-  border-bottom: 1px solid;
-  border-color: ${colors.footerLine};
-
-  .copyright {
-    font-size: 18px;
-  }
-
-  .logo {
-    width: 120px;
-    height: 48px;
-    margin-right: 40px;
-  }
-
-  .section-login {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 160px;
-  }
-`;

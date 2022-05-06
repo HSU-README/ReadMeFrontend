@@ -1,25 +1,18 @@
 import React,{useState,useEffect,useRef} from 'react';
 import './Header.css';
 import logo from '../assets/images/logo.jpg';
+import { useLocation } from 'react-router-dom';
 import { Button} from '@mui/material';
-import SimpleImageSlider from 'react-simple-image-slider';
-import SearchKeyword from './SearchKeyword.js';
+import Searchbar from './Searchbar.js'
+import Banner from './Banner.js'
+import Footer from '../components/footer/index.jsx'
 const Header=()=>{
-  const [keywordBoxVisible, setKeywordBoxVisible] = useState(false);
   const [keywordBoxLeft, setkeyWordBoxLeft] = useState("0px");
   const [keywordBoxTop, setkeyWordBoxTop] = useState("0px");
-  const keywordBox={
-        position:"absolute",
-        border:"2px solid lightGray",
-        backgroundColor:"white",
-        borderRadius:"15px",
-        width:"700px",
-        zIndex:"1",
-        marginTop:"14px",
-        boxShadow:"2px 2px lightGray",
-        textAlign:"left", 
-        left:keywordBoxLeft,
-        top:keywordBoxTop
+  const [keywordBoxVisible, setKeywordBoxVisible] = useState(false);
+  const keywordBoxLeftRight={
+    left:keywordBoxLeft,
+    top:keywordBoxTop
   }
   const keywordTag = {
     backgroundColor: 'lightGray',
@@ -32,10 +25,6 @@ const Header=()=>{
     boxShadow:'1px 1px gray'
   };
   var keywordBoxRef=useRef(null);
-  const change=()=>{
-    console.log(keywordBoxVisible);
-    setKeywordBoxVisible(true);
-  }
   useEffect(()=>{
     
   },window.addEventListener('resize',()=>{
@@ -46,91 +35,54 @@ const Header=()=>{
     setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x}px`)
     setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y+42}px`)
   },[])
-  const dummyImages=[
-    {url:"https://placeimg.com/640/480/any"},
-    {url:"https://placeimg.com/640/480/any"}
-  ];
-    const headerFont={
-        fontSize:"20px",
-        color:"#646464",
-    }
-    const moveHome=()=>{
-        window.location.href=""
-    }
-   
-
+  const dummeyKeywords=[
+    "컴공","디자인","컴공","디자인","컴공","디자인","컴공","디자인"
+  ]
     return (
       <div className="headerMain">
-        <div className="inner">
-          <img src={logo} className="logo" onClick={moveHome} />
+        <div className="inner" style={{marginBottom:"40px"}} >
+          <img src={logo} className="logo" onClick={()=>{window.location.href=""}} />
           <span className="inner" id="inner">
-            <div style={{ display: 'relative' }} ref={keywordBoxRef} onClick={change}>
-              <SearchKeyword />
+            <div style={{ display: 'relative',marginLeft:"30px",paddingTop:"10px"}}
+             ref={keywordBoxRef}
+              onMouseOver={()=>{setKeywordBoxVisible(true)}} 
+              >
+              <Searchbar />
             </div>
           </span>
-          <Button href="/signin" style={{ marginBottom: '30px', fontSize: '20px' }}>
-            로그인
-          </Button>
-          <Button href="/signup" style={{ marginBottom: '30px', fontSize: '20px' }}>
-            회원가입
-          </Button>
+            <span>
+              <Button href="/login" style={{marginTop:"43px",fontSize: '23px' }} >
+                로그인
+              </Button>
+              <Button href="/signup" style={{ marginTop:"43px",fontSize: '23px' }}>
+                회원가입
+              </Button>
+            </span>
+          
         </div>
         {keywordBoxVisible && (
-          <div style={keywordBox}>
+          <div className="keywordBox" style={keywordBoxLeftRight}>
             <div style={{ textAlign: 'left', border: '1px solit gray', marginLeft: '10px', marginTop: '10px',textAlign:'left',paddingLeft:"25px" }}>
               추천 키워드
             </div>
-
             <hr style={{ backgroundColor:"black"}}/>
             <div style={{ display: 'inlineBlock' }}>
-              <Button style=
-              {keywordTag}
-              onClick={()=>{alert('click!')}}
-              >공대
-              </Button>
-
-              <Button style=
-              {keywordTag}
-              >디자인
-              </Button>
-              <Button style=
-              {keywordTag}
-              >디자인
-              </Button>
-              <Button style=
-              {keywordTag}
-              >디자인
-              </Button>
-              <Button style=
-              {keywordTag}
-              >디자인
-              </Button>
-              <Button style=
-              {keywordTag}
-              >디자인
-              </Button>
-              <Button style=
-              {keywordTag}
-              >디자인
-              </Button>
-              <Button style=
-              {keywordTag}
-              >디자인
-              </Button>
+              {
+                dummeyKeywords.map((data,index)=>{
+                  return(
+                  <Button key={index} style={keywordTag}>
+                    {data}
+                  </Button>
+                  )
+                })
+              }
             </div>
           </div>
         )}
-
-        <div style={{ zIndex: '0', position: 'relative' }}>
-          <SimpleImageSlider
-            width="100%"
-            height="300px"
-            images={dummyImages}
-            showBullets={true}
-            showNavs={true}
-            onClick={() => setKeywordBoxVisible(false)}
-          />
+        <div style={{ position: 'relative' }}>
+          <Banner setKeywordBoxVisible={setKeywordBoxVisible}/>
         </div>
+        
       </div>
     );
 }

@@ -1,16 +1,25 @@
-
 .headerMain{
-    margin-top:20px;
+    margin-top:5px;
     text-align: center;
 }
-
+.keywordBox {
+  position:absolute;
+  border:2px solid lightGray;
+  background-color:white;
+  border-radius:15px;
+  width:700px;
+  z-index:1;
+  margin-top:20px;
+  box-shadow:2px 2px lightGray;
+  text-align:left;
+}
 .inner{
     display:inline-block;
 }
-
 .logo {
   width: 160px;
   height: 64px;
+  margin-top:15px;
   margin-right: 40px;
 }
 

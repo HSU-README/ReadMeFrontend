@@ -1,7 +1,7 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import Header from '../../header/Header.js';
+import React, { useCallback, useState, useEffect,useRef } from 'react';
+import Header from './header/Header.js';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { useLocation } from 'react-router-dom';
 import './index.css';
 import DocCard from './DoCard.js';
 import Slider from 'react-slick';
@@ -10,16 +10,33 @@ import 'slick-carousel/slick/slick-theme.css';
 import prevArrow from '../../assets/images/prevArrow.png';
 import nextArrow from '../../assets/images/nextArrow.png';
 import Modal from 'components/modal/index.jsx';
+import Footer from 'components/footer/index.jsx'
+import { useSelector, useDispatch } from 'react-redux';
 
-const Home = () => {
+const Home = (props) => {
   const [showDetailForm, setShowDetailForm] = useState(false);
   const [detailFormId, setDetailFormId] = useState('');
-
+  const [loginSuccess, setLoginSuccess] = useState(false);
+  const [alertMessageVisible, setAlertMessageVisible] =useState(false)
+  const { loginCheck } = useSelector(state => state.loginCheck)
+  const {isntClick} = useRef(null);
   const openDetailForm = (id) => {
     setShowDetailForm(true);
     setDetailFormId(id);
   };
+  const chagneGrayBackground = useRef(null)//로그인이 되어있지 않을 시에 클릭하면 회색화면 나오게하는 변수
+  // useEffect(()=>{
+  //   if(loginCheck!==undefined){
+  //     if(loginCheck===true){
+  //       dispatch({type:'signIn'})
+  //       return
+  //     }
+  //   }
+  //   console.log('come here')
+  //   return dispatch({type:'signIn'})
+  // },[])
 
+  
   const closeDetailForm = () => {
     setShowDetailForm(false);
     setDetailFormId('');
@@ -38,13 +55,11 @@ const Home = () => {
       } else if (window.outerWidth <= 660) {
         setSliderCount(1);
       }
-      console.log(window.outerWidth);
     }),
   );
 
   const SamplePrevArrow = (props) => {
     const { className, style, onClick } = props;
-
     return (
       <div
         className={className}
@@ -53,6 +68,30 @@ const Home = () => {
       >
         <img src={prevArrow} alt="prev" style={{ width: '15px', height: '15px' }} />
       </div>
+    );
+  };
+
+  const RecommendPortFolio=({opacity,isLogin})=>{
+    return (
+      <span >
+        <div className="sectionFont">
+          <span style={{ opacity: `${opacity}` }}>나의 포트폴리오</span>
+        </div>
+        <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px', opacity: `${opacity}` }}>
+          {dummyData.map((data, index) => (
+            <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin={isLogin} />
+          ))}
+        </Slider>
+
+        <div className="sectionFont">
+          <span style={{ opacity: `${opacity}` }}>전공별 포트폴리오</span>
+        </div>
+        <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px', opacity: `${opacity}` }}>
+          {dummyData.map((data, index) => (
+            <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} />
+          ))}
+        </Slider>
+      </span>
     );
   };
 
@@ -69,28 +108,14 @@ const Home = () => {
     );
   };
 
-  const dummyImages = [{ url: 'https://placeimg.com/640/480/any' }, { url: 'https://placeimg.com/640/480/any' }];
   const dummyData = [
-    { img: '../../assets/images/dummyBlack.jpg', tag: ['대학교', '컴공'], name: '김한성', id: '0' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '이한성', id: '1' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '아무개', id: '2' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '리액트', id: '3' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '스프링', id: '4' },
+    { img: '../../assets/images/dummyBlack.jpg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '김한성', id: '0' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '이한성', id: '1' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '아무개', id: '2' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '리액트', id: '3' },
+    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트', 'JS'], name: '스프링', id: '4' },
     { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '홍길동', id: '5' },
   ];
-
-  const formFont = {
-    fontSize: '23px',
-    marginTop: '30px',
-    marginBottom: '20px',
-    padding: '8px',
-    borderRadius: '15px',
-    marginRight: '98px',
-    fontWeight: 'bold',
-    border: '1px solid lightGray',
-    boxShadow: '2px 2px 2px 2px lightGray',
-    marginLeft: '90px',
-  };
 
   const settings = {
     arrows: true,
@@ -102,7 +127,6 @@ const Home = () => {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
-
   var count = 4;
   return (
     <div style={{ position: 'relative' }}>
@@ -112,28 +136,35 @@ const Home = () => {
         <></>
       )}
       <Header />
-      <div style={{ marginTop: '20px' }}></div>
-
-      <div style={formFont}>추천 양식</div>
+      
+      <div className="sectionFont">인기 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
         {dummyData.map((data, index) => (
-          <DocCard key={index} id={index} openDetailForm={openDetailForm} />
+          <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin="true" />
         ))}
       </Slider>
 
-      <div style={formFont}>나의 양식</div>
-      <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
-        {dummyData.map((data, index) => (
-          <DocCard key={index} id={index} openDetailForm={openDetailForm} />
-        ))}
-      </Slider>
+      {loginCheck ? (
+        <RecommendPortFolio opacity="1"  isLogin="true"/>
+      ) : (
+        //로그인이 되어있지 않고 나의 포트폴리오나 전공병 포트폴리오 글을 클릭 시 회색화면으로 변경
+        <div ref={chagneGrayBackground} onClick={()=>{
+            setAlertMessageVisible(true)
+            chagneGrayBackground.current.style.background='rgba(128, 128, 128, 0.5)'
+          }}>
+          
+          {!alertMessageVisible ?
+          <RecommendPortFolio opacity="1" isLogin="false" />:
 
-      <div style={formFont}>학과별 양식</div>
-      <Slider {...settings} style={{ marginLeft: '50px', marginRight: '50px' }}>
-        {dummyData.map((data, index) => (
-          <DocCard key={index} id={index} openDetailForm={openDetailForm} />
-        ))}
-      </Slider>
+            <>
+            <RecommendPortFolio opacity="0.5" isLogin="false" />
+            <span className="beforeLoginAlertText">로그인 후 이용 가능합니다.</span>
+          </> }
+          
+        </div>
+      )} 
+      <br/>
+      <Footer/>
     </div>
   );
 };
