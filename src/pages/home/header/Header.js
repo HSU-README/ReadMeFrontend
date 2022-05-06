@@ -5,7 +5,6 @@ import { Button } from '@mui/material';
 import Searchbar from './Searchbar.js';
 import { useSelector, useDispatch } from 'react-redux';
 import Banner from './Banner.js';
-import { Navigate } from 'react-router-dom';
 
 const Header = () => {
   //로그인 정보 state
@@ -91,7 +90,7 @@ const Header = () => {
         {isLoggedIn ? (
           <>
             <Button disabled style={{ color: '#1976d2', marginTop: '43px', fontSize: '23px' }}>
-              {userInfo}님
+              {JSON.parse(userInfo).name}님
             </Button>
             <Button
               href="/login"
@@ -104,7 +103,7 @@ const Header = () => {
             >
               로그아웃
             </Button>
-            <Button href="/" style={{ marginTop: '43px', fontSize: '23px' }}>
+            <Button href="/mypage" style={{ marginTop: '43px', fontSize: '23px' }}>
               마이페이지
             </Button>
           </>
