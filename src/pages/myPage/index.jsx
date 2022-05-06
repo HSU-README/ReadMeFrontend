@@ -15,12 +15,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ToastError, ToastSuccess } from 'hooks/toastHook';
 import { API_ENDPOINT } from 'apis/constant';
 import Header from 'components/header';
-import UserInfo from './userInfo';
+import UserInfo from 'pages/myPage/userInfo';
 import MyPortfolio from './myPortfolio';
 import PickPofol from './pickPofol';
 
 const MyPage = () => {
-  const [currentMyPage, setCurrentMyPage] = useState('');
+  const [currentMyPage, setCurrentMyPage] = useState('userInfo');
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [logInError, setLogInError] = useState(false);
@@ -40,7 +40,7 @@ const MyPage = () => {
       })
       .then((response) => {
         console.log(JSON.stringify(response.data.result));
-        const userInfo = JSON.stringify(response.data.result.id);
+        const userInfo = JSON.stringify(response.data.result);
         const successMessage = JSON.stringify(response.data.message);
 
         localStorage.setItem('readme_login', 'true');

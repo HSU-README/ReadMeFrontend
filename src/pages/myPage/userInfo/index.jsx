@@ -1,17 +1,27 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import axios from 'axios';
 import useInput from 'hooks/useInput';
 import { Container, Button } from 'pages/myPage/userInfo/styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastError, ToastSuccess } from 'hooks/toastHook';
 import { API_ENDPOINT } from 'apis/constant';
+import { getUser } from 'apis/userApi';
 
 const UserInfo = () => {
-  const [currentMyPage, setCurrentMyPage] = useState('');
-  const [email, onChangeEmail] = useInput('');
-  const [password, onChangePassword] = useInput('');
-  const [logInError, setLogInError] = useState(false);
-  const navigate = useNavigate();
+  const [user, setUser] = useState({});
+  const [name, onChangeName] = useInput('');
+  const [university, onChangeUniversity] = useInput('');
+  const [major, onChangeMajor] = useInput('');
+  const [interests, onChangeInterests] = useInput('');
+
+  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getUser(userId);
+    }
+    fetchData();
+  }, []);
+
   const serverApi = axios.create({
     baseURL: `${API_ENDPOINT}`,
     headers: {
@@ -19,25 +29,21 @@ const UserInfo = () => {
     },
   });
 
-  const login = async () => {
+  const submit = async () => {
     await serverApi
-      .post(`/api/v1/members/login`, {
-        email: email,
-        password: password,
+      .put(`/api/v1/members/${1}`, {
+        name: name,
+        university: university,
+        major: major,
+        interests: interests,
       })
       .then((response) => {
-        console.log(JSON.stringify(response.data.result));
-        const userInfo = JSON.stringify(response.data.result.id);
+        const userInfo = JSON.stringify(response.data.result);
         const successMessage = JSON.stringify(response.data.message);
 
         localStorage.setItem('readme_login', 'true');
         localStorage.setItem('readme_userInfo', userInfo);
-        //로그인이 성공할 경우 props에 isLoginSuccess를 true로 보냄.
-        navigate('/', {
-          state: {
-            isLoginSuccess: true,
-          },
-        });
+
         ToastSuccess(successMessage);
       })
       .catch((error) => {
@@ -46,35 +52,31 @@ const UserInfo = () => {
       });
   };
 
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      setLogInError(false);
-      login();
-    },
-    [email, password],
-  );
+  const onSubmit = useCallback((e) => {
+    e.preventDefault();
+    submit();
+  });
 
   return (
     <Container>
       <div className="profile-image" />
       <div className="nickName">
-        <input value={'닉네임'} style={{ width: '180px', fontWeight: 'bold' }} />
+        <input value={name} onChange={onChangeName} style={{ width: '180px', fontWeight: 'bold' }} />
       </div>
       <div className="section-update">
         <div className="inputBorder university">
           <div>
             <span className="inputName">학교명 : </span>
-            <input></input>
+            <input value={university} onChange={onChangeUniversity}></input>
           </div>
           <div>
             <span className="inputName">전공 : </span>
-            <input></input>
+            <input value={major} onChange={onChangeMajor}></input>
           </div>
         </div>
         <div className="inputBorder">
           <span className="inputName">관심분야 : </span>
-          <input style={{ width: '350px', fontWeight: 'bold' }}></input>
+          <input value={interests} onChange={onChangeInterests} style={{ width: '350px', fontWeight: 'bold' }}></input>
         </div>
       </div>
       <div className="button-wrapper">

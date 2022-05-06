@@ -20,7 +20,7 @@ export const MenuContainer = styled.div`
   border-color: ${colors.primary};
 
   .myPageTitle {
-    margin: 20px 0px 20px 0px;
+    margin: 100px 0px 20px 0px;
     font-size: 36px;
     font-weight: bold;
   }
