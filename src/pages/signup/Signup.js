@@ -37,7 +37,11 @@ const Signup=()=>{
       }).then(response=>{
         const successMessage = JSON.stringify(response.data.message);
         ToastSuccess(successMessage)
-        navigate('/')
+        navigate('/',
+          {
+            state:{isLoginSuccess:true}
+          }
+        )
       }).catch(err=>{
         const errorMessage = JSON.stringify(err.response.data.errorMessage);
         ToastError(errorMessage);

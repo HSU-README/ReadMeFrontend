@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Slider from 'react-slick';
 import banner1 from 'assets/images/banner1.png';
 import banner2 from 'assets/images/banner2.png';
-const Banner = ({ setKeywordBoxVisible }) => {
+import {useSelector, useDispatch} from 'react-redux';
+const Banner = () => {
   const settings = {
     dots: true,
     infinite: true,
@@ -14,9 +15,13 @@ const Banner = ({ setKeywordBoxVisible }) => {
     autoplay: true,
     autoplaySpeed: 8000,
   };
+  const dispatch = useDispatch()
+  const invisible=()=>{//추천검색어 안보이게
+    dispatch({type:'invisible'})
+  }
   const dummyImages = [{ src: banner1 }, { src: banner2 }];
   return (
-    <Slider {...settings}>
+    <Slider {...settings} >
       {dummyImages.map((item, index) => (
         <img
           src={item.src}
@@ -24,7 +29,7 @@ const Banner = ({ setKeywordBoxVisible }) => {
           key={index}
           alt="배너"
           onClick={() => {
-            setKeywordBoxVisible(false);
+            invisible()
           }}
         />
       ))}
