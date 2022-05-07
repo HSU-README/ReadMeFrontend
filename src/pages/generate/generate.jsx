@@ -16,7 +16,6 @@ const Generate = () => {
   const handleBtnClick = (item) => {
     doCommand(item);
   };
-
   return (
     <>
       <div>
