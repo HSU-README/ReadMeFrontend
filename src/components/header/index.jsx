@@ -28,16 +28,17 @@ export default function Header() {
             <div style={headerFont}>
               <p>{JSON.parse(userInfo).name}님</p>
             </div>
-            <div
-              style={headerFont}
+            <Link
+              to={`/`}
+              style={{ textDecoration: 'none' }}
               onClick={() => {
                 setIsLoggedIn(false);
                 setUserInfo(undefined);
                 localStorage.clear();
               }}
             >
-              로그아웃
-            </div>
+              <div style={headerFont}>로그아웃</div>
+            </Link>
             <Link to={`/mypage`} style={{ textDecoration: 'none' }}>
               <div style={headerFont}>마이페이지</div>
             </Link>
