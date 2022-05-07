@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { maxWidth } from '../../styles/mixin';
-import colors from '../../styles//colors';
+import colors from '../../styles/colors';
 
 export const Container = styled.footer`
   ${maxWidth}
