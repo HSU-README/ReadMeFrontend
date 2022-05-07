@@ -55,7 +55,7 @@ const image = [
   {
     cmd: 'insertImage',
     label: 'IMG',
-    val: 'https://unsplash.com/photos/8kqtv6dMNSg',
+    val: 'http://10000img.com/',
   },
 ];
 

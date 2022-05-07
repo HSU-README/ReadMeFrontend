@@ -5,4 +5,6 @@ export default {
   loginBorder: '#F57842',
 
   footerLine: '#F57842',
+
+  gray: '#707070',
 };

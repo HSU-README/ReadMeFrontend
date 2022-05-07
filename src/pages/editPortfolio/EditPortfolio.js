@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import TextEditArea from 'pages/generate/TextEditArea';
 import 'pages/generate/style.css';
 import { text, image, align, emoji } from 'pages/generate/arrays';
-
+import CanvasContainer from './CanvasContainer';
+import Moveable from 'react-moveable'
 const EditPortfolio = (props) => {
   const doCommand = (cmd) => {
     const val = typeof cmd.val !== 'undefined' ? prompt('Value for ' + cmd.cmd + '?', cmd.val) : '';
     //const val = typeof cmd.val !== 'undefined' ? cmd.val : '';
+    console.log(cmd.cmd);
     document.execCommand(cmd.cmd, true, val || '');
   };
 
   const handleBtnClick = (item) => {
     doCommand(item);
   };
-
   const { printRef } = props;
   return (
     <>
@@ -53,7 +54,11 @@ const EditPortfolio = (props) => {
             <br />
             {align.map((item) => {
               return (
-                <button className="button_box editor_buttons" onClick={() => handleBtnClick(item)}>
+                <button className="button_box editor_buttons" onClick={() => {
+                  console.log("aaa")
+                  console.log(item)
+                  handleBtnClick(item)
+                  }}>
                   {' '}
                   {item.label}{' '}
                 </button>
@@ -76,10 +81,7 @@ const EditPortfolio = (props) => {
           </details>
         </div>
       </div>
-
-      <div ref={printRef}>
-        <TextEditArea />
-      </div>
+        <CanvasContainer/>
     </>
   );
 };
