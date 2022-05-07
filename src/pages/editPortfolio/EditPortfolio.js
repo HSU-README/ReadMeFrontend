@@ -2,7 +2,7 @@ import React, { useState,useRef } from 'react';
 import TextEditArea from 'pages/generate/TextEditArea';
 import 'pages/generate/style.css';
 import { text, image, align, emoji } from 'pages/generate/arrays';
-import CanvasContainer from './CanvasContainer.tsx';
+import CanvasContainer from './CanvasContainer';
 import Moveable from 'react-moveable'
 const EditPortfolio = (props) => {
   const doCommand = (cmd) => {
