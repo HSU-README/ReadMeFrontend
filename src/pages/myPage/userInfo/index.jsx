@@ -1,65 +1,89 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useCallback, useState, useEffect, useRef } from 'react';
+import 'antd/dist/antd.css';
+import { Avatar } from 'antd';
 import useInput from 'hooks/useInput';
 import { Container, Button } from 'pages/myPage/userInfo/styles';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastError, ToastSuccess } from 'hooks/toastHook';
 import { API_ENDPOINT } from 'apis/constant';
-import { getUser } from 'apis/userApi';
+import { getUser, updateUser } from 'apis/userApi';
+import { storage } from '../../../firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 
 const UserInfo = () => {
-  const [user, setUser] = useState({});
-  const [name, onChangeName] = useInput('');
-  const [university, onChangeUniversity] = useInput('');
-  const [major, onChangeMajor] = useInput('');
-  const [interests, onChangeInterests] = useInput('');
-
+  const [image, setImage] = useState(
+    'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
+  );
+  const [file, setFile] = useState({});
+  const fileInput = useRef(null);
+  const [name, onChangeName, setName] = useInput('');
+  const [university, onChangeUniversity, setUniversity] = useInput('');
+  const [major, onChangeMajor, setMajor] = useInput('');
+  const [interests, onChangeInterests, setInterests] = useInput('');
   const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
   useEffect(() => {
-    async function fetchData() {
+    async function fetchUserData() {
       const data = await getUser(userId);
+      setName(data.name);
+      if (!data.profileUrl) {
+        setImage('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png');
+      } else {
+        setImage(data.profileUrl);
+      }
+      setUniversity(data.university);
+      setMajor(data.major);
+      setInterests(data.interests);
     }
-    fetchData();
+    fetchUserData();
   }, []);
 
-  const serverApi = axios.create({
-    baseURL: `${API_ENDPOINT}`,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
-  const submit = async () => {
-    await serverApi
-      .put(`/api/v1/members/${1}`, {
-        name: name,
-        university: university,
-        major: major,
-        interests: interests,
-      })
-      .then((response) => {
-        const userInfo = JSON.stringify(response.data.result);
-        const successMessage = JSON.stringify(response.data.message);
-
-        localStorage.setItem('readme_login', 'true');
-        localStorage.setItem('readme_userInfo', userInfo);
-
-        ToastSuccess(successMessage);
-      })
-      .catch((error) => {
-        const errorMessage = JSON.stringify(error.response.data.errorMessage);
-        ToastError(errorMessage);
-      });
+  const onChangeImage = (e) => {
+    setFile(e.target.files[0]);
+    if (file) {
+      setImage(file);
+    } else {
+      //업로드 취소할 시
+      setImage('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png');
+      return;
+    }
+    //화면에 프로필 사진 표시
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setImage(reader.result);
+      }
+    };
+    reader.readAsDataURL(e.target.files[0]);
   };
 
   const onSubmit = useCallback((e) => {
     e.preventDefault();
-    submit();
+    //create a refernce to the file tp be uploaded
+    const storageRef = ref(storage, file.name);
+    //upload the file
+    const uploadTask = uploadBytesResumable(storageRef, file);
+    getDownloadURL(uploadTask.snapshot.ref).then((url) => setImage(url));
+    updateUser(userId, name, image, university, major, interests);
   });
 
   return (
     <Container>
-      <div className="profile-image" />
+      <Avatar
+        src={image}
+        style={{ margin: '20px', cursor: 'pointer' }}
+        size={170}
+        onClick={() => {
+          fileInput.current.click();
+        }}
+      />
+      <input
+        type="file"
+        style={{ display: 'none' }}
+        accept="image/jpg,impge/png,image/jpeg"
+        name="profile_img"
+        onChange={onChangeImage}
+        ref={fileInput}
+      />
       <div className="nickName">
         <input value={name} onChange={onChangeName} style={{ width: '180px', fontWeight: 'bold' }} />
       </div>
