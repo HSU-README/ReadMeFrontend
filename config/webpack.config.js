@@ -334,6 +334,7 @@ module.exports = function (webpackEnv) {
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
         // please link the files into your node_modules/ and let module-resolution kick in.
         // Make sure your source files are compiled, as they will not be processed in any way.
+      
         new ModuleScopePlugin(paths.appSrc, [
           paths.appPackageJson,
           reactRefreshRuntimeEntry,
@@ -348,6 +349,11 @@ module.exports = function (webpackEnv) {
       strictExportPresence: true,
       rules: [
         // Handle node_modules packages that contain sourcemaps
+        {
+          test:/\.js$/,
+          exclude:/node_modules(?!\/quill-image-drop-module||quill-image-resize-module)/,
+          loader:'babel-loader',
+        },
         shouldUseSourceMap && {
           enforce: 'pre',
           exclude: /@babel(?:\/|\\{1,2})runtime/,
@@ -573,6 +579,7 @@ module.exports = function (webpackEnv) {
     plugins: [
       // Generates an `index.html` file with the <script> injected.
       new webpack.ProvidePlugin({
+        'window.Quill':'quill',
         Buffer: [require.resolve("buffer/"), "Buffer"],
         process: "process/browser",
       }),

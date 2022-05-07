@@ -5,7 +5,6 @@ import Main from './pages/home';
 import Select from './pages/select';
 import DownloadPortfolio from './pages/editPortfolio/DownloadPortfolio.js'
 import Generate from './pages/generate/generate';
-import Test1 from './test.js';
 import { useSelector, useDispatch } from 'react-redux';
 function App() {
   return (
@@ -16,7 +15,6 @@ function App() {
           <Route exact path="/signup" element={<Signup />} />
           <Route exact path="/login" element={<Login />} />
           <Route path="/select" element={<Select />} />
-          <Route path="/test" element={<Test1/>}/>
           <Route path="/editpofol" element={<DownloadPortfolio />} />
           <Route path="/generate" element={<Generate />} />
         </Routes>
