@@ -64,7 +64,7 @@ const getInitialData = (data: any[], type: string = "TEXT") => {
   };
 };
 
-const CanvasContainer = () => {
+const CanvasContainer = ({createElement}) => {
   const [canvasData, setCanvasData] = useState<ICanvasData[]>([]);
   const [activeSelection, setActiveSelection] = useState<Set<string>>(
     new Set()
@@ -98,13 +98,23 @@ const CanvasContainer = () => {
     setCanvasData([...(canvasData || [])]);
   };
 
+ 
+  useEffect(()=>{
+    if(createElement!==""){
+      var str=createElement.split(" ")
+      addElement(str[0])
+    }
+  },[createElement])
+
   const addElement = (type: string) => {
     const defaultData = getInitialData(canvasData, type);
-    var row=0
-    var col=0
     if(type==="CHART"){
-      row = Number(prompt('행을 입력해주세요'))
-      col = Number(prompt('열을 입력해주세요'))
+      var row= Number(createElement.split(" ")[1])
+      var col=  Number(createElement.split(" ")[2])
+    }else if(type==="IMAGE"){
+        var url = createElement.split(" ")[1]
+
+        defaultData.content=url
     }
     defaultData.chart.row=row;
     defaultData.chart.col=col;
@@ -112,6 +122,8 @@ const CanvasContainer = () => {
     activeSelection.clear();
     activeSelection.add(defaultData.id);
     setActiveSelection(new Set(activeSelection));
+    row=0
+    col=0
   };
 
   const deleteElement = useCallback(() => {

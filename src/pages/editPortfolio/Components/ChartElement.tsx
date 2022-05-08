@@ -17,7 +17,6 @@ const ChartElement=(props:ICanvasComponent)=>{
        })
     }
 
-
     useEffect(()=>{
         setWidth(Number(props.dimension.width)/chart.col);
         setHeight(Number(props.dimension.height)/chart.row)

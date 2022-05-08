@@ -5,14 +5,17 @@ import { text, image, align, emoji } from 'pages/generate/arrays';
 import CanvasContainer from './CanvasContainer.tsx';
 import Moveable from 'react-moveable'
 import PageDisplay from './PageDisplay';
+import TableDND from './Table/TableDND';
 const EditPortfolio = (props) => {
+
+  const [chartBackgroundColor, setChartBackgroundColor]= useState("1px solid black")
   const doCommand = (cmd) => {
     const val = typeof cmd.val !== 'undefined' ? prompt('Value for ' + cmd.cmd + '?', cmd.val) : '';
     //const val = typeof cmd.val !== 'undefined' ? cmd.val : '';
     console.log(cmd.cmd);
     document.execCommand(cmd.cmd, true, val || '');
   };
-
+  const [createElement, setCreateElement]=useState("")
   const handleBtnClick = (item) => {
     doCommand(item);
   };
@@ -21,7 +24,7 @@ const EditPortfolio = (props) => {
     <div>
       <div style={{ display: 'flex' }}>
         <PageDisplay />
-        <CanvasContainer />
+        <CanvasContainer createElement={createElement} />
         <div>
           <div className="parent">
             {/* <div className="itemBoxCss">
@@ -81,7 +84,12 @@ const EditPortfolio = (props) => {
                 <br />
                 {emoji.map((item) => {
                   return (
-                    <button className="button_none editor_buttons1" onClick={() => handleBtnClick(item)}>
+                    <button className="button_none editor_buttons1" onClick={() =>{
+                      setCreateElement(`IMAGE ${item.val}`)
+                      //handleBtnClick(item)
+                    }
+                    
+                    }>
                       <img src={item.val} />
                     </button>
                   );
@@ -100,26 +108,7 @@ const EditPortfolio = (props) => {
               <details>
                 <summary>표</summary>
                 <br />
-                <div style={{alignContent:"center"}}>
-                <table style={{border:"none",margin:"10px",borderSpacing:"0 1rem", borderCollapse:"separate"}}  >
-                    <tbody style={{}}>
-                    {
-                        Array(10).fill(null).map((tr,index)=>{
-                            return <tr style={{lineHeight:"1rem"}} key={index}>
-                                {
-                                    Array(10).fill(null).map((td,i)=>{
-                                        return <td  style={{border:"1px solid black" ,marginLeft:"1px"}} key={i} >
-                                         <div style={{width:"15px",height:"15px",}}></div>
-                                        </td>
-                                    })
-                                }
-                            </tr>
-                        })
-                    }
-                    </tbody>
-
-                </table>
-                </div>
+                <TableDND setCreateElement={setCreateElement}/>
               </details>
             </div>
 
