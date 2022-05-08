@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import CanvasComponent from "./Components/CanvasComponent";
 import Toolbar from "./Components/Toolbar";
 import './Canvas.css';
-import './Components/SaveElement';
 
 export const CanvasContext = React.createContext<ICanvasContext>({});
 

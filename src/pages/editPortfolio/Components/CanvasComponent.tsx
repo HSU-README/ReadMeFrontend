@@ -5,12 +5,10 @@ import { resizeHandleClasses } from "../canvasUtils";
 import ImageElement from "./ImageElement";
 import TextElement from "./TextElement";
 import ChartElement from "./ChartElement";
-import SaveElement from "./SaveElement";
 const componentMap: { [key: string]: React.ComponentType<ICanvasComponent> } = {
   TEXT: TextElement,
   IMAGE: ImageElement,
   CHART:ChartElement,
-  SAVE : SaveElement
 };
 
 const getEnableResize = (type: string): ResizeEnable => {

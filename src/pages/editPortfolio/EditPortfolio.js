@@ -12,7 +12,7 @@ const EditPortfolio = () => {
     console.log(cmd.cmd);
     document.execCommand(cmd.cmd, true, val || '');
   };
-  const [setCreateElement] = useState('');
+  const [createElement, setCreateElement] = useState('');
   const handleBtnClick = (item) => {
     doCommand(item);
   };

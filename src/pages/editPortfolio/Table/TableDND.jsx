@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import './Table.css'
-import CanvasContainer from "../CanvasContainer";
+
 const TableDND = ({setCreateElement}) => {
   const tableOptionsRef = useRef();
-  const [selection, setSelection] = useState();
+
   const [tableData, setTableData] = useState({
     row: 0,
     column: 0
