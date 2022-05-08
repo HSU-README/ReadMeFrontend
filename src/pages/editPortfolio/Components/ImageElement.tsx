@@ -95,7 +95,7 @@ const ImageElement = (props: ICanvasComponent) => {
     return (
       <div
         style={{
-          backgroundImage: `url("https://i.picsum.photos/id/115/250/250.jpg?hmac=g_5ZuzVOf-b5PJr5eU8aR3qApAQSEH5NZtaorARVm28")`,
+          backgroundImage: `url("${content}")`,
           backgroundSize: "contain",
           width: "100%",
           height: "100%",

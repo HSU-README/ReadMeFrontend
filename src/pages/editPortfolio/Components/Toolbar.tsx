@@ -70,9 +70,15 @@ export default function Toolbar({ isEditEnable }: IToolbarProps) {
       <div className="toolbar-item" onClick={() => addElement("TEXT")}>
         T
       </div>
-      
+
       <div className="toolbar-item" onClick={() => addElement("IMAGE")}>
         I
+      </div>
+
+      <div className="toolbar-item" onClick={() => {
+          addElement("CHART")}
+          }>
+        C
       </div>
     </div>
   );

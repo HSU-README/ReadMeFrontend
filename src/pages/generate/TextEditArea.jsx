@@ -7,12 +7,8 @@ const TextEditArea = ({bg}) => {
     <>
       <div>
         <div className="wrap">
-          <div className="editor show" ref={ref} style={{width:"210mm",height:"297mm"}} contenteditable="true" ></div>
+          <div className="editor show" ref={ref} style={{width:"210mm",height:"0mm"}} contenteditable="true" ></div>
         </div>
-        <button onClick={()=>{
-          console.log(ref)
-          ref.current.style="background-color:red;"
-        }}>dasda</button>
       </div>
     </>
   );
