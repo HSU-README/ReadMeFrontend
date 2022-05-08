@@ -107,8 +107,8 @@ const EditPortfolio = (props) => {
               <details>
                 <summary>표</summary>
                 <br />
-                <TableDND setCreateElement={setCreateElement}/>
 
+                <TableDND setCreateElement={setCreateElement}/>
               </details>
             </div>
           </div>

@@ -188,7 +188,7 @@ const CanvasContainer = () => {
   return (
     <div ref={null} style={{marginBottom:"50px", border:"1px solid red",width:"220mm", height:"310mm", marginLeft:"100px", marginRight:"10px"}}>
       <CanvasContext.Provider value={context}>
-        <Toolbar isEditEnable={enableQuillToolbar} />
+        <Toolbar isEditEnable={enableQuillToolbar} canvasBox={canvasBox} />
         <div className="canvas-container" ref={canvasBox} >
           {canvasData.map((canvas, key) => {
             return <CanvasComponent key={key} {...canvas} />;
