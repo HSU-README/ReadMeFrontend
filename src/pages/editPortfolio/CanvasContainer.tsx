@@ -46,10 +46,10 @@ const getInitialData = (data: any[], type: string = "TEXT") => {
       left: 100
     },
     dimension: {
-      width: "150",
+      width: "300",
       height: type === "TEXT" ? "50" : "150"
     },
-    content: type === "TEXT" ? "Sample Text" : ""
+    content: type === "TEXT" ? "두 번 클릭하여 텍스트를 입력하세요." : ""
   };
 };
 
