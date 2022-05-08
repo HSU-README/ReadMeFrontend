@@ -5,9 +5,9 @@
 요약 : 상단 메뉴바 기능 출력및 설정
 주소 : /editpofol
 */
-
-import React, { useContext } from "react";
+import React ,{useEffect,useRef,useContext,useState}from 'react';
 import { CanvasContext } from "../CanvasContainer";
+import ReactToPrint from 'react-to-print';
 
 export const sizeList = [
   "8px",
@@ -46,13 +46,17 @@ export const fontList = [
 
 interface IToolbarProps {
   isEditEnable: boolean;
+  canvasBox: any;
 }
 
-export default function Toolbar({ isEditEnable }: IToolbarProps) {
+export default function Toolbar({ isEditEnable, canvasBox }: IToolbarProps) {
+
+  console.log(canvasBox);
   const { actions } = useContext(CanvasContext);
   const addElement = (type: string) => {
     actions?.addElement(type);
   };
+
   return (
     <div style={{ display: "flex" }}>
       {isEditEnable && (
@@ -83,23 +87,25 @@ export default function Toolbar({ isEditEnable }: IToolbarProps) {
         이미지&nbsp;&nbsp;&nbsp;&nbsp;| 
       </div>
 
-      <div className="toolbar-item" onClick={() => addElement("TABLE")}>
-        표&nbsp;&nbsp;&nbsp;&nbsp;| 
-      </div>
-
-      <div className="toolbar-item" onClick={() => addElement("SAVE")}>
-        저장&nbsp;&nbsp;&nbsp;&nbsp;| 
-      </div>
-
-      <div className="toolbar-item" onClick={() => addElement("HELP")}>
-        도움말&nbsp;&nbsp;&nbsp;&nbsp;| 
-      </div>
 
       <div className="toolbar-item" onClick={() => {
           addElement("CHART")}
           }>
-        C
+        표&nbsp;&nbsp;&nbsp;&nbsp;| 
+        </div>
+
+     <div className="toolbar-item" onClick={() => addElement("SAVE")}>
+        저장&nbsp;&nbsp;&nbsp;&nbsp;| 
       </div>
+
+      <div>
+        <ReactToPrint trigger={() => <button className="menuBtn">저장</button>} content={() => canvasBox.current} />
+      </div>
+   
+      <div className="toolbar-item" onClick={() => addElement("HELP")}>
+        도움말&nbsp;&nbsp;&nbsp;&nbsp;| 
+      </div>
+
     </div>
   );
 }

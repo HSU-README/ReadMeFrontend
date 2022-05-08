@@ -1,9 +1,9 @@
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import TextEditArea from 'pages/generate/TextEditArea';
 import 'pages/generate/style.css';
 import { text, image, align, emoji } from 'pages/generate/arrays';
 import CanvasContainer from './CanvasContainer.tsx';
-import Moveable from 'react-moveable'
+import Moveable from 'react-moveable';
 import PageDisplay from './PageDisplay';
 const EditPortfolio = (props) => {
   const doCommand = (cmd) => {
@@ -21,7 +21,7 @@ const EditPortfolio = (props) => {
     <div>
       <div style={{ display: 'flex' }}>
         <PageDisplay />
-        <CanvasContainer />
+
         <div>
           <div className="parent">
             {/* <div className="itemBoxCss">
@@ -100,31 +100,36 @@ const EditPortfolio = (props) => {
               <details>
                 <summary>표</summary>
                 <br />
-                <div style={{alignContent:"center"}}>
-                <table style={{border:"none",margin:"10px",borderSpacing:"0 1rem", borderCollapse:"separate"}}  >
+                <div style={{ alignContent: 'center' }}>
+                  <table
+                    style={{ border: 'none', margin: '10px', borderSpacing: '0 1rem', borderCollapse: 'separate' }}
+                  >
                     <tbody style={{}}>
-                    {
-                        Array(10).fill(null).map((tr,index)=>{
-                            return <tr style={{lineHeight:"1rem"}} key={index}>
-                                {
-                                    Array(10).fill(null).map((td,i)=>{
-                                        return <td  style={{border:"1px solid black" ,marginLeft:"1px"}} key={i} >
-                                         <div style={{width:"15px",height:"15px",}}></div>
-                                        </td>
-                                    })
-                                }
+                      {Array(10)
+                        .fill(null)
+                        .map((tr, index) => {
+                          return (
+                            <tr style={{ lineHeight: '1rem' }} key={index}>
+                              {Array(10)
+                                .fill(null)
+                                .map((td, i) => {
+                                  return (
+                                    <td style={{ border: '1px solid black', marginLeft: '1px' }} key={i}>
+                                      <div style={{ width: '15px', height: '15px' }}></div>
+                                    </td>
+                                  );
+                                })}
                             </tr>
-                        })
-                    }
+                          );
+                        })}
                     </tbody>
-
-                </table>
+                  </table>
                 </div>
               </details>
             </div>
-
           </div>
         </div>
+        <CanvasContainer />
       </div>
     </div>
   );

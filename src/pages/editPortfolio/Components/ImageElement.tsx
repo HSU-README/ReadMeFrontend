@@ -95,11 +95,7 @@ const ImageElement = (props: ICanvasComponent) => {
     return (
       <div
         style={{
-<<<<<<< HEAD
           backgroundImage: `url("${content}")`,
-=======
-          backgroundImage: `url(${content})`,
->>>>>>> 01884f87ecb95cc523dd8549bf76b0576a0fc315
           backgroundSize: "contain",
           width: "100%",
           height: "100%",

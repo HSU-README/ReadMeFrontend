@@ -3,7 +3,7 @@ import './Header.css';
 import logo from 'assets/images/logo.jpg';
 import { Button } from '@mui/material';
 import Searchbar from './Searchbar.js';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Banner from './Banner.js';
 import { useLocation } from 'react-router-dom';
 
@@ -12,26 +12,10 @@ const Header = () => {
   const [keywordBoxLeft, setkeyWordBoxLeft] = useState('0px');
   const [keywordBoxTop, setkeyWordBoxTop] = useState('0px');
   //로그인 정보 state
-<<<<<<< HEAD
-  const { loginCheck } = useSelector(state => state.loginCheck)
-=======
   const { loginCheck } = useSelector((state) => state.loginCheck);
->>>>>>> 01884f87ecb95cc523dd8549bf76b0576a0fc315
   //추천검색어 창 나타나게하는 리덕스 전역 관리 변수
   const { visibleCheck } = useSelector((state) => state.visibleCheck);
   const location = useLocation();
-<<<<<<< HEAD
-  const dispatch = useDispatch()
-  const signIn = ()=>{
-    dispatch({type:'signIn'})
-  }
-  const signOut =()=>{
-    dispatch({type:'signOut'})
-  }
-  const visible=()=>{ //추천검색어를 보이게
-    dispatch({type:'visible'})
-  }
-=======
   const dispatch = useDispatch();
   const signIn = () => {
     dispatch({ type: 'signIn' });
@@ -43,7 +27,6 @@ const Header = () => {
     //추천검색어를 보이게
     dispatch({ type: 'visible' });
   };
->>>>>>> 01884f87ecb95cc523dd8549bf76b0576a0fc315
   const keywordBoxLeftRight = {
     left: keywordBoxLeft,
     top: keywordBoxTop,
@@ -120,14 +103,8 @@ const Header = () => {
         {/* 로그인시 출력 컴포넌트 */}
         {loginCheck ? (
           <>
-<<<<<<< HEAD
-            <Button disabled style={{ color: '#1976d2', marginTop: '30px', fontSize: '23px' }}
-            > 
-              {userInfo}님
-=======
             <Button disabled style={{ color: '#1976d2', marginTop: '30px', fontSize: '23px' }}>
-              {JSON.parse(userInfo).name}님
->>>>>>> 01884f87ecb95cc523dd8549bf76b0576a0fc315
+              {userInfo}님
             </Button>
             <Button
               href="/login"

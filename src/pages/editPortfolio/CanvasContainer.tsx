@@ -2,6 +2,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import CanvasComponent from "./Components/CanvasComponent";
 import Toolbar from "./Components/Toolbar";
 import './Canvas.css';
+import './Components/SaveElement';
+
 export const CanvasContext = React.createContext<ICanvasContext>({});
 
 export interface ICanvasData {
@@ -108,6 +110,7 @@ const CanvasContainer = () => {
     }
     defaultData.chart.row=row;
     defaultData.chart.col=col;
+    console.log(defaultData);
     setCanvasData([...canvasData, { ...defaultData, type: type ?? "TEXT" }]);
     activeSelection.clear();
     activeSelection.add(defaultData.id);
@@ -183,12 +186,12 @@ const CanvasContainer = () => {
     };
   }, [handleKeyDown, handleMouseDown]);
   return (
-    <div ref={containerRef} style={{marginBottom:"50px", border:"1px solid red",width:"220mm", height:"310mm", marginLeft:"100px", marginRight:"10px"}}>
+    <div ref={null} style={{marginBottom:"50px", border:"1px solid red",width:"220mm", height:"310mm", marginLeft:"100px", marginRight:"10px"}}>
       <CanvasContext.Provider value={context}>
-        <Toolbar isEditEnable={enableQuillToolbar} />
+        <Toolbar isEditEnable={enableQuillToolbar} canvasBox={canvasBox} />
         <div className="canvas-container" ref={canvasBox} >
-          {canvasData.map((canvas) => {
-            return <CanvasComponent {...canvas} />;
+          {canvasData.map((canvas, key) => {
+            return <CanvasComponent key={key} {...canvas} />;
           })}
         </div>
       </CanvasContext.Provider>
