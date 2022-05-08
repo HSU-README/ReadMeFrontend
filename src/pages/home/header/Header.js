@@ -6,16 +6,21 @@ import Searchbar from './Searchbar.js';
 import {useSelector, useDispatch} from 'react-redux';
 import Banner from './Banner.js';
 import { useLocation } from 'react-router-dom';
+
 const Header = () => {
-  
   const [userInfo, setUserInfo] = useState('');
   const [keywordBoxLeft, setkeyWordBoxLeft] = useState('0px');
   const [keywordBoxTop, setkeyWordBoxTop] = useState('0px');
   //로그인 정보 state
+<<<<<<< HEAD
   const { loginCheck } = useSelector(state => state.loginCheck)
+=======
+  const { loginCheck } = useSelector((state) => state.loginCheck);
+>>>>>>> 01884f87ecb95cc523dd8549bf76b0576a0fc315
   //추천검색어 창 나타나게하는 리덕스 전역 관리 변수
-  const {visibleCheck} = useSelector(state=>state.visibleCheck) 
+  const { visibleCheck } = useSelector((state) => state.visibleCheck);
   const location = useLocation();
+<<<<<<< HEAD
   const dispatch = useDispatch()
   const signIn = ()=>{
     dispatch({type:'signIn'})
@@ -26,17 +31,30 @@ const Header = () => {
   const visible=()=>{ //추천검색어를 보이게
     dispatch({type:'visible'})
   }
+=======
+  const dispatch = useDispatch();
+  const signIn = () => {
+    dispatch({ type: 'signIn' });
+  };
+  const signOut = () => {
+    dispatch({ type: 'signOut' });
+  };
+  const visible = () => {
+    //추천검색어를 보이게
+    dispatch({ type: 'visible' });
+  };
+>>>>>>> 01884f87ecb95cc523dd8549bf76b0576a0fc315
   const keywordBoxLeftRight = {
     left: keywordBoxLeft,
     top: keywordBoxTop,
   };
   const keywordTag = {
     backgroundColor: '#EBEBEB',
-    borderRadius:'27px',
+    borderRadius: '27px',
     width: '80px',
-    fontSize:'14px',
-    fontWeight:'500',
-    font:'bold',
+    fontSize: '14px',
+    fontWeight: '500',
+    font: 'bold',
     marginLeft: '25px',
     marginRight: '25px',
     color: 'black',
@@ -45,33 +63,33 @@ const Header = () => {
   };
 
   var keywordBoxRef = useRef(null);
-   useEffect(
-     () => {},
-      window.addEventListener('resize',()=>{
-        setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x+100}px`);
-        setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y+42}px`);
-      })  
-   );
-  
+  useEffect(
+    () => {},
+    window.addEventListener('resize', () => {
+      setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x + 100}px`);
+      setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
+    }),
+  );
+
   useEffect(() => {
     //로그인&유저정보 state에 저장
     const readme_login = localStorage.getItem('readme_login');
     const readme_userInfo = localStorage.getItem('readme_userInfo');
     if (readme_login && readme_userInfo) {
-      signIn()
+      signIn();
       setUserInfo(readme_userInfo);
       signIn();
     }
-    
-    setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x+100}px`);
-    setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y+42}px`);
- 
+
+    setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x + 100}px`);
+    setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
+
     //로그인이 되었는지 안되었는지 판단
-    if(location.state!==null){
-      if(location.state.isLoginSuccess===true){
+    if (location.state !== null) {
+      if (location.state.isLoginSuccess === true) {
         signIn();
       }
-    }else{
+    } else {
       signOut();
     }
   }, []);
@@ -92,19 +110,24 @@ const Header = () => {
             style={{ display: 'relative', marginLeft: '18px', paddingTop: '10px' }}
             ref={keywordBoxRef}
             onClick={() => {
-              visible()
+              visible();
             }}
           >
-            <Searchbar/>
+            <Searchbar />
           </div>
         </span>
 
         {/* 로그인시 출력 컴포넌트 */}
         {loginCheck ? (
           <>
+<<<<<<< HEAD
             <Button disabled style={{ color: '#1976d2', marginTop: '30px', fontSize: '23px' }}
             > 
               {userInfo}님
+=======
+            <Button disabled style={{ color: '#1976d2', marginTop: '30px', fontSize: '23px' }}>
+              {JSON.parse(userInfo).name}님
+>>>>>>> 01884f87ecb95cc523dd8549bf76b0576a0fc315
             </Button>
             <Button
               href="/login"
@@ -117,7 +140,7 @@ const Header = () => {
             >
               로그아웃
             </Button>
-            <Button href="/" style={{ marginTop: '30px', fontSize: '23px' }}>
+            <Button href="/mypage" style={{ marginTop: '30px', fontSize: '23px' }}>
               마이페이지
             </Button>
           </>
@@ -135,7 +158,7 @@ const Header = () => {
       </div>
 
       {visibleCheck && (
-        <div className="keywordBox" style={keywordBoxLeftRight} >
+        <div className="keywordBox" style={keywordBoxLeftRight}>
           <div style={{ display: 'inlineBlock' }}>
             {dummeyKeywords.map((data, index) => {
               return (

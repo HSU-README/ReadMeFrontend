@@ -30,18 +30,16 @@ const LogIn = () => {
         password: password,
       })
       .then((response) => {
-        console.log(JSON.stringify(response.data.result));
-        const userInfo = JSON.stringify(response.data.result.id);
+        const userInfo = JSON.stringify(response.data.result);
         const successMessage = JSON.stringify(response.data.message);
 
         localStorage.setItem('readme_login', 'true');
         localStorage.setItem('readme_userInfo', userInfo);
         //로그인이 성공할 경우 props에 isLoginSuccess를 true로 보냄.
-        navigate('/',
-        {
-          state:{
-            isLoginSuccess:true
-          }
+        navigate('/', {
+          state: {
+            isLoginSuccess: true,
+          },
         });
         ToastSuccess(successMessage);
       })
