@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'pages/generate/style.css';
-import { image, emoji } from 'pages/generate/arrays';
+import { image, emoji, emoji2 } from 'pages/generate/arrays';
 import CanvasContainer from './CanvasContainer.tsx';
 import PageDisplay from './PageDisplay';
 import TableDND from './Table/TableDND';
@@ -27,6 +27,15 @@ const EditPortfolio = () => {
           <div className="parent">
             <div className="itemBoxCss">
               <details>
+                <summary>표</summary>
+                <br />
+
+                <TableDND setCreateElement={setCreateElement} />
+              </details>
+            </div>
+
+            <div className="itemBoxCss">
+              <details>
                 <summary>Image</summary>
                 <br />
                 {image.map((item) => {
@@ -42,26 +51,6 @@ const EditPortfolio = () => {
 
             <div className="itemBoxCss">
               <details>
-                <summary>이모티콘</summary>
-                <br />
-                {emoji.map((item) => {
-                  return (
-                    <button
-                      className="button_none editor_buttons1"
-                      onClick={() => {
-                        setCreateElement(`IMAGE ${item.val}`);
-                        //handleBtnClick(item)
-                      }}
-                    >
-                      <img src={item.val} />
-                    </button>
-                  );
-                })}
-              </details>
-            </div>
-
-            <div className="itemBoxCss">
-              <details>
                 <summary>도형</summary>
                 <br />
               </details>
@@ -69,10 +58,42 @@ const EditPortfolio = () => {
 
             <div className="itemBoxCss">
               <details>
-                <summary>표</summary>
+                <summary>이모티콘</summary>
                 <br />
+                <details>
+                  <summary className="menu1">상상부기</summary>
 
-                <TableDND setCreateElement={setCreateElement} />
+                  {emoji.map((item) => {
+                    return (
+                      <button
+                        className="button_none editor_buttons1"
+                        onClick={() => {
+                          setCreateElement(`IMAGE ${item.val}`);
+                          //handleBtnClick(item)
+                        }}
+                      >
+                        <img src={item.val} />
+                      </button>
+                    );
+                  })}
+                </details>
+                <br />
+                <details>
+                  <summary className="menu2">상상부기 프렌즈</summary>
+                  {emoji2.map((item) => {
+                    return (
+                      <button
+                        className="button_none editor_buttons1"
+                        onClick={() => {
+                          setCreateElement(`IMAGE ${item.val}`);
+                          //handleBtnClick(item)
+                        }}
+                      >
+                        <img src={item.val} />
+                      </button>
+                    );
+                  })}
+                </details>
               </details>
             </div>
           </div>
