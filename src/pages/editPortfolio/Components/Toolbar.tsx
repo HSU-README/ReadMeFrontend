@@ -1,3 +1,11 @@
+/* 
+주석 작성일 : 2022-05-08
+작성자 : 이찬우
+파일명 : Toolbar.tsx
+요약 : 상단 메뉴바 기능 출력및 설정
+주소 : /editpofol
+*/
+
 import React, { useContext } from "react";
 import { CanvasContext } from "../CanvasContainer";
 
@@ -68,11 +76,23 @@ export default function Toolbar({ isEditEnable }: IToolbarProps) {
         </div>
       )}
       <div className="toolbar-item" onClick={() => addElement("TEXT")}>
-        T
+        텍스트&nbsp;&nbsp;&nbsp;&nbsp;| 
       </div>
       
       <div className="toolbar-item" onClick={() => addElement("IMAGE")}>
-        I
+        이미지&nbsp;&nbsp;&nbsp;&nbsp;| 
+      </div>
+
+      <div className="toolbar-item" onClick={() => addElement("TABLE")}>
+        표&nbsp;&nbsp;&nbsp;&nbsp;| 
+      </div>
+
+      <div className="toolbar-item" onClick={() => addElement("SAVE")}>
+        저장&nbsp;&nbsp;&nbsp;&nbsp;| 
+      </div>
+
+      <div className="toolbar-item" onClick={() => addElement("HELP")}>
+        도움말&nbsp;&nbsp;&nbsp;&nbsp;| 
       </div>
     </div>
   );
