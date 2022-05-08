@@ -3,9 +3,6 @@ import 'antd/dist/antd.css';
 import { Avatar } from 'antd';
 import useInput from 'hooks/useInput';
 import { Container, Button } from 'pages/myPage/userInfo/styles';
-import { Link, useNavigate } from 'react-router-dom';
-import { ToastError, ToastSuccess } from 'hooks/toastHook';
-import { API_ENDPOINT } from 'apis/constant';
 import { getUser, updateUser } from 'apis/userApi';
 import { storage } from '../../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
@@ -39,13 +36,7 @@ const UserInfo = () => {
 
   const onChangeImage = (e) => {
     setFile(e.target.files[0]);
-    if (file) {
-      setImage(file);
-    } else {
-      //업로드 취소할 시
-      setImage('https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png');
-      return;
-    }
+
     //화면에 프로필 사진 표시
     const reader = new FileReader();
     reader.onload = () => {
@@ -58,12 +49,17 @@ const UserInfo = () => {
 
   const onSubmit = useCallback((e) => {
     e.preventDefault();
-    //create a refernce to the file tp be uploaded
-    const storageRef = ref(storage, file.name);
-    //upload the file
-    const uploadTask = uploadBytesResumable(storageRef, file);
-    getDownloadURL(uploadTask.snapshot.ref).then((url) => setImage(url));
-    updateUser(userId, name, image, university, major, interests);
+    if (file.name === undefined) {
+      updateUser(userId, name, image, university, major, interests);
+    } else {
+      //create a refernce to the file tp be uploaded
+      const storageRef = ref(storage, file.name);
+      //upload the file
+      const uploadTask = uploadBytesResumable(storageRef, file);
+      getDownloadURL(uploadTask.snapshot.ref).then((url) =>
+        updateUser(userId, name, url, university, major, interests),
+      );
+    }
   });
 
   return (
