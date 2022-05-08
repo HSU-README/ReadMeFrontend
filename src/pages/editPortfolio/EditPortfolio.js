@@ -4,6 +4,8 @@ import { image, emoji, emoji2 } from 'pages/generate/arrays';
 import CanvasContainer from './CanvasContainer.tsx';
 import PageDisplay from './PageDisplay';
 import TableDND from './Table/TableDND';
+import Header from 'components/header';
+import Footer from 'components/footer/index.jsx';
 const EditPortfolio = () => {
   const [chartBackgroundColor, setChartBackgroundColor] = useState('1px solid black');
   const doCommand = (cmd) => {
@@ -19,9 +21,10 @@ const EditPortfolio = () => {
 
   return (
     <div>
+      <Header />
+      <br />
       <div style={{ display: 'flex' }}>
         <PageDisplay />
-
         <CanvasContainer createElement={createElement} />
         <div>
           <div className="parent">
@@ -99,6 +102,7 @@ const EditPortfolio = () => {
           </div>
         </div>
       </div>
+      <Footer />;
     </div>
   );
 };

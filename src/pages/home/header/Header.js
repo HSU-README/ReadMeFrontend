@@ -33,14 +33,13 @@ const Header = () => {
     top: keywordBoxTop,
   };
   const keywordTag = {
-    backgroundColor: '#EBEBEB',
-    borderRadius: '27px',
-    width: '80px',
+    backgroundColor: '#E8E8E8',
+    borderRadius: '30px',
+    width: '100px',
     fontSize: '14px',
-    fontWeight: '500',
+    fontWeight: '900',
     font: 'bold',
     marginLeft: '25px',
-    marginRight: '25px',
     color: 'black',
     marginTop: '13px',
     marginBottom: '13px',
@@ -69,7 +68,18 @@ const Header = () => {
     //   signOut();
     // }
   }, []);
-  const dummeyKeywords = ['#컴공', '#디자인', '#컴공', '#디자인', '#컴공', '#디자인'];
+  const dummeyKeywords = [
+    '#컴퓨터공학',
+    '#인공지능',
+    '#기계공학',
+    '#시각디자인',
+    '#제품디자인',
+    '#의학',
+    '#법학',
+    '#건축학',
+    '#수학',
+    '#경영학',
+  ];
 
   return (
     <div className="headerMain">
