@@ -117,7 +117,7 @@ const Header = () => {
             >
               로그아웃
             </Button>
-            <Button href="/" style={{ marginTop: '30px', fontSize: '23px' }}>
+            <Button href="/mypage" style={{ marginTop: '30px', fontSize: '23px' }}>
               마이페이지
             </Button>
           </>
