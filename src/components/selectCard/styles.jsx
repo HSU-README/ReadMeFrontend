@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   position: relative;
-  background-image: url(${require('../../assets/images/dummy-select-image.jpeg')});
   background-size: cover;
   background-position: center;
   height: ${(props) => (props.isSelected ? '270px' : '250px')};
