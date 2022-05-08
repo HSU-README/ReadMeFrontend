@@ -24,6 +24,8 @@ const EditPortfolio = (props) => {
     <div>
       <div style={{ display: 'flex' }}>
         <PageDisplay />
+
+        <CanvasContainer createElement={createElement} />
         <div>
           <div className="parent">
             {/* <div className="itemBoxCss">
@@ -113,7 +115,6 @@ const EditPortfolio = (props) => {
             </div>
           </div>
         </div>
-        <CanvasContainer />
       </div>
     </div>
   );

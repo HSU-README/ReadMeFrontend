@@ -17,6 +17,7 @@ const TableDND = ({setCreateElement}) => {
     )
   );
   useEffect(() => {
+    console.log("change")
     const newTable = Array.from({ length: 6 }, (obj, row) =>
       Array.from({ length: 6 }, (v, col) => ({
         bg:
@@ -40,10 +41,10 @@ const TableDND = ({setCreateElement}) => {
               grp.map(({ column, bg }) => (
                 <div
                   onClick={()=>{
+                    console.log("click")
                     setCreateElement(`CHART ${row+1} ${column+1}`)
                   }}
                   onMouseOver={() =>
-                    
                     setTableData({ row: row + 1, column: column + 1 })
                   }
                   className="table-unit"
