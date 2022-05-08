@@ -87,18 +87,9 @@ export default function Toolbar({ isEditEnable, canvasBox }: IToolbarProps) {
         이미지&nbsp;&nbsp;&nbsp;&nbsp;| 
       </div>
 
-      <div className="toolbar-item" onClick={() => {
-          addElement("CHART")}
-          }>
-        표&nbsp;&nbsp;&nbsp;&nbsp;| 
-        </div>
-
-     <div className="toolbar-item" onClick={() => addElement("SAVE")}>
-        저장&nbsp;&nbsp;&nbsp;&nbsp;| 
-      </div>
-
       <div>
-        <ReactToPrint trigger={() => <button className="menuBtn">저장</button>} content={() => canvasBox.current} />
+        <ReactToPrint trigger={() => <div className="toolbar-item">저장&nbsp;&nbsp;&nbsp;&nbsp;| 
+        </div>} content={() => canvasBox.current} />
       </div>
    
       <div className="toolbar-item" onClick={() => addElement("HELP")}>
