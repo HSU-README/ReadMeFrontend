@@ -29,7 +29,15 @@
       padding: 10px;
       box-sizing: border-box;
   }
-  
+
+  .itemBoxCss1 {
+    border: 3px solid rgb(99, 85, 85);
+    padding: 10px;
+    box-sizing: border-box;
+    overflow:auto;
+    height:200px;
+}
+
   .save{
       float: left;
       margin-left: 100px;
@@ -46,6 +54,12 @@
   /* 이모지 박스 */
   .button_none{
     border: 1px solid rgb(0, 47, 255);
+    width: 20%;
+    background-color: white;
+  }
+
+  .button_none1{
+    border: 1px solid rgb(21, 184, 0);
     width: 20%;
     background-color: white;
   }

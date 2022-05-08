@@ -81,7 +81,7 @@ const Home = (props) => {
         </Slider>
 
         <div className="sectionFont">
-          <span style={{ opacity: `${opacity}` }}>인기 포트폴리오</span>
+          <span style={{ opacity: `${opacity}` }}>학과별 포트폴리오</span>
         </div>
         <Slider {...settings} style={{ marginLeft:"100px", marginRight: '50px', opacity: `${opacity}` }}>
           {dummyData.map((data, index) => (

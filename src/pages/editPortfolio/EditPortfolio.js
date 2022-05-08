@@ -59,7 +59,7 @@ const EditPortfolio = () => {
               </details>
             </div>
 
-            <div className="itemBoxCss">
+            <div className="itemBoxCss1">
               <details>
                 <summary>이모티콘</summary>
                 <br />
@@ -86,7 +86,7 @@ const EditPortfolio = () => {
                   {emoji2.map((item) => {
                     return (
                       <button
-                        className="button_none editor_buttons1"
+                        className="button_none1 editor_buttons1"
                         onClick={() => {
                           setCreateElement(`IMAGE ${item.val}`);
                           //handleBtnClick(item)
