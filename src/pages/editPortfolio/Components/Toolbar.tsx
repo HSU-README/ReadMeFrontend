@@ -105,7 +105,6 @@ export default function Toolbar({ isEditEnable, canvasBox }: IToolbarProps) {
       <div className="toolbar-item" onClick={() => addElement("HELP")}>
         도움말&nbsp;&nbsp;&nbsp;&nbsp;| 
       </div>
-
     </div>
   );
 }
