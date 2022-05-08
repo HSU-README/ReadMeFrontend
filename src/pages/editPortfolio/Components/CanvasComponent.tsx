@@ -1,13 +1,14 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef,useEffect } from "react";
 import { ResizeEnable, Rnd } from "react-rnd";
 import { CanvasContext, ICanvasComponent } from "../CanvasContainer";
 import { resizeHandleClasses } from "../canvasUtils";
 import ImageElement from "./ImageElement";
 import TextElement from "./TextElement";
-
+import ChartElement from "./ChartElement"
 const componentMap: { [key: string]: React.ComponentType<ICanvasComponent> } = {
   TEXT: TextElement,
-  IMAGE: ImageElement
+  IMAGE: ImageElement,
+  CHART:ChartElement
 };
 
 const getEnableResize = (type: string): ResizeEnable => {
@@ -26,7 +27,7 @@ const getEnableResize = (type: string): ResizeEnable => {
 };
 const CanvasComponent = (props: ICanvasComponent) => {
   const { state, actions } = useContext(CanvasContext);
-  const { dimension, position, content, id, type } = props;
+  const { dimension, position, content, id, type,chart,chartContent} = props;
   const [showGrids, setShowGrids] = React.useState(false);
   const [isReadOnly, setIsReadOnly] = React.useState(true);
   const elementRef = React.useRef<HTMLDivElement>(null);
@@ -62,6 +63,8 @@ const CanvasComponent = (props: ICanvasComponent) => {
         dimension={dimension}
         content={content}
         isReadOnly={isReadOnly}
+        chart={chart}
+        chartContent={chartContent}
       />
     );
   };
@@ -99,9 +102,12 @@ const CanvasComponent = (props: ICanvasComponent) => {
       : "";
 
   const onDoubleClick = () => {
-    if (!isReadOnly) return;
-    setIsReadOnly(false);
-    actions?.setEnableQuillToolbar(true);
+    if(type==="TEXT"){
+        if (!isReadOnly) return;
+        setIsReadOnly(false);
+    
+        actions?.setEnableQuillToolbar(true);
+    }
   };
 
   return (

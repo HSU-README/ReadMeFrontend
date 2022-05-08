@@ -5,7 +5,8 @@ import ExportPdf from './DownloadPdf.js';
 const DownloadPortfolio = () => {
   const [title, setTitle] = useState('');
   return (
-    <div className="App container">
+    //<div className="App container">
+    <div> 
       <ExportPdf />
     </div>
   );
