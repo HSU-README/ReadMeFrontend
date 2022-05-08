@@ -1,9 +1,9 @@
-import React, { useState,useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import TextEditArea from 'pages/generate/TextEditArea';
 import 'pages/generate/style.css';
 import { text, image, align, emoji } from 'pages/generate/arrays';
 import CanvasContainer from './CanvasContainer.tsx';
-import Moveable from 'react-moveable'
+import Moveable from 'react-moveable';
 import PageDisplay from './PageDisplay';
 import TableDND from './Table/TableDND';
 const EditPortfolio = (props) => {
@@ -24,7 +24,6 @@ const EditPortfolio = (props) => {
     <div>
       <div style={{ display: 'flex' }}>
         <PageDisplay />
-        <CanvasContainer createElement={createElement} />
         <div>
           <div className="parent">
             {/* <div className="itemBoxCss">
@@ -109,11 +108,12 @@ const EditPortfolio = (props) => {
                 <summary>표</summary>
                 <br />
                 <TableDND setCreateElement={setCreateElement}/>
+
               </details>
             </div>
-
           </div>
         </div>
+        <CanvasContainer />
       </div>
     </div>
   );

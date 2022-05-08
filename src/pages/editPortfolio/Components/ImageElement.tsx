@@ -1,5 +1,5 @@
-import React, { useContext, useRef,useEffect } from "react";
-import { CanvasContext, ICanvasComponent } from "../CanvasContainer";
+import React, { useContext, useRef, useEffect } from 'react';
+import { CanvasContext, ICanvasComponent } from '../CanvasContainer';
 import '../Canvas.css';
 const ImageElement = (props: ICanvasComponent) => {
   const { content, id } = props;
@@ -15,9 +15,7 @@ const ImageElement = (props: ICanvasComponent) => {
     });
   };
 
-  const getImageDimensions = async (
-    file: string
-  ): Promise<{ [key: string]: number }> => {
+  const getImageDimensions = async (file: string): Promise<{ [key: string]: number }> => {
     return new Promise((resolved, rejected) => {
       var i = new Image();
       i.onload = function () {
@@ -25,18 +23,14 @@ const ImageElement = (props: ICanvasComponent) => {
           w: i.width,
           h: i.height,
           nw: i.naturalWidth,
-          nh: i.naturalHeight
+          nh: i.naturalHeight,
         });
       };
       i.src = file;
     });
   };
 
-  const getAdjustedDimenstions = (
-    width: number,
-    height: number,
-    resultWidth: number
-  ) => {
+  const getAdjustedDimenstions = (width: number, height: number, resultWidth: number) => {
     const ratio = width / height;
     return { calcWidth: resultWidth, calcHeight: resultWidth / ratio };
   };
@@ -48,31 +42,27 @@ const ImageElement = (props: ICanvasComponent) => {
       const imageDimensions: {
         [key: string]: number;
       } = await getImageDimensions(base64);
-      const { calcWidth, calcHeight } = getAdjustedDimenstions(
-        imageDimensions?.nw,
-        imageDimensions?.nh,
-        150
-      );
+      const { calcWidth, calcHeight } = getAdjustedDimenstions(imageDimensions?.nw, imageDimensions?.nh, 150);
       actions?.updateCanvasData({
         id,
-        content: base64 || "",
+        content: base64 || '',
         dimension: {
           width: `${calcWidth || 0}`,
-          height: `${calcHeight || 0}`
-        }
+          height: `${calcHeight || 0}`,
+        },
       });
     }
   };
-//   useEffect(()=>{
-//       console.log(content)
-//   },[content])
+  //   useEffect(()=>{
+  //       console.log(content)
+  //   },[content])
   const triggerUpload = () => {
     const element = uploadRef?.current;
     if (element) {
       element.click();
     }
   };
-  
+
   const renderUploadContent = () => {
     return (
       <>
@@ -95,11 +85,11 @@ const ImageElement = (props: ICanvasComponent) => {
     return (
       <div
         style={{
-          backgroundImage: `url("${content}")`,
-          backgroundSize: "contain",
-          width: "100%",
-          height: "100%",
-          backgroundRepeat: "no-repeat"
+          backgroundImage: `url(${content})`,
+          backgroundSize: 'contain',
+          width: '100%',
+          height: '100%',
+          backgroundRepeat: 'no-repeat',
         }}
       />
     );

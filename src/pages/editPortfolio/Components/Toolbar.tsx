@@ -83,6 +83,12 @@ export default function Toolbar({ isEditEnable }: IToolbarProps) {
         이미지&nbsp;&nbsp;&nbsp;&nbsp;| 
       </div>
 
+      <div className="toolbar-item" onClick={() => {
+          addElement("CHART")}
+          }>
+        표&nbsp;&nbsp;&nbsp;&nbsp;| 
+      </div>
+
       <div className="toolbar-item" onClick={() => addElement("SAVE")}>
         저장&nbsp;&nbsp;&nbsp;&nbsp;| 
       </div>

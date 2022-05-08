@@ -4,15 +4,16 @@ import { maxWidth } from 'styles/mixin';
 
 export const Container = styled.div`
   ${maxWidth}
+  min-width: 800px;
 `;
 
-export const LoginContainer = styled.div`
+export const SignupContainer = styled.div`
   border: 5px solid;
   border-color: ${colors.loginBorder};
   border-radius: 15px;
   max-width: 900px;
   width: 60%;
-  margin: 140px auto 175px auto;
+  margin: 100px auto 140px auto;
   box-shadow: 25% 0px 20px 10px rgba(0, 0, 0, 0.2);
 
   .logo-wrapper {

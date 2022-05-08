@@ -3,11 +3,12 @@ import './Header.css';
 import logo from 'assets/images/logo.jpg';
 import { Button } from '@mui/material';
 import Searchbar from './Searchbar.js';
-import {useSelector, useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Banner from './Banner.js';
 import { useLocation } from 'react-router-dom';
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState('');
   const [keywordBoxLeft, setkeyWordBoxLeft] = useState('0px');
   const [keywordBoxTop, setkeyWordBoxTop] = useState('0px');
@@ -46,35 +47,27 @@ const Header = () => {
   };
 
   var keywordBoxRef = useRef(null);
-  useEffect(
-    () => {},
-    window.addEventListener('resize', () => {
-      setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x + 100}px`);
-      setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
-    }),
-  );
 
   useEffect(() => {
     //로그인&유저정보 state에 저장
     const readme_login = localStorage.getItem('readme_login');
     const readme_userInfo = localStorage.getItem('readme_userInfo');
     if (readme_login && readme_userInfo) {
-      signIn();
+      setIsLoggedIn(true);
       setUserInfo(readme_userInfo);
-      signIn();
     }
 
     setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x + 100}px`);
     setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
 
     //로그인이 되었는지 안되었는지 판단
-    if (location.state !== null) {
-      if (location.state.isLoginSuccess === true) {
-        signIn();
-      }
-    } else {
-      signOut();
-    }
+    // if (location.state !== null) {
+    //   if (location.state.isLoginSuccess === true) {
+    //     signIn();
+    //   }
+    // } else {
+    //   signOut();
+    // }
   }, []);
   const dummeyKeywords = ['#컴공', '#디자인', '#컴공', '#디자인', '#컴공', '#디자인'];
 
@@ -101,7 +94,7 @@ const Header = () => {
         </span>
 
         {/* 로그인시 출력 컴포넌트 */}
-        {loginCheck ? (
+        {isLoggedIn ? (
           <>
             <Button disabled style={{ color: '#1976d2', marginTop: '30px', fontSize: '23px' }}>
               {JSON.parse(userInfo).name}님
