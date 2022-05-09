@@ -51,7 +51,6 @@ interface IToolbarProps {
 
 export default function Toolbar({ isEditEnable, canvasBox }: IToolbarProps) {
 
-  console.log(canvasBox);
   const { actions } = useContext(CanvasContext);
   const addElement = (type: string) => {
     actions?.addElement(type);
@@ -80,21 +79,22 @@ export default function Toolbar({ isEditEnable, canvasBox }: IToolbarProps) {
         </div>
       )}
       <div className="toolbar-item" onClick={() => addElement("TEXT")}>
-        텍스트&nbsp;&nbsp;&nbsp;&nbsp;| 
+        텍스트
       </div>
-
+      <span className="toolbar-section">&nbsp;|</span>
       <div className="toolbar-item" onClick={() => addElement("IMAGE")}>
-        이미지&nbsp;&nbsp;&nbsp;&nbsp;| 
+        이미지
       </div>
-
+      <span className="toolbar-section">&nbsp;|</span>
       <div>
-        <ReactToPrint trigger={() => <div className="toolbar-item">저장&nbsp;&nbsp;&nbsp;&nbsp;| 
+        <ReactToPrint trigger={() => <div className="toolbar-item">저장
         </div>} content={() => canvasBox.current} />
       </div>
-   
+      <span className="toolbar-section">&nbsp;|</span>
       <div className="toolbar-item" onClick={() => addElement("HELP")}>
-        도움말&nbsp;&nbsp;&nbsp;&nbsp;| 
+        도움말
       </div>
+      <span className="toolbar-section">&nbsp;|</span>
     </div>
   );
 }

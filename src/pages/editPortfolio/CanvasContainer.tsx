@@ -110,14 +110,17 @@ const CanvasContainer = ({createElement}) => {
     const defaultData = getInitialData(canvasData, type);
     var row=0
     var col=0
+    var url=""
     console.log("")
     if(type==="CHART"){
       var row= Number(createElement.split(" ")[1])
       var col=  Number(createElement.split(" ")[2])
-    }else if(type==="IMAGE"){
-        var url = createElement.split(" ")[1]
+    }else if(type==="IMOGE"){
+        console.log("here")
+         url= createElement.split(" ")[1]
 
         defaultData.content=url
+        console.log(defaultData)
     }
     defaultData.chart.row=row;
     defaultData.chart.col=col;
@@ -128,7 +131,7 @@ const CanvasContainer = ({createElement}) => {
     setActiveSelection(new Set(activeSelection));
     row=0
     col=0
-
+    defaultData.content=""
   };
 
   const deleteElement = useCallback(() => {
@@ -200,7 +203,7 @@ const CanvasContainer = ({createElement}) => {
     };
   }, [handleKeyDown, handleMouseDown]);
   return (
-    <div ref={null} style={{marginBottom:"50px", border:"1px solid red",width:"220mm", height:"310mm", marginLeft:"100px", marginRight:"10px"}}>
+    <div ref={null} style={{marginBottom:"50px", border:"1px solid red",width:"220mm", height:"310mm", marginLeft:"30px", marginRight:"30px"}}>
       <CanvasContext.Provider value={context}>
         <Toolbar isEditEnable={enableQuillToolbar} canvasBox={canvasBox} />
         <div className="canvas-container" ref={canvasBox} >

@@ -1,12 +1,11 @@
 import React from 'react';
 
 const viewWrap = {
-  marginTop: '50px',
   border: '2px solid blue',
-  width: '20%',
+  width: '300px',
   height: '86.5vh',
   backgroundColor: '#d3d3d3',
-  zIndex: '9999',
+  //zIndex: '9999',
 };
 
 const PageDisplay = () => {

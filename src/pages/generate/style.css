@@ -7,10 +7,9 @@
 */
 
   .parent{
-    position:fixed;
-    width: 175px;
-    margin-top: 100px;
-    margin-right: 150px;
+    position:flex;
+    margin-top:50px;
+    width: 300px;
     right: 0;
     z-index: 9999;
   }

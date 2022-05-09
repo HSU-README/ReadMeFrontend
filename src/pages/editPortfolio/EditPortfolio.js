@@ -20,13 +20,13 @@ const EditPortfolio = () => {
   };
 
   return (
-    <div>
+    <div style={{border:"5px solid brown",}}>
       <Header />
       <br />
-      <div style={{ display: 'flex' }}>
+      <div style={{ display: 'flex',border:"2px solid green" }}>
         <PageDisplay />
         <CanvasContainer createElement={createElement} />
-        <div>
+        <div style={{border:"2px solid gray",marginLeft:"40px"}}>
           <div className="parent">
             <div className="itemBoxCss">
               <details>
@@ -59,7 +59,7 @@ const EditPortfolio = () => {
               </details>
             </div>
 
-            <div className="itemBoxCss1">
+            <div className="itemBoxCss">
               <details>
                 <summary>이모티콘</summary>
                 <br />
@@ -71,7 +71,7 @@ const EditPortfolio = () => {
                       <button
                         className="button_none editor_buttons1"
                         onClick={() => {
-                          setCreateElement(`IMAGE ${item.val}`);
+                          setCreateElement(`IMOGE ${item.val}`);
                           //handleBtnClick(item)
                         }}
                       >
@@ -88,7 +88,7 @@ const EditPortfolio = () => {
                       <button
                         className="button_none1 editor_buttons1"
                         onClick={() => {
-                          setCreateElement(`IMAGE ${item.val}`);
+                          setCreateElement(`IMOGE ${item.val}`);
                           //handleBtnClick(item)
                         }}
                       >
