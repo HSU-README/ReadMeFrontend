@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { ToastError, ToastSuccess } from 'hooks/toastHook';
 
 const serverApi = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
@@ -16,7 +17,7 @@ export const getUser = async (userId) => {
   }
 };
 
-export const updateUser = async (userId, image, name, university, major, interests) => {
+export const updateUser = async (userId, name, image, university, major, interests) => {
   const response = await serverApi.put(`/api/v1/members/${userId}`, {
     name: name,
     profileUrl: image,
@@ -25,8 +26,10 @@ export const updateUser = async (userId, image, name, university, major, interes
     interests: interests,
   });
   try {
-    return response.data.result;
+    const successMessage = JSON.stringify(response.data.message);
+    ToastSuccess(successMessage);
   } catch (error) {
-    console.log(error);
+    const errorMessage = JSON.stringify(error.response.data.errorMessage);
+    ToastError(errorMessage);
   }
 };

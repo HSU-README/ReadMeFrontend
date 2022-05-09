@@ -78,8 +78,8 @@ export default function Modal(props) {
         </div>
 
         <div className="button-wrapper">
-          <Button style={{ width: '480px', height: '64px', borderRadius: '16px' }}>
-            <span style={{ fontSize: '36px' }}>포트폴리오 만들기</span>
+          <Button style={{ width: '450px', height: '48px', borderRadius: '16px' }}>
+            <span style={{ fontSize: '32px' }}>포트폴리오 만들기</span>
           </Button>
         </div>
       </div>

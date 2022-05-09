@@ -54,6 +54,7 @@ const Header = () => {
     if (readme_login && readme_userInfo) {
       setIsLoggedIn(true);
       setUserInfo(readme_userInfo);
+      signIn();
     }
 
     setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x + 100}px`);

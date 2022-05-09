@@ -15,15 +15,18 @@ export const Container = styled.div`
     float: right;
     position: relative;
     bottom: 30px;
-    left: 100px;
+    left: 120px;
     background-size: cover;
     background-position: center;
   }
 
   .section-modal {
-    width: 960px;
-    height: 900px;
-    margin-top: 130px;
+    position: fixed;
+    width: 35%;
+    height: 85%;
+    min-width: 650px;
+    min-height: 750px;
+    margin-top: 50px;
     background-color: rgba(245, 120, 66, 0.85);
     border-radius: 15px;
     padding: 50px 140px 50px 140px;
@@ -33,7 +36,7 @@ export const Container = styled.div`
     border-radius: 15px;
     box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.5);
     margin: 0 auto;
-    width: 60% !important;
+    width: 80% !important;
     height: 100% !important;
   }
 
@@ -50,7 +53,7 @@ export const Container = styled.div`
   .section-info {
     font-size: 24px;
     font-weight: bold;
-    margin-top: 25px;
+    margin-top: 45px;
   }
 
   .info-title {
