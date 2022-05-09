@@ -40,7 +40,7 @@ const formats = [
   {
     id: 5,
     head: 'Head Title',
-    title: '새로운 양5',
+    title: '새로운 양식5',
     thumbnail: '',
   },
 ];
@@ -76,11 +76,11 @@ const Select = () => {
       <div className="buttonWrapper">
         <div className="section-button">
           <div onClick={onReset}>
-            <Button size="xl">취소</Button>
+            <Button size="large">취소</Button>
           </div>
           <div>
-            <Link to={`/design/${selectedFormat}`}>
-              <Button size="xl">만들기</Button>
+            <Link to={`/generate/${selectedFormat}`}>
+              <Button size="large">만들기</Button>
             </Link>
           </div>
         </div>

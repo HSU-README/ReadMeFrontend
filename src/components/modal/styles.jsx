@@ -77,7 +77,6 @@ export const Container = styled.div`
 `;
 
 export const FormImage = styled.div`
-  background-image: url(${require('assets/images/dummy-select-image.jpeg')});
   background-size: cover;
   background-position: center;
   width: 640px;

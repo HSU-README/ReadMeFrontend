@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import CanvasComponent from "./Components/CanvasComponent";
 import Toolbar from "./Components/Toolbar";
 import './Canvas.css';
+
 export const CanvasContext = React.createContext<ICanvasContext>({});
 
 export interface ICanvasData {
@@ -64,7 +65,7 @@ const getInitialData = (data: any[], type: string = "TEXT") => {
   };
 };
 
-const CanvasContainer = () => {
+const CanvasContainer = ({createElement}) => {
   const [canvasData, setCanvasData] = useState<ICanvasData[]>([]);
   const [activeSelection, setActiveSelection] = useState<Set<string>>(
     new Set()
@@ -98,20 +99,39 @@ const CanvasContainer = () => {
     setCanvasData([...(canvasData || [])]);
   };
 
+  useEffect(()=>{
+    if(createElement!==""){
+      var str=createElement.split(" ")
+      addElement(str[0])
+    }
+  },[createElement])
+
   const addElement = (type: string) => {
     const defaultData = getInitialData(canvasData, type);
     var row=0
     var col=0
+    var url=""
+    console.log("")
     if(type==="CHART"){
-      row = Number(prompt('행을 입력해주세요'))
-      col = Number(prompt('열을 입력해주세요'))
+      var row= Number(createElement.split(" ")[1])
+      var col=  Number(createElement.split(" ")[2])
+    }else if(type==="IMOGE"){
+        console.log("here")
+         url= createElement.split(" ")[1]
+
+        defaultData.content=url
+        console.log(defaultData)
     }
     defaultData.chart.row=row;
     defaultData.chart.col=col;
+    console.log(defaultData);
     setCanvasData([...canvasData, { ...defaultData, type: type ?? "TEXT" }]);
     activeSelection.clear();
     activeSelection.add(defaultData.id);
     setActiveSelection(new Set(activeSelection));
+    row=0
+    col=0
+    defaultData.content=""
   };
 
   const deleteElement = useCallback(() => {
@@ -183,12 +203,12 @@ const CanvasContainer = () => {
     };
   }, [handleKeyDown, handleMouseDown]);
   return (
-    <div ref={containerRef} style={{marginBottom:"50px", border:"1px solid red",width:"220mm", height:"310mm", marginLeft:"100px", marginRight:"10px"}}>
+    <div ref={null} style={{marginBottom:"50px", border:"1px solid red",width:"220mm", height:"310mm", marginLeft:"30px", marginRight:"30px"}}>
       <CanvasContext.Provider value={context}>
-        <Toolbar isEditEnable={enableQuillToolbar} />
+        <Toolbar isEditEnable={enableQuillToolbar} canvasBox={canvasBox} />
         <div className="canvas-container" ref={canvasBox} >
-          {canvasData.map((canvas) => {
-            return <CanvasComponent {...canvas} />;
+          {canvasData.map((canvas, key) => {
+            return <CanvasComponent key={key} {...canvas} />;
           })}
         </div>
       </CanvasContext.Provider>

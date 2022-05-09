@@ -1,9 +1,7 @@
 import styled from 'styled-components';
-import fonts from '../../styles/fonts';
 
 export const Container = styled.div`
   position: relative;
-  background-image: url(${require('../../assets/images/dummy-select-image.jpeg')});
   background-size: cover;
   background-position: center;
   height: ${(props) => (props.isSelected ? '270px' : '250px')};
@@ -24,11 +22,9 @@ export const Container = styled.div`
     z-index: 1;
   }
   .card-head {
-    ${fonts.Caption}
     padding-bottom:10px;
   }
   .card-title {
-    ${fonts.Body1}
     font-weight:bold;
     padding-bottom: 10px;
   }

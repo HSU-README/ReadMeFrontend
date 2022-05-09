@@ -1,13 +1,15 @@
-.wrap {
-  width: 900px;
-  margin: auto;
-}
+/* 
+주석 작성일 : 2022-05-09
+작성자 : 이찬우
+파일명 : generate/ style.css
+요약 : generate 페이지 버튼 및 설정 CSS
+      parent - 부모요소
+*/
 
   .parent{
-    position:absolute;
-    width: 175px;
-    margin-top: 5px;
-    margin-right: 150px;
+    position:flex;
+    margin-top:50px;
+    width: 300px;
     right: 0;
     z-index: 9999;
   }
@@ -26,7 +28,15 @@
       padding: 10px;
       box-sizing: border-box;
   }
-  
+
+  .itemBoxCss1 {
+    border: 3px solid rgb(99, 85, 85);
+    padding: 10px;
+    box-sizing: border-box;
+    overflow:auto;
+    height:200px;
+}
+
   .save{
       float: left;
       margin-left: 100px;
@@ -42,8 +52,15 @@
 
   /* 이모지 박스 */
   .button_none{
-    background-color: white;
     border: 1px solid rgb(0, 47, 255);
+    width: 20%;
+    background-color: white;
+  }
+
+  .button_none1{
+    border: 1px solid rgb(21, 184, 0);
+    width: 20%;
+    background-color: white;
   }
 
 
@@ -88,3 +105,36 @@
     color: #707070;
     z-index: 9999;
   }
+
+
+  /* emoji */
+
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+summary {
+    cursor: pointer;
+    outline: none;
+}
+
+summary::-webkit-details-marker {
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+/* Emoji 소 메뉴 */
+.menu1 {
+  text-align: left;
+  margin-left: 10px;
+  color: blue;
+}
+
+.menu2 {
+  text-align: left;
+  margin-left: 10px;
+  color: rgb(21, 184, 0);
+}
+

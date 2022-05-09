@@ -1,0 +1,19 @@
+.table-option {
+    display: flex;
+    margin: 5px 2px;
+    gap: 5px;
+  }
+  .table-option {
+    white-space: nowrap;
+  }
+  .table-input {
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    gap: 1px;
+  }
+  .table-unit {
+    width: 20px;
+    height: 20px;
+    border: 1px solid lightgray;
+  }
+  
