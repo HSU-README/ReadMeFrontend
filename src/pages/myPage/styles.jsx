@@ -8,7 +8,7 @@ export const Container = styled.div`
 
 export const MyPageContainer = styled.div`
   display: flex;
-  height: 680px;
+  height: 90vh;
 `;
 
 export const MenuContainer = styled.div`
@@ -20,13 +20,13 @@ export const MenuContainer = styled.div`
   border-color: ${colors.primary};
 
   .myPageTitle {
-    margin: 100px 0px 20px 0px;
+    margin: 50px 0px 20px 0px;
     font-size: 36px;
     font-weight: bold;
   }
   .myPageSelect {
     width: 100%;
-    margin: 20px 0px 20px 0px;
+    margin: 40px 0px 20px 0px;
     text-align: center;
     font-size: 24px;
     color: ${colors.gray};
