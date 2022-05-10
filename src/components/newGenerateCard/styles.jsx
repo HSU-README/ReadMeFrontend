@@ -5,6 +5,8 @@ export const Container = styled.div`
   background-image: url(${require('assets/images/dummy-select-image.jpeg')});
   background-size: cover;
   background-position: center;
+  background-size: cover;
+  background-position: center;
   height: ${(props) => (props.isSelected ? '270px' : '250px')};
   width: ${(props) => (props.isSelected ? '240px' : '220px')};
   margin: 50px auto;
@@ -28,6 +30,10 @@ export const Container = styled.div`
   .card-title {
     font-weight: bold;
     padding-bottom: 10px;
+  }
+
+  a {
+    width: 220px;
   }
 `;
 
