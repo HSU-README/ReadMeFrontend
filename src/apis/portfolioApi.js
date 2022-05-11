@@ -28,7 +28,7 @@ export const createPortfolio = async (memberId, components) => {
           y: component.position.top,
           width: component.dimension.width,
           height: component.dimension.height,
-          contents: component.content,
+          textContent: component.content,
         });
         break;
 
@@ -39,7 +39,7 @@ export const createPortfolio = async (memberId, components) => {
           y: component.position.top,
           width: component.dimension.width,
           height: component.dimension.height,
-          tableContents: component.chartContent,
+          tableContent: component.chartContent,
           tableCol: component.chart.col,
           tableRow: component.chart.row,
         });
@@ -75,6 +75,7 @@ export const createPortfolio = async (memberId, components) => {
     .post(`/api/v1/doc/edit`, {
       memberId: memberId,
       components: componentArray,
+      title: 'hello',
     })
     .catch(console.log(memberId));
   try {

@@ -142,7 +142,7 @@ const CanvasContainer = ({ createElement }) => {
               break;
 
             case 'table':
-              chartContent = component.tableContents;
+              chartContent = component.tableContent;
               componentArray.push({
                 id: 'CHART__' + (++id).toString(),
                 type: 'CHART',
