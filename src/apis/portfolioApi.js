@@ -17,28 +17,30 @@ export const getPortfolio = async (docId) => {
   }
 };
 
-export const createPortfolio = async (memberId, components) => {
+export const createPortfolio = async (memberId, title, components) => {
   const componentArray = new Array();
   await components.map((component, index) => {
     switch (component.type) {
       case 'TEXT':
+        console.log('text: ' + component.dimension.width);
         componentArray.push({
           type: 'text',
           x: component.position.left,
           y: component.position.top,
-          width: component.dimension.width,
-          height: component.dimension.height,
+          width: component.dimension.width.replace('px', ''),
+          height: component.dimension.height.replace('px', ''),
           textContent: component.content,
         });
         break;
 
       case 'CHART':
+        console.log('chart: ' + component.chartContent);
         componentArray.push({
           type: 'table',
           x: component.position.left,
           y: component.position.top,
-          width: component.dimension.width,
-          height: component.dimension.height,
+          width: component.dimension.width.replace('px', ''),
+          height: component.dimension.height.replace('px', ''),
           tableContent: component.chartContent,
           tableCol: component.chart.col,
           tableRow: component.chart.row,
@@ -50,8 +52,8 @@ export const createPortfolio = async (memberId, components) => {
           type: 'image',
           x: component.position.left,
           y: component.position.top,
-          width: component.dimension.width,
-          height: component.dimension.height,
+          width: component.dimension.width.replace('px', ''),
+          height: component.dimension.height.replace('px', ''),
           imgUrl: component.content,
         });
         break;
@@ -61,8 +63,8 @@ export const createPortfolio = async (memberId, components) => {
           type: 'icon',
           x: component.position.left,
           y: component.position.top,
-          width: component.dimension.width,
-          height: component.dimension.height,
+          width: component.dimension.width.replace('px', ''),
+          height: component.dimension.height.replace('px', ''),
           iconUrl: component.content,
         });
         break;
@@ -75,7 +77,7 @@ export const createPortfolio = async (memberId, components) => {
     .post(`/api/v1/doc/edit`, {
       memberId: memberId,
       components: componentArray,
-      title: 'hello',
+      title: title,
     })
     .catch(console.log(memberId));
   try {

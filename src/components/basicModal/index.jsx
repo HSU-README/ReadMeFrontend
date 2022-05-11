@@ -19,13 +19,11 @@ export default function BasicModal(props) {
   useEffect(() => {
     async function fetchPreviewData() {
       const datas = basicPreview.data;
-      {
-        datas.map((data, index) =>
-          props.previewId == data.result.id
-            ? fetchStates(data.result.title, data.result.designer, data.result.docUrl, data.result.tags)
-            : console.log('not'),
-        );
-      }
+      datas.map((data, index) =>
+        props.previewId == data.result.id
+          ? fetchStates(data.result.title, data.result.designer, data.result.docUrl, data.result.tags)
+          : console.log('not: ' + data.result.id),
+      );
     }
     fetchPreviewData();
   }, []);
@@ -36,8 +34,6 @@ export default function BasicModal(props) {
     setDocUrl(docUrl);
     setTags(tags);
   }
-
-  const formUrl = 'https://arxiv.org/pdf/quant-ph/0410100.pdf';
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
@@ -67,7 +63,7 @@ export default function BasicModal(props) {
             onClickExitButton();
           }}
         />
-        <div className="section-title">디자인 미리보기</div>
+        <div className="section-title">{title}</div>
         <hr />
         <div className="section-image">
           <Document file={docUrl} onLoadSuccess={onDocumentLoadSuccess}>

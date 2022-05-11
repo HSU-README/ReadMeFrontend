@@ -33,7 +33,7 @@ export const Container = styled.div`
   .selectWrapper {
     display: flex;
     flex-direction: row;
-    margin: 0px auto;
+    margin: 60px auto;
     justify-content: center;
   }
 
