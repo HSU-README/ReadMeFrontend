@@ -75,7 +75,7 @@ export default function Toolbar({ isEditEnable, canvasBox, createPortpolio, user
       <span>
         <img
           onClick={() => {
-            createPortpolio(userId, canvasData);
+            createPortpolio(userId, title, canvasData);
           }}
           src={require('../../../assets/images/saveIcon.png')}
           alt="저장"
