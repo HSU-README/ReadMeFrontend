@@ -14,19 +14,25 @@
 .beforeLogin{
   background-color:rgba(128, 128, 128, 0.5);
 }
-
+.cardMedia{
+  border:0px;
+  width:100%;
+  height:100%;
+}
+.cardView:hover .cardMedia{
+  border:2px solid lightskyblue;
+  border-radius: 15px;
+}
 .sectionFont{
   margin-top: 30px;
   margin-bottom: 20px;
   padding: 8px;
   border-radius: 15px;
-  margin-right: 98px;
+  margin-right: 200px;
   font-weight: bold;
-  border: 1px solid lightGray;
-  box-shadow: 2px 2px 2px 2px lightGray;
-  margin-left: 90px;
+  margin-left: 120px;
   color:black;
-  font-Size:25px;
+  font-Size:35px;
   text-align:left;
 }
 
@@ -38,14 +44,34 @@
   bottom:20%;
   left:38%;
 }
+
+.pofolBtn{
+  background-color: #F57842;
+  color:white;
+  font-weight:900;
+  font:bold;
+  font-size:30px;
+  width:35%;
+  height:70px;
+  border:0px;
+  border-radius:16px;
+}
+
+.pofolBtnHeader{
+  margin-top:19px;
+  text-align: center;
+}
 .grayTag{
-  color:black;
-  border:2px 2px 2px 2px;
-  padding:5px 5px 5px 5px;
-  border-radius:4px;
-  background-color:#D3D3D3;
-  margin-right:4px;
-  margin-left:4px;
+  width:84px;
+  height:30px;
+  padding:5px;
+  border-radius:9px;
+  background-color: #e9ecef;
+  margin-left:7px;
+  margin-right:7px;
+  font-size:20px;
+  font-weight:600;
+  color:#3a3a3a;
 }
 
 .community-tag-container {

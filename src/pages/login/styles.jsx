@@ -12,7 +12,7 @@ export const LoginContainer = styled.div`
   border-radius: 15px;
   max-width: 900px;
   width: 60%;
-  margin: 140px auto 180px auto;
+  margin: 140px auto 175px auto;
   box-shadow: 25% 0px 20px 10px rgba(0, 0, 0, 0.2);
 
   .logo-wrapper {
@@ -20,7 +20,8 @@ export const LoginContainer = styled.div`
     padding: 30px 0px 40px 0px;
   }
   .logo {
-    width: 25%;
+    width: 20%;
+    height: 20%;
     margin: 0px;
   }
 
