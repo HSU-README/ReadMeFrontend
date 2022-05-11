@@ -69,6 +69,7 @@ const getInitialData = (data: any[], type: string = "TEXT") => {
 
 const CanvasContainer = ({createElement}) => {
   const [canvasData, setCanvasData] = useState<ICanvasData[]>([]);
+  
   const [activeSelection, setActiveSelection] = useState<Set<string>>(
     new Set()
   );
@@ -81,7 +82,7 @@ const CanvasContainer = ({createElement}) => {
   const updateCanvasData = (data: Partial<ICanvasComponent>) => {
     const currentDataIndex =
       canvasData.findIndex((canvas) => canvas.id === data.id) ?? -1;
-    
+
     const updatedData = { ...canvasData?.[currentDataIndex], ...data };
     var wid= (updatedData.dimension.width).substring(0,3)
     var hei= (updatedData.dimension.width).substring(0,3)
@@ -113,6 +114,7 @@ const CanvasContainer = ({createElement}) => {
 
   const addElement = (type: string) => {
     const defaultData = getInitialData(canvasData, type);
+    console.log(defaultData)
     var row=0
     var col=0
     var url=""

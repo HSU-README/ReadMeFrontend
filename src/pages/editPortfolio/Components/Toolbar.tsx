@@ -78,10 +78,19 @@ export default function Toolbar({ isEditEnable, canvasBox }: IToolbarProps) {
           <select className="ql-align" />
           <select className="ql-color" />
           <select className="ql-background" />
+          <button className="ql-script" value="sub"></button>
+          <button className="ql-script" value="super"></button>
+          <button className="ql-list" value="ordered"></button>
+          <button className="ql-list" value="bullet"></button>
         </div>
       )}
       <span>
-        <ReactToPrint trigger={() =>  <img src={require('../../../assets/images/saveIcon.png')} alt="저장" style={{marginRight:"20px",width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} />
+      <img src={require('../../../assets/images/saveIcon.png')}
+      onClick={()=>{
+       
+      }}
+      alt="저장" 
+      style={{marginRight:"20px",width:"30px", height:"30px",cursor:'pointer'}}/>
       </span>
       <span>
         <ReactToPrint pageStyle={pageStyle} trigger={() => <img src={require('../../../assets/images/exportPdf.png')} alt="출력" style={{width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} />

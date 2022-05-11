@@ -35,7 +35,6 @@ const ChartElement=(props:ICanvasComponent)=>{
                                         return <td style={{border:"1px solid black" ,width:`${width}px`, height:`${height}px`}} key={i} >
                                          <div style={{width:"100%" , height:"100%"}} contentEditable 
                                             onInput={((value)=>{
-                                                console.log(chartRef.current.innerHTML)
                                                 updateChartValue(chartRef.current.innerHTML)
                                             })}
                                          />
