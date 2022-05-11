@@ -2,7 +2,7 @@ import { Container, OpacityBlack } from './styles';
 
 export default function SelectCard(props) {
   const setSelectedFormat = () => {
-    props.getSelectedFormat(props.format.id);
+    props.setSelectedFormat(props.format.id);
   };
 
   return (

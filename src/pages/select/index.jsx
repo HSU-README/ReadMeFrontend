@@ -5,48 +5,52 @@ import Footer from 'components/footer';
 import SelectCard from 'components/selectCard';
 import Button from 'components/button';
 import Header from 'components/header';
+import NewGenerateSelectCard from 'components/newGenerateCard';
+import BasicModal from 'components/basicModal/index.jsx';
 
 const formats = [
   {
     id: 0,
-    head: 'Head Title',
-    title: '새로운 양식0',
+    title: '기본 양식1',
     thumbnail: '',
   },
   {
     id: 1,
-    head: 'Head Title',
-    title: '새로운 양식1',
+    title: '기본 양식2',
     thumbnail: '',
   },
   {
     id: 2,
-    head: 'Head Title',
-    title: '새로운 양식2',
+    title: '기본 양식3',
     thumbnail: '',
   },
   {
     id: 3,
-    head: 'Head Title',
-    title: '새로운 양식3',
+    title: '기본 양식4',
     thumbnail: '',
   },
   {
     id: 4,
-    head: 'Head Title',
-    title: '새로운 양식4',
-    thumbnail: '',
-  },
-  {
-    id: 5,
-    head: 'Head Title',
-    title: '새로운 양식5',
+    title: '기본 양식5',
     thumbnail: '',
   },
 ];
 
 const Select = () => {
   const [selectedFormat, setSelectedFormat] = useState('');
+  const [showDetailForm, setShowDetailForm] = useState(false);
+  const [detailFormId, setDetailFormId] = useState('');
+
+  const openDetailForm = (id) => {
+    setShowDetailForm(true);
+    setDetailFormId(id);
+  };
+
+  const closeDetailForm = () => {
+    setShowDetailForm(false);
+    setDetailFormId('');
+    setSelectedFormat('');
+  };
 
   const getSelectedFormat = (format) => {
     setSelectedFormat(format);
@@ -60,10 +64,19 @@ const Select = () => {
   return (
     <Container>
       <Header />
+      {console.log('test: ' + selectedFormat)}
+      {selectedFormat !== '' ? (
+        <BasicModal detailFormId={detailFormId} previewId={selectedFormat} closeDetailForm={closeDetailForm} />
+      ) : (
+        <></>
+      )}
+      <div>{selectedFormat}</div>
       <div className="selectWrapper">
         <div className="section-select">
+          <NewGenerateSelectCard />
           {formats.map((format, index) => (
             <SelectCard
+              id={index}
               key={index}
               format={format}
               selectedFormat={selectedFormat}
@@ -73,7 +86,7 @@ const Select = () => {
           ))}
         </div>
       </div>
-      <div className="buttonWrapper">
+      {/* <div className="buttonWrapper">
         <div className="section-button">
           <div onClick={onReset}>
             <Button size="large">취소</Button>
@@ -84,7 +97,7 @@ const Select = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
       <Footer />
     </Container>
   );

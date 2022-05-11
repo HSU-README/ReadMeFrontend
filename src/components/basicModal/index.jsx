@@ -3,10 +3,11 @@ import { Button } from '../../pages/login/styles';
 import { Container, FormImage } from './styles';
 import { getPreview } from 'apis/previewApi';
 import { Document, Page } from 'react-pdf';
+import basicPreview from 'localData/basicPreview.json';
 import { pdfjs } from 'react-pdf';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
-export default function Modal(props) {
+export default function BasicModal(props) {
   const [docUrl, setDocUrl] = useState('');
   const [title, setTitle] = useState('');
   const [designer, setDesigner] = useState('');
@@ -17,14 +18,24 @@ export default function Modal(props) {
 
   useEffect(() => {
     async function fetchPreviewData() {
-      const data = await getPreview(props.previewId);
-      setTitle(data.title);
-      setDesigner(data.designer);
-      setDocUrl(data.docUrl);
-      setTags(data.tags);
+      const datas = basicPreview.data;
+      {
+        datas.map((data, index) =>
+          props.previewId == data.result.id
+            ? fetchStates(data.result.title, data.result.designer, data.result.docUrl, data.result.tags)
+            : console.log('not'),
+        );
+      }
     }
     fetchPreviewData();
   }, []);
+
+  function fetchStates(title, designer, docUrl, tags) {
+    setTitle(title);
+    setDesigner(designer);
+    setDocUrl(docUrl);
+    setTags(tags);
+  }
 
   const formUrl = 'https://arxiv.org/pdf/quant-ph/0410100.pdf';
 

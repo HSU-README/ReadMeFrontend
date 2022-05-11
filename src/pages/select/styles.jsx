@@ -4,7 +4,8 @@ import { maxWidth } from 'styles/mixin';
 
 export const Container = styled.div`
   ${maxWidth}
-  padding: "0px 24px 48px";
+  position: relative;
+  padding: '0px 24px 48px';
 
   a {
     flex: 1;

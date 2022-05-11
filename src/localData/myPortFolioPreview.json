@@ -1,0 +1,59 @@
+{
+  "data": [
+    {
+      "code": "S200",
+      "message": "문서 정보 조회 성공",
+      "result": {
+        "id": 0,
+        "title": "포트폴리오1",
+        "docUrl": "https://arxiv.org/pdf/quant-ph/0410100.pdf",
+        "designer": "designer",
+        "tags": ["IT1", "IT_add_1"]
+      }
+    },
+    {
+      "code": "S200",
+      "message": "문서 정보 조회 성공",
+      "result": {
+        "id": 1,
+        "title": "포트폴리오2",
+        "docUrl": "https://arxiv.org/pdf/quant-ph/0410100.pdf",
+        "designer": "designer",
+        "tags": ["IT2", "IT_add_2"]
+      }
+    },
+    {
+      "code": "S200",
+      "message": "문서 정보 조회 성공",
+      "result": {
+        "id": 2,
+        "title": "포트폴리오3",
+        "docUrl": "https://arxiv.org/pdf/quant-ph/0410100.pdf",
+        "designer": "designer",
+        "tags": ["IT3", "IT_add_3"]
+      }
+    },
+    {
+      "code": "S200",
+      "message": "문서 정보 조회 성공",
+      "result": {
+        "id": 3,
+        "title": "포트폴리오4",
+        "docUrl": "https://arxiv.org/pdf/quant-ph/0410100.pdf",
+        "designer": "designer",
+        "tags": ["IT4", "IT_add_4"]
+      }
+    },
+    {
+      "code": "S200",
+      "message": "문서 정보 조회 성공",
+      "result": {
+        "id": 4,
+        "title": "포트폴리오5",
+        "docUrl": "https://arxiv.org/pdf/quant-ph/0410100.pdf",
+        "designer": "designer",
+        "tags": ["IT5", "IT_add_5"]
+      }
+    }
+  ]
+}
