@@ -52,10 +52,6 @@ const Select = () => {
     setSelectedFormat('');
   };
 
-  const getSelectedFormat = (format) => {
-    setSelectedFormat(format);
-  };
-
   const onReset = useCallback((e) => {
     e.preventDefault();
     setSelectedFormat('');
@@ -63,13 +59,12 @@ const Select = () => {
 
   return (
     <Container>
-      <Header />
-      {console.log('test: ' + selectedFormat)}
       {selectedFormat !== '' ? (
         <BasicModal detailFormId={detailFormId} previewId={selectedFormat} closeDetailForm={closeDetailForm} />
       ) : (
         <></>
       )}
+      <Header />
       <div>{selectedFormat}</div>
       <div className="selectWrapper">
         <div className="section-select">
@@ -80,7 +75,7 @@ const Select = () => {
               key={index}
               format={format}
               selectedFormat={selectedFormat}
-              getSelectedFormat={getSelectedFormat}
+              setSelectedFormat={setSelectedFormat}
               isSelected={index !== selectedFormat ? false : true}
             />
           ))}
