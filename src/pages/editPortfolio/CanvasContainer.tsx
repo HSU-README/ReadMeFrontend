@@ -218,6 +218,7 @@ const CanvasContainer = ({createElement}) => {
     >
        
       <Toolbar isEditEnable={enableQuillToolbar} canvasBox={canvasBox} />
+   
       <div ref={canvasBox} >
       <CanvasContext.Provider value={context}>
         <div>
@@ -227,6 +228,7 @@ const CanvasContainer = ({createElement}) => {
             })}
           </div>
           </div>
+
       </CanvasContext.Provider>
       </div>
       <br/>

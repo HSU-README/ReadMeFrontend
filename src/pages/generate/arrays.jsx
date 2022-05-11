@@ -169,4 +169,12 @@ const emoji2 = [
   },
 ];
 
-export {image, emoji, emoji2,Shape };
+const Picktogram = [
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2F2_%EC%BA%90%EB%A6%AD%ED%84%B0ai-6_1_-removebg-preview.png?alt=media&token=1479aca3-4e68-4054-98c9-bb625425e745',
+    label:'상상부기프렌즈11',
+  },
+];
+
+export {image, emoji, emoji2,Shape, Picktogram};

@@ -44,9 +44,6 @@ const TextElement=(props:ICanvasComponent)=>{
                         padding:0
                     }}
                     >
-                        <ul>
-                            <li>dasdas</li>
-                            </ul>
                     {ReactHtmlParser(content||"")}
                     </div>
                  </div>
