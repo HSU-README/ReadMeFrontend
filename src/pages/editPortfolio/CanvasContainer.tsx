@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import CanvasComponent from './Components/CanvasComponent';
 import Toolbar from './Components/Toolbar';
 import './Canvas.css';
 import { Shape } from '../generate/arrays.jsx';
 import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
-import { createPortfolio } from 'apis/portfolioApi';
+import { createPortfolio, getPortfolio } from 'apis/portfolioApi';
 import { Button } from '@mui/material';
 export const CanvasContext = React.createContext<ICanvasContext>({});
 
@@ -78,6 +79,9 @@ const CanvasContainer = ({ createElement }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const isSelectAll = useRef<boolean>(false);
 
+  const { docId } = useParams();
+  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
+
   const updateCanvasData = (data: Partial<ICanvasComponent>) => {
     const currentDataIndex = canvasData.findIndex((canvas) => canvas.id === data.id) ?? -1;
 
@@ -107,6 +111,64 @@ const CanvasContainer = ({ createElement }) => {
     if (createElement !== '') {
       var str = createElement.split(' ');
       addElement(str[0]);
+    }
+
+    if (docId !== undefined) {
+      async function fetchPortfolioData() {
+        const datas = await getPortfolio(docId);
+        const componentArray = new Array();
+        let type, left, top, width, height, content, row, col;
+
+        await datas.map((data) => {
+          type = data.components.type;
+          left = data.components.x;
+          top = data.components.y;
+          width = data.components.width;
+          height = data.components.height;
+          content = data.componets.contents;
+
+          switch (type) {
+            case 'TEXT':
+              componentArray.push({
+                type: type,
+                position: { top: top, left: left },
+                dimension: { width: width, height: height },
+                content: content,
+              });
+              break;
+
+            case 'CHART':
+              componentArray.push({
+                type: type,
+                position: { top: top, left: left },
+                dimension: { width: width, height: height },
+                chart: { row: row, col: col },
+                content: content,
+              });
+              break;
+
+            case 'IMAGE':
+              componentArray.push({
+                type: type,
+                position: { top: top, left: left },
+                dimension: { width: width, height: height },
+                content: content,
+              });
+              break;
+
+            case 'IMOGE':
+              componentArray.push({
+                type: type,
+                position: { top: top, left: left },
+                dimension: { width: width, height: height },
+                content: content,
+              });
+              break;
+          }
+        });
+        await setCanvasData(componentArray);
+      }
+      fetchPortfolioData();
     }
   }, [createElement]);
 
@@ -197,10 +259,6 @@ const CanvasContainer = ({ createElement }) => {
     isSelectAll.current = false;
   }, []);
 
-  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
-  const createDoc = () => {
-    createPortfolio(userId, canvasData);
-  };
   React.useEffect(() => {
     document.addEventListener('keydown', handleKeyDown);
     document.addEventListener('mousedown', handleMouseDown);

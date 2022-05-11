@@ -17,6 +17,7 @@ function App() {
           <Route exact path="/mypage" element={<MyPage />}></Route>
           <Route path="/select" element={<Select />} />
           <Route path="/generate" element={<DownloadPortfolio />} /> {/*포트폴리오 제작 페이지 라우트*/}
+          <Route path="/generate/:docId" element={<DownloadPortfolio />} /> {/*포트폴리오 제작 페이지 라우트*/}
         </Routes>
       </BrowserRouter>
     </div>

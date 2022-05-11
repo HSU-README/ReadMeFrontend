@@ -9,7 +9,7 @@ const serverApi = axios.create({
 });
 
 export const getPortfolio = async (docId) => {
-  const response = await serverApi.get(`/api/v1/doc/${docId}/preview`);
+  const response = await serverApi.get(`/api/v1/doc/${docId}`);
   try {
     return response.data.result;
   } catch (error) {
@@ -96,6 +96,7 @@ export const createPortfolio = async (memberId, components) => {
     .catch(console.log(memberId));
   try {
     const successMessage = JSON.stringify(response.data.message);
+    console.log(JSON.stringify(response.data.result));
     ToastSuccess(successMessage);
   } catch (error) {
     const errorMessage = JSON.stringify(error.response.data.errorMessage);
