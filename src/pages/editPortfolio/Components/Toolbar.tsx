@@ -105,7 +105,8 @@ export default function Toolbar({ isEditEnable, canvasBox }: IToolbarProps) {
       style={{marginRight:"20px",width:"30px", height:"30px",cursor:'pointer'}}/>
       </span>
       <span>
-        <ReactToPrint pageStyle={pageStyle} trigger={() => <img src={require('../../../assets/images/exportPdf.png')} alt="출력" style={{width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} />
+        {/*   <ReactToPrint pageStyle={pageStyle} trigger={() => <img src={require('../../../assets/images/exportPdf.png')} alt="출력" style={{width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} /> */}
+        <ReactToPrint trigger={() => <img src={require('../../../assets/images/exportPdf.png')} alt="출력" style={{width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} />
         
       </span>
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'pages/generate/style.css';
-import { image, emoji, emoji2, Shape, Text } from 'pages/generate/arrays';
+import { image, emoji, emoji2, Shape, Picktogram } from 'pages/generate/arrays';
 import TableDND from './Table/TableDND';
 import { ImageList, ImageListItem } from '@mui/material';
 import { CardContent } from '@mui/material';
@@ -98,6 +98,26 @@ const DndComponent = (props) => {
               <summary className="menu2">상상부기 프렌즈</summary>
               <ImageList sx={{ width: 280, height: 200 }} cols={3} rowHeight={164}>
                 {emoji2.map((item) => {
+                  return (
+                    <ImageListItem key={item.label}>
+                      <div style={{ border: '1px solid black' }}>
+                        <img
+                          src={item.val}
+                          onClick={() => {
+                            createCommand(`IMOGE ${item.val}`);
+                          }}
+                        />
+                      </div>
+                    </ImageListItem>
+                  );
+                })}
+              </ImageList>
+            </details>
+            <br />
+            <details>
+              <summary className="menu3">픽토그램</summary>
+              <ImageList sx={{ width: 280, height: 200 }} cols={3} rowHeight={164}>
+                {Picktogram.map((item) => {
                   return (
                     <ImageListItem key={item.label}>
                       <div style={{ border: '1px solid black' }}>
