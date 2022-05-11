@@ -38,10 +38,6 @@ export default function Modal(props) {
     props.closeDetailForm();
   };
 
-  const goToGenerate = () => {
-    window.location.href = `/generate/${props.previewId}`;
-  };
-
   return (
     <Container>
       <div className="section-modal">
@@ -82,12 +78,7 @@ export default function Modal(props) {
         </div>
 
         <div className="button-wrapper">
-          <Button
-            style={{ width: '450px', height: '48px', borderRadius: '16px' }}
-            onClick={() => {
-              goToGenerate();
-            }}
-          >
+          <Button style={{ width: '450px', height: '48px', borderRadius: '16px' }}>
             <span style={{ fontSize: '32px' }}>포트폴리오 만들기</span>
           </Button>
         </div>

@@ -27,6 +27,10 @@ const Select = () => {
     setSelectedFormat('');
   };
 
+  const getSelectedFormat = (format) => {
+    setSelectedFormat(format);
+  };
+
   const onReset = useCallback((e) => {
     e.preventDefault();
     setSelectedFormat('');
@@ -49,7 +53,7 @@ const Select = () => {
               key={index}
               format={data}
               selectedFormat={selectedFormat}
-              setSelectedFormat={setSelectedFormat}
+              getSelectedFormat={getSelectedFormat}
               isSelected={index !== selectedFormat ? false : true}
             />
           ))}
