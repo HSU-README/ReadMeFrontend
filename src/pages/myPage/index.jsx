@@ -18,58 +18,32 @@ import Header from 'components/header';
 import UserInfo from 'pages/myPage/userInfo';
 import MyPortfolio from './myPortfolio';
 import PickPofol from './pickPofol';
+import Modal from 'components/modal/index.jsx';
 
-const MyPage = () => {
+const MyPage = (props) => {
   const [currentMyPage, setCurrentMyPage] = useState('userInfo');
-  const [email, onChangeEmail] = useInput('');
-  const [password, onChangePassword] = useInput('');
-  const [logInError, setLogInError] = useState(false);
-  const navigate = useNavigate();
-  const serverApi = axios.create({
-    baseURL: `${API_ENDPOINT}`,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
+  const [selectedFormat, setSelectedFormat] = useState('');
+  const [detailFormId, setDetailFormId] = useState('');
+  const [showDetailForm, setShowDetailForm] = useState(false);
 
-  const login = async () => {
-    await serverApi
-      .post(`/api/v1/members/login`, {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        console.log(JSON.stringify(response.data.result));
-        const userInfo = JSON.stringify(response.data.result);
-        const successMessage = JSON.stringify(response.data.message);
-
-        localStorage.setItem('readme_login', 'true');
-        localStorage.setItem('readme_userInfo', userInfo);
-        //로그인이 성공할 경우 props에 isLoginSuccess를 true로 보냄.
-        navigate('/', {
-          state: {
-            isLoginSuccess: true,
-          },
-        });
-        ToastSuccess(successMessage);
-      })
-      .catch((error) => {
-        const errorMessage = JSON.stringify(error.response.data.errorMessage);
-        ToastError(errorMessage);
-      });
+  const openDetailForm = (id) => {
+    setShowDetailForm(true);
+    setDetailFormId(id);
   };
 
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      setLogInError(false);
-      login();
-    },
-    [email, password],
-  );
+  const closeDetailForm = () => {
+    setShowDetailForm(false);
+    setDetailFormId('');
+    setSelectedFormat('');
+  };
 
   return (
     <Container>
+      {selectedFormat !== '' ? (
+        <Modal detailFormId={detailFormId} previewId={selectedFormat} closeDetailForm={closeDetailForm} />
+      ) : (
+        <></>
+      )}
       <Header />
       <MyPageContainer>
         <MenuContainer>
@@ -106,7 +80,7 @@ const MyPage = () => {
         <ViewContainer>
           {currentMyPage === 'userInfo' && <UserInfo />}
           {currentMyPage === 'pickPofol' && <PickPofol />}
-          {currentMyPage === 'myPortfolio' && <MyPortfolio />}
+          {currentMyPage === 'myPortfolio' && <MyPortfolio setSelectedFormat={setSelectedFormat} />}
         </ViewContainer>
       </MyPageContainer>
       <Footer />

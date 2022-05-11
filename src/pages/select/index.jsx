@@ -86,7 +86,7 @@ const Select = () => {
           ))}
         </div>
       </div>
-      <div className="buttonWrapper">
+      {/* <div className="buttonWrapper">
         <div className="section-button">
           <div onClick={onReset}>
             <Button size="large">취소</Button>
@@ -97,7 +97,7 @@ const Select = () => {
             </Link>
           </div>
         </div>
-      </div>
+      </div> */}
       <Footer />
     </Container>
   );
