@@ -26,8 +26,6 @@ export default function Modal(props) {
     fetchPreviewData();
   }, []);
 
-  const formUrl = 'https://arxiv.org/pdf/quant-ph/0410100.pdf';
-
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
@@ -38,6 +36,10 @@ export default function Modal(props) {
     setDesigner('');
     setTags([]);
     props.closeDetailForm();
+  };
+
+  const goToGenerate = () => {
+    window.location.href = `/generate/${props.previewId}`;
   };
 
   return (
@@ -80,7 +82,12 @@ export default function Modal(props) {
         </div>
 
         <div className="button-wrapper">
-          <Button style={{ width: '450px', height: '48px', borderRadius: '16px' }}>
+          <Button
+            style={{ width: '450px', height: '48px', borderRadius: '16px' }}
+            onClick={() => {
+              goToGenerate();
+            }}
+          >
             <span style={{ fontSize: '32px' }}>포트폴리오 만들기</span>
           </Button>
         </div>

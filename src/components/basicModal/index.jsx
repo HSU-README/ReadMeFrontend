@@ -19,13 +19,11 @@ export default function BasicModal(props) {
   useEffect(() => {
     async function fetchPreviewData() {
       const datas = basicPreview.data;
-      {
-        datas.map((data, index) =>
-          props.previewId == data.result.id
-            ? fetchStates(data.result.title, data.result.designer, data.result.docUrl, data.result.tags)
-            : console.log('not'),
-        );
-      }
+      datas.map((data, index) =>
+        props.previewId == data.result.id
+          ? fetchStates(data.result.title, data.result.designer, data.result.docUrl, data.result.tags)
+          : console.log('not: ' + data.result.id),
+      );
     }
     fetchPreviewData();
   }, []);
@@ -37,8 +35,6 @@ export default function BasicModal(props) {
     setTags(tags);
   }
 
-  const formUrl = 'https://arxiv.org/pdf/quant-ph/0410100.pdf';
-
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
@@ -49,6 +45,10 @@ export default function BasicModal(props) {
     setDesigner('');
     setTags([]);
     props.closeDetailForm();
+  };
+
+  const goToGenerate = () => {
+    window.location.href = `/generate/${props.previewId}`;
   };
 
   return (
@@ -63,7 +63,7 @@ export default function BasicModal(props) {
             onClickExitButton();
           }}
         />
-        <div className="section-title">디자인 미리보기</div>
+        <div className="section-title">{title}</div>
         <hr />
         <div className="section-image">
           <Document file={docUrl} onLoadSuccess={onDocumentLoadSuccess}>
@@ -91,7 +91,12 @@ export default function BasicModal(props) {
         </div>
 
         <div className="button-wrapper">
-          <Button style={{ width: '450px', height: '48px', borderRadius: '16px' }}>
+          <Button
+            style={{ width: '450px', height: '48px', borderRadius: '16px' }}
+            onClick={() => {
+              goToGenerate();
+            }}
+          >
             <span style={{ fontSize: '32px' }}>포트폴리오 만들기</span>
           </Button>
         </div>

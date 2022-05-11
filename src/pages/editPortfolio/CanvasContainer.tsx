@@ -1,9 +1,12 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import CanvasComponent from "./Components/CanvasComponent";
-import Toolbar from "./Components/Toolbar";
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import CanvasComponent from './Components/CanvasComponent';
+import Toolbar from './Components/Toolbar';
 import './Canvas.css';
-import {Shape} from "../generate/arrays.jsx"; 
-import ReactToPrint,{PrintContextConsumer} from "react-to-print";
+import { Shape } from '../generate/arrays.jsx';
+import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
+import { createPortfolio, getPortfolio } from 'apis/portfolioApi';
+import { Button } from '@mui/material';
 export const CanvasContext = React.createContext<ICanvasContext>({});
 
 export interface ICanvasData {
@@ -11,18 +14,18 @@ export interface ICanvasData {
   id?: string;
   position?: { top: number; left: number };
   dimension?: { width: string; height: string };
-  chart?:{col:number,row:number}
-  chartContent?:string
+  chart?: { col: number; row: number };
+  chartContent?: string;
   content?: string;
   type: string;
-  shapeStyle:object;
+  shapeStyle: object;
 }
 
 export interface ICanvasComponent {
   position?: { top: number; left: number };
   dimension?: { width: string; height: string };
-  chart?:{col:number,row:number}
-  chartContent?:string;
+  chart?: { col: number; row: number };
+  chartContent?: string;
   content?: string;
   id?: string;
   type: string;
@@ -45,99 +48,165 @@ export interface ICanvasContext {
   };
 }
 
-const getInitialData = (data: any[], type: string = "TEXT") => {
+const getInitialData = (data: any[], type: string = 'TEXT') => {
   return {
     type: type,
     id: `${type}__${Date.now()}__${data.length}`,
     position: {
       top: 100,
-      left: 100
+      left: 100,
     },
-    chart:{
-      row:0,
-      col:0,
+    chart: {
+      row: 0,
+      col: 0,
     },
-    chartContent:type==="CHART"&&"",
+    chartContent: type === 'CHART' && '',
     dimension: {
-      width: "300",
-      height: type === "TEXT" ? "50" : "150"
+      width: '300',
+      height: type === 'TEXT' ? '50' : '150',
     },
-    shapeStyle:{},
-    content: type === "TEXT" ? "두 번 클릭하여 텍스트를 입력하세요." : ""
+    shapeStyle: {},
+    content: type === 'TEXT' ? '두 번 클릭하여 텍스트를 입력하세요.' : '',
   };
 };
 
-const CanvasContainer = ({createElement}) => {
+const CanvasContainer = ({ createElement }) => {
   const [canvasData, setCanvasData] = useState<ICanvasData[]>([]);
-  
-  const [activeSelection, setActiveSelection] = useState<Set<string>>(
-    new Set()
-  );
-  const canvasBox= useRef<HTMLDivElement>(null); //캔버스만 가지고있는 REF
+  const [activeSelection, setActiveSelection] = useState<Set<string>>(new Set());
+  const canvasBox = useRef<HTMLDivElement>(null); //캔버스만 가지고있는 REF
   const [enableQuillToolbar, setEnableQuillToolbar] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const isSelectAll = useRef<boolean>(false);
 
+  const { docId } = useParams();
+  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
+
   const updateCanvasData = (data: Partial<ICanvasComponent>) => {
-    const currentDataIndex =
-      canvasData.findIndex((canvas) => canvas.id === data.id) ?? -1;
+    const currentDataIndex = canvasData.findIndex((canvas) => canvas.id === data.id) ?? -1;
 
     const updatedData = { ...canvasData?.[currentDataIndex], ...data };
-    var wid= (updatedData.dimension.width).substring(0,3)
-    var hei= (updatedData.dimension.width).substring(0,3)
+    var wid = updatedData.dimension.width.substring(0, 3);
+    var hei = updatedData.dimension.width.substring(0, 3);
     //캔버스 밖으로 벗어나는거 방지.
-    if(updatedData.position.left< 0){
-      updatedData.position.left=0
+    if (updatedData.position.left < 0) {
+      updatedData.position.left = 0;
     }
-    if(updatedData.position.top< 0){
-      updatedData.position.top=0
+    if (updatedData.position.top < 0) {
+      updatedData.position.top = 0;
     }
-    if(updatedData.position.left+Number(wid) >= canvasBox.current.clientWidth){
-      console.log("here")
-      updatedData.position.left=canvasBox.current.clientWidth-Number(wid)
+    if (updatedData.position.left + Number(wid) >= canvasBox.current.clientWidth) {
+      console.log('here');
+      updatedData.position.left = canvasBox.current.clientWidth - Number(wid);
     }
-    if(updatedData.position.top+Number(hei) >=canvasBox.current.clientHeight){
-      updatedData.position.top= canvasBox.current.clientHeight-Number(hei)-100
+    if (updatedData.position.top + Number(hei) >= canvasBox.current.clientHeight) {
+      updatedData.position.top = canvasBox.current.clientHeight - Number(hei) - 100;
     }
     canvasData.splice(currentDataIndex, 1, updatedData);
     setCanvasData([...(canvasData || [])]);
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(createElement);
-    if(createElement!==""){
-      var str=createElement.split(" ")
-      addElement(str[0])
+    if (createElement !== '') {
+      var str = createElement.split(' ');
+      addElement(str[0]);
     }
-  },[createElement])
+
+    if (docId !== undefined) {
+      async function fetchPortfolioData() {
+        const datas = await getPortfolio(docId);
+        const componentArray = new Array();
+        let type, left, top, width, height, content, chartContent, row, col, imageUrl, iconUrl;
+        let id = 1;
+
+        await datas.components.map((component) => {
+          type = component.type;
+          left = component.x;
+          top = component.y;
+          width = component.width;
+          height = component.height;
+          row = component.tableRow;
+          col = component.tableCol;
+
+          switch (type) {
+            case 'text':
+              content = component.textContent;
+              componentArray.push({
+                id: 'TEXT__' + (++id).toString(),
+                type: 'TEXT',
+                position: { top: top, left: left },
+                dimension: { width: width.toString(), height: height.toString() },
+                content: content,
+              });
+              break;
+
+            case 'table':
+              chartContent = component.tableContent;
+              componentArray.push({
+                id: 'CHART__' + (++id).toString(),
+                type: 'CHART',
+                position: { top: top, left: left },
+                dimension: { width: width.toString(), height: height.toString() },
+                chart: { row: row, col: col },
+                chartContent: chartContent,
+              });
+              break;
+
+            case 'image':
+              imageUrl = component.imageUrl;
+              componentArray.push({
+                id: 'IMAGE__' + (++id).toString(),
+                type: 'IMAGE',
+                position: { top: top, left: left },
+                dimension: { width: width.toString(), height: height.toString() },
+                content: imageUrl,
+              });
+              break;
+
+            case 'icon':
+              iconUrl = component.iconUrl;
+              componentArray.push({
+                id: 'IMOGE__' + (++id).toString(),
+                type: 'IMOGE',
+                position: { top: top, left: left },
+                dimension: { width: width.toString(), height: height.toString() },
+                content: iconUrl,
+              });
+              break;
+          }
+        });
+        await console.log('componentArray: ' + componentArray[0]);
+        await setCanvasData(componentArray);
+      }
+      fetchPortfolioData();
+    }
+  }, [createElement]);
 
   const addElement = (type: string) => {
     const defaultData = getInitialData(canvasData, type);
-    console.log(defaultData)
-    var row=0
-    var col=0
-    var url=""
-    console.log("")
-    if(type==="CHART"){
-      var row= Number(createElement.split(" ")[1])
-      var col=  Number(createElement.split(" ")[2])
-    }else if(type==="IMOGE"){
-         url= createElement.split(" ")[1]
-        defaultData.content=url
-    }else if(type==="SHAPE"){
-      if(createElement.split(" ")[1]==="SQUARE"){
-        defaultData.shapeStyle=Shape[0].style[0]
+    var row = 0;
+    var col = 0;
+    var url = '';
+    if (type === 'CHART') {
+      var row = Number(createElement.split(' ')[1]);
+      var col = Number(createElement.split(' ')[2]);
+    } else if (type === 'IMOGE') {
+      url = createElement.split(' ')[1];
+      defaultData.content = url;
+    } else if (type === 'SHAPE') {
+      if (createElement.split(' ')[1] === 'SQUARE') {
+        defaultData.shapeStyle = Shape[0].style[0];
       }
     }
-    defaultData.chart.row=row;
-    defaultData.chart.col=col;
-    setCanvasData([...canvasData, { ...defaultData, type: type ?? "TEXT" }]);
+    defaultData.chart.row = row;
+    defaultData.chart.col = col;
+    setCanvasData([...canvasData, { ...defaultData, type: type ?? 'TEXT' }]);
     activeSelection.clear();
     activeSelection.add(defaultData.id);
     setActiveSelection(new Set(activeSelection));
-    row=0
-    col=0
+    row = 0;
+    col = 0;
   };
 
   const deleteElement = useCallback(() => {
@@ -148,14 +217,14 @@ const CanvasContainer = ({createElement}) => {
           return false;
         }
         return true;
-      })
+      }),
     ]);
     setActiveSelection(new Set(activeSelection));
   }, [activeSelection, canvasData]);
 
   const selectAllElement = useCallback(() => {
     isSelectAll.current = true;
-    canvasData.map((data) => activeSelection.add(data.id || ""));
+    canvasData.map((data) => activeSelection.add(data.id || ''));
     setActiveSelection(new Set(activeSelection));
   }, [activeSelection, canvasData]);
 
@@ -165,25 +234,25 @@ const CanvasContainer = ({createElement}) => {
       setActiveSelection,
       updateCanvasData,
       addElement,
-      setEnableQuillToolbar
+      setEnableQuillToolbar,
     },
     state: {
       canvasData,
       activeSelection,
-      enableQuillToolbar
-    }
+      enableQuillToolbar,
+    },
   };
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
-      if (event.key === "Delete") {
+      if (event.key === 'Delete') {
         deleteElement();
-      } else if (["a", "A"].includes(event.key) && event.ctrlKey) {
+      } else if (['a', 'A'].includes(event.key) && event.ctrlKey) {
         event.preventDefault();
         selectAllElement();
       }
     },
-    [deleteElement, selectAllElement]
+    [deleteElement, selectAllElement],
   );
 
   const outSideClickHandler = () => {
@@ -201,36 +270,40 @@ const CanvasContainer = ({createElement}) => {
   }, []);
 
   React.useEffect(() => {
-    document.addEventListener("keydown", handleKeyDown);
-    document.addEventListener("mousedown", handleMouseDown);
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleMouseDown);
     return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("mousedown", handleMouseDown);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleMouseDown);
     };
   }, [handleKeyDown, handleMouseDown]);
   return (
     <div
-    
       style={{
         width: '210mm',
         height: '330mm',
       }}
     >
-       
-      <Toolbar isEditEnable={enableQuillToolbar} canvasBox={canvasBox} />
-      <div ref={canvasBox} >
-      <CanvasContext.Provider value={context}>
-        <div>
-          <div className="canvas-container" >
-            {canvasData.map((canvas, key) => {
-              return <CanvasComponent key={key} {...canvas} />;
-            })}
+      <Toolbar
+        isEditEnable={enableQuillToolbar}
+        canvasBox={canvasBox}
+        createPortpolio={createPortfolio}
+        userId={userId}
+        canvasData={canvasData}
+      />
+
+      <div ref={canvasBox}>
+        <CanvasContext.Provider value={context}>
+          <div>
+            <div className="canvas-container">
+              {canvasData.map((canvas, key) => {
+                return <CanvasComponent key={key} {...canvas} />;
+              })}
+            </div>
           </div>
-          </div>
-      </CanvasContext.Provider>
+        </CanvasContext.Provider>
       </div>
-      <br/>
-      
+      <br />
     </div>
   );
 };
