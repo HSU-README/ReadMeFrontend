@@ -8,7 +8,7 @@
 import React ,{useEffect,useRef,useContext,useState}from 'react';
 import { CanvasContext } from "../CanvasContainer";
 import ReactToPrint from 'react-to-print';
-
+import {FormControl, Input,Checkbox,FormControlLabel} from '@mui/material';
 export const sizeList = [
   "8px",
   "9px",
@@ -50,14 +50,16 @@ interface IToolbarProps {
 }
 
 export default function Toolbar({ isEditEnable, canvasBox }: IToolbarProps) {
-
+  const [title , setTitle] = useState("");
   const { actions } = useContext(CanvasContext);
+  const [visibleCheck, setVisibleCheck] = useState(false)
+  const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
     actions?.addElement(type);
   };
-
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
   return (
-    <div style={{ display: "flex" }}>
+    <div style={{ width:"250mm",textAlign:"left",margin:"auto",marginTop:"20px",marginBottom:"10px" }}>
       {isEditEnable && (
         <div id="toolbar">
           <select className="ql-font">
@@ -78,23 +80,28 @@ export default function Toolbar({ isEditEnable, canvasBox }: IToolbarProps) {
           <select className="ql-background" />
         </div>
       )}
-      <div className="toolbar-item" onClick={() => addElement("TEXT")}>
-        텍스트
-      </div>
-      <span className="toolbar-section">&nbsp;|</span>
-      <div className="toolbar-item" onClick={() => addElement("IMAGE")}>
-        이미지
-      </div>
-      <span className="toolbar-section">&nbsp;|</span>
-      <div>
-        <ReactToPrint trigger={() => <div className="toolbar-item">저장
-        </div>} content={() => canvasBox.current} />
-      </div>
-      <span className="toolbar-section">&nbsp;|</span>
-      <div className="toolbar-item" onClick={() => addElement("HELP")}>
-        도움말
-      </div>
-      <span className="toolbar-section">&nbsp;|</span>
+      <span>
+        <ReactToPrint trigger={() =>  <img src={require('../../../assets/images/saveIcon.png')} alt="저장" style={{marginRight:"20px",width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} />
+      </span>
+      <span>
+        <ReactToPrint pageStyle={pageStyle} trigger={() => <img src={require('../../../assets/images/exportPdf.png')} alt="출력" style={{width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} />
+        
+      </span>
+
+      <FormControl variant="standard" style={{marginLeft:"90px",width:"50%"}}>
+         
+          <Input
+            value={title}
+            onChange={(e)=>{setTitle(e.target.value)}}
+          />
+    </FormControl>
+    <FormControlLabel
+          value="start"
+          style={{marginLeft:"70px"}}
+          control={<Checkbox onChange={(e)=>{console.log(e.target.checked)}}/>}
+          label="Visible"
+          labelPlacement="start"
+    />
     </div>
   );
 }

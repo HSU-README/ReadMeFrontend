@@ -5,7 +5,48 @@ const image = [
     val: 'http://10000img.com/',
   },
 ];
+const Shape = [
+  {
+    cmd: 'insertImage',
+    style: [
+      {
+        width: '50px',
+        height: '50px',
+        border: '1px solid black',
+        margin: 'auto auto',
+      },
+    ],
+    label: 'SQUARE',
+  },
+  {
+    cmd: 'insertImage',
+    style: [
+      {
+        width: '50px',
+        height: '50px',
+        border: '1px solid black',
+        borderRadius: '50%',
+        margin: 'auto auto',
+      },
+    ],
+    label: 'CIRCLE',
+  },
 
+  {
+    cmd: 'insertImage',
+    style: [
+      {
+        width: '0',
+        height: '0',
+        borderLeft:'30px solid transparent',
+        borderRight:'30px solid transparent',
+        borderBottom:'50px solid black',
+        //margin: 'auto auto',
+      },
+    ],
+    label: 'TRIALGLE',
+  },
+];
 const emoji = [
   { 
     cmd: 'insertImage',
@@ -128,4 +169,4 @@ const emoji2 = [
   },
 ];
 
-export {image, emoji, emoji2 };
+export {image, emoji, emoji2,Shape };

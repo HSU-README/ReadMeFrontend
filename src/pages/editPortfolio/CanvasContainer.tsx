@@ -2,7 +2,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import CanvasComponent from "./Components/CanvasComponent";
 import Toolbar from "./Components/Toolbar";
 import './Canvas.css';
-
+import {Shape} from "../generate/arrays.jsx"; 
+import ReactToPrint,{PrintContextConsumer} from "react-to-print";
 export const CanvasContext = React.createContext<ICanvasContext>({});
 
 export interface ICanvasData {
@@ -14,7 +15,7 @@ export interface ICanvasData {
   chartContent?:string
   content?: string;
   type: string;
- 
+  shapeStyle:object;
 }
 
 export interface ICanvasComponent {
@@ -26,7 +27,7 @@ export interface ICanvasComponent {
   id?: string;
   type: string;
   isReadOnly?: boolean;
-  
+  shapeStyle?: object;
 }
 
 export interface ICanvasContext {
@@ -61,6 +62,7 @@ const getInitialData = (data: any[], type: string = "TEXT") => {
       width: "300",
       height: type === "TEXT" ? "50" : "150"
     },
+    shapeStyle:{},
     content: type === "TEXT" ? "두 번 클릭하여 텍스트를 입력하세요." : ""
   };
 };
@@ -81,7 +83,8 @@ const CanvasContainer = ({createElement}) => {
       canvasData.findIndex((canvas) => canvas.id === data.id) ?? -1;
     
     const updatedData = { ...canvasData?.[currentDataIndex], ...data };
-    console.log(updatedData)
+    var wid= (updatedData.dimension.width).substring(0,3)
+    var hei= (updatedData.dimension.width).substring(0,3)
     //캔버스 밖으로 벗어나는거 방지.
     if(updatedData.position.left< 0){
       updatedData.position.left=0
@@ -89,17 +92,19 @@ const CanvasContainer = ({createElement}) => {
     if(updatedData.position.top< 0){
       updatedData.position.top=0
     }
-    if(updatedData.position.left+Number(updatedData.dimension.width) >= canvasBox.current.clientWidth){
-      updatedData.position.left=canvasBox.current.clientWidth-Number(updatedData.dimension.width) 
+    if(updatedData.position.left+Number(wid) >= canvasBox.current.clientWidth){
+      console.log("here")
+      updatedData.position.left=canvasBox.current.clientWidth-Number(wid)
     }
-    if(updatedData.position.top+Number(updatedData.dimension.height) >canvasBox.current.clientHeight){
-      updatedData.position.top= canvasBox.current.clientHeight-Number(updatedData.dimension.height)
+    if(updatedData.position.top+Number(hei) >=canvasBox.current.clientHeight){
+      updatedData.position.top= canvasBox.current.clientHeight-Number(hei)-100
     }
     canvasData.splice(currentDataIndex, 1, updatedData);
     setCanvasData([...(canvasData || [])]);
   };
 
   useEffect(()=>{
+    console.log(createElement);
     if(createElement!==""){
       var str=createElement.split(" ")
       addElement(str[0])
@@ -116,22 +121,21 @@ const CanvasContainer = ({createElement}) => {
       var row= Number(createElement.split(" ")[1])
       var col=  Number(createElement.split(" ")[2])
     }else if(type==="IMOGE"){
-        console.log("here")
          url= createElement.split(" ")[1]
-
         defaultData.content=url
-        console.log(defaultData)
+    }else if(type==="SHAPE"){
+      if(createElement.split(" ")[1]==="SQUARE"){
+        defaultData.shapeStyle=Shape[0].style[0]
+      }
     }
     defaultData.chart.row=row;
     defaultData.chart.col=col;
-    console.log(defaultData);
     setCanvasData([...canvasData, { ...defaultData, type: type ?? "TEXT" }]);
     activeSelection.clear();
     activeSelection.add(defaultData.id);
     setActiveSelection(new Set(activeSelection));
     row=0
     col=0
-    defaultData.content=""
   };
 
   const deleteElement = useCallback(() => {
@@ -203,15 +207,28 @@ const CanvasContainer = ({createElement}) => {
     };
   }, [handleKeyDown, handleMouseDown]);
   return (
-    <div ref={null} style={{marginBottom:"50px", border:"1px solid red",width:"220mm", height:"310mm", marginLeft:"30px", marginRight:"30px"}}>
+    <div
+    
+      style={{
+        width: '210mm',
+        height: '330mm',
+      }}
+    >
+       
+      <Toolbar isEditEnable={enableQuillToolbar} canvasBox={canvasBox} />
+      <div ref={canvasBox} >
       <CanvasContext.Provider value={context}>
-        <Toolbar isEditEnable={enableQuillToolbar} canvasBox={canvasBox} />
-        <div className="canvas-container" ref={canvasBox} >
-          {canvasData.map((canvas, key) => {
-            return <CanvasComponent key={key} {...canvas} />;
-          })}
-        </div>
+        <div>
+          <div className="canvas-container" >
+            {canvasData.map((canvas, key) => {
+              return <CanvasComponent key={key} {...canvas} />;
+            })}
+          </div>
+          </div>
       </CanvasContext.Provider>
+      </div>
+      <br/>
+      
     </div>
   );
 };

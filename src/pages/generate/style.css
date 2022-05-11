@@ -7,11 +7,9 @@
 */
 
   .parent{
-    position:flex;
-    margin-top:50px;
+    margin-top:70px;
     width: 300px;
     right: 0;
-    z-index: 9999;
   }
   .parent > div {
     width: 300px;
@@ -25,12 +23,14 @@
   /*아이템 박스*/
   .itemBoxCss {
       border: 3px solid rgb(99, 85, 85);
+      border-radius: 15px;
       padding: 10px;
       box-sizing: border-box;
   }
 
   .itemBoxCss1 {
     border: 3px solid rgb(99, 85, 85);
+    
     padding: 10px;
     box-sizing: border-box;
     overflow:auto;
@@ -52,11 +52,17 @@
 
   /* 이모지 박스 */
   .button_none{
-    border: 1px solid rgb(0, 47, 255);
     width: 20%;
     background-color: white;
   }
-
+  .shape_button_none{
+    border:none;
+    width:70px;
+    height:70px;
+    margin-left:10px;
+    margin-right:10px;
+    background-color:white;
+  }
   .button_none1{
     border: 1px solid rgb(21, 184, 0);
     width: 20%;
@@ -68,7 +74,6 @@
     margin-left: 10px;
     margin-top: 10px;
   }
-
   .editor_buttons1 {
     margin-left: 5px;
     margin-top: 5px;

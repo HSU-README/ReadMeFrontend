@@ -6,11 +6,12 @@ import ImageElement from "./ImageElement";
 import TextElement from "./TextElement";
 import ChartElement from "./ChartElement";
 import ImogeElement from "./ImogeElement";
+import ShapeElement from "./ShapeElement";
 const componentMap: { [key: string]: React.ComponentType<ICanvasComponent> } = {
   TEXT: TextElement,
   IMAGE: ImageElement,
   CHART:ChartElement,
-  IMOGE:ImogeElement
+  IMOGE:ImogeElement,
 };
 
 const getEnableResize = (type: string): ResizeEnable => {
@@ -29,7 +30,7 @@ const getEnableResize = (type: string): ResizeEnable => {
 };
 const CanvasComponent = (props: ICanvasComponent) => {
   const { state, actions } = useContext(CanvasContext);
-  const { dimension, position, content, id, type,chart,chartContent} = props;
+  const { dimension, position, content, id, type,chart,chartContent,shapeStyle} = props;
   const [showGrids, setShowGrids] = React.useState(false);
   const [isReadOnly, setIsReadOnly] = React.useState(true);
   const elementRef = React.useRef<HTMLDivElement>(null);
@@ -67,6 +68,7 @@ const CanvasComponent = (props: ICanvasComponent) => {
         isReadOnly={isReadOnly}
         chart={chart}
         chartContent={chartContent}
+        shapeStyle={shapeStyle}
       />
     );
   };
@@ -113,7 +115,7 @@ const CanvasComponent = (props: ICanvasComponent) => {
   };
 
   return (
-    <div ref={elementRef}>
+    <div ref={elementRef} >
       <Rnd
         style={style}
         size={{ width: dimension?.width || 0, height: dimension?.height || 0 }}

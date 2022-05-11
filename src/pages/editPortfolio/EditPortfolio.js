@@ -1,107 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 import 'pages/generate/style.css';
-import { image, emoji, emoji2 } from 'pages/generate/arrays';
 import CanvasContainer from './CanvasContainer.tsx';
 import PageDisplay from './PageDisplay';
-import TableDND from './Table/TableDND';
-import Header from 'components/header';
+import Header from './Header';
 import Footer from 'components/footer/index.jsx';
+import DndComponent from './DndComponent';
+import ReactToPrint from 'react-to-print';
 const EditPortfolio = () => {
-  const [chartBackgroundColor, setChartBackgroundColor] = useState('1px solid black');
-  const doCommand = (cmd) => {
-    const val = typeof cmd.val !== 'undefined' ? prompt('Value for ' + cmd.cmd + '?', cmd.val) : '';
-    //const val = typeof cmd.val !== 'undefined' ? cmd.val : '';
-    console.log(cmd.cmd);
-    document.execCommand(cmd.cmd, true, val || '');
-  };
+  
   const [createElement, setCreateElement] = useState('');
-  const handleBtnClick = (item) => {
-    doCommand(item);
-  };
-
+  const canvasBox = useRef(null);
   return (
-    <div style={{border:"5px solid brown",}}>
+    <div>
       <Header />
-      <br />
-      <div style={{ display: 'flex',border:"2px solid green" }}>
-        <PageDisplay />
-        <CanvasContainer createElement={createElement} />
-        <div style={{border:"2px solid gray",marginLeft:"40px"}}>
-          <div className="parent">
-            <div className="itemBoxCss">
-              <details>
-                <summary>표</summary>
-                <br />
-
-                <TableDND setCreateElement={setCreateElement} />
-              </details>
-            </div>
-
-            <div className="itemBoxCss">
-              <details>
-                <summary>Image</summary>
-                <br />
-                {image.map((item) => {
-                  return (
-                    <button className="button_box editor_buttons" onClick={() => handleBtnClick(item)}>
-                      {' '}
-                      {item.label}{' '}
-                    </button>
-                  );
-                })}
-              </details>
-            </div>
-
-            <div className="itemBoxCss">
-              <details>
-                <summary>도형</summary>
-                <br />
-              </details>
-            </div>
-
-            <div className="itemBoxCss">
-              <details>
-                <summary>이모티콘</summary>
-                <br />
-                <details>
-                  <summary className="menu1">상상부기</summary>
-
-                  {emoji.map((item) => {
-                    return (
-                      <button
-                        className="button_none editor_buttons1"
-                        onClick={() => {
-                          setCreateElement(`IMOGE ${item.val}`);
-                          //handleBtnClick(item)
-                        }}
-                      >
-                        <img src={item.val} />
-                      </button>
-                    );
-                  })}
-                </details>
-                <br />
-                <details>
-                  <summary className="menu2">상상부기 프렌즈</summary>
-                  {emoji2.map((item) => {
-                    return (
-                      <button
-                        className="button_none1 editor_buttons1"
-                        onClick={() => {
-                          setCreateElement(`IMOGE ${item.val}`);
-                          //handleBtnClick(item)
-                        }}
-                      >
-                        <img src={item.val} />
-                      </button>
-                    );
-                  })}
-                </details>
-              </details>
-            </div>
+      <div style={{backgroundColor:"lightgray"}}>
+      <div style={{ display: 'flex',marginLeft:"26%"}} >
+        <div  ref={canvasBox}>
+            <CanvasContainer createElement={createElement} />
+            
           </div>
-        </div>
+          <DndComponent setCreateElement={setCreateElement} />
       </div>
+      </div>
+     
       <Footer />;
     </div>
   );
