@@ -117,55 +117,66 @@ const CanvasContainer = ({ createElement }) => {
       async function fetchPortfolioData() {
         const datas = await getPortfolio(docId);
         const componentArray = new Array();
-        let type, left, top, width, height, content, row, col;
+        let type, left, top, width, height, content, chartContent, row, col, imageUrl, iconUrl;
+        let id = 1;
 
-        await datas.map((data) => {
-          type = data.components.type;
-          left = data.components.x;
-          top = data.components.y;
-          width = data.components.width;
-          height = data.components.height;
-          content = data.componets.contents;
+        await datas.components.map((component) => {
+          type = component.type;
+          left = component.x;
+          top = component.y;
+          width = component.width;
+          height = component.height;
+          row = component.tableRow;
+          col = component.tableCol;
 
           switch (type) {
-            case 'TEXT':
+            case 'text':
+              content = component.contents;
               componentArray.push({
-                type: type,
+                id: 'TEXT__' + (++id).toString(),
+                type: 'TEXT',
                 position: { top: top, left: left },
-                dimension: { width: width, height: height },
+                dimension: { width: width.toString(), height: height.toString() },
                 content: content,
               });
               break;
 
-            case 'CHART':
+            case 'table':
+              chartContent = component.tableContents;
               componentArray.push({
-                type: type,
+                id: 'CHART__' + (++id).toString(),
+                type: 'CHART',
                 position: { top: top, left: left },
-                dimension: { width: width, height: height },
+                dimension: { width: width.toString(), height: height.toString() },
                 chart: { row: row, col: col },
-                content: content,
+                chartContent: chartContent,
               });
               break;
 
-            case 'IMAGE':
+            case 'image':
+              imageUrl = component.imageUrl;
               componentArray.push({
-                type: type,
+                id: 'IMAGE__' + (++id).toString(),
+                type: 'IMAGE',
                 position: { top: top, left: left },
-                dimension: { width: width, height: height },
-                content: content,
+                dimension: { width: width.toString(), height: height.toString() },
+                content: imageUrl,
               });
               break;
 
-            case 'IMOGE':
+            case 'icon':
+              iconUrl = component.iconUrl;
               componentArray.push({
-                type: type,
+                id: 'IMOGE__' + (++id).toString(),
+                type: 'IMOGE',
                 position: { top: top, left: left },
-                dimension: { width: width, height: height },
-                content: content,
+                dimension: { width: width.toString(), height: height.toString() },
+                content: iconUrl,
               });
               break;
           }
         });
+        await console.log('componentArray: ' + componentArray[0]);
         await setCanvasData(componentArray);
       }
       fetchPortfolioData();
@@ -177,7 +188,6 @@ const CanvasContainer = ({ createElement }) => {
     var row = 0;
     var col = 0;
     var url = '';
-    console.log('');
     if (type === 'CHART') {
       var row = Number(createElement.split(' ')[1]);
       var col = Number(createElement.split(' ')[2]);
@@ -281,7 +291,7 @@ const CanvasContainer = ({ createElement }) => {
         userId={userId}
         canvasData={canvasData}
       />
-      {console.log(canvasData[0])}
+
       <div ref={canvasBox}>
         <CanvasContext.Provider value={context}>
           <div>

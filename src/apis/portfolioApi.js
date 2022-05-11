@@ -18,27 +18,12 @@ export const getPortfolio = async (docId) => {
 };
 
 export const createPortfolio = async (memberId, components) => {
-  const timestamp = window.Date.now();
-  const date = new Date(timestamp);
-  const createTime =
-    date.getFullYear() +
-    '/' +
-    (date.getMonth() + 1) +
-    '/' +
-    date.getDate() +
-    ' ' +
-    date.getHours() +
-    ':' +
-    date.getMinutes() +
-    ':' +
-    date.getSeconds();
-  console.log(createTime);
   const componentArray = new Array();
   await components.map((component, index) => {
     switch (component.type) {
       case 'TEXT':
         componentArray.push({
-          type: component.type,
+          type: 'text',
           x: component.position.left,
           y: component.position.top,
           width: component.dimension.width,
@@ -49,12 +34,12 @@ export const createPortfolio = async (memberId, components) => {
 
       case 'CHART':
         componentArray.push({
-          type: component.type,
+          type: 'table',
           x: component.position.left,
           y: component.position.top,
           width: component.dimension.width,
           height: component.dimension.height,
-          contents: component.chartContent,
+          tableContents: component.chartContent,
           tableCol: component.chart.col,
           tableRow: component.chart.row,
         });
@@ -62,25 +47,23 @@ export const createPortfolio = async (memberId, components) => {
 
       case 'IMAGE':
         componentArray.push({
-          type: component.type,
+          type: 'image',
           x: component.position.left,
           y: component.position.top,
           width: component.dimension.width,
           height: component.dimension.height,
           imgUrl: component.content,
-          contents: component.content,
         });
         break;
 
       case 'IMOGE':
         componentArray.push({
-          type: component.type,
+          type: 'icon',
           x: component.position.left,
           y: component.position.top,
           width: component.dimension.width,
           height: component.dimension.height,
-          imgUrl: component.content,
-          contents: component.content,
+          iconUrl: component.content,
         });
         break;
       default:
