@@ -149,6 +149,34 @@
         "tableRow": 0,
         "tableContent": null,
         "zindex": 0
+      },
+      {
+        "type": "text",
+        "x": 218.0,
+        "y": 118.0,
+        "height": 166,
+        "width": 424,
+        "imgUrl": null,
+        "iconUrl": null,
+        "textContent": "<p><strong style=\"font-size: 14px;\">이름 : 이한성</strong></p><p><br></p><p><strong style=\"font-size: 14px;\">생년월일 :  2022.05.12</strong></p><p><br></p><p><strong style=\"font-size: 14px;\">전화번호 : 010-1234-5678</strong></p><p><strong style=\"font-size: 14px;\"> </strong></p><p><strong style=\"font-size: 14px;\">주소 : 서울시 성북구 한성대학교</strong></p>",
+        "tableCol": 0,
+        "tableRow": 0,
+        "tableContent": null,
+        "zindex": 0
+      },
+      {
+        "type": "text",
+        "x": 465.0,
+        "y": 119.0,
+        "height": 222,
+        "width": 327,
+        "imgUrl": null,
+        "iconUrl": null,
+        "textContent": "<p><strong style=\"font-size: 14px;\">성별 : 남</strong></p><p><br></p><p><strong style=\"font-size: 14px;\">이메일 : best@hansung.ac.kr</strong></p><p><br></p><p><strong style=\"font-size: 14px;\">학점 : 4.5 / 4.5</strong></p><p><br></p><p><strong style=\"font-size: 14px;\">병역 사항 : 병역 필</strong></p>",
+        "tableCol": 0,
+        "tableRow": 0,
+        "tableContent": null,
+        "zindex": 0
       }
     ]
   }
