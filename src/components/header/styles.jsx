@@ -5,7 +5,7 @@ import colors from '../../styles/colors';
 export const headerFont = {
   fontSize: '16px',
   color: '#646464',
-  marginRight: '20px',
+  marginRight: '15px',
   cursor: 'pointer',
 };
 
@@ -33,7 +33,7 @@ export const Container = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 280px;
+    width: 285px;
   }
 
   p {

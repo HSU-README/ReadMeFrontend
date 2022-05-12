@@ -36,7 +36,7 @@ const Header = () => {
     backgroundColor: '#E8E8E8',
     borderRadius: '30px',
     width: '100px',
-    fontSize: '14px',
+    fontSize: '12px',
     fontWeight: '900',
     font: 'bold',
     marginLeft: '25px',
@@ -107,12 +107,12 @@ const Header = () => {
         {/* 로그인시 출력 컴포넌트 */}
         {isLoggedIn ? (
           <>
-            <Button disabled style={{ color: '#1976d2', marginTop: '30px', fontSize: '23px' }}>
+            <Button disabled style={{ color: '#1976d2', marginTop: '30px', fontSize: '16px' }}>
               {JSON.parse(userInfo).name}님
             </Button>
             <Button
               href="/login"
-              style={{ marginTop: '30px', fontSize: '23px' }}
+              style={{ marginTop: '30px', fontSize: '16px' }}
               onClick={() => {
                 signOut();
                 setUserInfo(undefined);
@@ -121,17 +121,17 @@ const Header = () => {
             >
               로그아웃
             </Button>
-            <Button href="/mypage" style={{ marginTop: '30px', fontSize: '23px' }}>
+            <Button href="/mypage" style={{ marginTop: '30px', fontSize: '16px' }}>
               마이페이지
             </Button>
           </>
         ) : (
           //  로그아웃시 출력 컴포넌트
           <span>
-            <Button href="/login" style={{ marginTop: '30px', fontSize: '23px' }}>
+            <Button href="/login" style={{ marginTop: '30px', fontSize: '16px' }}>
               로그인
             </Button>
-            <Button href="/signup" style={{ marginTop: '30px', fontSize: '23px' }}>
+            <Button href="/signup" style={{ marginTop: '30px', fontSize: '16px' }}>
               회원가입
             </Button>
           </span>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import dummy1 from '../../assets/images/cardViewImage.png';
+import dummy1 from '../../assets/images/dummy4.png';
 import { Card, CardActionArea, CardMedia, CardContent, Typography, Button, CardActions } from '@mui/material';
 import Slider from 'react-slick';
 import 'index.css';

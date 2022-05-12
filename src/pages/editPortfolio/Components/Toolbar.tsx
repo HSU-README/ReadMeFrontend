@@ -135,9 +135,10 @@ export default function Toolbar({
         />
       </span>
 
-      <FormControl variant="standard" style={{ marginLeft: '90px', width: '50%' }}>
+      <FormControl variant="standard" style={{ marginLeft: '90px', width: '50%'}}>
         <Input
           value={title}
+          placeholder="제목을 입력하세요."
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -153,7 +154,7 @@ export default function Toolbar({
             }}
           />
         }
-        label="Visible"
+        label="공개"
         labelPlacement="start"
       />
     </div>

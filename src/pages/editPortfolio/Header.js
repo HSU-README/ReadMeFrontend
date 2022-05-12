@@ -8,7 +8,7 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState('');
   const headerFont = {
-    fontSize: '24px',
+    fontSize: '16px',
     color: '#646464',
     marginRight: '20px',
     cursor: 'pointer',
@@ -31,12 +31,12 @@ export default function Header() {
       <img
         src={prevIcon}
         onClick={() => {}}
-        style={{ width: '30px', height: '20px', marginTop: '20px', marginLeft: '50px' }}
+        style={{ width: '15px', height: '15px', marginTop: '10px', marginLeft: '15px' }}
       />
       <img
         src={logo}
         onClick={moveHome}
-        style={{ cursor: 'pointer', width: '120px', height: '50px', marginLeft: '80px' }}
+        style={{ cursor: 'pointer', width: '85px', height: '36px', marginLeft: '250px' }}
       />
 
       <div className="section-login">
@@ -44,10 +44,9 @@ export default function Header() {
           <>
             <div
               style={{
-                martginTop: '5px',
-                fontSize: '20px',
+                fontSize: '16px',
                 color: '#646464',
-                marginRight: '20px',
+                marginRight: '15px',
                 cursor: 'pointer',
               }}
             >
@@ -64,10 +63,9 @@ export default function Header() {
             >
               <div
                 style={{
-                  marginTop: '5px',
-                  fontSize: '20px',
+                  fontSize: '16px',
                   color: '#646464',
-                  marginRight: '20px',
+                  marginRight: '15px',
                   cursor: 'pointer',
                 }}
               >
@@ -84,7 +82,7 @@ export default function Header() {
               <div
                 style={{
                   marginTop: '5px',
-                  fontSize: '20px',
+                  fontSize: '16px',
                   color: '#646464',
                   marginRight: '20px',
                   cursor: 'pointer',
@@ -97,7 +95,7 @@ export default function Header() {
               <div
                 style={{
                   marginTop: '5px',
-                  fontSize: '20px',
+                  fontSize: '16px',
                   color: '#646464',
                   marginRight: '20px',
                   cursor: 'pointer',
