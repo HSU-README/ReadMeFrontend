@@ -6,7 +6,7 @@
       "result": {
         "id": 1001,
         "title": "전통 양식",
-        "docUrl": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/98d3cc98-fb79-47e6-9899-fbb58cdd2817/%ED%91%9C%EC%99%80%EA%B8%80%EC%94%A8%EB%A7%8C%EC%9E%88%EB%8A%94%EC%A0%84%ED%86%B5%EC%A0%81%EC%9D%B8%EC%96%91%EC%8B%9D.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220511%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220511T213701Z&X-Amz-Expires=86400&X-Amz-Signature=737f080643a7f92e1e33940c7ac2a1284934d46873376c3a4b28c76c3f79b16b&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22%25ED%2591%259C%25EC%2599%2580%25EA%25B8%2580%25EC%2594%25A8%25EB%25A7%258C%25EC%259E%2588%25EB%258A%2594%25EC%25A0%2584%25ED%2586%25B5%25EC%25A0%2581%25EC%259D%25B8%25EC%2596%2591%25EC%258B%259D.pdf%22&x-id=GetObject",
+        "docUrl": "https://s3.us-west-2.amazonaws.com/secure.notion-static.com/6e08005c-2726-4a15-b53c-bf2b9b9d216c/basic_text.pdf?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20220512%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20220512T141307Z&X-Amz-Expires=86400&X-Amz-Signature=e4327b24ecd4adca55f7f4df1b94a8061da2c149bdd39678d26294d57fc8ca23&X-Amz-SignedHeaders=host&response-content-disposition=filename%20%3D%22basic_text.pdf%22&x-id=GetObject",
         "designer": "Propofol",
         "tags": ["IT", "General"]
       }

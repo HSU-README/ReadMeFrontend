@@ -31,7 +31,7 @@ const ChartElement=(props:ICanvasComponent)=>{
         dummyArr[0][3]='dum4';
         //str=chartContent
         setWidth(Number(props.dimension.width)/chart.col);
-        setHeight(Number(props.dimension.height)/chart.row)
+        setHeight(Number(props.dimension.height)/chart.row);
         strArr=dummyArr;
     },[])   
     useEffect(()=>{

@@ -282,6 +282,7 @@ const CanvasContainer = ({ createElement }) => {
         height: '330mm',
       }}
     >
+      {console.log('canvasData: ' + JSON.stringify(canvasData))}
       <Toolbar
         isEditEnable={enableQuillToolbar}
         canvasBox={canvasBox}

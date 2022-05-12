@@ -26,20 +26,6 @@
       },
       {
         "type": "icon",
-        "x": 78.0,
-        "y": 90.0,
-        "height": 150,
-        "width": 139,
-        "imgUrl": null,
-        "iconUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2F%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B0%203.png?alt=media&token=56f78386-26eb-4af2-934f-cf015eee3abb",
-        "textContent": null,
-        "tableCol": 0,
-        "tableRow": 0,
-        "tableContent": null,
-        "zindex": 0
-      },
-      {
-        "type": "icon",
         "x": 74.0,
         "y": 289.0,
         "height": 50,
@@ -204,20 +190,6 @@
         "tableCol": 0,
         "tableRow": 0,
         "tableContent": null,
-        "zindex": 0
-      },
-      {
-        "type": "table",
-        "x": 73.0,
-        "y": 51.0,
-        "height": 190,
-        "width": 139,
-        "imgUrl": null,
-        "iconUrl": null,
-        "textContent": null,
-        "tableCol": 1,
-        "tableRow": 1,
-        "tableContent": "<table style=\"border: 1px solid black;\"><tbody><tr><td style=\"border: 1px solid black; width: 300px; height: 150px;\"><div contenteditable=\"true\" style=\"width: 100%; height: 100%;\"><gwmw style=\"display:none;\"></gwmw></div></td></tr></tbody></table>",
         "zindex": 0
       }
     ]
