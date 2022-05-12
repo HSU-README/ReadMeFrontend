@@ -67,13 +67,13 @@ const getInitialData = (data: any[], type: string = 'TEXT') => {
     content: type === 'TEXT' ? '두 번 클릭하여 텍스트를 입력하세요.' : '',
   };
 };
-var isDataChanged=false;
+var isDataChanged = false;
 const CanvasContainer = ({ createElement }) => {
   const [canvasData, setCanvasData] = useState<ICanvasData[]>([]);
   const [activeSelection, setActiveSelection] = useState<Set<string>>(new Set());
   const canvasBox = useRef<HTMLDivElement>(null); //캔버스만 가지고있는 REF
   const [enableQuillToolbar, setEnableQuillToolbar] = useState<boolean>(false);
-  
+  const [docTitle, setDocTitle] = useState<String>('');
   const containerRef = useRef<HTMLDivElement>(null);
   const isSelectAll = useRef<boolean>(false);
 
@@ -84,7 +84,7 @@ const CanvasContainer = ({ createElement }) => {
     const currentDataIndex = canvasData.findIndex((canvas) => canvas.id === data.id) ?? -1;
 
     const updatedData = { ...canvasData?.[currentDataIndex], ...data };
-    
+
     var wid = updatedData.dimension.width.substring(0, 3);
     var hei = updatedData.dimension.width.substring(0, 3);
     //캔버스 밖으로 벗어나는거 방지.
@@ -109,14 +109,15 @@ const CanvasContainer = ({ createElement }) => {
       var str = createElement.split(' ');
       addElement(str[0]);
     }
-    if (Number(docId) !== undefined && isDataChanged===false) {
+    if (Number(docId) !== undefined && isDataChanged === false) {
       async function fetchPortfolioData() {
         const datas = await getPortfolio(docId);
+        await setDocTitle(datas.title);
         const componentArray = new Array();
         let type, left, top, width, height, content, chartContent, row, col, imageUrl, iconUrl;
         let id = 1;
         await datas.components.map((component) => {
-          console.log(datas.components)
+          console.log(datas.components);
           type = component.type;
           left = component.x;
           top = component.y;
@@ -131,7 +132,7 @@ const CanvasContainer = ({ createElement }) => {
                 id: 'TEXT__' + (++id).toString(),
                 type: 'TEXT',
                 position: { top: top, left: left },
-                chartContent:{},
+                chartContent: {},
                 dimension: { width: width.toString(), height: height.toString() },
                 content: content,
               });
@@ -176,7 +177,7 @@ const CanvasContainer = ({ createElement }) => {
         await setCanvasData(componentArray);
       }
       fetchPortfolioData();
-      isDataChanged=true;
+      isDataChanged = true;
     }
   }, [createElement]);
 
@@ -288,6 +289,7 @@ const CanvasContainer = ({ createElement }) => {
         userId={userId}
         canvasData={canvasData}
         docId={docId}
+        docTitle={docTitle}
       />
 
       <div ref={canvasBox}>

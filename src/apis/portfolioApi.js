@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { ToastError, ToastSuccess } from 'hooks/toastHook';
+import basicPortfolio1 from 'localData/basicPortfolio1.json';
+import basicPortfolio2 from 'localData/basicPortfolio2.json';
 
 const serverApi = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
@@ -9,18 +11,24 @@ const serverApi = axios.create({
 });
 
 export const getPortfolio = async (docId) => {
-  const response = await serverApi.get(`/api/v1/doc/${docId}`);
-  try {
-    return response.data.result;
-  } catch (error) {
-    console.log(error);
+  if (docId == 1001) {
+    return basicPortfolio1.result;
+  } else if (docId == 1002) {
+    return basicPortfolio2.result;
+  } else {
+    const response = await serverApi.get(`/api/v1/doc/${docId}`);
+    try {
+      return response.data.result;
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 
-export const createPortfolio = async (memberId, title, components,docId) => {
+export const createPortfolio = async (memberId, title, components, docId) => {
   const componentArray = new Array();
   await components.map((component, index) => {
-    console.log(component)
+    console.log(component);
     switch (component.type) {
       case 'TEXT':
         console.log('text: ' + component.dimension.width);
