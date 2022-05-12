@@ -17,7 +17,6 @@ const TableDND = ({setCreateElement}) => {
     )
   );
   useEffect(() => {
-    console.log("change")
     const newTable = Array.from({ length: 6 }, (obj, row) =>
       Array.from({ length: 6 }, (v, col) => ({
         bg:

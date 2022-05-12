@@ -7,34 +7,9 @@ import Button from 'components/button';
 import Header from 'components/header';
 import NewGenerateSelectCard from 'components/newGenerateCard';
 import BasicModal from 'components/basicModal/index.jsx';
+import basicSelect from 'localData/basicSelect.json';
 
-const formats = [
-  {
-    id: 0,
-    title: '기본 양식1',
-    thumbnail: '',
-  },
-  {
-    id: 1,
-    title: '기본 양식2',
-    thumbnail: '',
-  },
-  {
-    id: 2,
-    title: '기본 양식3',
-    thumbnail: '',
-  },
-  {
-    id: 3,
-    title: '기본 양식4',
-    thumbnail: '',
-  },
-  {
-    id: 4,
-    title: '기본 양식5',
-    thumbnail: '',
-  },
-];
+const datas = basicSelect.data;
 
 const Select = () => {
   const [selectedFormat, setSelectedFormat] = useState('');
@@ -65,15 +40,14 @@ const Select = () => {
         <></>
       )}
       <Header />
-      <div>{selectedFormat}</div>
       <div className="selectWrapper">
         <div className="section-select">
           <NewGenerateSelectCard />
-          {formats.map((format, index) => (
+          {datas.map((data, index) => (
             <SelectCard
-              id={index}
+              id={data.id}
               key={index}
-              format={format}
+              format={data}
               selectedFormat={selectedFormat}
               setSelectedFormat={setSelectedFormat}
               isSelected={index !== selectedFormat ? false : true}
@@ -81,18 +55,6 @@ const Select = () => {
           ))}
         </div>
       </div>
-      {/* <div className="buttonWrapper">
-        <div className="section-button">
-          <div onClick={onReset}>
-            <Button size="large">취소</Button>
-          </div>
-          <div>
-            <Link to={`/generate/${selectedFormat}`}>
-              <Button size="large">만들기</Button>
-            </Link>
-          </div>
-        </div>
-      </div> */}
       <Footer />
     </Container>
   );

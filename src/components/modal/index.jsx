@@ -26,8 +26,6 @@ export default function Modal(props) {
     fetchPreviewData();
   }, []);
 
-  const formUrl = 'https://arxiv.org/pdf/quant-ph/0410100.pdf';
-
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }

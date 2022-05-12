@@ -4,9 +4,7 @@ import CanvasComponent from './Components/CanvasComponent';
 import Toolbar from './Components/Toolbar';
 import './Canvas.css';
 import { Shape } from '../generate/arrays.jsx';
-import ReactToPrint, { PrintContextConsumer } from 'react-to-print';
 import { createPortfolio, getPortfolio } from 'apis/portfolioApi';
-import { Button } from '@mui/material';
 export const CanvasContext = React.createContext<ICanvasContext>({});
 
 export interface ICanvasData {
@@ -69,13 +67,13 @@ const getInitialData = (data: any[], type: string = 'TEXT') => {
     content: type === 'TEXT' ? '두 번 클릭하여 텍스트를 입력하세요.' : '',
   };
 };
-
+var isDataChanged = false;
 const CanvasContainer = ({ createElement }) => {
   const [canvasData, setCanvasData] = useState<ICanvasData[]>([]);
   const [activeSelection, setActiveSelection] = useState<Set<string>>(new Set());
   const canvasBox = useRef<HTMLDivElement>(null); //캔버스만 가지고있는 REF
   const [enableQuillToolbar, setEnableQuillToolbar] = useState<boolean>(false);
-
+  const [docTitle, setDocTitle] = useState<String>('');
   const containerRef = useRef<HTMLDivElement>(null);
   const isSelectAll = useRef<boolean>(false);
 
@@ -86,6 +84,7 @@ const CanvasContainer = ({ createElement }) => {
     const currentDataIndex = canvasData.findIndex((canvas) => canvas.id === data.id) ?? -1;
 
     const updatedData = { ...canvasData?.[currentDataIndex], ...data };
+
     var wid = updatedData.dimension.width.substring(0, 3);
     var hei = updatedData.dimension.width.substring(0, 3);
     //캔버스 밖으로 벗어나는거 방지.
@@ -96,7 +95,6 @@ const CanvasContainer = ({ createElement }) => {
       updatedData.position.top = 0;
     }
     if (updatedData.position.left + Number(wid) >= canvasBox.current.clientWidth) {
-      console.log('here');
       updatedData.position.left = canvasBox.current.clientWidth - Number(wid);
     }
     if (updatedData.position.top + Number(hei) >= canvasBox.current.clientHeight) {
@@ -107,20 +105,19 @@ const CanvasContainer = ({ createElement }) => {
   };
 
   useEffect(() => {
-    console.log(createElement);
     if (createElement !== '') {
       var str = createElement.split(' ');
       addElement(str[0]);
     }
-
-    if (docId !== undefined) {
+    if (Number(docId) !== undefined && isDataChanged === false) {
       async function fetchPortfolioData() {
         const datas = await getPortfolio(docId);
+        await setDocTitle(datas.title);
         const componentArray = new Array();
         let type, left, top, width, height, content, chartContent, row, col, imageUrl, iconUrl;
         let id = 1;
-
         await datas.components.map((component) => {
+          console.log(datas.components);
           type = component.type;
           left = component.x;
           top = component.y;
@@ -128,14 +125,14 @@ const CanvasContainer = ({ createElement }) => {
           height = component.height;
           row = component.tableRow;
           col = component.tableCol;
-
           switch (type) {
             case 'text':
-              content = component.contents;
+              content = component.textContent;
               componentArray.push({
                 id: 'TEXT__' + (++id).toString(),
                 type: 'TEXT',
                 position: { top: top, left: left },
+                chartContent: {},
                 dimension: { width: width.toString(), height: height.toString() },
                 content: content,
               });
@@ -180,6 +177,7 @@ const CanvasContainer = ({ createElement }) => {
         await setCanvasData(componentArray);
       }
       fetchPortfolioData();
+      isDataChanged = true;
     }
   }, [createElement]);
 
@@ -284,12 +282,15 @@ const CanvasContainer = ({ createElement }) => {
         height: '330mm',
       }}
     >
+      {console.log('canvasData: ' + JSON.stringify(canvasData))}
       <Toolbar
         isEditEnable={enableQuillToolbar}
         canvasBox={canvasBox}
         createPortpolio={createPortfolio}
         userId={userId}
         canvasData={canvasData}
+        docId={docId}
+        docTitle={docTitle}
       />
 
       <div ref={canvasBox}>

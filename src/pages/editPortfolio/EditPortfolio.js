@@ -1,7 +1,6 @@
 import React, { useState,useRef } from 'react';
 import 'pages/generate/style.css';
 import CanvasContainer from './CanvasContainer.tsx';
-import PageDisplay from './PageDisplay';
 import Header from './Header';
 import Footer from 'components/footer/index.jsx';
 import DndComponent from './DndComponent';

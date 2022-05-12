@@ -9,7 +9,30 @@ import React, { useEffect, useRef, useContext, useState } from 'react';
 import { CanvasContext } from '../CanvasContainer';
 import ReactToPrint from 'react-to-print';
 import { FormControl, Input, Checkbox, FormControlLabel } from '@mui/material';
-export const sizeList = ['8px', '9px', '10px', '11px', '12px', '14px', '16px', '18px', '20px', '72px'];
+export const sizeList = [
+  '8px',
+  '9px',
+  '10px',
+  '11px',
+  '12px',
+  '14px',
+  '16px',
+  '18px',
+  '20px',
+  '24px',
+  '28px',
+  '32px',
+  '36px',
+  '40px',
+  '44px',
+  '48px',
+  '52px',
+  '56px',
+  '60px',
+  '64px',
+  '68px',
+  '72px',
+];
 
 export const fontList = [
   'Arial',
@@ -39,10 +62,20 @@ interface IToolbarProps {
   createPortpolio: any;
   userId: any;
   canvasData: any;
+  docId: any;
+  docTitle: any;
 }
 
-export default function Toolbar({ isEditEnable, canvasBox, createPortpolio, userId, canvasData }: IToolbarProps) {
-  const [title, setTitle] = useState('');
+export default function Toolbar({
+  isEditEnable,
+  canvasBox,
+  createPortpolio,
+  userId,
+  canvasData,
+  docId,
+  docTitle,
+}: IToolbarProps) {
+  const [title, setTitle] = useState(docTitle);
   const { actions } = useContext(CanvasContext);
   const [visibleCheck, setVisibleCheck] = useState(false);
   const pageStyle = `{ size: 2.5in 4in }`;
@@ -50,6 +83,7 @@ export default function Toolbar({ isEditEnable, canvasBox, createPortpolio, user
     actions?.addElement(type);
   };
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -70,12 +104,17 @@ export default function Toolbar({ isEditEnable, canvasBox, createPortpolio, user
           <select className="ql-align" />
           <select className="ql-color" />
           <select className="ql-background" />
+          <button className="ql-script" value="sub"></button>
+          <button className="ql-script" value="super"></button>
+          <button className="ql-list" value="ordered"></button>
+          <button className="ql-list" value="bullet"></button>
         </div>
       )}
       <span>
         <img
           onClick={() => {
-            createPortpolio(userId, canvasData);
+            console.log(canvasData);
+            createPortpolio(userId, title, canvasData);
           }}
           src={require('../../../assets/images/saveIcon.png')}
           alt="저장"
@@ -83,8 +122,8 @@ export default function Toolbar({ isEditEnable, canvasBox, createPortpolio, user
         ></img>
       </span>
       <span>
+        {/*   <ReactToPrint pageStyle={pageStyle} trigger={() => <img src={require('../../../assets/images/exportPdf.png')} alt="출력" style={{width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} /> */}
         <ReactToPrint
-          pageStyle={pageStyle}
           trigger={() => (
             <img
               src={require('../../../assets/images/exportPdf.png')}

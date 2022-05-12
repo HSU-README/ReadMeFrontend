@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import logo from 'assets/images/logo.jpg';
 import { Link } from 'react-router-dom';
-import { FormControl,TextField, Input } from '@mui/material';
+import { FormControl, TextField, Input } from '@mui/material';
 import { Container, headerFont } from '../../components/header/styles';
 import prevIcon from '../../assets/images/backArrow.png';
 export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInfo, setUserInfo] = useState('');
-  const headerFont={
-    fontSize:"24px",
-    color:"#646464",
-    marginRight:"20px",
-    cursor:'pointer',
-  }
+  const headerFont = {
+    fontSize: '24px',
+    color: '#646464',
+    marginRight: '20px',
+    cursor: 'pointer',
+  };
   const moveHome = () => {
     window.location.href = '/';
   };
@@ -28,27 +28,29 @@ export default function Header() {
 
   return (
     <Container>
-      <img 
+      <img
         src={prevIcon}
-        onClick={()=>{}}
-        style={{width:"30px", height:"20px",marginTop:"20px",marginLeft:"50px"}}
-        />
+        onClick={() => {}}
+        style={{ width: '30px', height: '20px', marginTop: '20px', marginLeft: '50px' }}
+      />
       <img
         src={logo}
         onClick={moveHome}
-        style={{ cursor: 'pointer',width:"120px", height:'50px', marginLeft:'80px'}}
+        style={{ cursor: 'pointer', width: '120px', height: '50px', marginLeft: '80px' }}
       />
 
       <div className="section-login">
         {isLoggedIn ? (
           <>
-            <div style={{
-                  martginTop:"5px",
-                  fontSize: '20px',
-                  color: '#646464',
-                  marginRight: '20px',
-                  cursor: 'pointer',
-                }}>
+            <div
+              style={{
+                martginTop: '5px',
+                fontSize: '20px',
+                color: '#646464',
+                marginRight: '20px',
+                cursor: 'pointer',
+              }}
+            >
               <p>{JSON.parse(userInfo).name}님</p>
             </div>
             <Link
@@ -60,13 +62,17 @@ export default function Header() {
                 localStorage.clear();
               }}
             >
-              <div style={{
-                  marginTop:"5px",
+              <div
+                style={{
+                  marginTop: '5px',
                   fontSize: '20px',
                   color: '#646464',
                   marginRight: '20px',
                   cursor: 'pointer',
-                }}>로그아웃</div>
+                }}
+              >
+                로그아웃
+              </div>
             </Link>
             <Link to={`/mypage`} style={{ textDecoration: 'none' }}>
               <div style={headerFont}>마이페이지</div>
@@ -77,7 +83,7 @@ export default function Header() {
             <Link to={`/login`} style={{ textDecoration: 'none' }}>
               <div
                 style={{
-                  marginTop:"5px",
+                  marginTop: '5px',
                   fontSize: '20px',
                   color: '#646464',
                   marginRight: '20px',
@@ -90,7 +96,7 @@ export default function Header() {
             <Link to={`/signup`} style={{ textDecoration: 'none' }}>
               <div
                 style={{
-                  marginTop:"5px",
+                  marginTop: '5px',
                   fontSize: '20px',
                   color: '#646464',
                   marginRight: '20px',
