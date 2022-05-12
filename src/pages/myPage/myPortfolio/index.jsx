@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Container } from 'pages/myPage/myPortfolio/styles';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
@@ -6,20 +6,24 @@ import 'slick-carousel/slick/slick-theme.css';
 import prevArrow from 'assets/images/prevArrow.png';
 import nextArrow from 'assets/images/nextArrow.png';
 import SelectCard from 'components/selectCard';
-import myPortFolioPreview from 'localData/myPortFolioPreview.json';
+import { getUserPortfolio } from 'apis/portfolioApi';
 
 const MyPortfolio = (props) => {
-  const [selectedFormat2, setSelectedFormat2] = useState('');
-  const [sliderCount, setSliderCount] = useState(3); //기본화면에서 4개
-  const [showDetailForm, setShowDetailForm] = useState(false);
-  const [detailFormId, setDetailFormId] = useState('');
+  const [sliderCount, setSliderCount] = useState(3); //기본화면에서 3개
+  const [userPortfolio, setUserPortfolio] = useState([]);
+  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
+
+  useEffect(() => {
+    async function fetchUserPortfolioData() {
+      const datas = await getUserPortfolio(userId);
+      await console.log('data:' + JSON.stringify(datas));
+      await setUserPortfolio(JSON.stringify(datas));
+    }
+    fetchUserPortfolioData();
+  }, []);
 
   const setSelectedFormat = (selectedFormat) => {
     props.setSelectedFormat(selectedFormat);
-  };
-
-  const getDetailFormId2 = (format) => {
-    props.setDetailFormId(format);
   };
 
   const SamplePrevArrow = (props) => {
@@ -59,15 +63,14 @@ const MyPortfolio = (props) => {
     prevArrow: <SamplePrevArrow />,
   };
 
-  const datas = myPortFolioPreview.data;
-
   return (
     <>
       <Container>
+        {console.log('user: ' + userPortfolio[0])}
         <div style={{ width: '1000px', margin: '100px 0px 100px 0px' }}>
           <Slider {...settings} style={{ marginLeft: '200px', marginRight: '50px' }}>
-            {datas.map((data, index) => (
-              <SelectCard id={index} key={index} format={data.result} setSelectedFormat={setSelectedFormat} />
+            {userPortfolio.map((data, index) => (
+              <SelectCard id={index} key={index} format={data} setSelectedFormat={setSelectedFormat} />
             ))}
           </Slider>
         </div>

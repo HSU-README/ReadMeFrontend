@@ -10,6 +10,17 @@ const serverApi = axios.create({
   },
 });
 
+//유저의 문서들 불러오기
+export const getUserPortfolio = async (userId) => {
+  const response = await serverApi.get(`/api/v1/user/${userId}/docs`);
+  try {
+    return response.data.result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//문서 정보 가져오기
 export const getPortfolio = async (docId) => {
   if (docId == 1001) {
     return basicPortfolio1.result;
@@ -25,6 +36,7 @@ export const getPortfolio = async (docId) => {
   }
 };
 
+//문서 만들기
 export const createPortfolio = async (memberId, title, components, docId) => {
   const componentArray = new Array();
   await components.map((component, index) => {

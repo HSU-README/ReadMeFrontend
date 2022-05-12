@@ -10,7 +10,6 @@ export default function SelectCard(props) {
     <Container isSelected={props.isSelected} onClick={setSelectedFormat}>
       <OpacityBlack />
       <div className="card-content">
-        <div className="card-head">{props.format.head}</div>
         <div className="card-title">{props.format.title}</div>
       </div>
     </Container>
