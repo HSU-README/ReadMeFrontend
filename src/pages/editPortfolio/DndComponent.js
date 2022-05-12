@@ -60,7 +60,7 @@ const DndComponent = (props) => {
             {image.map((item) => {
               return (
                 <div
-                  style={{ border: '1px solid black', width: '100px', height: '100px', margin: 'auto auto' }}
+                  style={{ border: '1px solid black', width: '100px', height: '100px', margin: 'auto auto' }} key={item}
                   onClick={() => createCommand('IMAGE')}
                 >
                   <span style={{ margin: 'auto auto' }}>Insert Image</span>
@@ -77,10 +77,10 @@ const DndComponent = (props) => {
             <details>
               <summary className="menu1">상상부기</summary>
               <ImageList sx={{ width: 280, height: 200 }} cols={3} rowHeight={164}>
-                {emoji.map((item) => {
+                {emoji.map((item,index) => {
                   return (
                     <ImageListItem key={item.label}>
-                      <div style={{ border: '1px solid black' }}>
+                      <div style={{ border: '1px solid black' }} key={`${item.label} ${index}`}>
                         <img
                           src={item.val}
                           onClick={() => {
@@ -97,10 +97,10 @@ const DndComponent = (props) => {
             <details>
               <summary className="menu2">상상부기 프렌즈</summary>
               <ImageList sx={{ width: 280, height: 200 }} cols={3} rowHeight={164}>
-                {emoji2.map((item) => {
+                {emoji2.map((item,index) => {
                   return (
                     <ImageListItem key={item.label}>
-                      <div style={{ border: '1px solid black' }}>
+                      <div style={{ border: '1px solid black' }} key={`${item.label} ${index}`}>
                         <img
                           src={item.val}
                           onClick={() => {
@@ -121,8 +121,9 @@ const DndComponent = (props) => {
                 {Picktogram.map((item) => {
                   return (
                     <ImageListItem key={item.label}>
-                      <div style={{ border: '1px solid black' }}>
+                      <div style={{ border: '1px solid black' }}key={item.label}>
                         <img
+                          
                           src={item.val}
                           onClick={() => {
                             createCommand(`IMOGE ${item.val}`);

@@ -22,12 +22,8 @@ const TextElement=(props:ICanvasComponent)=>{
     const editorRef = useRef(null)
     const textRef = useRef(null);
     const updateEditorValue = (value:string)=>{// 텍스트박스 내부 글자 수정 이벤트
-        console.log(value)
         actions?.updateCanvasData({id,content:value});
     }
-    useEffect(()=>{
-        console.log(textRef.current.innerHTML)
-    },[textRef])
     const modules={
         toolbar:"#toolbar"
     };

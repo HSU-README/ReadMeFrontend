@@ -60,9 +60,10 @@ interface IToolbarProps {
   createPortpolio: any;
   userId: any;
   canvasData: any;
+  docId:any
 }
 
-export default function Toolbar({ isEditEnable, canvasBox, createPortpolio, userId, canvasData }: IToolbarProps) {
+export default function Toolbar({ isEditEnable, canvasBox, createPortpolio, userId, canvasData,docId }: IToolbarProps) {
   const [title, setTitle] = useState('');
   const { actions } = useContext(CanvasContext);
   const [visibleCheck, setVisibleCheck] = useState(false);
@@ -100,6 +101,7 @@ export default function Toolbar({ isEditEnable, canvasBox, createPortpolio, user
       <span>
         <img
           onClick={() => {
+            console.log(canvasData)
             createPortpolio(userId, title, canvasData);
           }}
           src={require('../../../assets/images/saveIcon.png')}

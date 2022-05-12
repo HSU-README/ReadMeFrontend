@@ -17,9 +17,10 @@ export const getPortfolio = async (docId) => {
   }
 };
 
-export const createPortfolio = async (memberId, title, components) => {
+export const createPortfolio = async (memberId, title, components,docId) => {
   const componentArray = new Array();
   await components.map((component, index) => {
+    console.log(component)
     switch (component.type) {
       case 'TEXT':
         console.log('text: ' + component.dimension.width);
