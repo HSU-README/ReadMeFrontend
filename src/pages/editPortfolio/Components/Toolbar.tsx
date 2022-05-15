@@ -77,7 +77,7 @@ export default function Toolbar({
 }: IToolbarProps) {
   const [title, setTitle] = useState(docTitle);
   const { actions } = useContext(CanvasContext);
-  const [visibleCheck, setVisibleCheck] = useState(false);
+  const [visibleCheck, setVisibleCheck] = useState(true);
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
     actions?.addElement(type);
@@ -149,8 +149,9 @@ export default function Toolbar({
         style={{ marginLeft: '70px' }}
         control={
           <Checkbox
+            defaultChecked={visibleCheck}
             onChange={(e) => {
-              console.log(e.target.checked);
+              setVisibleCheck(e.target.checked);
             }}
           />
         }

@@ -20,16 +20,10 @@ const Home = (props) => {
   const [alertMessageVisible, setAlertMessageVisible] = useState(false);
   const { loginCheck } = useSelector((state) => state.loginCheck);
   const { isntClick } = useRef(null);
-  const { visibleCheck } = useSelector((state) => state.visibleCheck); //추천검색어 창 나타나게하는 리덕스 전역 관리 변수
   const dispatch = useDispatch();
   const openDetailForm = (id) => {
     setShowDetailForm(true);
     setDetailFormId(id);
-  };
-  const chagneGrayBackground = useRef(null); //로그인이 되어있지 않을 시에 클릭하면 회색화면 나오게하는 변수
-  const invisible = () => {
-    //추천검색어 안보이게
-    dispatch({ type: 'invisible' });
   };
 
   const closeDetailForm = () => {
@@ -83,25 +77,25 @@ const Home = (props) => {
     );
   };
 
-  const RecommendPortFolio = ({ opacity, isLogin }) => {
+  const RecommendPortFolio = ({isLogin }) => {
     return (
       <span>
         <div className="sectionFont">
-          <span style={{ opacity: `${opacity}` }}>나의 포트폴리오</span>
+          <span>나의 포트폴리오</span>
         </div>
-        <Slider {...settings} style={{ marginLeft: '100px', marginRight: '50px', opacity: `${opacity}` }}>
+        <Slider {...settings} style={{ marginLeft: '100px', marginRight: '50px' }}>
           {dummyData.map((data, index) => (
             <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin={isLogin} />
           ))}
         </Slider>
 
         <div className="sectionFont">
-          <span style={{ opacity: `${opacity}` }}>학과별 포트폴리오</span>
+          <span>학과별 포트폴리오</span>
         </div>
-        <Slider {...settings} style={{ marginLeft: '100px', marginRight: '50px', opacity: `${opacity}` }}>
+        <Slider {...settings} style={{ marginLeft: '100px', marginRight: '50px' }}>
           {dummyData.map((data, index) => (
             <span key={index} id={index}>
-              <DocCard openDetailForm={openDetailForm} pofolInfo={data} />
+              <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data}  isLogin={isLogin}/>
             </span>
           ))}
         </Slider>
@@ -139,11 +133,7 @@ const Home = (props) => {
       <div>
         <Banner />
       </div>
-      <div
-        onClick={() => {
-          invisible();
-        }}
-      ></div>
+      <div></div>
 
       {loginCheck && (
         <>
@@ -172,33 +162,16 @@ const Home = (props) => {
       ) : (
         //로그인이 되어있지 않고 나의 포트폴리오나 전공병 포트폴리오 글을 클릭 시 회색화면으로 변경
         <div
-          ref={chagneGrayBackground}
           onClick={() => {
-            invisible();
             setAlertMessageVisible(true);
-            chagneGrayBackground.current.style.background = 'rgba(128, 128, 128, 0.5)';
           }}
         >
-          {!alertMessageVisible ? (
             <RecommendPortFolio
               opacity="1"
               isLogin="false"
               onClick={() => {
-                invisible();
               }}
             />
-          ) : (
-            <>
-              <RecommendPortFolio
-                opacity="0.5"
-                isLogin="false"
-                onClick={() => {
-                  invisible();
-                }}
-              />
-              <span className="beforeLoginAlertText">로그인 후 이용 가능합니다.</span>
-            </>
-          )}
         </div>
       )}
       <br />

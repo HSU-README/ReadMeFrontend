@@ -68,7 +68,7 @@ const getInitialData = (data: any[], type: string = 'TEXT') => {
   };
 };
 var isDataChanged = false;
-const CanvasContainer = ({ createElement }) => {
+const CanvasContainer = ({ isEditable,createElement }) => {
   const [canvasData, setCanvasData] = useState<ICanvasData[]>([]);
   const [activeSelection, setActiveSelection] = useState<Set<string>>(new Set());
   const canvasBox = useRef<HTMLDivElement>(null); //캔버스만 가지고있는 REF
@@ -280,6 +280,7 @@ const CanvasContainer = ({ createElement }) => {
       style={{
         width: '210mm',
         height: '330mm',
+        pointerEvents:"none",
       }}
     >
       {console.log('canvasData: ' + JSON.stringify(canvasData))}

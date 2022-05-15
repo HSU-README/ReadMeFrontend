@@ -5,6 +5,7 @@ import MyPage from './pages/myPage';
 import Main from './pages/home';
 import Select from './pages/select';
 import DownloadPortfolio from './pages/editPortfolio/DownloadPortfolio.js';
+import Preview from 'pages/editPortfolio/Preview';
 import { useSelector, useDispatch } from 'react-redux';
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route path="/select" element={<Select />} />
           <Route path="/generate" element={<DownloadPortfolio />} /> {/*포트폴리오 제작 페이지 라우트*/}
           <Route path="/generate/:docId" element={<DownloadPortfolio />} /> {/*포트폴리오 제작 페이지 라우트*/}
+          <Route path="/preview" element={<Preview />} /> {/*포트폴리오 제작 페이지 라우트*/}
+          <Route path="/preview/:docId" element={<Preview />} /> {/*포트폴리오 제작 페이지 라우트*/}
         </Routes>
       </BrowserRouter>
     </div>
