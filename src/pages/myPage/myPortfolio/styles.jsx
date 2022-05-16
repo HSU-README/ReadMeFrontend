@@ -2,22 +2,37 @@ import styled from 'styled-components';
 import colors from 'styles/colors';
 
 export const Container = styled.div`
-  max-width: 840px;
+  max-width: 1920px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   .swiper {
     width: 100%;
-    padding-top: 150px;
-    padding-bottom: 50px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .swiper-slide {
-    background-position: center;
-    background-size: cover;
-    width: 300px;
-    height: 300px;
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    height: calc((100% - 50px) / 2) !important;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
   }
 
   .swiper-slide img {

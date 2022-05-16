@@ -8,9 +8,8 @@ export const Container = styled.div`
   height: ${(props) => (props.isSelected ? '270px' : '250px')};
   width: ${(props) => (props.isSelected ? '240px' : '220px')};
   margin: 50px auto;
-
   border-radius: 10px;
-
+  top: ${(props) => (props.length === 1 ? '70px' : '0px')};
   box-shadow: ${(props) => (props.isSelected ? '12px 12px 12px rgba(0, 0, 0, 0.5)' : 'none')};
 
   display: flex;
