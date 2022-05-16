@@ -13,7 +13,7 @@ const Preview = () => {
     <div>
       <Header />
       <div style={{backgroundColor:"lightgray"}}>
-      <div style={{ display: 'flex',marginLeft:"35%"}} >
+      <div style={{ display: 'flex',marginLeft:"30%"}} >
         <div  ref={canvasBox}>
             <CanvasContainer isEditable={false}createElement={createElement} />
           </div>

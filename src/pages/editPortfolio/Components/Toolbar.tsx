@@ -8,7 +8,7 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { CanvasContext } from '../CanvasContainer';
 import ReactToPrint from 'react-to-print';
-import { FormControl, Input, Checkbox, FormControlLabel } from '@mui/material';
+import { FormControl, Input, Checkbox, FormControlLabel,Dialog,DialogContent,DialogActions,DialogContentText,Button } from '@mui/material';
 export const sizeList = [
   '8px',
   '9px',
@@ -64,6 +64,7 @@ interface IToolbarProps {
   canvasData: any;
   docId: any;
   docTitle: any;
+  isEditable: any;
 }
 
 export default function Toolbar({
@@ -74,16 +75,23 @@ export default function Toolbar({
   canvasData,
   docId,
   docTitle,
+  isEditable,
 }: IToolbarProps) {
   const [title, setTitle] = useState(docTitle);
   const { actions } = useContext(CanvasContext);
+  const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
     actions?.addElement(type);
   };
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
+  const handleOpen=()=>{
+    setOpenDialog(true)
+  }
+  const handleClose=()=>{
+    setOpenDialog(false);
+  }
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -113,13 +121,49 @@ export default function Toolbar({
       <span>
         <img
           onClick={() => {
-            console.log(canvasData);
             createPortpolio(userId, title, canvasData);
+            //console.log(isEditEnable)
+            //handleOpen();
           }}
           src={require('../../../assets/images/saveIcon.png')}
           alt="저장"
           style={{ marginRight: '20px', width: '30px', height: '30px', cursor: 'pointer' }}
         ></img>
+        {!isEditable ? (
+          <Dialog open={openDialog} onClose={handleClose}>
+            <DialogContent>
+              <DialogContentText>나의 양식에 추가하시겠습니까?</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>취소</Button>
+              <Button
+                onClick={() => {
+                  alert('나의 양식에 추가.');
+                  handleClose();
+                }}
+              >
+                확인
+              </Button>
+            </DialogActions>
+          </Dialog>
+        ) : (
+          <Dialog open={openDialog} onClose={handleClose}>
+            <DialogContent>
+              <DialogContentText>양식을 저장하시겠습니까?</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>취소</Button>
+              <Button
+                onClick={() => {
+                  
+                  handleClose();
+                }}
+              >
+                확인
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
       </span>
       <span>
         {/*   <ReactToPrint pageStyle={pageStyle} trigger={() => <img src={require('../../../assets/images/exportPdf.png')} alt="출력" style={{width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} /> */}
@@ -135,7 +179,7 @@ export default function Toolbar({
         />
       </span>
 
-      <FormControl variant="standard" style={{ marginLeft: '90px', width: '50%'}}>
+      <FormControl variant="standard" style={{ marginLeft: '90px', width: '50%' }}>
         <Input
           value={title}
           placeholder="제목을 입력하세요."

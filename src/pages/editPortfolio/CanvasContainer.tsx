@@ -280,7 +280,6 @@ const CanvasContainer = ({ isEditable,createElement }) => {
       style={{
         width: '210mm',
         height: '330mm',
-        pointerEvents:"none",
       }}
     >
       {console.log('canvasData: ' + JSON.stringify(canvasData))}
@@ -292,16 +291,30 @@ const CanvasContainer = ({ isEditable,createElement }) => {
         canvasData={canvasData}
         docId={docId}
         docTitle={docTitle}
+        isEditable={isEditable}
       />
 
       <div ref={canvasBox}>
         <CanvasContext.Provider value={context}>
           <div>
-            <div className="canvas-container">
-              {canvasData.map((canvas, key) => {
-                return <CanvasComponent key={key} {...canvas} />;
-              })}
-            </div>
+            {isEditable === false ? (
+              <div
+                className="canvas-container"
+                style={{
+                  pointerEvents: 'none',
+                }}
+              >
+                {canvasData.map((canvas, key) => {
+                  return <CanvasComponent key={key} {...canvas} />;
+                })}
+              </div>
+            ) : (
+              <div className="canvas-container">
+                {canvasData.map((canvas, key) => {
+                  return <CanvasComponent key={key} {...canvas} />;
+                })}
+              </div>
+            )}
           </div>
         </CanvasContext.Provider>
       </div>
