@@ -1,10 +1,3 @@
-/* 
-주석 작성일 : 2022-05-08
-작성자 : 이찬우
-파일명 : Toolbar.tsx
-요약 : 상단 메뉴바 기능 출력및 설정
-주소 : /editpofol
-*/
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { CanvasContext } from '../CanvasContainer';
 import ReactToPrint from 'react-to-print';
@@ -81,6 +74,8 @@ export default function Toolbar({
   const { actions } = useContext(CanvasContext);
   const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
+  const tumbsImageRef = useRef<HTMLImageElement>(null);
+  const [like, setLike]= useState(false);
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
     actions?.addElement(type);
@@ -92,6 +87,7 @@ export default function Toolbar({
   const handleClose=()=>{
     setOpenDialog(false);
   }
+  
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -121,9 +117,7 @@ export default function Toolbar({
       <span>
         <img
           onClick={() => {
-            createPortpolio(userId, title, canvasData);
-            //console.log(isEditEnable)
-            //handleOpen();
+            handleOpen();
           }}
           src={require('../../../assets/images/saveIcon.png')}
           alt="저장"
@@ -155,7 +149,7 @@ export default function Toolbar({
               <Button onClick={handleClose}>취소</Button>
               <Button
                 onClick={() => {
-                  
+                  createPortpolio(userId, title, canvasData);
                   handleClose();
                 }}
               >
@@ -178,7 +172,6 @@ export default function Toolbar({
           content={() => canvasBox.current}
         />
       </span>
-
       <FormControl variant="standard" style={{ marginLeft: '90px', width: '50%' }}>
         <Input
           value={title}
@@ -188,20 +181,40 @@ export default function Toolbar({
           }}
         />
       </FormControl>
-      <FormControlLabel
-        value="start"
-        style={{ marginLeft: '70px' }}
-        control={
-          <Checkbox
-            defaultChecked={visibleCheck}
-            onChange={(e) => {
-              setVisibleCheck(e.target.checked);
-            }}
-          />
-        }
-        label="공개"
-        labelPlacement="start"
-      />
+      {isEditable ? (
+        <FormControlLabel
+          value="start"
+          style={{ marginLeft: '70px' }}
+          control={
+            <Checkbox
+              defaultChecked={visibleCheck}
+              onChange={(e) => {
+                setVisibleCheck(e.target.checked);
+              }}
+            />
+          }
+          label="공개"
+          labelPlacement="start"
+        />
+      ) : like ? (
+        <img
+          style={{ width: '30px', height: '30px', marginLeft: '70px' }}
+          src={require('../../../assets/images/thumbs_up_fill_icon.png')}
+          ref={tumbsImageRef}
+          onClick={() => {
+            setLike(false);
+          }}
+        />
+      ) : (
+        <img
+          style={{ width: '30px', height: '30px', marginLeft: '70px' }}
+          src={require('../../../assets/images/thumbs_up.png')}
+          ref={tumbsImageRef}
+          onClick={() => {
+            setLike(true);
+          }}
+        />
+      )}
     </div>
   );
 }
