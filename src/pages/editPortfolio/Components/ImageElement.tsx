@@ -1,10 +1,13 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { CanvasContext, ICanvasComponent } from '../CanvasContainer';
 import '../Canvas.css';
+import { storage } from '../../../firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 const ImageElement = (props: ICanvasComponent) => {
   const { content, id } = props;
   const { actions } = useContext(CanvasContext);
   const uploadRef = useRef<HTMLInputElement>(null);
+  const [imageUrl, setImageUrl] = useState('');
 
   const getBase64 = (file: File) => {
     return new Promise((resolve, reject) => {
@@ -38,17 +41,28 @@ const ImageElement = (props: ICanvasComponent) => {
   const imageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e?.target?.files?.[0];
     if (file) {
+      const storageRef = ref(storage, file.name);
+      //upload the file
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      const imageUrl = await uploadTask.then(() => {
+        return getDownloadURL(uploadTask.snapshot.ref);
+      });
+
       const base64 = (await getBase64(file)) as string;
       const imageDimensions: {
         [key: string]: number;
       } = await getImageDimensions(base64);
+
       const { calcWidth, calcHeight } = getAdjustedDimenstions(imageDimensions?.nw, imageDimensions?.nh, 150);
-      actions?.updateCanvasData({
+      await actions?.updateCanvasData({
         id,
-        content: base64 || '',
+        content: imageUrl.toString(),
         dimension: {
-          width: `${calcWidth || 0}`,
-          height: `${calcHeight || 0}`,
+          width: `${calcWidth || 0}`.replace('px', ''),
+          height: parseInt(`${calcHeight || 0}`)
+            .toString()
+            .replace('px', ''),
         },
       });
     }

@@ -60,7 +60,7 @@ export default function Modal(props) {
             onClickExitButton();
           }}
         />
-        <div className="section-title">디자인 미리보기</div>
+        <div className="section-title">{title}</div>
         <hr />
         <div className="section-image">
           <Document file={docUrl} onLoadSuccess={onDocumentLoadSuccess}>
@@ -76,13 +76,19 @@ export default function Modal(props) {
             <span className="info-title" style={{ marginRight: '40px' }}>
               태그
             </span>
-            {tags.map((data, index) => {
+            <span className="info-content" style={{ padding: '0px 10px 0px 10px' }}>
+              #IT
+            </span>
+            <span className="info-content" style={{ padding: '0px 10px 0px 10px' }}>
+              #디자인
+            </span>
+            {/* {tags.map((data, index) => {
               return (
                 <span className="info-content" key={index} style={{ padding: '0px 10px 0px 10px' }}>
                   #{data}
                 </span>
               );
-            })}
+            })} */}
           </div>
           <hr />
         </div>

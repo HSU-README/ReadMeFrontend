@@ -48,6 +48,7 @@ export const Container = styled.div`
   .section-title {
     font-size: 24px;
     font-weight: bold;
+    padding-left: 25px;
   }
 
   .section-info {
