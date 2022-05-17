@@ -158,7 +158,7 @@ const Home = (props) => {
         ))}
       </Slider>
       {loginCheck ? (
-        <RecommendPortFolio opacity="1" isLogin="true" />
+        <RecommendPortFolio isLogin="true" />
       ) : (
         //로그인이 되어있지 않고 나의 포트폴리오나 전공병 포트폴리오 글을 클릭 시 회색화면으로 변경
         <div
@@ -166,15 +166,11 @@ const Home = (props) => {
             setAlertMessageVisible(true);
           }}
         >
-            <RecommendPortFolio
-              opacity="1"
-              isLogin="false"
-              onClick={() => {
-              }}
-            />
+          <RecommendPortFolio  isLogin="false" />
         </div>
       )}
       <br />
+      <br/>
       <Footer />
     </div>
   );

@@ -56,8 +56,7 @@ const Header = () => {
       setUserInfo(readme_userInfo);
       signIn();
     }
-
-    setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x + 100}px`);
+    setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x+50}px`);
     setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
 
     //로그인이 되었는지 안되었는지 판단
@@ -69,6 +68,11 @@ const Header = () => {
     //   signOut();
     // }
   }, []);
+
+  // useEffect(()=>{
+  //   console.log(keywordBoxRef.current.getBoundingClientRect().x)
+  // },[keywordBoxRef.current.getBoundingClientRect().x,keywordBoxRef.current.getBoundingClientRect().y])
+
   const dummeyKeywords = [
     '#컴퓨터공학',
     '#인공지능',

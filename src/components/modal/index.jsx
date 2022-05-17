@@ -94,7 +94,7 @@ export default function Modal(props) {
               goToGenerate();
             }}
           >
-            <span style={{ fontSize: '32px' }}>미리보기</span>
+            <span style={{ fontSize: '17px', fontWeight:"700" }}>미리보기</span>
           </Button>
 
           <Button
@@ -103,7 +103,7 @@ export default function Modal(props) {
               goToPreview();
             }}
           >
-            <span style={{ fontSize: '32px' }}>포트폴리오 만들기</span>
+            <span style={{ fontSize: '17px' , fontWeight:"700"}}>포트폴리오 만들기</span>
           </Button>
         </div>
       </div>
