@@ -9,7 +9,7 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 
-const MyPortfolio = (props) => {
+const PickPofol = (props) => {
   const [userPortfolio, setUserPortfolio] = useState([{}]);
   const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
 
@@ -64,4 +64,4 @@ const MyPortfolio = (props) => {
   );
 };
 
-export default MyPortfolio;
+export default PickPofol;
