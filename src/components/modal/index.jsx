@@ -54,7 +54,7 @@ export default function Modal(props) {
             onClickExitButton();
           }}
         />
-        <div className="section-title">디자인 미리보기</div>
+        <div className="section-title">{title}</div>
         <hr />
         <div className="section-image">
           <Document file={docUrl} onLoadSuccess={onDocumentLoadSuccess}>
