@@ -6,7 +6,7 @@ export const Container = styled.footer`
   ${maxWidth}
   display: flex;
   justify-content: flex-end;
-  padding: 6px;
+  padding: 20px;
   margin-top: auto;
   border-top: 1px solid;
   border-color: ${colors.footerLine};
