@@ -1,42 +1,67 @@
-import React, { useCallback, useState } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { EffectCoverflow, Pagination } from 'swiper';
-
+import React, { useEffect, useState } from 'react';
 import { Container } from 'pages/myPage/pickPofol/styles';
+import SelectCard from 'components/selectCard';
+import { getUserPortfolio } from 'apis/portfolioApi';
+
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Grid, Pagination } from 'swiper';
 import 'swiper/css';
-import 'swiper/css/effect-coverflow';
+import 'swiper/css/grid';
 import 'swiper/css/pagination';
-const PickPofol = () => {
+
+const MyPortfolio = (props) => {
+  const [userPortfolio, setUserPortfolio] = useState([{}]);
+  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
+
+  useEffect(() => {
+    async function fetchUserPortfolioData() {
+      const datas = await getUserPortfolio(userId);
+      await setUserPortfolio(datas);
+    }
+    fetchUserPortfolioData();
+  }, []);
+
+  const setSelectedFormat = (selectedFormat) => {
+    props.setSelectedFormat(selectedFormat);
+  };
+
+  if (userPortfolio === undefined) {
+    return <></>;
+  }
+
   return (
-    <Container>
-      <Swiper
-        effect={'coverflow'}
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={3}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        pagination={true}
-        modules={[EffectCoverflow, Pagination]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-      </Swiper>
-    </Container>
+    <>
+      <Container>
+        {console.log(userPortfolio)}
+        <div style={{ width: '1200px', margin: '100px 0px 100px 100px', overflow: 'auto', display: 'flex' }}>
+          <Swiper
+            slidesPerView={5}
+            grid={{
+              rows: 2,
+            }}
+            spaceBetween={20}
+            pagination={{
+              clickable: true,
+            }}
+            modules={[Grid, Pagination]}
+            className="mySwiper"
+          >
+            {userPortfolio.map((data, index) => (
+              <SwiperSlide>
+                <SelectCard
+                  id={index}
+                  key={index}
+                  length={userPortfolio.length}
+                  format={data}
+                  setSelectedFormat={setSelectedFormat}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </Container>
+    </>
   );
 };
 
-export default PickPofol;
+export default MyPortfolio;
