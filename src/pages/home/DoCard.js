@@ -1,43 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import dummy1 from '../../assets/images/dummy4.png';
-import { Card, CardActionArea, CardMedia, CardContent, Typography, Button, CardActions } from '@mui/material';
+import {Card, CardActionArea, CardMedia,Dialog,DialogContent,DialogActions,DialogContentText,Button } from '@mui/material';
 import Slider from 'react-slick';
 import 'index.css';
 const DocCard = (props) => {
   // const tags = props.pofolInfo.tag;
+  const [openDialog, setOpenDialog] = useState(false);
   const clickForm = () => {
+    console.log(props.openDetailForm)
     props.openDetailForm(props.id);
   };
-  const location = useLocation();
-
-  var count = 5;
+  
+  const handleOpen=()=>{
+    setOpenDialog(true)
+  }
+  const handleClose=()=>{
+    setOpenDialog(false);
+  }
   return (
-    <div style={{ marginLeft: '80px', marginRight: '80px', display: 'inline-flex' }}>
-      <Card
-        className="cardView"
-        sx={{ maxWidth: 300, minWidth: 300 }}
-        onClick={() => {
-          console.log(location);
-        }}
-      >
-        <CardActionArea>
+    <div style={{ marginLeft: '80px', marginRight: '80px', display: 'inline-flex',border:"1px solid #d3d3d3",borderRadius:"15px" }}>
+      <Card className="cardView" sx={{ maxWidth: 300, minWidth: 300 }}>
+        <CardActionArea
+          onClick={() => {
+            if (props.isLogin === 'false') {
+              handleOpen();
+            }
+          }}
+        >
           <CardMedia
             className="cardMedia"
             component="img"
             height="190"
             image={dummy1}
             alt="green iguana"
-            onClick={props.isLogin === 'true' ? clickForm : undefined}
+            onClick={props.isLogin === 'true' && clickForm}
           />
           <div style={{ marginTop: '10px', marginBottom: '10px', textAlign: 'center' }}>
             {props.pofolInfo.tag.map((data, index) => {
               return (
                 <span
-                  className="grayTag"
                   key={index}
                   onClick={() => {
-                    props.isLogin !== 'false' && alert(`${data}페이지로 이동`);
+                    alert(`${data}페이지로 이동`);
                   }}
                 >
                   # {data}
@@ -47,6 +52,25 @@ const DocCard = (props) => {
           </div>
         </CardActionArea>
       </Card>
+      {/* 로그인 안내창 */}
+      <Dialog open={openDialog} onClose={handleClose}>
+        <DialogContent>
+          <DialogContentText style={{ fontSize: '20px', color: 'black' }}>
+            로그인 후 이용 가능한 서비스입니다.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>돌아가기</Button>
+          <Button
+            onClick={() => {
+              handleClose();
+              document.location.href = 'http://localhost:3000/login';
+            }}
+          >
+            로그인
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

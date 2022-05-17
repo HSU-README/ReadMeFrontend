@@ -1,14 +1,7 @@
-/* 
-주석 작성일 : 2022-05-08
-작성자 : 이찬우
-파일명 : Toolbar.tsx
-요약 : 상단 메뉴바 기능 출력및 설정
-주소 : /editpofol
-*/
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { CanvasContext } from '../CanvasContainer';
 import ReactToPrint from 'react-to-print';
-import { FormControl, Input, Checkbox, FormControlLabel } from '@mui/material';
+import { FormControl, Input, Checkbox, FormControlLabel,Dialog,DialogContent,DialogActions,DialogContentText,Button } from '@mui/material';
 export const sizeList = [
   '8px',
   '9px',
@@ -64,6 +57,7 @@ interface IToolbarProps {
   canvasData: any;
   docId: any;
   docTitle: any;
+  isEditable: any;
 }
 
 export default function Toolbar({
@@ -74,16 +68,26 @@ export default function Toolbar({
   canvasData,
   docId,
   docTitle,
+  isEditable,
 }: IToolbarProps) {
   const [title, setTitle] = useState(docTitle);
   const { actions } = useContext(CanvasContext);
-  const [visibleCheck, setVisibleCheck] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [visibleCheck, setVisibleCheck] = useState(true);
+  const tumbsImageRef = useRef<HTMLImageElement>(null);
+  const [like, setLike]= useState(false);
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
     actions?.addElement(type);
   };
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
+  const handleOpen=()=>{
+    setOpenDialog(true)
+  }
+  const handleClose=()=>{
+    setOpenDialog(false);
+  }
+  
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -113,13 +117,47 @@ export default function Toolbar({
       <span>
         <img
           onClick={() => {
-            console.log(canvasData);
-            createPortpolio(userId, title, canvasData);
+            handleOpen();
           }}
           src={require('../../../assets/images/saveIcon.png')}
           alt="저장"
           style={{ marginRight: '20px', width: '30px', height: '30px', cursor: 'pointer' }}
         ></img>
+        {!isEditable ? (
+          <Dialog open={openDialog} onClose={handleClose}>
+            <DialogContent>
+              <DialogContentText>나의 양식에 추가하시겠습니까?</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>취소</Button>
+              <Button
+                onClick={() => {
+                  alert('나의 양식에 추가.');
+                  handleClose();
+                }}
+              >
+                확인
+              </Button>
+            </DialogActions>
+          </Dialog>
+        ) : (
+          <Dialog open={openDialog} onClose={handleClose}>
+            <DialogContent>
+              <DialogContentText>양식을 저장하시겠습니까?</DialogContentText>
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={handleClose}>취소</Button>
+              <Button
+                onClick={() => {
+                  createPortpolio(userId, title, canvasData);
+                  handleClose();
+                }}
+              >
+                확인
+              </Button>
+            </DialogActions>
+          </Dialog>
+        )}
       </span>
       <span>
         {/*   <ReactToPrint pageStyle={pageStyle} trigger={() => <img src={require('../../../assets/images/exportPdf.png')} alt="출력" style={{width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} /> */}
@@ -134,8 +172,7 @@ export default function Toolbar({
           content={() => canvasBox.current}
         />
       </span>
-
-      <FormControl variant="standard" style={{ marginLeft: '90px', width: '50%'}}>
+      <FormControl variant="standard" style={{ marginLeft: '90px', width: '50%' }}>
         <Input
           value={title}
           placeholder="제목을 입력하세요."
@@ -144,19 +181,40 @@ export default function Toolbar({
           }}
         />
       </FormControl>
-      <FormControlLabel
-        value="start"
-        style={{ marginLeft: '70px' }}
-        control={
-          <Checkbox
-            onChange={(e) => {
-              console.log(e.target.checked);
-            }}
-          />
-        }
-        label="공개"
-        labelPlacement="start"
-      />
+      {isEditable ? (
+        <FormControlLabel
+          value="start"
+          style={{ marginLeft: '70px' }}
+          control={
+            <Checkbox
+              defaultChecked={visibleCheck}
+              onChange={(e) => {
+                setVisibleCheck(e.target.checked);
+              }}
+            />
+          }
+          label="공개"
+          labelPlacement="start"
+        />
+      ) : like ? (
+        <img
+          style={{ width: '30px', height: '30px', marginLeft: '70px' }}
+          src={require('../../../assets/images/thumbs_up_fill_icon.png')}
+          ref={tumbsImageRef}
+          onClick={() => {
+            setLike(false);
+          }}
+        />
+      ) : (
+        <img
+          style={{ width: '30px', height: '30px', marginLeft: '70px' }}
+          src={require('../../../assets/images/thumbs_up.png')}
+          ref={tumbsImageRef}
+          onClick={() => {
+            setLike(true);
+          }}
+        />
+      )}
     </div>
   );
 }

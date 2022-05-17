@@ -33,14 +33,7 @@ const DndComponent = (props) => {
           <details>
             <summary>텍스트</summary>
             <br />
-            <div
-              style={{ margin: 'auto auto', border: '2px solid black', width: '200px', height: '50px' }}
-              onClick={() => {
-                createCommand('TEXT');
-              }}
-            >
-              Input some text
-            </div>
+              <img src={require('../../assets/images/textboxIcon.jpg')} style={{border:"1px solid black", borderRadius:"15px",width:"100px", height:"100px", margin:"auto auto"}} onClick={()=>{createCommand('TEXT');}}/>
           </details>
         </div>
         <div className="itemBoxCss">
@@ -59,12 +52,9 @@ const DndComponent = (props) => {
             <br />
             {image.map((item) => {
               return (
-                <div
-                  style={{ border: '1px solid black', width: '100px', height: '100px', margin: 'auto auto' }} key={item}
-                  onClick={() => createCommand('IMAGE')}
-                >
-                  <span style={{ margin: 'auto auto' }}>Insert Image</span>
-                </div>
+                
+                  <img src={require('../../assets/images/imageIcon.png')} style={{border:"1px solid black", borderRadius:"15px",width:"100px" ,height:"100px",margin:"auto auto"}} onClick={() => createCommand('IMAGE')}/>
+              
               );
             })}
           </details>

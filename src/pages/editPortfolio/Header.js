@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from 'assets/images/logo.jpg';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FormControl, TextField, Input } from '@mui/material';
 import { Container, headerFont } from '../../components/header/styles';
 import prevIcon from '../../assets/images/backArrow.png';
@@ -25,13 +25,13 @@ export default function Header() {
       setUserInfo(readme_userInfo);
     }
   }, []);
-
+  const history= useNavigate();
   return (
     <Container>
       <img
         src={prevIcon}
-        onClick={() => {}}
-        style={{ width: '15px', height: '15px', marginTop: '10px', marginLeft: '15px' }}
+        onClick={() => {history(-1)}}
+        style={{ width: '15px', height: '15px', marginTop: '10px', marginLeft: '15px',cursor:"pointer" }}
       />
       <img
         src={logo}

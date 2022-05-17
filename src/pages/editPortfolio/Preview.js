@@ -5,7 +5,7 @@ import Header from './Header';
 import Footer from 'components/footer/index.jsx';
 import DndComponent from './DndComponent';
 import ReactToPrint from 'react-to-print';
-const EditPortfolio = () => {
+const Preview = () => {
   
   const [createElement, setCreateElement] = useState('');
   const canvasBox = useRef(null);
@@ -13,12 +13,10 @@ const EditPortfolio = () => {
     <div>
       <Header />
       <div style={{backgroundColor:"lightgray"}}>
-      <div style={{ display: 'flex',marginLeft:"26%"}} >
+      <div style={{ display: 'flex',marginLeft:"30%"}} >
         <div  ref={canvasBox}>
-            <CanvasContainer isEditable={true} createElement={createElement} />
-            
+            <CanvasContainer isEditable={false}createElement={createElement} />
           </div>
-          <DndComponent setCreateElement={setCreateElement} />
       </div>
       </div>
      
@@ -27,4 +25,4 @@ const EditPortfolio = () => {
   );
 };
 
-export default EditPortfolio;
+export default Preview;

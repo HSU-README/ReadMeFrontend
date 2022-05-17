@@ -42,6 +42,12 @@ export default function Modal(props) {
     window.location.href = `/generate/${props.previewId}`;
   };
 
+  const goToPreview = () => {
+    window.location.href = `/preview/${props.previewId}`;
+  };
+
+
+
   return (
     <Container>
       <div className="section-modal">
@@ -89,12 +95,21 @@ export default function Modal(props) {
 
         <div className="button-wrapper">
           <Button
-            style={{ width: '450px', height: '48px', borderRadius: '16px' }}
+            style={{ width: '450px', height: '48px', borderRadius: '16px', marginRight:"20px"}}
             onClick={() => {
               goToGenerate();
             }}
           >
-            <span style={{ fontSize: '32px' }}>포트폴리오 만들기</span>
+            <span style={{ fontSize: '17px', fontWeight:"700" }}>미리보기</span>
+          </Button>
+
+          <Button
+            style={{ width: '450px', height: '48px', borderRadius: '16px' }}
+            onClick={() => {
+              goToPreview();
+            }}
+          >
+            <span style={{ fontSize: '17px' , fontWeight:"700"}}>포트폴리오 만들기</span>
           </Button>
         </div>
       </div>

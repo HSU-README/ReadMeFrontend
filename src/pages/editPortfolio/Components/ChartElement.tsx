@@ -60,7 +60,7 @@ const ChartElement=(props:ICanvasComponent)=>{
                                                 updateChartValue(chartRef.current.innerHTML)
                                             })}
                                          >{strArr[index][i]}</div> */}
-                                         <textarea style={{width:"100%",height:"100%",border:"0px"}} value={strArr[index][i]} onChange={(e)=>{
+                                         <textarea style={{width:"100%",resize:"none",height:"100%"}} value={strArr[index][i]} onChange={(e)=>{
                                              //var str=strArr[index][i];
                                              
                                              strArr[index][i] = e.target.value;

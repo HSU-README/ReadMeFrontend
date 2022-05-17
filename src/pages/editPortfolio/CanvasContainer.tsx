@@ -68,7 +68,7 @@ const getInitialData = (data: any[], type: string = 'TEXT') => {
   };
 };
 var isDataChanged = false;
-const CanvasContainer = ({ createElement }) => {
+const CanvasContainer = ({ isEditable,createElement }) => {
   const [canvasData, setCanvasData] = useState<ICanvasData[]>([]);
   const [activeSelection, setActiveSelection] = useState<Set<string>>(new Set());
   const canvasBox = useRef<HTMLDivElement>(null); //캔버스만 가지고있는 REF
@@ -291,16 +291,30 @@ const CanvasContainer = ({ createElement }) => {
         canvasData={canvasData}
         docId={docId}
         docTitle={docTitle}
+        isEditable={isEditable}
       />
 
       <div ref={canvasBox}>
         <CanvasContext.Provider value={context}>
           <div>
-            <div className="canvas-container">
-              {canvasData.map((canvas, key) => {
-                return <CanvasComponent key={key} {...canvas} />;
-              })}
-            </div>
+            {isEditable === false ? (
+              <div
+                className="canvas-container"
+                style={{
+                  pointerEvents: 'none',
+                }}
+              >
+                {canvasData.map((canvas, key) => {
+                  return <CanvasComponent key={key} {...canvas} />;
+                })}
+              </div>
+            ) : (
+              <div className="canvas-container">
+                {canvasData.map((canvas, key) => {
+                  return <CanvasComponent key={key} {...canvas} />;
+                })}
+              </div>
+            )}
           </div>
         </CanvasContext.Provider>
       </div>
