@@ -68,7 +68,7 @@ const getInitialData = (data: any[], type: string = 'TEXT') => {
   };
 };
 var isDataChanged = false;
-const CanvasContainer = ({ isEditable,createElement }) => {
+const CanvasContainer = ({ isEditable, createElement }) => {
   const [canvasData, setCanvasData] = useState<ICanvasData[]>([]);
   const [activeSelection, setActiveSelection] = useState<Set<string>>(new Set());
   const canvasBox = useRef<HTMLDivElement>(null); //캔버스만 가지고있는 REF
@@ -114,7 +114,7 @@ const CanvasContainer = ({ isEditable,createElement }) => {
         const datas = await getPortfolio(docId);
         await setDocTitle(datas.title);
         const componentArray = new Array();
-        let type, left, top, width, height, content, chartContent, row, col, imageUrl, iconUrl;
+        let type, left, top, width, height, content, chartContent, row, col, imgUrl, iconUrl;
         let id = 1;
         await datas.components.map((component) => {
           console.log(datas.components);
@@ -151,13 +151,13 @@ const CanvasContainer = ({ isEditable,createElement }) => {
               break;
 
             case 'image':
-              imageUrl = component.imageUrl;
+              imgUrl = component.imgUrl;
               componentArray.push({
                 id: 'IMAGE__' + (++id).toString(),
                 type: 'IMAGE',
                 position: { top: top, left: left },
                 dimension: { width: width.toString(), height: height.toString() },
-                content: imageUrl,
+                content: imgUrl,
               });
               break;
 
