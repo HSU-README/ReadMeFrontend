@@ -81,6 +81,7 @@
     "react-to-pdf": "^0.0.14",
     "react-to-print": "^2.14.6",
     "react-toastify": "^8.2.0",
+    "recoil": "^0.7.3-alpha.2",
     "redux": "^4.2.0",
     "reset-css": "^5.0.1",
     "resolve": "^1.20.0",
