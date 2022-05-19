@@ -5,6 +5,7 @@ import Header from './Header';
 import Footer from 'components/footer/index.jsx';
 import DndComponent from './DndComponent';
 import ReactToPrint from 'react-to-print';
+import TagComponent from './TagComponent';
 const EditPortfolio = () => {
   
   const [createElement, setCreateElement] = useState('');
@@ -12,8 +13,9 @@ const EditPortfolio = () => {
   return (
     <div>
       <Header />
-      <div style={{backgroundColor:"lightgray"}}>
-      <div style={{ display: 'flex',marginLeft:"26%"}} >
+      <div style={{backgroundColor:"lightgray",display:'flex'}}>
+        <TagComponent/>
+      <div style={{ display: 'flex',marginLeft:"1%"}} >
         <div  ref={canvasBox}>
             <CanvasContainer isEditable={true} createElement={createElement} />
             
