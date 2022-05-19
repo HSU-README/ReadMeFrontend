@@ -8,7 +8,6 @@ import { createPortfolio, getPortfolio } from 'apis/portfolioApi';
 import html2canvas from 'html2canvas';
 import { storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { decode } from 'base64-arraybuffer';
 import { useRecoilState } from 'recoil';
 import { chartState } from 'recoil/atoms';
 export const CanvasContext = React.createContext<ICanvasContext>({});

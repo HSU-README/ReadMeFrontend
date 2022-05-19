@@ -55,14 +55,24 @@ export const createPortfolio = async (memberId, title, components, docId) => {
         break;
 
       case 'CHART':
-        console.log('chart: ' + component.chartContent);
+        const stringToObject = () => {
+          const arr = component.chartContent.split(',');
+          const content = new Array(0);
+          for (let i = 0; i < 6; i++) {
+            for (let j = 0; j < 6; j++) {
+              content.push({ row: i, column: j, content: arr[i * 6 + j] });
+            }
+          }
+          return content;
+        };
+
         componentArray.push({
           type: 'table',
           x: component.position.left,
           y: component.position.top,
           width: component.dimension.width.replace('px', ''),
           height: component.dimension.height.replace('px', ''),
-          tableContent: component.chartContent,
+          tableContents: stringToObject(),
           tableCol: component.chart.col,
           tableRow: component.chart.row,
         });
