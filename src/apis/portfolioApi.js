@@ -106,6 +106,7 @@ export const createPortfolio = async (memberId, title, components, docId) => {
     const docId = JSON.stringify(response.data.result.docId);
     console.log(JSON.stringify(response.data.result));
     ToastSuccess(successMessage + `  문서번호: ${docId}`);
+    return docId;
   } catch (error) {
     const errorMessage = JSON.stringify(error.response.data.errorMessage);
     ToastError(errorMessage);
