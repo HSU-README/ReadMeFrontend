@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useContext, useState } from 'react';
 import { CanvasContext } from '../CanvasContainer';
 import ReactToPrint from 'react-to-print';
 import { useRecoilState, useResetRecoilState } from 'recoil';
+import {likePortfolio, unlikePortfolio, getUserLikePortfolio} from "apis/likeApi";
 import { tagsState } from 'recoil/atoms';
 import {
   FormControl,
@@ -103,6 +104,20 @@ export default function Toolbar({
   const handleClose = () => {
     setOpenDialog(false);
   };
+
+  useEffect(()=>{
+    async function fetchUserLikePortfolioData() {
+      const datas = await getUserLikePortfolio(userId);
+      console.log(docId);
+      await datas.map((data)=>{
+        if(data.docId == docId){
+          setLike(true);
+        }
+      })
+    }
+    fetchUserLikePortfolioData();;
+   
+  },[])
 
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
@@ -216,20 +231,24 @@ export default function Toolbar({
         />
       ) : like ? (
         <img
+        alt='unlike'
           style={{ width: '30px', height: '30px', marginLeft: '70px' }}
           src={require('../../../assets/images/thumbs_up_fill_icon.png')}
           ref={tumbsImageRef}
           onClick={() => {
             setLike(false);
+            unlikePortfolio(userId, docId);
           }}
         />
       ) : (
         <img
+        alt='like'
           style={{ width: '30px', height: '30px', marginLeft: '70px' }}
           src={require('../../../assets/images/thumbs_up.png')}
           ref={tumbsImageRef}
           onClick={() => {
             setLike(true);
+            likePortfolio(userId, docId);
           }}
         />
       )}
