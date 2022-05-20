@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { CanvasContext } from '../CanvasContainer';
 import ReactToPrint from 'react-to-print';
+import { useRecoilState, useResetRecoilState } from 'recoil';
+import { tagsState } from 'recoil/atoms';
 import {
   FormControl,
   Input,
@@ -62,7 +64,7 @@ export const fontList = [
 interface IToolbarProps {
   isEditEnable: boolean;
   canvasBox: any;
-  createPortpolio: any;
+  createPortfolio: any;
   userId: any;
   canvasData: any;
   docId: any;
@@ -74,7 +76,7 @@ interface IToolbarProps {
 export default function Toolbar({
   isEditEnable,
   canvasBox,
-  createPortpolio,
+  createPortfolio,
   userId,
   canvasData,
   docId,
@@ -83,6 +85,8 @@ export default function Toolbar({
   capture,
 }: IToolbarProps) {
   const [title, setTitle] = useState(docTitle);
+  const [tags, setTags] = useRecoilState(tagsState);
+  const [tagsArray, setTagsArray] = useState([]);
   const { actions } = useContext(CanvasContext);
   const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
@@ -161,7 +165,7 @@ export default function Toolbar({
               <Button onClick={handleClose}>취소</Button>
               <Button
                 onClick={() => {
-                  createPortpolio(userId, title, canvasData).then((docId) => {
+                  createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck).then((docId) => {
                     capture(docId);
                   });
                   handleClose();

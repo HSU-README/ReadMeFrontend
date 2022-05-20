@@ -10,7 +10,7 @@ const serverApi = axios.create({
 
 export const getPreview = async (docId) => {
   const response = await serverApi.get(`/api/v1/doc/${docId}/preview`);
-  console.log("response :", response)
+  console.log('response :', response);
   try {
     return response.data.result;
   } catch (error) {
@@ -19,7 +19,7 @@ export const getPreview = async (docId) => {
 };
 
 // export const updateUser = async (userId, name, image, university, major, interests) => {
-//   const response = await serverApi.put(`/api/v1/members/${userId}`, {
+//   const response = await serverApi.put(`/api/v1/member/${userId}`, {
 //     name: name,
 //     profileUrl: image,
 //     university: university,

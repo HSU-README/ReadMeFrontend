@@ -9,7 +9,6 @@ import { storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { useRecoilState } from 'recoil';
 import { chartState } from 'recoil/atoms';
-import { arrayBuffer } from 'stream/consumers';
 export const CanvasContext = React.createContext<ICanvasContext>({});
 
 export interface ICanvasData {
@@ -324,7 +323,7 @@ const CanvasContainer = ({ isEditable, createElement }) => {
       <Toolbar
         isEditEnable={enableQuillToolbar}
         canvasBox={canvasBox}
-        createPortpolio={createPortfolio}
+        createPortfolio={createPortfolio}
         userId={userId}
         canvasData={canvasData}
         docId={docId}
