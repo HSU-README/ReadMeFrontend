@@ -25,7 +25,7 @@ const LogIn = () => {
 
   const login = async () => {
     await serverApi
-      .post(`/api/v1/members/login`, {
+      .post(`/api/v1/member/login`, {
         email: email,
         password: password,
       })
