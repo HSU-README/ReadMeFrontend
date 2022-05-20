@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import CanvasComponent from './Components/CanvasComponent';
 import Toolbar from './Components/Toolbar';
 import './Canvas.css';
-import { Shape } from '../generate/arrays.jsx';
 import { createPortfolio, getPortfolio } from 'apis/portfolioApi';
 import html2canvas from 'html2canvas';
 import { storage } from '../../firebase';

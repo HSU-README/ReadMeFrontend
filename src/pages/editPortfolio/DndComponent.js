@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'pages/generate/style.css';
-import { image, emoji, emoji2, Shape, Picktogram } from 'pages/generate/arrays';
+import { image, emoji, emoji2, Picktogram, Line } from 'pages/generate/arrays';
 import TableDND from './Table/TableDND';
 import { ImageList, ImageListItem } from '@mui/material';
 import { CardContent } from '@mui/material';
@@ -33,7 +33,38 @@ const DndComponent = (props) => {
           <details>
             <summary>텍스트</summary>
             <br />
-              <img src={require('../../assets/images/textboxIcon.jpg')} style={{border:"1px solid black", borderRadius:"15px",width:"100px", height:"100px", margin:"auto auto"}} onClick={()=>{createCommand('TEXT');}}/>
+            <img
+              src={require('../../assets/images/textboxIcon.jpg')}
+              style={{
+                border: '1px solid black',
+                borderRadius: '15px',
+                width: '100px',
+                height: '100px',
+                margin: 'auto auto',
+              }}
+              onClick={() => {
+                createCommand('TEXT');
+              }}
+            />
+            <details>
+              <summary>구분선</summary>
+              <ImageList sx={{ width: 656, height: 10 }} cols={1} rowHeight={7}>
+                {Line.map((item, index) => {
+                  return (
+                    <ImageListItem key={item.label}>
+                      <div style={{ border: '1px solid black' }} key={`${item.label} ${index}`}>
+                        <img
+                          src={item.val}
+                          onClick={() => {
+                            createCommand(`IMOGE ${item.val}`);
+                          }}
+                        />
+                      </div>
+                    </ImageListItem>
+                  );
+                })}
+              </ImageList>
+            </details>
           </details>
         </div>
         <div className="itemBoxCss">
@@ -52,9 +83,17 @@ const DndComponent = (props) => {
             <br />
             {image.map((item) => {
               return (
-                
-                  <img src={require('../../assets/images/imageIcon.png')} style={{border:"1px solid black", borderRadius:"15px",width:"100px" ,height:"100px",margin:"auto auto"}} onClick={() => createCommand('IMAGE')}/>
-              
+                <img
+                  src={require('../../assets/images/imageIcon.png')}
+                  style={{
+                    border: '1px solid black',
+                    borderRadius: '15px',
+                    width: '100px',
+                    height: '100px',
+                    margin: 'auto auto',
+                  }}
+                  onClick={() => createCommand('IMAGE')}
+                />
               );
             })}
           </details>
@@ -67,7 +106,7 @@ const DndComponent = (props) => {
             <details>
               <summary className="menu1">상상부기</summary>
               <ImageList sx={{ width: 280, height: 200 }} cols={3} rowHeight={164}>
-                {emoji.map((item,index) => {
+                {emoji.map((item, index) => {
                   return (
                     <ImageListItem key={item.label}>
                       <div style={{ border: '1px solid black' }} key={`${item.label} ${index}`}>
@@ -87,7 +126,7 @@ const DndComponent = (props) => {
             <details>
               <summary className="menu2">상상부기 프렌즈</summary>
               <ImageList sx={{ width: 280, height: 200 }} cols={3} rowHeight={164}>
-                {emoji2.map((item,index) => {
+                {emoji2.map((item, index) => {
                   return (
                     <ImageListItem key={item.label}>
                       <div style={{ border: '1px solid black' }} key={`${item.label} ${index}`}>
@@ -111,9 +150,8 @@ const DndComponent = (props) => {
                 {Picktogram.map((item) => {
                   return (
                     <ImageListItem key={item.label}>
-                      <div style={{ border: '1px solid black' }}key={item.label}>
+                      <div style={{ border: '1px solid black' }} key={item.label}>
                         <img
-                          
                           src={item.val}
                           onClick={() => {
                             createCommand(`IMOGE ${item.val}`);

@@ -1,3 +1,6 @@
+/* firebase Data array for
+*/
+
 const image = [
   {
     cmd: 'insertImage',
@@ -5,48 +8,7 @@ const image = [
     val: 'http://10000img.com/',
   },
 ];
-const Shape = [
-  {
-    cmd: 'insertImage',
-    style: [
-      {
-        width: '50px',
-        height: '50px',
-        border: '1px solid black',
-        margin: 'auto auto',
-      },
-    ],
-    label: 'SQUARE',
-  },
-  {
-    cmd: 'insertImage',
-    style: [
-      {
-        width: '50px',
-        height: '50px',
-        border: '1px solid black',
-        borderRadius: '50%',
-        margin: 'auto auto',
-      },
-    ],
-    label: 'CIRCLE',
-  },
 
-  {
-    cmd: 'insertImage',
-    style: [
-      {
-        width: '0',
-        height: '0',
-        borderLeft:'30px solid transparent',
-        borderRight:'30px solid transparent',
-        borderBottom:'50px solid black',
-        //margin: 'auto auto',
-      },
-    ],
-    label: 'TRIALGLE',
-  },
-];
 const emoji = [
   { 
     cmd: 'insertImage',
@@ -197,4 +159,17 @@ const Picktogram = [
   },
 ];
 
-export {image, emoji, emoji2,Shape, Picktogram};
+const Line = [
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fline.png?alt=media&token=d0604db3-5bca-4a13-9b9a-cb3203ff7055',
+    label:'2px line',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fline_weight.png?alt=media&token=9f841b0b-d376-4639-9f2f-212d4c37da3d',
+    label:'7px line',
+  },
+];
+
+export {image, emoji, emoji2, Picktogram, Line};
