@@ -97,7 +97,7 @@ export default function Modal(props) {
           <Button
             style={{ width: '450px', height: '48px', borderRadius: '16px', marginRight:"20px"}}
             onClick={() => {
-              goToGenerate();
+              goToPreview();
             }}
           >
             <span style={{ fontSize: '17px', fontWeight:"700" }}>미리보기</span>
@@ -106,7 +106,7 @@ export default function Modal(props) {
           <Button
             style={{ width: '450px', height: '48px', borderRadius: '16px' }}
             onClick={() => {
-              goToPreview();
+              goToGenerate();
             }}
           >
             <span style={{ fontSize: '17px' , fontWeight:"700"}}>포트폴리오 만들기</span>
