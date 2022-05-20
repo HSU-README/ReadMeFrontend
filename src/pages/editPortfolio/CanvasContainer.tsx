@@ -10,6 +10,7 @@ import { storage } from '../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { useRecoilState } from 'recoil';
 import { chartState } from 'recoil/atoms';
+import { arrayBuffer } from 'stream/consumers';
 export const CanvasContext = React.createContext<ICanvasContext>({});
 
 export interface ICanvasData {
@@ -27,7 +28,7 @@ export interface ICanvasData {
 export interface ICanvasComponent {
   position?: { top: number; left: number };
   dimension?: { width: string; height: string };
-  chart?: { col: number; row: number };
+  chart?: { col: number; row: number; tableContent: any };
   chartContent?: string;
   content?: string;
   id?: string;
@@ -144,14 +145,19 @@ const CanvasContainer = ({ isEditable, createElement }) => {
               break;
 
             case 'table':
-              chartContent = component.tableContent;
               componentArray.push({
                 id: 'CHART__' + (++id).toString(),
                 type: 'CHART',
                 position: { top: top, left: left },
                 dimension: { width: width.toString(), height: height.toString() },
-                chart: { row: row, col: col },
-                chartContent: chartContent,
+                chart: {
+                  row: row,
+                  col: col,
+                  tableContent: component.tableContents.map((data) => {
+                    return data.content;
+                  }),
+                },
+                // chartContent:
               });
               break;
 

@@ -1,16 +1,17 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { CanvasContext, ICanvasComponent } from '../CanvasContainer';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useResetRecoilState } from 'recoil';
 import { chartState } from 'recoil/atoms';
 
 const ChartElement = (props: ICanvasComponent) => {
-  const { content, id, isReadOnly, dimension, chart, chartContent } = props;
+  const { id, chart } = props;
+  const [strArr, setStrArr] = useState(new Array(36).fill(''));
   const [width, setWidth] = useState(0);
   const [height, setHeight] = useState(0);
   const { actions } = useContext(CanvasContext);
   const tableRef = useRef(null);
   const [text, setText] = useState('');
-  const [strArr, setStrArr] = useRecoilState(chartState);
+  // const [strArr, setStrArr] = useRecoilState(chartState);
   const chartRef = useRef(null);
   const ref = useRef(null);
   const updateChartValue = (value: string) => {
@@ -21,14 +22,16 @@ const ChartElement = (props: ICanvasComponent) => {
       chartContent: strArr.toString(),
     });
   };
-
+  const resetState = useResetRecoilState(chartState);
   useEffect(() => {
     setWidth(Number(props.dimension.width) / chart.col);
     setHeight(Number(props.dimension.height) / chart.row);
+    if (chart.tableContent) {
+      setStrArr(chart.tableContent);
+    }
+    resetState();
   }, []);
-  useEffect(() => {
-    console.log(strArr);
-  }, [strArr]);
+
   return (
     <>
       <div
@@ -78,18 +81,6 @@ const ChartElement = (props: ICanvasComponent) => {
             </tbody>
           </table>
         }
-
-        {/* <div
-              className="ql-editor"
-              style={{
-                fontFamily: 'Arial',
-                fontSize: '13px',
-                padding: 0,
-              }}
-              ref={ref}
-            >
-              {ReactHtmlParser(str || '')}
-            </div> */}
       </div>
     </>
   );
