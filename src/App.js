@@ -6,6 +6,7 @@ import Main from './pages/home';
 import Select from './pages/select';
 import DownloadPortfolio from './pages/editPortfolio/DownloadPortfolio.js';
 import Preview from 'pages/editPortfolio/Preview';
+import SearchPage from './pages/searchPage/SearchPage.js';
 import { useSelector, useDispatch } from 'react-redux';
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/generate/:docId" element={<DownloadPortfolio />} /> {/*포트폴리오 제작 페이지 라우트*/}
           <Route path="/preview" element={<Preview />} /> {/*포트폴리오 제작 페이지 라우트*/}
           <Route path="/preview/:docId" element={<Preview />} /> {/*포트폴리오 제작 페이지 라우트*/}
+          <Route path="/search" element={<SearchPage/>} /> {/*포트폴리오 검색 페이지 라우트*/}
         </Routes>
       </BrowserRouter>
     </div>

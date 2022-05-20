@@ -36,7 +36,7 @@ const Header = () => {
     backgroundColor: '#E8E8E8',
     borderRadius: '30px',
     width: '100px',
-    fontSize: '12px',
+    fontSize: '15px',
     fontWeight: '900',
     font: 'bold',
     marginLeft: '25px',
@@ -47,43 +47,45 @@ const Header = () => {
 
   var keywordBoxRef = useRef(null);
 
-  useEffect(() => {
-    //로그인&유저정보 state에 저장
-    const readme_login = localStorage.getItem('readme_login');
-    const readme_userInfo = localStorage.getItem('readme_userInfo');
-    if (readme_login && readme_userInfo) {
-      setIsLoggedIn(true);
-      setUserInfo(readme_userInfo);
-      signIn();
-    }
-    setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x+50}px`);
-    setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
+  // useEffect(() => {
+  //   //로그인&유저정보 state에 저장
+  //   const readme_login = localStorage.getItem('readme_login');
+  //   const readme_userInfo = localStorage.getItem('readme_userInfo');
+  //   if (readme_login && readme_userInfo) {
+  //     setIsLoggedIn(true);
+  //     setUserInfo(readme_userInfo);
+  //     signIn();
+  //   }
+  //   setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x+50}px`);
+  //   setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
 
-    //로그인이 되었는지 안되었는지 판단
-    // if (location.state !== null) {
-    //   if (location.state.isLoginSuccess === true) {
-    //     signIn();
-    //   }
-    // } else {
-    //   signOut();
-    // }
-  }, []);
+  //   //로그인이 되었는지 안되었는지 판단
+  //   // if (location.state !== null) {
+  //   //   if (location.state.isLoginSuccess === true) {
+  //   //     signIn();
+  //   //   }
+  //   // } else {
+  //   //   signOut();
+  //   // }
+  // }, []);
 
   // useEffect(()=>{
   //   console.log(keywordBoxRef.current.getBoundingClientRect().x)
   // },[keywordBoxRef.current.getBoundingClientRect().x,keywordBoxRef.current.getBoundingClientRect().y])
 
   const dummeyKeywords = [
-    '#컴퓨터공학',
-    '#인공지능',
-    '#기계공학',
-    '#시각디자인',
-    '#제품디자인',
-    '#의학',
-    '#법학',
-    '#건축학',
-    '#수학',
-    '#경영학',
+    '인문',
+    '사회',
+    '공학',
+    '자연',
+    '예술',
+    '교육',
+    '심플',
+    '모던',
+    '밝은',
+    '어두운',
+    '세련된',
+    '고딕'
   ];
 
   return (
@@ -142,19 +144,21 @@ const Header = () => {
         )}
       </div>
 
-      {visibleCheck && (
+      {/* {visibleCheck && (
         <div className="keywordBox" style={keywordBoxLeftRight}>
           <div style={{ display: 'inlineBlock' }}>
             {dummeyKeywords.map((data, index) => {
               return (
-                <Button key={index} style={keywordTag}>
-                  {data}
+                <Button key={index} style={keywordTag} onClick={()=>{
+                  document.location.href=`/search?searchtag=${data}`;
+                }}>
+                  # {data}
                 </Button>
               );
             })}
           </div>
         </div>
-      )}
+      )} */}
       {/* <div>
         <Banner />
       </div> */}

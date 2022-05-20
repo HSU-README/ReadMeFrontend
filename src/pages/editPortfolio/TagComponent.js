@@ -22,7 +22,7 @@ const TagComponent =()=>{
             }else{
                 tagArray.splice(idx, 1);
             }
-            setTagsText(tagArray.map((data)=>{return `#${data},`}));
+            setTagsText(tagArray.map((data)=>{return `#${data}, `}));
         }
       };
     return(
