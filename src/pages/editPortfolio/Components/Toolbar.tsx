@@ -1,7 +1,19 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
 import { CanvasContext } from '../CanvasContainer';
 import ReactToPrint from 'react-to-print';
-import { FormControl, Input, Checkbox, FormControlLabel,Dialog,DialogContent,DialogActions,DialogContentText,Button } from '@mui/material';
+import { useRecoilState, useResetRecoilState } from 'recoil';
+import { tagsState } from 'recoil/atoms';
+import {
+  FormControl,
+  Input,
+  Checkbox,
+  FormControlLabel,
+  Dialog,
+  DialogContent,
+  DialogActions,
+  DialogContentText,
+  Button,
+} from '@mui/material';
 export const sizeList = [
   '8px',
   '9px',
@@ -52,42 +64,46 @@ export const fontList = [
 interface IToolbarProps {
   isEditEnable: boolean;
   canvasBox: any;
-  createPortpolio: any;
+  createPortfolio: any;
   userId: any;
   canvasData: any;
   docId: any;
   docTitle: any;
   isEditable: any;
+  capture: any;
 }
 
 export default function Toolbar({
   isEditEnable,
   canvasBox,
-  createPortpolio,
+  createPortfolio,
   userId,
   canvasData,
   docId,
   docTitle,
   isEditable,
+  capture,
 }: IToolbarProps) {
   const [title, setTitle] = useState(docTitle);
+  const [tags, setTags] = useRecoilState(tagsState);
+  const [tagsArray, setTagsArray] = useState([]);
   const { actions } = useContext(CanvasContext);
   const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
   const tumbsImageRef = useRef<HTMLImageElement>(null);
-  const [like, setLike]= useState(false);
+  const [like, setLike] = useState(false);
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
     actions?.addElement(type);
   };
   const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-  const handleOpen=()=>{
-    setOpenDialog(true)
-  }
-  const handleClose=()=>{
+  const handleOpen = () => {
+    setOpenDialog(true);
+  };
+  const handleClose = () => {
     setOpenDialog(false);
-  }
-  
+  };
+
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -149,7 +165,9 @@ export default function Toolbar({
               <Button onClick={handleClose}>취소</Button>
               <Button
                 onClick={() => {
-                  createPortpolio(userId, title, canvasData);
+                  createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck).then((docId) => {
+                    capture(docId);
+                  });
                   handleClose();
                 }}
               >

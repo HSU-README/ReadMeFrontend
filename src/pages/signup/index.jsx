@@ -32,7 +32,7 @@ const Signup = () => {
     console.log(password);
     console.log(email);
     await serverApi
-      .post('/api/v1/members/new', {
+      .post('/api/v1/member/new', {
         name: `${name}`,
         email: `${email}`,
         password: `${password}`,

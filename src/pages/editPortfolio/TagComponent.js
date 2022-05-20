@@ -1,6 +1,8 @@
-import React,{useState,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import 'pages/generate/style.css';
-import {FormGroup, FormControlLabel,Checkbox,Button} from '@mui/material';
+import { FormGroup, FormControlLabel, Checkbox, Button } from '@mui/material';
+import { useRecoilState } from 'recoil';
+import { tagsState } from 'recoil/atoms';
 
 const tagArray = [];
 const TagComponent =()=>{
@@ -54,12 +56,37 @@ const TagComponent =()=>{
                         <Button value="교육" onClick={handleChange}>#고딕</Button>
                     </FormGroup>
                 </details>
-          </details>
-          <br/>
-          <div>{tagsText}</div>
-          </div>
-        </div>
-    );
-}
 
-export default TagComponent
+          </details>
+          <br />
+          <details>
+            <summary>디자인</summary>
+            <FormGroup sx={{ flexDirection: 'row' }} style={{ marginLeft: '26px' }}>
+              <Button value="심플" onClick={handleChange}>
+                #심플
+              </Button>
+              <Button value="모던" onClick={handleChange}>
+                #모던
+              </Button>
+              <Button value="밝은" onClick={handleChange}>
+                #밝은
+              </Button>
+              <Button value="어두운" onClick={handleChange}>
+                #어두운
+              </Button>
+              <Button value="세련된" onClick={handleChange}>
+                #세련된
+              </Button>
+              <Button value="고딕" onClick={handleChange}>
+                #고딕
+              </Button>
+            </FormGroup>
+          </details>
+        <br />
+        <div>{tagsText}</div>
+      </div>
+    </div>
+  );
+};
+
+export default TagComponent;
