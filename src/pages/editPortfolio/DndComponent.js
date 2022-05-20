@@ -50,11 +50,11 @@ const DndComponent = (props) => {
             <details>
               <summary className="menu4">구분선</summary>
               <br />
-              <ImageList sx={{ width: 275, height: 25 }} cols={1} rowHeight={5}>
+              <ImageList sx={{ width: 280, height: 150 }} cols={2} rowHeight={5}>
                 {Line.map((item, index) => {
                   return (
                     <ImageListItem key={item.label}>
-                      <div style={{ border: '1px solid black' }} key={`${item.label} ${index}`}>
+                      <div key={`${item.label} ${index}`}>
                         <img
                           src={item.val}
                           onClick={() => {
