@@ -79,14 +79,12 @@ const TagComponent = () => {
               <Button value="세련된" onClick={handleChange}>
                 #세련된
               </Button>
-              <Button value="고딕" onClick={handleChange}>
+              <Button value="교육" onClick={handleChange}>
                 #고딕
               </Button>
             </FormGroup>
           </details>
         </details>
-        <br />
-
         <div>{tagsText}</div>
       </div>
     </div>
