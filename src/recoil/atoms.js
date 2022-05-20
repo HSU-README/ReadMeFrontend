@@ -7,5 +7,5 @@ export const chartState = atom({
 
 export const tagsState = atom({
   key: 'tagsState',
-  default: [],
+  default: '',
 });

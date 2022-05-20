@@ -86,6 +86,7 @@ export default function Toolbar({
 }: IToolbarProps) {
   const [title, setTitle] = useState(docTitle);
   const [tags, setTags] = useRecoilState(tagsState);
+  const [tagsArray, setTagsArray] = useState([]);
   const { actions } = useContext(CanvasContext);
   const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
@@ -164,7 +165,7 @@ export default function Toolbar({
               <Button onClick={handleClose}>취소</Button>
               <Button
                 onClick={() => {
-                  createPortfolio(userId, title, canvasData, tags).then((docId) => {
+                  createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck).then((docId) => {
                     capture(docId);
                   });
                   handleClose();
