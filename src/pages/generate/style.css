@@ -148,3 +148,10 @@ summary::-webkit-details-marker {
   margin-left: 10px;
   color: black;
 }
+
+/* 구분선 소 메뉴 */
+.menu4 {
+  text-align: left;
+  margin-left: 10px;
+  color: grey;
+}
