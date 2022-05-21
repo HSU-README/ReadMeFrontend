@@ -1,56 +1,124 @@
 
-import React, { useEffect, useState } from 'react';
-import { Container } from 'pages/myPage/pickPofol/styles';
+import React, { useEffect, useState,useCallback } from 'react';
+import {Container} from '../select/styles';
 import SelectCard from 'components/selectCard';
-import { getUserPortfolio } from 'apis/portfolioApi';
+import { searchResult } from 'apis/portfolioApi';
 import Header from '../home/header/Header.js';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Grid, Pagination } from 'swiper';
+import Slider from 'react-slick';
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import Footer from 'components/footer/index.jsx';
+import NewGenerateSelectCard from 'components/newGenerateCard';
+import basicSelect from 'localData/basicSelect.json';
+import { FormGroup } from '@mui/material';
+import './SearchPage.css';
+;
+
+const SamplePrevArrow = (props) => {
+  const { className, style, onClick } = props;
+  return (
+    <img
+      className={className}
+      src={require('../../assets/images/prevArrow.png')}
+      alt="next"
+      style={{ ...style, width: '15px', height: '15px' }}
+      onClick={onClick}
+    />
+  );
+};
+
+const SampleNextArrow = (props) => {
+  
+  const { className, style, onClick } = props;
+  return (
+    <img
+      className={className}
+      src={require('../../assets/images/nextArrow.png')}
+      alt="next"
+      style={{ ...style, width: '15px', height: '15px' }}
+      onClick={onClick}
+    />
+  );
+};
+const settings = {
+  arrows: true,
+  dots: false,
+  infinite: true,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  nextArrow: <SampleNextArrow />,
+  prevArrow: <SamplePrevArrow />,
+};
+var datas=[]
+var datas1=[]
+var title;
+var result=[];
 const SearchPage =()=>{
     const [userPortfolio, setUserPortfolio] = useState([{},{},{}]);
 
-
+    const [selectedFormat, setSelectedFormat] = useState('');
+    const [showDetailForm, setShowDetailForm] = useState(false);
+    const [detailFormId, setDetailFormId] = useState('');
+    
+    const openDetailForm = (id) => {
+      setShowDetailForm(true);
+      setDetailFormId(id);
+    };
+  
+    const closeDetailForm = () => {
+      setShowDetailForm(false);
+      setDetailFormId('');
+      setSelectedFormat('');
+    };
+    useEffect(()=>{
+      async function getSearhResult(){
+        datas = await searchResult("전통 양식");
+        datas1= await searchResult("전통 양식");
+        result.push(datas)
+        result.push(datas1)
+      }
+      getSearhResult();
+    },[])
+    
+    const onReset = useCallback((e) => {
+      e.preventDefault();
+      setSelectedFormat('');
+    }, []);
     return (
-        <div >
-        <Header/>
-        <hr style={{backgroundColor:"#F57842"}}/>
-        <div style={{width:"100%",height:"100vh"}}>
-        <Container>
-          {console.log(userPortfolio)}
-          <div style={{ width: '1200px', margin: '100px 0px 100px 100px', overflow: 'auto', display: 'flex',border:"1px solid red" }}>
-            <Swiper
-              slidesPerView={5}
-              grid={{
-                rows: 2,
-              }}
-              spaceBetween={20}
-              pagination={{
-                clickable: true,
-              }}
-              modules={[Grid, Pagination]}
-              className="mySwiper"
-            >
-              {userPortfolio.map((data, index) => (
-                <SwiperSlide>
-                  <SelectCard
-                    id={index}
-                    key={index}
-                    length={userPortfolio.length}
-                    format={data}
-                  />
+      <Container>
+        <Header />
+        <hr style={{ backgroundColor: '#F57842' }} />
+        <div className="select-wrapper">
+          <img className="arrow" src={require('../../assets/images/prevArrow.png')} />
+          <div className="sectionSelect">
+            {result === null ? (
+              <div>nullsdasdasdasdasdsaasd</div>
+            ) : (
+              <>
+                {
                   
-                </SwiperSlide>
-              ))}
-            </Swiper>
+                  // result.map((value, index) => {
+
+                  //    return (
+                  //        <SelectCard
+                  //          id={value.id}
+                  //          key={index}
+                  //          format={value}
+                  //          selectedFormat={selectedFormat}
+                  //          setSelectedFormat={setSelectedFormat}
+                  //          isSelected={index !== selectedFormat ? false : true}
+                  //        />
+                  //    );
+                  // })}
+                }
+              </>
+            )}
           </div>
-        </Container>
+          <img className="arrow" src={require('../../assets/images/nextArrow.png')} />
         </div>
-        <Footer/>
-        </div>
+        <Footer />
+      </Container>
     );
 }
 

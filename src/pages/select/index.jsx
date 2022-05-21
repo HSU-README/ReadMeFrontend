@@ -8,7 +8,6 @@ import Header from 'components/header';
 import NewGenerateSelectCard from 'components/newGenerateCard';
 import BasicModal from 'components/basicModal/index.jsx';
 import basicSelect from 'localData/basicSelect.json';
-
 const datas = basicSelect.data;
 
 const Select = () => {

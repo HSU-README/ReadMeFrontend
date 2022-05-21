@@ -83,7 +83,7 @@ const Home = (props) => {
         <div className="sectionFont">
           <span>나의 포트폴리오</span>
         </div>
-        <Slider {...settings} style={{ marginLeft: '100px', marginRight: '50px' }}>
+        <Slider {...settings} style={{ marginLeft: '9%', marginRight: '9%' }}>
           {dummyData.map((data, index) => (
             <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin={isLogin} />
           ))}
@@ -92,7 +92,7 @@ const Home = (props) => {
         <div className="sectionFont">
           <span>학과별 포트폴리오</span>
         </div>
-        <Slider {...settings} style={{ marginLeft: '100px', marginRight: '50px' }}>
+        <Slider {...settings} style={{ marginLeft: '9%', marginRight: '9%' }}>
           {dummyData.map((data, index) => (
             <span key={index} id={index}>
               <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data}  isLogin={isLogin}/>
@@ -152,7 +152,7 @@ const Home = (props) => {
       )}
 
       <div className="sectionFont">인기 포트폴리오</div>
-      <Slider {...settings} style={{ marginLeft: '100px', marginRight: '50px' }}>
+      <Slider {...settings} style={{ marginLeft: '9%', marginRight: '9%' }}>
         {dummyData.map((data, index) => (
           <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin="true" />
         ))}

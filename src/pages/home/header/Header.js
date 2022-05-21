@@ -56,9 +56,6 @@ const Header = () => {
       setUserInfo(readme_userInfo);
       signIn();
     }
-    setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x + 50}px`);
-    setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
-
     //로그인이 되었는지 안되었는지 판단
     // if (location.state !== null) {
     //   if (location.state.isLoginSuccess === true) {
@@ -68,10 +65,6 @@ const Header = () => {
     //   signOut();
     // }
   }, []);
-
-  // useEffect(()=>{
-  //   console.log(keywordBoxRef.current.getBoundingClientRect().x)
-  // },[keywordBoxRef.current.getBoundingClientRect().x,keywordBoxRef.current.getBoundingClientRect().y])
 
   const dummeyKeywords = [
     '인문',
@@ -90,35 +83,25 @@ const Header = () => {
 
   return (
     <div className="headerMain">
-      <div className="inner" style={{ marginBottom: '20px' }}>
+      <div className="inner" style={{ marginBottom: '20px'}}>
         <img
           src={logo}
           className="logo"
           onClick={() => {
-            window.location.href = '';
+            window.location.href = '/';
           }}
         />
-        <span className="inner" id="inner">
-          <div
-            style={{ display: 'relative', marginLeft: '18px', paddingTop: '10px' }}
-            ref={keywordBoxRef}
-            onClick={() => {
-              visible();
-            }}
-          >
-            <Searchbar />
-          </div>
-        </span>
+        <Searchbar />
 
         {/* 로그인시 출력 컴포넌트 */}
         {isLoggedIn ? (
-          <>
-            <Button disabled style={{ color: '#1976d2', marginTop: '30px', fontSize: '16px' }}>
+          <span className="buttonFamily">
+            <Button disabled style={{ color: '#1976d2', marginTop: '10%', fontSize: '16px' }}>
               {JSON.parse(userInfo).name}님
             </Button>
             <Button
               href="/login"
-              style={{ marginTop: '30px', fontSize: '16px' }}
+              style={{ marginTop: '10%', fontSize: '16px' }}
               onClick={() => {
                 signOut();
                 setUserInfo(undefined);
@@ -127,17 +110,17 @@ const Header = () => {
             >
               로그아웃
             </Button>
-            <Button href="/mypage" style={{ marginTop: '30px', fontSize: '16px' }}>
+            <Button href="/mypage" style={{ marginTop: '10%', fontSize: '16px' }}>
               마이페이지
             </Button>
-          </>
+          </span>
         ) : (
           //  로그아웃시 출력 컴포넌트
           <span>
-            <Button href="/login" style={{ marginTop: '30px', fontSize: '16px' }}>
+            <Button href="/login" style={{ marginTop: '10%', fontSize: '16px' }}>
               로그인
             </Button>
-            <Button href="/signup" style={{ marginTop: '30px', fontSize: '16px' }}>
+            <Button href="/signup" style={{marginTop: '10%', fontSize: '16px' }}>
               회원가입
             </Button>
           </span>

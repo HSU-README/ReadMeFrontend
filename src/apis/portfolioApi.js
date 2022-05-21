@@ -36,6 +36,18 @@ export const getPortfolio = async (docId) => {
   }
 };
 
+export const searchResult = async(searchText)=>{
+  if (searchText === '전통 양식') {
+    return basicPortfolio1.result;
+  }else {
+    const response = await serverApi.get(`/api/v1/doc/search?where=${searchText}`);
+    try {
+      return response.data.result;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+};
 //문서 만들기
 export const createPortfolio = async (memberId, title, components, tags, visibleCheck, docId) => {
   const componentArray = new Array();
