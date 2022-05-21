@@ -27,10 +27,10 @@
       "message": "문서 정보 조회 성공",
       "result": {
         "id": 1003,
-        "title": "포트폴리오3",
-        "docUrl": "https://arxiv.org/pdf/quant-ph/0410100.pdf",
-        "designer": "designer",
-        "tags": ["IT3", "IT_add_3"]
+        "title": "프로젝트 양식1",
+        "docUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/project.png?alt=media&token=e112fb57-e561-48ec-8fcb-c98c2a4d25af",
+        "designer": "Propofol",
+        "tags": ["IT", "Design"]
       }
     },
     {
@@ -38,9 +38,9 @@
       "message": "문서 정보 조회 성공",
       "result": {
         "id": 1004,
-        "title": "포트폴리오4",
-        "docUrl": "https://arxiv.org/pdf/quant-ph/0410100.pdf",
-        "designer": "designer",
+        "title": "프로젝트 양식2",
+        "docUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/project2.PNG?alt=media&token=e7013644-7ce5-4f7c-842b-bff557259d3d",
+        "designer": "Propofol",
         "tags": ["IT4", "IT_add_4"]
       }
     },
