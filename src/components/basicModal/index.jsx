@@ -70,9 +70,7 @@ export default function BasicModal(props) {
         <div className="section-title">{title}</div>
         <hr />
         <div className="section-image">
-          <Document file={docUrl} onLoadSuccess={onDocumentLoadSuccess}>
-            <Page key={`page_${1}`} pageNumber={1} renderAnnotationLayer={false} renderTextLayer={false} />
-          </Document>
+          <img src={docUrl} alt='preview'></img>
         </div>
         <div className="section-info">
           <div className="name-info">

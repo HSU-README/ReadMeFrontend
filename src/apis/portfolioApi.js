@@ -2,6 +2,8 @@ import axios from 'axios';
 import { ToastError, ToastSuccess } from 'hooks/toastHook';
 import basicPortfolio1 from 'localData/basicPortfolio1.json';
 import basicPortfolio2 from 'localData/basicPortfolio2.json';
+import basicPortfolio3 from 'localData/basicPortfolio3.json';
+import basicPortfolio4 from 'localData/basicPortfolio4.json';
 
 const serverApi = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
@@ -26,6 +28,10 @@ export const getPortfolio = async (docId) => {
     return basicPortfolio1.result;
   } else if (docId == 1002) {
     return basicPortfolio2.result;
+  } else if (docId == 1003) {
+    return basicPortfolio3.result;
+  } else if (docId == 1004) {
+    return basicPortfolio4.result;
   } else {
     const response = await serverApi.get(`/api/v1/doc/${docId}`);
     try {
