@@ -79,7 +79,7 @@ const MyPage = (props) => {
         </MenuContainer>
         <ViewContainer>
           {currentMyPage === 'userInfo' && <UserInfo />}
-          {currentMyPage === 'pickPofol' && <PickPofol />}
+          {currentMyPage === 'pickPofol' && <PickPofol setSelectedFormat={setSelectedFormat}/>}
           {currentMyPage === 'myPortfolio' && <MyPortfolio setSelectedFormat={setSelectedFormat} />}
         </ViewContainer>
       </MyPageContainer>

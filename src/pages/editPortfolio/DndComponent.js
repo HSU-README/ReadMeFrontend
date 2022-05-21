@@ -46,13 +46,15 @@ const DndComponent = (props) => {
                 createCommand('TEXT');
               }}
             />
+            <br /> <br />
             <details>
-              <summary>구분선</summary>
-              <ImageList sx={{ width: 656, height: 10 }} cols={1} rowHeight={7}>
+              <summary className="menu4">구분선</summary>
+              <br />
+              <ImageList sx={{ width: 280, height: 150 }} cols={2} rowHeight={5}>
                 {Line.map((item, index) => {
                   return (
                     <ImageListItem key={item.label}>
-                      <div style={{ border: '1px solid black' }} key={`${item.label} ${index}`}>
+                      <div key={`${item.label} ${index}`}>
                         <img
                           src={item.val}
                           onClick={() => {

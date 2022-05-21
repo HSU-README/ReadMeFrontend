@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'pages/myPage/pickPofol/styles';
 import SelectCard from 'components/selectCard';
-import { getUserPortfolio } from 'apis/portfolioApi';
+import { getUserLikePortfolio } from 'apis/likeApi';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Grid, Pagination } from 'swiper';
@@ -10,29 +10,30 @@ import 'swiper/css/grid';
 import 'swiper/css/pagination';
 
 const PickPofol = (props) => {
-  const [userPortfolio, setUserPortfolio] = useState([{}]);
+  const [userLikePortfolio, setUserLikePortfolio] = useState([{}]);
   const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
 
   useEffect(() => {
-    async function fetchUserPortfolioData() {
-      const datas = await getUserPortfolio(userId);
-      await setUserPortfolio(datas);
+    async function fetchUserLikePortfolioData() {
+      const datas = await getUserLikePortfolio(userId);
+      console.log(datas);
+      await setUserLikePortfolio(datas);
     }
-    fetchUserPortfolioData();
+    fetchUserLikePortfolioData();
   }, []);
 
   const setSelectedFormat = (selectedFormat) => {
     props.setSelectedFormat(selectedFormat);
   };
 
-  if (userPortfolio === undefined) {
+  if (userLikePortfolio === undefined) {
     return <></>;
   }
 
   return (
     <>
       <Container>
-        {console.log(userPortfolio)}
+        {console.log(userLikePortfolio)}
         <div style={{ width: '1200px', margin: '100px 0px 100px 100px', overflow: 'auto', display: 'flex' }}>
           <Swiper
             slidesPerView={5}
@@ -46,12 +47,12 @@ const PickPofol = (props) => {
             modules={[Grid, Pagination]}
             className="mySwiper"
           >
-            {userPortfolio.map((data, index) => (
+            {userLikePortfolio.map((data, index) => (
               <SwiperSlide>
                 <SelectCard
                   id={index}
                   key={index}
-                  length={userPortfolio.length}
+                  length={userLikePortfolio.length}
                   format={data}
                   setSelectedFormat={setSelectedFormat}
                 />

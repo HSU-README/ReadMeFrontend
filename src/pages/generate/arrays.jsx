@@ -170,6 +170,16 @@ const Line = [
     val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fline_weight.png?alt=media&token=9f841b0b-d376-4639-9f2f-212d4c37da3d',
     label:'7px line',
   },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Flinesero_2.png?alt=media&token=321fe691-9af2-430f-8b97-91eeeb6372ee',
+    label:'sero 2px line',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Flinesero_7.png?alt=media&token=bb89927b-6122-4647-9a71-0aed7a6ff1f3',
+    label:'sero 7px line',
+  },
 ];
 
 export {image, emoji, emoji2, Picktogram, Line};

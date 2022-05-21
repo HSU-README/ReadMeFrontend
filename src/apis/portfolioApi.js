@@ -12,7 +12,7 @@ const serverApi = axios.create({
 
 //유저의 문서들 불러오기
 export const getUserPortfolio = async (userId) => {
-  const response = await serverApi.get(`/api/v1/user/${userId}/docs`);
+  const response = await serverApi.get(`/api/v1/member/${userId}/docs`);
   try {
     return response.data.result;
   } catch (error) {
@@ -49,7 +49,7 @@ export const searchResult = async(searchText)=>{
   }
 };
 //문서 만들기
-export const createPortfolio = async (memberId, title, components, tags, visibleCheck, docId) => {
+export const createPortfolio = async (memberId, title, components, tags, visibleCheck, imgUrl) => {
   const componentArray = new Array();
   await components.map((component, index) => {
     console.log(component);
@@ -121,6 +121,7 @@ export const createPortfolio = async (memberId, title, components, tags, visible
       memberId: memberId,
       components: componentArray,
       title: title,
+      docUrl: 'imgUrl',
       tags: tags,
       visibility: visibleCheck === true ? 'public' : 'private',
     })
