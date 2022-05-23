@@ -43,6 +43,7 @@ export const Container = styled.div`
   .section-image {
     display: flex;
     justify-content: center;
+    height: 400px;
   }
 
   .section-title {

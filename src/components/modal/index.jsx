@@ -46,8 +46,6 @@ export default function Modal(props) {
     window.location.href = `/preview/${props.previewId}`;
   };
 
-
-
   return (
     <Container>
       <div className="section-modal">
@@ -63,9 +61,7 @@ export default function Modal(props) {
         <div className="section-title">{title}</div>
         <hr />
         <div className="section-image">
-          <Document file={docUrl} onLoadSuccess={onDocumentLoadSuccess}>
-            <Page key={`page_${1}`} pageNumber={1} renderAnnotationLayer={false} renderTextLayer={false} />
-          </Document>
+          <img src={docUrl} alt="preview"></img>
         </div>
         <div className="section-info">
           <div className="name-info">
@@ -95,12 +91,12 @@ export default function Modal(props) {
 
         <div className="button-wrapper">
           <Button
-            style={{ width: '450px', height: '48px', borderRadius: '16px', marginRight:"20px"}}
+            style={{ width: '450px', height: '48px', borderRadius: '16px', marginRight: '20px' }}
             onClick={() => {
               goToPreview();
             }}
           >
-            <span style={{ fontSize: '17px', fontWeight:"700" }}>미리보기</span>
+            <span style={{ fontSize: '17px', fontWeight: '700' }}>미리보기</span>
           </Button>
 
           <Button
@@ -109,7 +105,7 @@ export default function Modal(props) {
               goToGenerate();
             }}
           >
-            <span style={{ fontSize: '17px' , fontWeight:"700"}}>포트폴리오 만들기</span>
+            <span style={{ fontSize: '17px', fontWeight: '700' }}>포트폴리오 만들기</span>
           </Button>
         </div>
       </div>
