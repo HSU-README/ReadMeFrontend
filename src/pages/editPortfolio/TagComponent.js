@@ -6,14 +6,14 @@ import { tagsState } from 'recoil/atoms';
 
 const tagArray = [];
 const TagComponent = () => {
-  const [tagsText, setTagsText] = useState('');
+  const [tagsText, setTagsText] = useRecoilState(tagsState);
   const handleChange = (event) => {
     if (!tagArray.includes(event.target.value)) {
       if (tagArray.length >= 4) {
         alert('태그는 최대 4개까지 선택 가능합니다');
       } else {
         tagArray.push(event.target.value);
-        setTagsText(tagsText + `#${event.target.value}, `);
+        setTagsText(tagsText + `#${event.target.value},`);
       }
     } else {
       let idx = tagArray.indexOf(event.target.value);

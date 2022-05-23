@@ -258,7 +258,7 @@ export default function Toolbar({
         <img
           alt="unlike"
           style={{ width: '30px', height: '30px', marginLeft: '70px' }}
-          src={require('../../../assets/images/thumbs_up_fill_icon.png')}
+          src={require('../../../assets/images/likeon.png')}
           ref={tumbsImageRef}
           onClick={() => {
             setLike(false);
@@ -269,7 +269,7 @@ export default function Toolbar({
         <img
           alt="like"
           style={{ width: '30px', height: '30px', marginLeft: '70px' }}
-          src={require('../../../assets/images/thumbs_up.png')}
+          src={require('../../../assets/images/likeoff.png')}
           ref={tumbsImageRef}
           onClick={() => {
             setLike(true);

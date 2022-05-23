@@ -47,8 +47,10 @@ export const Container = styled.div`
   }
 
   .section-title {
-    font-size: 24px;
+    position: relative;
+    font-size: 32px;
     font-weight: bold;
+    left: 12px;
   }
 
   .section-info {

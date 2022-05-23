@@ -1,40 +1,46 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../../pages/login/styles';
-import { Container, FormImage } from './styles';
+import { Container } from './styles';
 import { getPreview } from 'apis/previewApi';
-import { Document, Page } from 'react-pdf';
-import { pdfjs } from 'react-pdf';
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+import { likePortfolio, unlikePortfolio, getUserLikePortfolio } from 'apis/likeApi';
 
 export default function Modal(props) {
+  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
+
   const [docUrl, setDocUrl] = useState('');
   const [title, setTitle] = useState('');
   const [designer, setDesigner] = useState('');
   const [tags, setTags] = useState([]);
-
-  const [numPages, setNumPages] = useState(null);
-  const [pageNumber, setPageNumber] = useState(1);
+  const [like, setLike] = useState(false);
+  const [likeCnt, setLikeCnt] = useState(0);
 
   useEffect(() => {
     async function fetchPreviewData() {
-      const data = await getPreview(props.previewId);
-      setTitle(data.title);
-      setDesigner(data.designer);
-      setDocUrl(data.docUrl);
-      setTags(data.tags);
+      const previewData = await getPreview(props.previewId);
+      const likeData = await getUserLikePortfolio(userId);
+      setTitle(previewData.title);
+      setDesigner(previewData.designer);
+      setDocUrl(previewData.docUrl);
+      setTags(previewData.tags);
+      setLikeCnt(previewData.likeCnt);
+      likeData.map((data) => {
+        console.log(data.docId);
+        if (data.docId == props.previewId) {
+          setLike(true);
+          console.log(data.docId);
+        }
+      });
     }
     fetchPreviewData();
   }, []);
-
-  function onDocumentLoadSuccess({ numPages }) {
-    setNumPages(numPages);
-  }
 
   const onClickExitButton = () => {
     setTitle('');
     setDocUrl('');
     setDesigner('');
     setTags([]);
+    setLikeCnt(0);
+    setLikeCnt(false);
     props.closeDetailForm();
   };
 
@@ -49,6 +55,32 @@ export default function Modal(props) {
   return (
     <Container>
       <div className="section-modal">
+        <div className="like-container">
+          {like ? (
+            <img
+              alt="unlike"
+              style={{ width: '38px', height: '38px' }}
+              src={require('../../assets/images/likeon.png')}
+              onClick={() => {
+                setLike(false);
+                setLikeCnt(like - 1);
+                unlikePortfolio(userId, props.previewId);
+              }}
+            />
+          ) : (
+            <img
+              alt="like"
+              style={{ width: '38px', height: '38px' }}
+              src={require('../../assets/images/likeoff.png')}
+              onClick={() => {
+                setLike(true);
+                setLikeCnt(like + 1);
+                likePortfolio(userId, props.previewId);
+              }}
+            />
+          )}
+          <div className="likeCnt-content">{likeCnt}</div>
+        </div>
         <div
           className="exit-img"
           style={{
@@ -72,19 +104,13 @@ export default function Modal(props) {
             <span className="info-title" style={{ marginRight: '40px' }}>
               태그
             </span>
-            <span className="info-content" style={{ padding: '0px 10px 0px 10px' }}>
-              #IT
-            </span>
-            <span className="info-content" style={{ padding: '0px 10px 0px 10px' }}>
-              #디자인
-            </span>
-            {/* {tags.map((data, index) => {
+            {tags.map((data, index) => {
               return (
                 <span className="info-content" key={index} style={{ padding: '0px 10px 0px 10px' }}>
-                  #{data}
+                  {data.name}
                 </span>
               );
-            })} */}
+            })}
           </div>
           <hr />
         </div>
