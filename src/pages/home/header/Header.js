@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Header.css';
 import logo from 'assets/images/logo.jpg';
-import { Button } from '@mui/material';
+import { Button ,Link} from '@mui/material';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Searchbar from './Searchbar.js';
 import { useSelector, useDispatch } from 'react-redux';
 import Banner from './Banner.js';
@@ -12,6 +13,7 @@ const Header = () => {
   const [userInfo, setUserInfo] = useState('');
   const [keywordBoxLeft, setkeyWordBoxLeft] = useState('0px');
   const [keywordBoxTop, setkeyWordBoxTop] = useState('0px');
+  const navigate = useNavigate();
   //로그인 정보 state
   const { loginCheck } = useSelector((state) => state.loginCheck);
   //추천검색어 창 나타나게하는 리덕스 전역 관리 변수
@@ -56,9 +58,6 @@ const Header = () => {
       setUserInfo(readme_userInfo);
       signIn();
     }
-    setkeyWordBoxLeft(`${keywordBoxRef.current.getBoundingClientRect().x + 50}px`);
-    setkeyWordBoxTop(`${keywordBoxRef.current.getBoundingClientRect().y + 42}px`);
-
     //로그인이 되었는지 안되었는지 판단
     // if (location.state !== null) {
     //   if (location.state.isLoginSuccess === true) {
@@ -68,10 +67,6 @@ const Header = () => {
     //   signOut();
     // }
   }, []);
-
-  // useEffect(()=>{
-  //   console.log(keywordBoxRef.current.getBoundingClientRect().x)
-  // },[keywordBoxRef.current.getBoundingClientRect().x,keywordBoxRef.current.getBoundingClientRect().y])
 
   const dummeyKeywords = [
     '인문',
@@ -90,55 +85,43 @@ const Header = () => {
 
   return (
     <div className="headerMain">
-      <div className="inner" style={{ marginBottom: '20px' }}>
-        <img
-          src={logo}
-          className="logo"
-          onClick={() => {
-            window.location.href = '';
-          }}
-        />
-        <span className="inner" id="inner">
-          <div
-            style={{ display: 'relative', marginLeft: '18px', paddingTop: '10px' }}
-            ref={keywordBoxRef}
-            onClick={() => {
-              visible();
-            }}
-          >
-            <Searchbar />
-          </div>
-        </span>
+      <div className="inner" style={{ marginBottom: '20px'}}>
+        <NavLink to="/" className="logoNav">
+          <img
+            src={logo}
+            className="logo"
+          />
+        </NavLink>
+        <Searchbar />
 
         {/* 로그인시 출력 컴포넌트 */}
         {isLoggedIn ? (
-          <>
-            <Button disabled style={{ color: '#1976d2', marginTop: '30px', fontSize: '16px' }}>
+          <span className="buttonFamily">
+            <Button disabled style={{ color: '#1976d2', marginTop: '10%', fontSize: '16px' }}>
               {JSON.parse(userInfo).name}님
             </Button>
             <Button
-              href="/login"
-              style={{ marginTop: '30px', fontSize: '16px' }}
+              style={{ marginTop: '10%', fontSize: '16px' }}
               onClick={() => {
                 signOut();
                 setUserInfo(undefined);
                 localStorage.clear();
               }}
             >
-              로그아웃
+              <NavLink style={{textDecoration:'none'}} to="/login">로그아웃</NavLink>
             </Button>
-            <Button href="/mypage" style={{ marginTop: '30px', fontSize: '16px' }}>
-              마이페이지
+            <Button style={{ marginTop: '10%', fontSize: '16px' }}>
+              <NavLink style={{textDecoration:'none'}} to="/mypage">마이페이지</NavLink>
             </Button>
-          </>
+          </span>
         ) : (
           //  로그아웃시 출력 컴포넌트
-          <span>
-            <Button href="/login" style={{ marginTop: '30px', fontSize: '16px' }}>
-              로그인
+          <span className="buttonFamily">
+            <Button  style={{ marginTop: '10%', fontSize: '16px' }}>
+              <NavLink style={{textDecoration:'none'}} to="/login">로그인</NavLink>
             </Button>
-            <Button href="/signup" style={{ marginTop: '30px', fontSize: '16px' }}>
-              회원가입
+            <Button style={{marginTop: '10%', fontSize: '16px' }}>
+                 <NavLink style={{textDecoration:'none'}} to="/signup">회원가입</NavLink>
             </Button>
           </span>
         )}

@@ -114,6 +114,7 @@ const CanvasContainer = ({ isEditable, createElement }) => {
     if (Number(docId) !== undefined && isDataChanged === false) {
       async function fetchPortfolioData() {
         const datas = await getPortfolio(docId);
+        console.log("datas",datas)
         await setDocTitle(datas.title);
         const componentArray = new Array();
         let type, left, top, width, height, content, chartContent, row, col, imgUrl, iconUrl;

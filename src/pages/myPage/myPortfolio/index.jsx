@@ -32,7 +32,6 @@ const MyPortfolio = (props) => {
   return (
     <>
       <Container>
-        {console.log(userPortfolio)}
         <div style={{ width: '1200px', margin: '100px 0px 100px 100px', overflow: 'auto', display: 'flex' }}>
           <Swiper
             slidesPerView={5}
