@@ -35,6 +35,7 @@ export const getPortfolio = async (docId) => {
     return basicPortfolio4.result;
   } else {
     const response = await serverApi.get(`/api/v1/doc/${docId}`);
+    console.log(response)
     try {
       console.log("response", response.data.result)
       return response.data.result;

@@ -77,13 +77,12 @@ const SearchPage =()=>{
         for (const param of searchParams) {
           text=param[1];
         }
-        await searchResult(`${text}`).then(async (result)=>{
-          setSearchPortfolio(result);
-          setSize(searchPortfolio.length);
-        });
+        const datas = await searchResult(`${text}`)
+        await setSearchPortfolio(datas);
+
       }
       getSearhResult();
-      
+      console.log(searchPortfolio)
     },[])
    
     return (
@@ -102,16 +101,16 @@ const SearchPage =()=>{
         )}
         {
           <div style={{ width: '100%', height: '100vh', marginTop: '100px' }}>
-            {console.log('length:', size)}
-            {console.log('searchPortfolio:', searchPortfolio)}
-            {size > 0 ? (
-              size > 1 ? (
+
+            {searchPortfolio.length > 0 ? (
+              searchPortfolio.length > 1 ? (
                 <Slider {...settings} style={{ marginRight: '15%', marginLeft: '15%' }}>
                   {searchPortfolio.map(
                     (data, index) =>
                       data.visibility === 'PUBLIC' && (
                         <span
                           onClick={() => {
+                            console.log(searchPortfolio)
                             openDetailForm(data);
                           }}
                           key={data.docId}

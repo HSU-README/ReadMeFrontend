@@ -28,6 +28,25 @@ const DocCard = (props) => {
         borderRadius: '15px',
       }}
     >
+            {/* 로그인 안내창 */}
+            <Dialog open={openDialog} onClose={handleClose}>
+        <DialogContent>
+          <DialogContentText style={{ fontSize: '20px', color: 'black' }}>
+            로그인 후 이용 가능한 서비스입니다.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>돌아가기</Button>
+          <Button
+            onClick={() => {
+              handleClose();
+              document.location.href = 'http://localhost:3000/login';
+            }}
+          >
+            로그인
+          </Button>
+        </DialogActions>
+      </Dialog>
       <Card className="cardView" sx={{ maxWidth: 270, minWidth: 270 }}>
         <CardActionArea
           onClick={() => {
@@ -60,25 +79,7 @@ const DocCard = (props) => {
           </div>
         </CardActionArea>
       </Card>
-      {/* 로그인 안내창 */}
-      <Dialog open={openDialog} onClose={handleClose}>
-        <DialogContent>
-          <DialogContentText style={{ fontSize: '20px', color: 'black' }}>
-            로그인 후 이용 가능한 서비스입니다.
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>돌아가기</Button>
-          <Button
-            onClick={() => {
-              handleClose();
-              document.location.href = 'http://localhost:3000/login';
-            }}
-          >
-            로그인
-          </Button>
-        </DialogActions>
-      </Dialog>
+
     </div>
   );
 };
