@@ -9,6 +9,21 @@ export const Container = styled.div`
   justify-content: center;
   background-color: rgba(149, 165, 166, 0.9);
 
+  .like-container {
+    display: flex;
+    float: left;
+    position: relative;
+    bottom: 30px;
+    right: 120px;
+  }
+
+  .likeCnt-content {
+    width: 28px;
+    font-size: 30px;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+
   .exit-img {
     width: 30px;
     height: 30px;
@@ -43,12 +58,14 @@ export const Container = styled.div`
   .section-image {
     display: flex;
     justify-content: center;
+    height: 400px;
   }
 
   .section-title {
-    font-size: 24px;
+    position: relative;
+    font-size: 32px;
     font-weight: bold;
-    padding-left: 25px;
+    right: 24px;
   }
 
   .section-info {

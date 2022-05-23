@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '../../pages/login/styles';
-import { Container, FormImage } from './styles';
-import { getPreview } from 'apis/previewApi';
-import { Document, Page } from 'react-pdf';
+import { Container } from './styles';
 import basicPreview from 'localData/basicPreview.json';
-import { pdfjs } from 'react-pdf';
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export default function BasicModal(props) {
   const [docUrl, setDocUrl] = useState('');
@@ -70,7 +66,7 @@ export default function BasicModal(props) {
         <div className="section-title">{title}</div>
         <hr />
         <div className="section-image">
-          <img src={docUrl} alt='preview'></img>
+          <img src={docUrl} alt="preview"></img>
         </div>
         <div className="section-info">
           <div className="name-info">
@@ -93,13 +89,13 @@ export default function BasicModal(props) {
         </div>
 
         <div className="button-wrapper">
-        <Button
-            style={{ width: '450px', height: '48px', borderRadius: '16px', marginRight:"20px"}}
+          <Button
+            style={{ width: '450px', height: '48px', borderRadius: '16px', marginRight: '20px' }}
             onClick={() => {
               goToPreview();
             }}
           >
-            <span style={{ fontSize: '17px', fontWeight:"700" }}>미리보기</span>
+            <span style={{ fontSize: '17px', fontWeight: '700' }}>미리보기</span>
           </Button>
 
           <Button
@@ -108,7 +104,7 @@ export default function BasicModal(props) {
               goToGenerate();
             }}
           >
-            <span style={{ fontSize: '17px' , fontWeight:"700"}}>포트폴리오 만들기</span>
+            <span style={{ fontSize: '17px', fontWeight: '700' }}>포트폴리오 만들기</span>
           </Button>
         </div>
       </div>
