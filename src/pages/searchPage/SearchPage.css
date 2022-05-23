@@ -8,6 +8,7 @@
   }
 
 .sectionSelect {
+    background-color: green;
     width:90%;
     height:100vh;
     display: flex;

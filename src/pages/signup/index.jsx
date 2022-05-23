@@ -98,7 +98,7 @@ const Signup = () => {
         <br />
         <TextField
           placeholder="한성대학교"
-          label="학교(선택)"
+          label="학교"
           value={university}
           variant="outlined"
           size="small"

@@ -29,7 +29,9 @@ export default function Modal(props) {
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages);
   }
-
+  useEffect(()=>{
+    console.log("props : ",props)
+  },[])
   const onClickExitButton = () => {
     setTitle('');
     setDocUrl('');

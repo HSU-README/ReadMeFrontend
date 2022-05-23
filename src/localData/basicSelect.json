@@ -1,24 +1,30 @@
 {
   "data": [
     {
+
       "id": 1001,
-      "title": "전통 양식"
+      "title": "전통 양식",
+      "visibility":"PUBLIC"
     },
     {
       "id": 1002,
-      "title": "픽토그램 양식"
+      "title": "픽토그램 양식",
+      "visibility":"PUBLIC"
     },
     {
       "id": 1003,
-      "title": "기본 양식3"
+      "title": "기본 양식3",
+      "visibility":"PUBLIC"
     },
     {
       "id": 1004,
-      "title": "기본 양식4"
+      "title": "기본 양식4",
+      "visibility":"PUBLIC"
     },
     {
       "id": 1005,
-      "title": "기본 양식5"
+      "title": "기본 양식5",
+      "visibility":"PUBLIC"
     }
   ]
 }

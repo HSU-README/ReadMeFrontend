@@ -7,21 +7,25 @@
     display:flex;
     width:100%;
 }
+
+.logoNav{
+
+  margin-left:10%;
+  margin-top:14px;
+}
 .logo {
   cursor:pointer;
   width: 110px;
   height: 46px;
-  margin-left:10%;
-  margin-top:14px;
 }
 .inputRounded .MuiOutlinedInput-root {
   width: 560px;
   height:45px;
   border-radius: 50px;
   margin-top:15px;
-  margin-left:110%;
+  margin-left:32%;
 }
 .buttonFamily{
-  margin-left:40%;
+  margin-left:20%;
 }
 

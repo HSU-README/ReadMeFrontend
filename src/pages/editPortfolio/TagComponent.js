@@ -32,14 +32,14 @@ const TagComponent = () => {
     }
   };
   return (
-    <div className="parent" style={{ marginLeft: '20%' }}>
+    <div className="parent" style={{ marginLeft: '13%' }}>
       <div className="itemBoxCss">
         <details>
           <summary>연관키워드 (4개 선택 가능)</summary>
           <br />
           <details>
             <summary>전공</summary>
-            <FormGroup sx={{ flexDirection: 'row' }} style={{ marginLeft: '26px' }}>
+            <FormGroup sx={{ flexDirection: 'row' }} style={{ marginLeft: '40px' }}>
               <Button value="인문" onClick={handleChange}>
                 #인문
               </Button>
@@ -63,7 +63,7 @@ const TagComponent = () => {
           <br />
           <details>
             <summary>디자인</summary>
-            <FormGroup sx={{ flexDirection: 'row' }} style={{ marginLeft: '26px' }}>
+            <FormGroup sx={{ flexDirection: 'row' }} style={{ marginLeft: '40px' }}>
               <Button value="심플" onClick={handleChange}>
                 #심플
               </Button>

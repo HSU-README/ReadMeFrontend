@@ -19,8 +19,16 @@ const DocCard = (props) => {
     setOpenDialog(false);
   }
   return (
-    <div style={{ marginLeft: '80px', marginRight: '80px', display: 'inline-flex',border:"1px solid #d3d3d3",borderRadius:"15px" }}>
-      <Card className="cardView" sx={{ maxWidth: 300, minWidth: 300 }}>
+    <div
+      style={{
+        marginLeft: '50px',
+        marginRight: '80px',
+        display: 'inline-flex',
+        border: '1px solid #d3d3d3',
+        borderRadius: '15px',
+      }}
+    >
+      <Card className="cardView" sx={{ maxWidth: 270, minWidth: 270 }}>
         <CardActionArea
           onClick={() => {
             if (props.isLogin === 'false') {
@@ -34,7 +42,7 @@ const DocCard = (props) => {
             height="190"
             image={dummy1}
             alt="green iguana"
-            onClick={props.isLogin === 'true' && clickForm}
+            onClick={props.isLogin && clickForm}
           />
           <div style={{ marginTop: '10px', marginBottom: '10px', textAlign: 'center' }}>
             {props.pofolInfo.tag.map((data, index) => {

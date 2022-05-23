@@ -1,8 +1,9 @@
 import axios from 'axios';
+import BasicModal from 'components/basicModal';
 import { ToastError, ToastSuccess } from 'hooks/toastHook';
 import basicPortfolio1 from 'localData/basicPortfolio1.json';
 import basicPortfolio2 from 'localData/basicPortfolio2.json';
-
+import basicSelect from 'localData/basicSelect.json';
 const serverApi = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
   headers: {
@@ -29,6 +30,7 @@ export const getPortfolio = async (docId) => {
   } else {
     const response = await serverApi.get(`/api/v1/doc/${docId}`);
     try {
+      console.log("response", response.data.result)
       return response.data.result;
     } catch (error) {
       console.log(error);
@@ -37,10 +39,18 @@ export const getPortfolio = async (docId) => {
 };
 
 export const searchResult = async(searchText)=>{
+  console.log(searchText);
   if (searchText === '전통 양식') {
+    console.log("come here")
     return basicPortfolio1.result;
+  }else if(searchText==='픽토그램 양식'){
+    return basicPortfolio2.result;
+  }else if(searchText==='기본 양식'){
+    console.log(basicSelect.data)
+    return basicSelect.data;
   }else {
     const response = await serverApi.get(`/api/v1/doc/search?where=${searchText}`);
+    
     try {
       return response.data.result;
     } catch (error) {
