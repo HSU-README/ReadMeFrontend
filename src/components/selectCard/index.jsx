@@ -2,6 +2,7 @@ import { Container, OpacityBlack } from './styles';
 
 export default function SelectCard(props) {
   const setSelectedFormat = () => {
+    console.log(props)
     if (Object.keys(props.format).includes('docId')) {
       props.setSelectedFormat(props.format.docId);
     } else {

@@ -11,6 +11,7 @@ import prevArrow from '../../assets/images/prevArrow.png';
 import nextArrow from '../../assets/images/nextArrow.png';
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from 'components/modal/index.jsx';
+import { NavLink } from 'react-router-dom';
 import Footer from 'components/footer/index.jsx';
 import Banner from './header/Banner.js';
 const Home = (props) => {
@@ -31,9 +32,6 @@ const Home = (props) => {
     setDetailFormId('');
   };
 
-  const goToSelect = () => {
-    window.location.href = '/select';
-  };
 
   const [sliderCount, setSliderCount] = useState(4); //기본화면에서 4개
   useEffect(
@@ -83,7 +81,7 @@ const Home = (props) => {
         <div className="sectionFont">
           <span>나의 포트폴리오</span>
         </div>
-        <Slider {...settings} style={{ marginLeft: '100px', marginRight: '50px' }}>
+        <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
           {dummyData.map((data, index) => (
             <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin={isLogin} />
           ))}
@@ -92,7 +90,7 @@ const Home = (props) => {
         <div className="sectionFont">
           <span>학과별 포트폴리오</span>
         </div>
-        <Slider {...settings} style={{ marginLeft: '100px', marginRight: '50px' }}>
+        <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%',marginBottom:"50px" }}>
           {dummyData.map((data, index) => (
             <span key={index} id={index}>
               <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data}  isLogin={isLogin}/>
@@ -141,18 +139,15 @@ const Home = (props) => {
           <div className="pofolBtnHeader">
             <button
               className="pofolBtn"
-              onClick={() => {
-                goToSelect();
-              }}
             >
-              포트폴리오 만들기
+              <NavLink className="pofolBtn" to="/select" style={{textDecoration:'none',color:"white" }}>포트폴리오 만들기</NavLink>
             </button>
           </div>
         </>
       )}
 
       <div className="sectionFont">인기 포트폴리오</div>
-      <Slider {...settings} style={{ marginLeft: '100px', marginRight: '50px' }}>
+      <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
         {dummyData.map((data, index) => (
           <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin="true" />
         ))}
@@ -160,7 +155,6 @@ const Home = (props) => {
       {loginCheck ? (
         <RecommendPortFolio isLogin="true" />
       ) : (
-        //로그인이 되어있지 않고 나의 포트폴리오나 전공병 포트폴리오 글을 클릭 시 회색화면으로 변경
         <div
           onClick={() => {
             setAlertMessageVisible(true);

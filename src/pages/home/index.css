@@ -31,7 +31,7 @@
   border-radius: 15px;
   margin-right: 200px;
   font-weight: bold;
-  margin-left: 120px;
+  margin-left: 10%;
   color:black;
   font-Size:35px;
   text-align:left;
@@ -51,9 +51,9 @@
   color:white;
   font-weight:900;
   font:bold;
-  font-size:30px;
-  width:35%;
-  height:70px;
+  font-size:25px;
+  width:30%;
+  height:60px;
   border:0px;
   border-radius:16px;
 }
@@ -80,6 +80,5 @@
   justify-content: flex-start;
   gap: 10px;
   padding: 10px;  
-
   display: inline-block;
 }

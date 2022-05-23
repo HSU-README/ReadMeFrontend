@@ -118,7 +118,9 @@ export default function Toolbar({
     fetchUserLikePortfolioData();;
    
   },[])
-
+  useEffect(()=>{
+    setTitle(docTitle);
+  },[docTitle])
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -208,8 +210,10 @@ export default function Toolbar({
       <FormControl variant="standard" style={{ marginLeft: '90px', width: '50%' }}>
         <Input
           value={title}
-          placeholder="제목을 입력하세요."
+          placeholder="  제목을 입력하세요."
+          style={{backgroundColor:"white",borderRadius:"10px"}}
           onChange={(e) => {
+
             setTitle(e.target.value);
           }}
         />
