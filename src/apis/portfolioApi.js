@@ -65,7 +65,7 @@ export const searchResult = async(searchText)=>{
   }
 };
 //문서 만들기
-export const createPortfolio = async (memberId, title, components, tags, visibleCheck, imgUrl) => {
+export const createPortfolio = async (memberId, title, components, tags, visibleCheck, docUrl) => {
   const componentArray = new Array();
   await components.map((component, index) => {
     console.log(component);
@@ -137,7 +137,7 @@ export const createPortfolio = async (memberId, title, components, tags, visible
       memberId: memberId,
       components: componentArray,
       title: title,
-      docUrl: 'imgUrl',
+      docUrl: docUrl,
       tags: tags,
       visibility: visibleCheck === true ? 'public' : 'private',
     })

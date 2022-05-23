@@ -2,7 +2,9 @@ import React, { useEffect, useRef, useContext, useState } from 'react';
 import { CanvasContext } from '../CanvasContainer';
 import ReactToPrint from 'react-to-print';
 import { useRecoilState, useResetRecoilState } from 'recoil';
-import {likePortfolio, unlikePortfolio, getUserLikePortfolio} from "apis/likeApi";
+import { likePortfolio, unlikePortfolio, getUserLikePortfolio } from 'apis/likeApi';
+import { storage } from '../../../firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { tagsState } from 'recoil/atoms';
 import {
   FormControl,
@@ -105,22 +107,46 @@ export default function Toolbar({
     setOpenDialog(false);
   };
 
-  useEffect(()=>{
+  const dataURLtoFile = (dataurl, fileName) => {
+    var arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]),
+      n = bstr.length,
+      u8arr = new Uint8Array(n);
+    while (n--) {
+      u8arr[n] = bstr.charCodeAt(n);
+    }
+    return new File([u8arr], fileName, { type: mime });
+  };
+
+  const captureToFirebase = async () => {
+    const canvas = await capture();
+    var dataUrl = canvas.toDataURL('image/png', 1.0);
+    const result = dataURLtoFile(dataUrl, 'test.png');
+    const storageRef = ref(storage, `preview${userId}`);
+
+    //upload the file
+    const uploadTask = await uploadBytesResumable(storageRef, result);
+    const url = await getDownloadURL(uploadTask.ref);
+
+    return url;
+  };
+
+  useEffect(() => {
     async function fetchUserLikePortfolioData() {
       const datas = await getUserLikePortfolio(userId);
       console.log(docId);
-      await datas.map((data)=>{
-        if(data.docId == docId){
+      await datas.map((data) => {
+        if (data.docId == docId) {
           setLike(true);
         }
-      })
+      });
     }
-    fetchUserLikePortfolioData();;
-   
-  },[])
-  useEffect(()=>{
+    fetchUserLikePortfolioData();
+  }, []);
+  useEffect(() => {
     setTitle(docTitle);
-  },[docTitle])
+  }, [docTitle]);
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -181,11 +207,10 @@ export default function Toolbar({
             <DialogActions>
               <Button onClick={handleClose}>취소</Button>
               <Button
-                onClick={() => {
-                  createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck).then((docId) => {
-                    capture(docId);
-                  });
+                onClick={async () => {
                   handleClose();
+                  let docUrl = await captureToFirebase();
+                  createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck, docUrl);
                 }}
               >
                 확인
@@ -211,9 +236,8 @@ export default function Toolbar({
         <Input
           value={title}
           placeholder="  제목을 입력하세요."
-          style={{backgroundColor:"white",borderRadius:"10px"}}
+          style={{ backgroundColor: 'white', borderRadius: '10px' }}
           onChange={(e) => {
-
             setTitle(e.target.value);
           }}
         />
@@ -235,9 +259,9 @@ export default function Toolbar({
         />
       ) : like ? (
         <img
-        alt='unlike'
+          alt="unlike"
           style={{ width: '30px', height: '30px', marginLeft: '70px' }}
-          src={require('../../../assets/images/thumbs_up_fill_icon.png')}
+          src={require('../../../assets/images/likeon.png')}
           ref={tumbsImageRef}
           onClick={() => {
             setLike(false);
@@ -246,9 +270,9 @@ export default function Toolbar({
         />
       ) : (
         <img
-        alt='like'
+          alt="like"
           style={{ width: '30px', height: '30px', marginLeft: '70px' }}
-          src={require('../../../assets/images/thumbs_up.png')}
+          src={require('../../../assets/images/likeoff.png')}
           ref={tumbsImageRef}
           onClick={() => {
             setLike(true);

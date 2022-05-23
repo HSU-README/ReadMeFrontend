@@ -5,8 +5,6 @@ import Toolbar from './Components/Toolbar';
 import './Canvas.css';
 import { createPortfolio, getPortfolio } from 'apis/portfolioApi';
 import html2canvas from 'html2canvas';
-import { storage } from '../../firebase';
-import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { useRecoilState } from 'recoil';
 import { chartState } from 'recoil/atoms';
 export const CanvasContext = React.createContext<ICanvasContext>({});
@@ -277,32 +275,8 @@ const CanvasContainer = ({ isEditable, createElement }) => {
     isSelectAll.current = false;
   }, []);
 
-  const dataURLtoFile = (dataurl, fileName) => {
-    var arr = dataurl.split(','),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]),
-      n = bstr.length,
-      u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], fileName, { type: mime });
-  };
-
-  const capture = (docId) => {
-    html2canvas(document.getElementById('capture-div')).then((canvas) => {
-      var dataURL = canvas.toDataURL('image/png', 1.0);
-      const result = dataURLtoFile(dataURL, 'test.png');
-      const storageRef = ref(storage, `preview${docId}`);
-      console.log(result);
-      //upload the file
-      const uploadTask = uploadBytesResumable(storageRef, result);
-
-      const imageUrl = uploadTask.then(() => {
-        return getDownloadURL(uploadTask.snapshot.ref);
-      });
-      console.log(imageUrl);
-    });
+  const capture = () => {
+    return html2canvas(document.getElementById('capture-div'));
   };
 
   React.useEffect(() => {
