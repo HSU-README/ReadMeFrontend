@@ -13,7 +13,7 @@ const Searchbar = () => {
     setSearchText(event.target.value);
   };
   return (
-    <div style={{marginLeft:"180px"}}>
+    <div style={{marginLeft:"190px"}}>
       <TextField
         className="inputRounded"
         placeholder={placeHolder}

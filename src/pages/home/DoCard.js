@@ -40,7 +40,7 @@ const DocCard = (props) => {
             height="190"
             image={dummy1}
             onClick={()=>{
-              if(props.isLogin){
+              if(props.isLogin==="false"){
                 handleOpen()
               }else{
                  clickForm()
@@ -50,14 +50,23 @@ const DocCard = (props) => {
           <div style={{ marginTop: '10px', marginBottom: '10px', textAlign: 'center' }}>
             {props.pofolInfo.tag.map((data, index) => {
               return (
-                <span
+                <Button
+                  size="small"
+                  style={{
+                    color:"black",
+                    fontSize:"13px",
+                    fontWeight:"700",
+                    backgroundColor:"lightblue",
+                    marginLeft:"5px",
+                    marginRight:"5px"
+                  }}
                   key={index}
                   onClick={() => {
-                    alert(`${data}페이지로 이동`);
+                    document.location.href=`/search?where=테스트`
                   }}
                 >
-                  # {data}
-                </span>
+                  #{data+" "} 
+                </Button>
               );
             })}
           </div>

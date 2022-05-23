@@ -101,16 +101,16 @@ const SearchPage =()=>{
         )}
         {
           <div style={{ width: '100%', height: '100vh', marginTop: '100px' }}>
-
-            {searchPortfolio.length > 0 ? (
-              searchPortfolio.length > 1 ? (
+            {console.log('searchPortfolio:', searchPortfolio.length)}
+            {console.log(searchPortfolio)}
+            {searchPortfolio.length !== undefined ? (
+              searchPortfolio.length !== 0 ? (
                 <Slider {...settings} style={{ marginRight: '15%', marginLeft: '15%' }}>
                   {searchPortfolio.map(
                     (data, index) =>
                       data.visibility === 'PUBLIC' && (
                         <span
                           onClick={() => {
-                            console.log(searchPortfolio)
                             openDetailForm(data);
                           }}
                           key={data.docId}
@@ -128,28 +128,30 @@ const SearchPage =()=>{
                   )}
                 </Slider>
               ) : (
-                <span
-                  onClick={() => {
-                    openDetailForm(searchPortfolio);
-                  }}
-                  key={searchPortfolio.docId}
-                >
-                  <SelectCard
-                    id={searchPortfolio.docId}
-                    key={searchPortfolio.docId}
-                    format={searchPortfolio}
-                    selectedFormat={selectedFormat}
-                    setSelectedFormat={setSelectedFormat}
-                    isSelected={1 !== selectedFormat ? false : true}
+                <div style={{ fontSize: '40px', marginTop: '30px' }}>
+                  <img
+                    src={require('../../assets/images/not_found_icon.png')}
+                    style={{ width: '200px', height: '200px' }}
                   />
-                </span>
+                  찾으시는 포트폴리오가 없어요!
+                </div>
               )
             ) : (
-              <div style={{ fontSize: '40px', marginTop: '30px' }}>
-                <img src={require('../../assets/images/not_found_icon.png')} style={{width:"200px", height:"200px"}}/>
-                찾으시는 포트폴리오가 없어요!
-                
-              </div>
+              <span
+                onClick={() => {
+                  openDetailForm(searchPortfolio);
+                }}
+                key={searchPortfolio.docId}
+              >
+                <SelectCard
+                  id={searchPortfolio.docId}
+                  key={searchPortfolio.docId}
+                  format={searchPortfolio}
+                  selectedFormat={selectedFormat}
+                  setSelectedFormat={setSelectedFormat}
+                  isSelected={1 !== selectedFormat ? false : true}
+                />
+              </span>
             )}
           </div>
         }
