@@ -8,7 +8,8 @@ const DocCard = (props) => {
   // const tags = props.pofolInfo.tag;
   const [openDialog, setOpenDialog] = useState(false);
   const clickForm = () => {
-    console.log(props.openDetailForm)
+    console.log(props)
+    console.log(props.id);
     props.openDetailForm(props.id);
   };
   
@@ -18,6 +19,9 @@ const DocCard = (props) => {
   const handleClose=()=>{
     setOpenDialog(false);
   }
+  useEffect(()=>{
+    console.log(props.isLogin)
+  },[])
   return (
     <div
       style={{
@@ -28,6 +32,38 @@ const DocCard = (props) => {
         borderRadius: '15px',
       }}
     >
+      <Card className="cardView" sx={{ maxWidth: 270, minWidth: 270 }}>
+        <CardActionArea>
+          <CardMedia
+            className="cardMedia"
+            component="img"
+            height="190"
+            image={dummy1}
+            onClick={()=>{
+              if(props.isLogin){
+                handleOpen()
+              }else{
+                 clickForm()
+              }
+            }}
+          />
+          <div style={{ marginTop: '10px', marginBottom: '10px', textAlign: 'center' }}>
+            {props.pofolInfo.tag.map((data, index) => {
+              return (
+                <span
+                  key={index}
+                  onClick={() => {
+                    alert(`${data}페이지로 이동`);
+                  }}
+                >
+                  # {data}
+                </span>
+              );
+            })}
+          </div>
+        </CardActionArea>
+      </Card>
+
             {/* 로그인 안내창 */}
             <Dialog open={openDialog} onClose={handleClose}>
         <DialogContent>
@@ -47,39 +83,6 @@ const DocCard = (props) => {
           </Button>
         </DialogActions>
       </Dialog>
-      <Card className="cardView" sx={{ maxWidth: 270, minWidth: 270 }}>
-        <CardActionArea
-          onClick={() => {
-            if (props.isLogin === 'false') {
-              handleOpen();
-            }
-          }}
-        >
-          <CardMedia
-            className="cardMedia"
-            component="img"
-            height="190"
-            image={dummy1}
-            alt="green iguana"
-            onClick={props.isLogin && clickForm}
-          />
-          <div style={{ marginTop: '10px', marginBottom: '10px', textAlign: 'center' }}>
-            {props.pofolInfo.tag.map((data, index) => {
-              return (
-                <span
-                  key={index}
-                  onClick={() => {
-                    alert(`${data}페이지로 이동`);
-                  }}
-                >
-                  # {data}
-                </span>
-              );
-            })}
-          </div>
-        </CardActionArea>
-      </Card>
-
     </div>
   );
 };

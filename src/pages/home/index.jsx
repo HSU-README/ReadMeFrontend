@@ -16,15 +16,16 @@ import Footer from 'components/footer/index.jsx';
 import Banner from './header/Banner.js';
 const Home = (props) => {
   const [showDetailForm, setShowDetailForm] = useState(false);
-  const [detailFormId, setDetailFormId] = useState('');
+  const [detailFormId, setDetailFormId] = useState(0);
   const [loginSuccess, setLoginSuccess] = useState(false);
   const [alertMessageVisible, setAlertMessageVisible] = useState(false);
   const { loginCheck } = useSelector((state) => state.loginCheck);
   const { isntClick } = useRef(null);
   const dispatch = useDispatch();
   const openDetailForm = (id) => {
+    console.log(id);
     setShowDetailForm(true);
-    setDetailFormId(id);
+    setDetailFormId(1);
   };
 
   const closeDetailForm = () => {
@@ -81,6 +82,7 @@ const Home = (props) => {
         <div className="sectionFont">
           <span>나의 포트폴리오</span>
         </div>
+
         <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
           {dummyData.map((data, index) => (
             <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin={isLogin} />
