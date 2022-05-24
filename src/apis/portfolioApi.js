@@ -35,9 +35,9 @@ export const getPortfolio = async (docId) => {
     return basicPortfolio4.result;
   } else {
     const response = await serverApi.get(`/api/v1/doc/${docId}`);
-    console.log(response)
+    console.log(response);
     try {
-      console.log("response", response.data.result)
+      console.log('response', response.data.result);
       return response.data.result;
     } catch (error) {
       console.log(error);
@@ -45,19 +45,19 @@ export const getPortfolio = async (docId) => {
   }
 };
 
-export const searchResult = async(searchText)=>{
+export const searchResult = async (searchText) => {
   console.log(searchText);
   if (searchText === '전통 양식') {
-    console.log("come here")
+    console.log('come here');
     return basicPortfolio1.result;
-  }else if(searchText==='픽토그램 양식'){
+  } else if (searchText === '픽토그램 양식') {
     return basicPortfolio2.result;
-  }else if(searchText==='기본 양식'){
-    console.log(basicSelect.data)
+  } else if (searchText === '기본 양식') {
+    console.log(basicSelect.data);
     return basicSelect.data;
-  }else {
+  } else {
     const response = await serverApi.get(`/api/v1/doc/search?where=${searchText}`);
-    
+
     try {
       return response.data.result;
     } catch (error) {
@@ -68,6 +68,7 @@ export const searchResult = async(searchText)=>{
 //문서 만들기
 export const createPortfolio = async (memberId, title, components, tags, visibleCheck, docUrl) => {
   const componentArray = new Array();
+  await tags.pop();
   await components.map((component, index) => {
     console.log(component);
     switch (component.type) {
