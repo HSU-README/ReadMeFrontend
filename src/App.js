@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import AllPortfolio from 'pages/allPortfolio';
 import Signup from './pages/signup';
 import Login from './pages/login';
 import MyPage from './pages/myPage';
@@ -15,10 +16,11 @@ function App() {
       <RecoilRoot>
         <BrowserRouter>
           <Routes>
-            <Route exact path="/" element={<Main />} />
-            <Route exact path="/signup" element={<Signup />} />
-            <Route exact path="/login" element={<Login />} />
-            <Route exact path="/mypage" element={<MyPage />}></Route>
+            <Route path="/" element={<Main />} />
+            <Route path="/all" element={<AllPortfolio />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/mypage" element={<MyPage />}></Route>
             <Route path="/select" element={<Select />} />
             <Route path="/generate" element={<DownloadPortfolio />} /> {/*포트폴리오 제작 페이지 라우트*/}
             <Route path="/generate/:docId" element={<DownloadPortfolio />} /> {/*포트폴리오 제작 페이지 라우트*/}

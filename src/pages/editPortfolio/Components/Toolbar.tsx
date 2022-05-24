@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { CanvasContext } from '../CanvasContainer';
 import ReactToPrint from 'react-to-print';
 import { useRecoilState, useResetRecoilState } from 'recoil';
@@ -206,15 +207,17 @@ export default function Toolbar({
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>취소</Button>
-              <Button
-                onClick={async () => {
-                  handleClose();
-                  let docUrl = await captureToFirebase();
-                  createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck, docUrl);
-                }}
-              >
-                확인
-              </Button>
+              <Link to="/">
+                <Button
+                  onClick={async () => {
+                    handleClose();
+                    let docUrl = await captureToFirebase();
+                    createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck, docUrl);
+                  }}
+                >
+                  확인
+                </Button>
+              </Link>
             </DialogActions>
           </Dialog>
         )}
