@@ -5,12 +5,11 @@ import { getPreview } from 'apis/previewApi';
 import { likePortfolio, unlikePortfolio, getUserLikePortfolio } from 'apis/likeApi';
 
 export default function Modal(props) {
-  // const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
+  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
   console.log(props);
-  const userId=40
-  useEffect(()=>{
-    console.log("user Id : ", userId)
-  },[])
+  useEffect(() => {
+    console.log('user Id : ', userId);
+  }, []);
   const [docUrl, setDocUrl] = useState('');
   const [title, setTitle] = useState('');
   const [designer, setDesigner] = useState('');
