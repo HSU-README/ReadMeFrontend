@@ -56,13 +56,14 @@ const DocCard = (props) => {
                     color:"black",
                     fontSize:"13px",
                     fontWeight:"700",
-                    backgroundColor:"lightblue",
+                    borderRadius:"7px",
+                    backgroundColor:"#ced4da",
                     marginLeft:"5px",
                     marginRight:"5px"
                   }}
                   key={index}
                   onClick={() => {
-                    document.location.href=`/search?where=테스트`
+                    document.location.href=`/search?where=${data}`
                   }}
                 >
                   #{data+" "} 
