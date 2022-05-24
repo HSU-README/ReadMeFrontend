@@ -128,7 +128,7 @@ const SearchPage =()=>{
                   )}
                 </Slider>
               ) : (
-                <div style={{ fontSize: '40px', marginTop: '30px' }}>
+                <div style={{ fontSize: '40px', marginTop: '300px' }}>
                   <img
                     src={require('../../assets/images/not_found_icon.png')}
                     style={{ width: '200px', height: '200px' }}
