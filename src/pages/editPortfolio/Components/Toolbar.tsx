@@ -135,10 +135,10 @@ export default function Toolbar({
   };
   const styles = {
     dialogPaper: {
-        minHeight: '80vh',
-        maxHeight: '80vh',
+      minHeight: '80vh',
+      maxHeight: '80vh',
     },
-};
+  };
   useEffect(() => {
     async function fetchUserLikePortfolioData() {
       const datas = await getUserLikePortfolio(userId);
@@ -154,13 +154,13 @@ export default function Toolbar({
   useEffect(() => {
     setTitle(docTitle);
   }, [docTitle]);
-    const [image, setImage] = useState(null)
+  const [image, setImage] = useState(null);
 
-    const onImageChange = (event) => {
-      if (event.target.files && event.target.files[0]) {
-        setImage(URL.createObjectURL(event.target.files[0]));
-      }
+  const onImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setImage(URL.createObjectURL(event.target.files[0]));
     }
+  };
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -218,21 +218,25 @@ export default function Toolbar({
         ) : (
           <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '35%' } }}>
             <DialogContent>
-              <DialogContentText style={{ textAlign: 'center', fontSize: '30px',color:"black" }}>
+              <DialogContentText style={{ textAlign: 'center', fontSize: '30px', color: 'black' }}>
                 {title}
-                <div style={{textAlign:"right",fontSize:"15px"}}>
-                  수정 시간 : {new Date().getFullYear()}: {new Date().getMonth()+1}: {new Date().getDate()}: {new Date().getHours()}: {new Date().getMinutes()}
+                <div style={{ textAlign: 'right', fontSize: '15px' }}>
+                  수정 시간 : {new Date().getFullYear()}: {new Date().getMonth() + 1}: {new Date().getDate()}:{' '}
+                  {new Date().getHours()}: {new Date().getMinutes()}
                 </div>
               </DialogContentText>
 
-              <div style={{width:"100%", height:"200px"}}>
-                <img src={image}  style={{ textAlign:"center",width: '100%', height: '200px', objectFit: 'contain' }} />
+              <div style={{ width: '100%', height: '200px' }}>
+                <img
+                  src={image}
+                  style={{ textAlign: 'center', width: '100%', height: '200px', objectFit: 'contain' }}
+                />
               </div>
               <input type="file" onChange={onImageChange} className="filetype" />
 
               <FormControlLabel
                 value="start"
-                style={{ marginLeft: '84%'}}
+                style={{ marginLeft: '84%' }}
                 control={
                   <Checkbox
                     defaultChecked={visibleCheck}
@@ -279,7 +283,7 @@ export default function Toolbar({
         <Input
           value={title}
           placeholder="제목을 입력하세요."
-          style={{ backgroundColor: 'white', borderRadius: '10px',padding:"4px",paddingLeft:"10px" }}
+          style={{ backgroundColor: 'white', borderRadius: '10px', padding: '4px', paddingLeft: '10px' }}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -287,8 +291,7 @@ export default function Toolbar({
       </FormControl>
       {isEditable ? (
         <></>
-      ) :
-      like ? (
+      ) : like ? (
         <img
           alt="unlike"
           style={{ width: '30px', height: '30px', marginLeft: '70px' }}

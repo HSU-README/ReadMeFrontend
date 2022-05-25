@@ -24,7 +24,7 @@ export default function MainSelectCard({ data }) {
     if (data.designerUrl !== '') {
       setProfileImg(data.designerUrl);
     }
-    console.log(date);
+
     setDocDate(`${year}년 ${month}월 ${day}일`);
     setTitle(data.title);
     setThumbnail(data.docUrl);

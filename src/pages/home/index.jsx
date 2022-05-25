@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import Header from './header/Header.js';
 import 'react-toastify/dist/ReactToastify.css';
-import { getMostLikePortfolio } from 'apis/portfolioApi';
+import { getMostLikePortfolio, getAllPortfolio, getMajorPortfolio } from 'apis/portfolioApi';
 import './index.css';
 import DocCard from './DoCard.js';
 import Slider from 'react-slick';
@@ -11,18 +11,25 @@ import prevArrow from '../../assets/images/prevArrow.png';
 import nextArrow from '../../assets/images/nextArrow.png';
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from 'components/modal/index.jsx';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Footer from 'components/footer/index.jsx';
 import Banner from './header/Banner.js';
 import MainSelectCard from 'components/mainSelectCard/index.jsx';
+import colors from 'styles/colors.js';
+import homeDummyData from 'localData/homeDummyData.json';
+
 const Home = () => {
   const [mostLikePortfolio, setMostLikePortfolio] = useState([]);
-  const [mostLikeProtfolioCnt, setMostLikePortfolioCnt] = useState(0);
+  const [mostLikePortfolioCnt, setMostLikePortfolioCnt] = useState(0);
+  const [allPortfolio, setAllPortfolio] = useState([]);
+  const [allPortfolioCnt, setAllPortfolioCnt] = useState(0);
 
   const [showDetailForm, setShowDetailForm] = useState(false);
   const [detailFormId, setDetailFormId] = useState(0);
   const [alertMessageVisible, setAlertMessageVisible] = useState(false);
   const { loginCheck } = useSelector((state) => state.loginCheck);
+  const dummyData = homeDummyData.data;
+  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
   const openDetailForm = (id) => {
     console.log(id);
     setShowDetailForm(true);
@@ -49,11 +56,21 @@ const Home = () => {
     });
     async function fetchMostLikePortfolioData() {
       const datas = await getMostLikePortfolio();
+      setMostLikePortfolio(datas);
+      setMostLikePortfolioCnt(datas.length);
+    }
+    async function fetchAllPortfolioData() {
+      const datas = await getAllPortfolio();
+      setAllPortfolio(datas);
+      setAllPortfolioCnt(datas.length);
+    }
+    async function fetchMajorPortfolioData() {
+      const datas = await getMajorPortfolio(userId);
       console.log(datas);
-      await setMostLikePortfolio(datas);
-      await setMostLikePortfolioCnt(datas.length);
     }
     fetchMostLikePortfolioData();
+    fetchAllPortfolioData();
+    fetchMajorPortfolioData();
   }, []);
 
   const SamplePrevArrow = (props) => {
@@ -81,122 +98,6 @@ const Home = () => {
       />
     );
   };
-
-  const RecommendPortFolio = ({ isLogin }) => {
-    return (
-      <span>
-        <div className="sectionFont">
-          <span>나의 포트폴리오</span>
-        </div>
-
-        <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}></Slider>
-
-        <div className="sectionFont">
-          <span>학과별 포트폴리오</span>
-        </div>
-        <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%', marginBottom: '50px' }}></Slider>
-      </span>
-    );
-  };
-
-  const dummyData = [
-    {
-      docId: 40,
-      title: 't1',
-      docDate: '2022-05-25T06:50:07',
-      visibility: 'PUBLIC',
-      tags: [
-        {
-          name: '#사회',
-        },
-      ],
-      likes: [
-        {
-          id: 42,
-          memberId: 1,
-          docId: 40,
-        },
-      ],
-      likeCnt: 1,
-      docUrl:
-        'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/preview1?alt=media&token=ce97b277-cc2b-4080-889b-3b57ea46267c',
-      major: null,
-      designer: 'test6',
-      designerUrl: '',
-    },
-    {
-      docId: 40,
-      title: 't1',
-      docDate: '2022-05-25T06:50:07',
-      visibility: 'PUBLIC',
-      tags: [
-        {
-          name: '#사회',
-        },
-      ],
-      likes: [
-        {
-          id: 42,
-          memberId: 1,
-          docId: 40,
-        },
-      ],
-      likeCnt: 1,
-      docUrl:
-        'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/preview1?alt=media&token=ce97b277-cc2b-4080-889b-3b57ea46267c',
-      major: null,
-      designer: 'test6',
-      designerUrl: '',
-    },
-    {
-      docId: 40,
-      title: 't1',
-      docDate: '2022-05-25T06:50:07',
-      visibility: 'PUBLIC',
-      tags: [
-        {
-          name: '#사회',
-        },
-      ],
-      likes: [
-        {
-          id: 42,
-          memberId: 1,
-          docId: 40,
-        },
-      ],
-      likeCnt: 1,
-      docUrl:
-        'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/preview1?alt=media&token=ce97b277-cc2b-4080-889b-3b57ea46267c',
-      major: null,
-      designer: 'test6',
-      designerUrl: '',
-    },
-    {
-      docId: 40,
-      title: 't1',
-      docDate: '2022-05-25T06:50:07',
-      visibility: 'PUBLIC',
-      tags: [
-        {
-          name: '#사회',
-        },
-      ],
-      likes: [
-        {
-          id: 42,
-          memberId: 1,
-          docId: 40,
-        },
-      ],
-      likeCnt: 1,
-      docUrl:
-        'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/preview1?alt=media&token=ce97b277-cc2b-4080-889b-3b57ea46267c',
-      major: null,
-      designer: 'test6',
-      designerUrl: '',
-    },
-  ];
 
   const settings = {
     arrows: true,
@@ -239,19 +140,36 @@ const Home = () => {
         {mostLikePortfolio.map((data, index) => (
           <MainSelectCard data={data} />
         ))}
-        {mostLikeProtfolioCnt <= 4 ? dummyData.map((data, index) => <MainSelectCard data={data} />) : <></>}
       </Slider>
-      {loginCheck ? (
-        <RecommendPortFolio isLogin="true" />
-      ) : (
-        <div
-          onClick={() => {
-            setAlertMessageVisible(true);
+
+      <div className="sectionFont">
+        전체 포트폴리오
+        <Link
+          to={'/all'}
+          style={{
+            textDecoration: 'none',
+            color: colors.gray,
+            fontSize: '20px',
+            lineHeight: '50px',
+            marginLeft: '18px',
           }}
         >
-          <RecommendPortFolio isLogin="false" />
-        </div>
-      )}
+          + 더보기
+        </Link>
+      </div>
+      <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
+        {allPortfolio.map((data, index) => (
+          <MainSelectCard data={data} />
+        ))}
+      </Slider>
+
+      <div className="sectionFont">학과별 포트폴리오</div>
+      <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
+        {allPortfolio.map((data, index) => (
+          <MainSelectCard data={data} />
+        ))}
+      </Slider>
+
       <br />
       <br />
       <Footer />
