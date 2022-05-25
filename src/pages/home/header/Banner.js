@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import Slider from 'react-slick';
 import banner1 from 'assets/images/banner1.png';
 import banner2 from 'assets/images/banner2.png';
-import {useSelector, useDispatch} from 'react-redux';
+import banner3 from 'assets/images/banner3.png';
+import { useSelector, useDispatch } from 'react-redux';
 const Banner = () => {
   const settings = {
     dots: true,
@@ -15,13 +16,14 @@ const Banner = () => {
     autoplay: true,
     autoplaySpeed: 8000,
   };
-  const dispatch = useDispatch()
-  const invisible=()=>{//추천검색어 안보이게
-    dispatch({type:'invisible'})
-  }
-  const dummyImages = [{ src: banner1 }, { src: banner2 }];
+  const dispatch = useDispatch();
+  const invisible = () => {
+    //추천검색어 안보이게
+    dispatch({ type: 'invisible' });
+  };
+  const dummyImages = [{ src: banner1 }, { src: banner2 }, { src: banner3 }];
   return (
-    <Slider {...settings} >
+    <Slider {...settings}>
       {dummyImages.map((item, index) => (
         <img
           src={item.src}
@@ -29,7 +31,7 @@ const Banner = () => {
           key={index}
           alt="배너"
           onClick={() => {
-            invisible()
+            invisible();
           }}
         />
       ))}

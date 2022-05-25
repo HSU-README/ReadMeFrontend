@@ -4,6 +4,7 @@ import SelectCard from 'components/selectCard';
 import { searchResult } from 'apis/portfolioApi';
 import Modal from 'components/modal/index.jsx';
 import Header from '../home/header/Header.js';
+import colors from 'styles/colors.js';
 import Slider from 'react-slick';
 import 'swiper/css';
 import 'swiper/css/grid';
@@ -108,10 +109,11 @@ const SearchPage = () => {
               <div style={{ fontSize: '40px', marginTop: '300px' }}>
                 <img
                   src={require('../../assets/images/not_found_icon.png')}
-                  style={{ width: '200px', height: '200px' }}
+                  style={{ width: '507px', height: '301px' }}
                   alt={'empty'}
                 />
-                찾으시는 포트폴리오가 없어요!
+                <br />
+                <strong>찾으시는 포트폴리오가 없어요!</strong>
               </div>
             )
           ) : (
