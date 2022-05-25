@@ -94,8 +94,9 @@ export default function Toolbar({
   const { actions } = useContext(CanvasContext);
   const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
+  const [imageName, setImageName] = useState("");
   const tumbsImageRef = useRef<HTMLImageElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
+  const imageRef = useRef<HTMLInputElement>(null);
   const [like, setLike] = useState(false);
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
@@ -108,7 +109,6 @@ export default function Toolbar({
   const handleClose = () => {
     setOpenDialog(false);
   };
-
   const dataURLtoFile = (dataurl, fileName) => {
     var arr = dataurl.split(','),
       mime = arr[0].match(/:(.*?);/)[1],
@@ -122,13 +122,13 @@ export default function Toolbar({
   };
 
   const captureToFirebase = async () => {
-    const canvas = await capture();
-    var dataUrl = canvas.toDataURL('image/png', 1.0);
-    const result = dataURLtoFile(dataUrl, 'test.png');
-    const storageRef = ref(storage, `preview${userId}`);
-
+    // const canvas = await capture();  
+    // var dataUrl = canvas.toDataURL('image/png', 1.0);
+    // const result = dataURLtoFile(dataUrl, 'test.png');
+    const storageRef = ref(storage, imageName.name);
     //upload the file
-    const uploadTask = await uploadBytesResumable(storageRef, result);
+    const uploadTask = await uploadBytesResumable(storageRef, imageName);
+    //upload the file
     const url = await getDownloadURL(uploadTask.ref);
 
     return url;
@@ -151,6 +151,9 @@ export default function Toolbar({
     }
     fetchUserLikePortfolioData();
   }, []);
+
+
+
   useEffect(() => {
     setTitle(docTitle);
   }, [docTitle]);
@@ -159,6 +162,7 @@ export default function Toolbar({
     const onImageChange = (event) => {
       if (event.target.files && event.target.files[0]) {
         setImage(URL.createObjectURL(event.target.files[0]));
+        setImageName(event.target.files[0])
       }
     }
   return (
@@ -218,17 +222,17 @@ export default function Toolbar({
         ) : (
           <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '35%' } }}>
             <DialogContent>
-              <DialogContentText style={{ textAlign: 'center', fontSize: '30px',color:"black" }}>
+              <DialogContentText style={{ textAlign: 'center', fontSize: '30px' }}>
                 {title}
                 <div style={{textAlign:"right",fontSize:"15px"}}>
-                  수정 시간 : {new Date().getFullYear()}: {new Date().getMonth()+1}: {new Date().getDate()}: {new Date().getHours()}: {new Date().getMinutes()}
+                  수정 시간 : {new Date().getFullYear()}: {new Date().getMonth()}: {new Date().getDay()}: {new Date().getHours()}: {new Date().getSeconds()}
                 </div>
               </DialogContentText>
 
               <div style={{width:"100%", height:"200px"}}>
-                <img src={image}  style={{ textAlign:"center",width: '100%', height: '200px', objectFit: 'contain' }} />
+                <img  src={image}  style={{ textAlign:"center",width: '100%', height: '200px', objectFit: 'contain' }}  />
               </div>
-              <input type="file" onChange={onImageChange} className="filetype" />
+              <input ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
 
               <FormControlLabel
                 value="start"
@@ -246,16 +250,19 @@ export default function Toolbar({
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>취소</Button>
+              <Button onClick={()=>{
+                handleClose()
+              }}>취소</Button>
               <Link to="/">
                 <Button
                   onClick={async () => {
                     handleClose();
+                    
                     let docUrl = await captureToFirebase();
                     createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck, docUrl);
                   }}
                 >
-                  저장
+                  확인
                 </Button>
               </Link>
             </DialogActions>
