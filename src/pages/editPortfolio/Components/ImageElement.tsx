@@ -67,9 +67,6 @@ const ImageElement = (props: ICanvasComponent) => {
       });
     }
   };
-  //   useEffect(()=>{
-  //       console.log(content)
-  //   },[content])
   const triggerUpload = () => {
     const element = uploadRef?.current;
     if (element) {

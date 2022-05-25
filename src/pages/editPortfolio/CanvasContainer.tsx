@@ -114,13 +114,13 @@ const CanvasContainer = ({ isEditable, createElement }) => {
     if (Number(docId) !== undefined && isDataChanged === false) {
       async function fetchPortfolioData() {
         const datas = await getPortfolio(docId);
-        console.log("datas",datas)
+        //console.log("datas",datas)
         await setDocTitle(datas.title);
         const componentArray = new Array();
         let type, left, top, width, height, content, chartContent, row, col, imgUrl, iconUrl;
         let id = 1;
         await datas.components.map((component) => {
-          console.log(datas.components);
+          //console.log(datas.components);
           type = component.type;
           left = component.x;
           top = component.y;
@@ -181,7 +181,7 @@ const CanvasContainer = ({ isEditable, createElement }) => {
               break;
           }
         });
-        await console.log('componentArray: ' + componentArray[0]);
+
         await setCanvasData(componentArray);
       }
       fetchPortfolioData();
@@ -294,7 +294,7 @@ const CanvasContainer = ({ isEditable, createElement }) => {
         height: '330mm',
       }}
     >
-      {console.log('canvasData: ' + JSON.stringify(canvasData))}
+      {/* {console.log('canvasData: ' + JSON.stringify(canvasData))} */}
       <Toolbar
         isEditEnable={enableQuillToolbar}
         canvasBox={canvasBox}

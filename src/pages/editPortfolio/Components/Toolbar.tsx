@@ -122,9 +122,6 @@ export default function Toolbar({
   };
 
   const captureToFirebase = async () => {
-    // const canvas = await capture();  
-    // var dataUrl = canvas.toDataURL('image/png', 1.0);
-    // const result = dataURLtoFile(dataUrl, 'test.png');
     const storageRef = ref(storage, imageName.name);
     //upload the file
     const uploadTask = await uploadBytesResumable(storageRef, imageName);

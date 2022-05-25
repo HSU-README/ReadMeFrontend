@@ -6,8 +6,7 @@ import { ImageList, ImageListItem } from '@mui/material';
 import { CardContent } from '@mui/material';
 const doCommand = (cmd) => {
   const val = typeof cmd.val !== 'undefined' ? prompt('Value for ' + cmd.cmd + '?', cmd.val) : '';
-  //const val = typeof cmd.val !== 'undefined' ? cmd.val : '';
-  //console.log(cmd.cmd);
+
   document.execCommand(cmd.cmd, true, val || '');
 };
 
@@ -22,7 +21,6 @@ const DndComponent = (props) => {
       props.setCreateElement('');
       resolve(command);
     }).then((command) => {
-      console.log('come');
       props.setCreateElement(command);
     });
   };

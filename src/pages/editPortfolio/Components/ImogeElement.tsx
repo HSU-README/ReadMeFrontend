@@ -5,7 +5,7 @@ const ImogeElement = (props: ICanvasComponent) => {
   const { content, id } = props;
   const { actions } = useContext(CanvasContext);
   const uploadRef = useRef<HTMLInputElement>(null);
-
+  const imogeRef = useRef<HTMLDivElement>(null);
   const getBase64 = (file: File) => {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -30,60 +30,26 @@ const ImogeElement = (props: ICanvasComponent) => {
     });
   };
 
-  const getAdjustedDimenstions = (width: number, height: number, resultWidth: number) => {
-    const ratio = width / height;
-    return { calcWidth: resultWidth, calcHeight: resultWidth / ratio };
-  };
 
-  const imageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e?.target?.files?.[0];
-    if (file) {
-      const base64 = (await getBase64(file)) as string;
-      const imageDimensions: {
-        [key: string]: number;
-      } = await getImageDimensions(base64);
-      const { calcWidth, calcHeight } = getAdjustedDimenstions(imageDimensions?.nw, imageDimensions?.nh, 150);
-      actions?.updateCanvasData({
-        id,
-        content: base64 || '',
-        dimension: {
-          width: `${calcWidth || 0}`,
-          height: `${calcHeight || 0}`,
-        },
-      });
-    }
-  };
-  //   useEffect(()=>{
-  //       console.log(content)
-  //   },[content])
-  const triggerUpload = () => {
-    const element = uploadRef?.current;
-    if (element) {
-      element.click();
-    }
-  };
 
-  const renderUploadContent = () => {
-    return (
-      <>
-        <div className="image-upload-container" onClick={triggerUpload}>
-          <div>Upload Image</div>
-        </div>
-        <input
-          ref={uploadRef}
-          type="file"
-          id="imageFile"
-          name="imageFile"
-          accept=".jpg, .png, .jpeg"
-          onChange={imageUpload}
-        />
-      </>
-    );
-  };
+  useEffect(()=>{
+    console.log(content);
+  },[content])
+  useEffect(()=>{
+    actions?.updateCanvasData({
+      id,
+      content: content,
+      dimension: {
+        width: '150px',
+        height: '150px',
+      },
+    });
+  },[imogeRef])
 
   const renderImage = () => {
     return (
       <div
+        ref ={imogeRef}
         style={{
           backgroundImage: `url(${content})`,
           backgroundSize: 'contain',
@@ -95,7 +61,7 @@ const ImogeElement = (props: ICanvasComponent) => {
     );
   };
 
-  return <>{!content ? renderUploadContent() : renderImage()}</>;
+  return <>{content &&  renderImage()}</>;
 };
 
 export default ImogeElement;
