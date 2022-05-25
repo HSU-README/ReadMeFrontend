@@ -314,11 +314,11 @@ export default function Toolbar({
       ) : (
         <>
         <Button>
-          <NavLink to={`/generate/${docId}`} >문서 가져오기</NavLink>
+          <NavLink to={`/generate/${docId}`} style={{textDecoration:"none",marginLeft:'5px'}} >문서 가져오기</NavLink>
         </Button>
         <img
           alt="like"
-          style={{ width: '30px', height: '30px', marginLeft: '70px' }}
+          style={{ width: '30px', height: '30px', marginLeft: '10px' }}
           src={require('../../../assets/images/likeoff.png')}
           ref={tumbsImageRef}
           onClick={() => {

@@ -41,23 +41,25 @@ const SampleNextArrow = (props) => {
     />
   );
 };
-const settings = {
-  arrows: true,
-  dots: false,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 3,
-  rows: 2,
-  slidesToScroll: 1,
-  nextArrow: <SampleNextArrow />,
-  prevArrow: <SamplePrevArrow />,
-};
+
 const SearchPage = () => {
   const [searchPortfolio, setSearchPortfolio] = useState([{}]);
   const [selectedFormat, setSelectedFormat] = useState('');
   const [showDetailForm, setShowDetailForm] = useState(false);
   const [size, setSize] = useState(0);
   const [detailFormId, setDetailFormId] = useState('');
+  const settings = {
+    rows: 2,
+    dots: false,
+    arrows: true,
+    infinite: true,
+    speed: 300,
+    sliderPerRow:3,
+    slidesToShow: searchPortfolio.length>3? 3:2,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
   const openDetailForm = (data) => {
     console.log(data.docId);
     setSelectedFormat(data);
@@ -98,10 +100,10 @@ const SearchPage = () => {
         <></>
       )}
       {
-        <div style={{ width: '100%', height: '100vh', marginTop: '100px' }}>
+        <span>
           {searchPortfolio.length !== undefined ? (
             searchPortfolio.length !== 0 ? (
-              <Slider {...settings} style={{ marginRight: '15%', marginLeft: '15%' }}>
+              <Slider {...settings} className="slick">
                 {searchPortfolio.map((data, index) => data.visibility === 'PUBLIC' && <MainSelectCard data={data} />)}
               </Slider>
             ) : (
@@ -117,7 +119,7 @@ const SearchPage = () => {
           ) : (
             <></>
           )}
-        </div>
+       </span>
       }
       <Footer />
     </>

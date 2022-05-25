@@ -45,26 +45,28 @@ const DndComponent = (props) => {
               }}
             />
             <br /> <br />
-            <details>
-              <summary className="menu4">구분선</summary>
-              <br />
-              <ImageList sx={{ width: 280, height: 150 }} cols={2} rowHeight={5}>
-                {Line.map((item, index) => {
-                  return (
-                    <ImageListItem key={item.label}>
-                      <div key={`${item.label} ${index}`}>
-                        <img
-                          src={item.val}
-                          onClick={() => {
-                            createCommand(`IMOGE ${item.val}`);
-                          }}
-                        />
-                      </div>
-                    </ImageListItem>
-                  );
-                })}
-              </ImageList>
-            </details>
+          </details>
+        </div>
+        <div className="itemBoxCss">
+          <details>
+            <summary >구분선</summary>
+            <br />
+            <ImageList sx={{ width: 280, height: 150 }} cols={2} rowHeight={5}>
+              {Line.map((item, index) => {
+                return (
+                  <ImageListItem key={item.label}>
+                    <div key={`${item.label} ${index}`}>
+                      <img
+                        src={item.val}
+                        onClick={() => {
+                          createCommand(`IMOGE ${item.val}`);
+                        }}
+                      />
+                    </div>
+                  </ImageListItem>
+                );
+              })}
+            </ImageList>
           </details>
         </div>
         <div className="itemBoxCss">
