@@ -1,7 +1,7 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import Header from './header/Header.js';
 import 'react-toastify/dist/ReactToastify.css';
-import { useLocation } from 'react-router-dom';
+import { getMostLikePortfolio, getAllPortfolio, getMajorPortfolio } from 'apis/portfolioApi';
 import './index.css';
 import DocCard from './DoCard.js';
 import Slider from 'react-slick';
@@ -11,17 +11,25 @@ import prevArrow from '../../assets/images/prevArrow.png';
 import nextArrow from '../../assets/images/nextArrow.png';
 import { useSelector, useDispatch } from 'react-redux';
 import Modal from 'components/modal/index.jsx';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Footer from 'components/footer/index.jsx';
 import Banner from './header/Banner.js';
-const Home = (props) => {
+import MainSelectCard from 'components/mainSelectCard/index.jsx';
+import colors from 'styles/colors.js';
+import homeDummyData from 'localData/homeDummyData.json';
+
+const Home = () => {
+  const [mostLikePortfolio, setMostLikePortfolio] = useState([]);
+  const [mostLikePortfolioCnt, setMostLikePortfolioCnt] = useState(0);
+  const [allPortfolio, setAllPortfolio] = useState([]);
+  const [allPortfolioCnt, setAllPortfolioCnt] = useState(0);
+
   const [showDetailForm, setShowDetailForm] = useState(false);
   const [detailFormId, setDetailFormId] = useState(0);
-  const [loginSuccess, setLoginSuccess] = useState(false);
   const [alertMessageVisible, setAlertMessageVisible] = useState(false);
   const { loginCheck } = useSelector((state) => state.loginCheck);
-  const { isntClick } = useRef(null);
-  const dispatch = useDispatch();
+  const dummyData = homeDummyData.data;
+
   const openDetailForm = (id) => {
     console.log(id);
     setShowDetailForm(true);
@@ -33,10 +41,8 @@ const Home = (props) => {
     setDetailFormId('');
   };
 
-
   const [sliderCount, setSliderCount] = useState(4); //기본화면에서 4개
-  useEffect(
-    () => {},
+  useEffect(() => {
     window.addEventListener('resize', () => {
       if (window.outerWidth > 1320) {
         setSliderCount(4);
@@ -47,8 +53,27 @@ const Home = (props) => {
       } else if (window.outerWidth <= 660) {
         setSliderCount(1);
       }
-    }),
-  );
+    });
+    async function fetchMostLikePortfolioData() {
+      const datas = await getMostLikePortfolio();
+      setMostLikePortfolio(datas);
+      setMostLikePortfolioCnt(datas.length);
+    }
+    async function fetchAllPortfolioData() {
+      const datas = await getAllPortfolio();
+      setAllPortfolio(datas);
+      setAllPortfolioCnt(datas.length);
+    }
+    async function fetchMajorPortfolioData() {
+      if (localStorage.getItem('readme_userInfo') != null) {
+        const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
+        await getMajorPortfolio(userId);
+      }
+    }
+    fetchMostLikePortfolioData();
+    fetchAllPortfolioData();
+    fetchMajorPortfolioData();
+  }, []);
 
   const SamplePrevArrow = (props) => {
     const { className, style, onClick } = props;
@@ -76,42 +101,6 @@ const Home = (props) => {
     );
   };
 
-  const RecommendPortFolio = ({isLogin }) => {
-    return (
-      <span>
-        <div className="sectionFont">
-          <span>나의 포트폴리오</span>
-        </div>
-
-        <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
-          {dummyData.map((data, index) => (
-            <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin={isLogin} />
-          ))}
-        </Slider>
-
-        <div className="sectionFont">
-          <span>학과별 포트폴리오</span>
-        </div>
-        <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%',marginBottom:"50px" }}>
-          {dummyData.map((data, index) => (
-            <span key={index} id={index}>
-              <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data}  isLogin={isLogin}/>
-            </span>
-          ))}
-        </Slider>
-      </span>
-    );
-  };
-
-  const dummyData = [
-    { img: '../../assets/images/dummyBlack.jpg', tag: ['대학교', '컴공'], name: '김한성', id: '0' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트'], name: '이한성', id: '1' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트'], name: '아무개', id: '2' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트'], name: '리액트', id: '3' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공', '프론트'], name: '스프링', id: '4' },
-    { img: '../../assets/images/dummyRed.jpeg', tag: ['대학교', '컴공'], name: '홍길동', id: '5' },
-  ];
-
   const settings = {
     arrows: true,
     dots: false,
@@ -123,12 +112,7 @@ const Home = (props) => {
     prevArrow: <SamplePrevArrow />,
   };
   return (
-    <div style={{ position: 'relative' }}>
-      {showDetailForm === true ? (
-        <Modal detailFormId={detailFormId} dummyData={dummyData} closeDetailForm={closeDetailForm} />
-      ) : (
-        <></>
-      )}
+    <div style={{ position: 'relative', backgroundColor: '#F8F9FA' }}>
       <Header />
       <div>
         <Banner />
@@ -139,10 +123,10 @@ const Home = (props) => {
         <>
           <br />
           <div className="pofolBtnHeader">
-            <button
-              className="pofolBtn"
-            >
-              <NavLink className="pofolBtn" to="/select" style={{textDecoration:'none',color:"white" }}>포트폴리오 만들기</NavLink>
+            <button className="pofolBtn">
+              <NavLink className="pofolBtn" to="/select" style={{ textDecoration: 'none', color: 'white' }}>
+                포트폴리오 만들기
+              </NavLink>
             </button>
           </div>
         </>
@@ -150,23 +134,41 @@ const Home = (props) => {
 
       <div className="sectionFont">인기 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
-        {dummyData.map((data, index) => (
-          <DocCard key={index} id={index} openDetailForm={openDetailForm} pofolInfo={data} isLogin="true" />
+        {mostLikePortfolio.map((data, index) => (
+          <MainSelectCard data={data} />
         ))}
       </Slider>
-      {loginCheck ? (
-        <RecommendPortFolio isLogin="true" />
-      ) : (
-        <div
-          onClick={() => {
-            setAlertMessageVisible(true);
+
+      <div className="sectionFont">
+        전체 포트폴리오
+        <Link
+          to={'/all'}
+          style={{
+            textDecoration: 'none',
+            color: colors.gray,
+            fontSize: '20px',
+            lineHeight: '50px',
+            marginLeft: '18px',
           }}
         >
-          <RecommendPortFolio  isLogin="false" />
-        </div>
-      )}
+          + 더보기
+        </Link>
+      </div>
+      <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
+        {allPortfolio.map((data, index) => (
+          <MainSelectCard data={data} />
+        ))}
+      </Slider>
+
+      <div className="sectionFont">학과별 포트폴리오</div>
+      <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
+        {allPortfolio.map((data, index) => (
+          <MainSelectCard data={data} />
+        ))}
+      </Slider>
+
       <br />
-      <br/>
+      <br />
       <Footer />
     </div>
   );

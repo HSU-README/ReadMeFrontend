@@ -1,3 +1,4 @@
+import { async } from '@firebase/util';
 import axios from 'axios';
 import BasicModal from 'components/basicModal';
 import { ToastError, ToastSuccess } from 'hooks/toastHook';
@@ -45,6 +46,43 @@ export const getPortfolio = async (docId) => {
   }
 };
 
+//전체 문서 불러오기
+export const getAllPortfolio = async () => {
+  const response = await serverApi.get(`/api/v1/home/docs/all`);
+  console.log(response);
+  try {
+    console.log('response', response.data.result);
+    return response.data.result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//인기 문서 불러오기
+export const getMostLikePortfolio = async () => {
+  const response = await serverApi.get(`/api/v1/home/docs/mostLike`);
+  console.log(response);
+  try {
+    console.log('response', response.data.result);
+    return response.data.result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//학과별 문서 불러오기
+export const getMajorPortfolio = async (memberId) => {
+  const response = await serverApi.get(`/api/v1/home/docs/major`, { params: { memberId: memberId } });
+  console.log(response);
+  try {
+    console.log('response', response.data.result);
+    return response.data.result;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//문서 검색
 export const searchResult = async (searchText) => {
   console.log(searchText);
   if (searchText === '전통 양식') {
@@ -65,6 +103,7 @@ export const searchResult = async (searchText) => {
     }
   }
 };
+
 //문서 만들기
 export const createPortfolio = async (memberId, title, components, tags, visibleCheck, docUrl) => {
   const componentArray = new Array();
@@ -142,7 +181,7 @@ export const createPortfolio = async (memberId, title, components, tags, visible
       docUrl: docUrl,
       tags: tags,
       visibility: visibleCheck === true ? 'public' : 'private',
-      major: JSON.parse(localStorage.getItem('readme_userInfo')).major
+      major: JSON.parse(localStorage.getItem('readme_userInfo')).major,
     })
     .catch(console.log(memberId));
   try {

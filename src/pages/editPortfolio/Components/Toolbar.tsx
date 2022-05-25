@@ -94,7 +94,7 @@ export default function Toolbar({
   const { actions } = useContext(CanvasContext);
   const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
-  const [imageName, setImageName] = useState("");
+  const [imageName, setImageName] = useState('');
   const tumbsImageRef = useRef<HTMLImageElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
   const [like, setLike] = useState(false);
@@ -122,23 +122,18 @@ export default function Toolbar({
   };
 
   const captureToFirebase = async () => {
-    // const canvas = await capture();  
+    // const canvas = await capture();
     // var dataUrl = canvas.toDataURL('image/png', 1.0);
     // const result = dataURLtoFile(dataUrl, 'test.png');
-    const storageRef = ref(storage, imageName.name);
+
+    const storageRef = ref(storage, image.name);
     //upload the file
-    const uploadTask = await uploadBytesResumable(storageRef, imageName);
-    //upload the file
+    const uploadTask = await uploadBytesResumable(storageRef, image);
     const url = await getDownloadURL(uploadTask.ref);
 
     return url;
   };
-  const styles = {
-    dialogPaper: {
-        minHeight: '80vh',
-        maxHeight: '80vh',
-    },
-};
+
   useEffect(() => {
     async function fetchUserLikePortfolioData() {
       const datas = await getUserLikePortfolio(userId);
@@ -152,19 +147,18 @@ export default function Toolbar({
     fetchUserLikePortfolioData();
   }, []);
 
-
-
   useEffect(() => {
     setTitle(docTitle);
   }, [docTitle]);
-    const [image, setImage] = useState(null)
+  const [image, setImage] = useState(null);
 
-    const onImageChange = (event) => {
-      if (event.target.files && event.target.files[0]) {
-        setImage(URL.createObjectURL(event.target.files[0]));
-        setImageName(event.target.files[0])
-      }
+  const onImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setImage(URL.createObjectURL(event.target.files[0]));
+      setImageName(event.target.files[0]);
     }
+  };
+
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -222,21 +216,25 @@ export default function Toolbar({
         ) : (
           <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '35%' } }}>
             <DialogContent>
-              <DialogContentText style={{ textAlign: 'center', fontSize: '30px' }}>
+              <DialogContentText style={{ textAlign: 'center', fontSize: '30px', color: 'black' }}>
                 {title}
-                <div style={{textAlign:"right",fontSize:"15px"}}>
-                  수정 시간 : {new Date().getFullYear()}: {new Date().getMonth()}: {new Date().getDay()}: {new Date().getHours()}: {new Date().getSeconds()}
+                <div style={{ textAlign: 'right', fontSize: '15px' }}>
+                  수정 시간 : {new Date().getFullYear()}: {new Date().getMonth() + 1}: {new Date().getDate()}:{' '}
+                  {new Date().getHours()}: {new Date().getMinutes()}
                 </div>
               </DialogContentText>
 
-              <div style={{width:"100%", height:"200px"}}>
-                <img  src={image}  style={{ textAlign:"center",width: '100%', height: '200px', objectFit: 'contain' }}  />
+              <div style={{ width: '100%', height: '200px' }}>
+                <img
+                  src={image}
+                  style={{ textAlign: 'center', width: '100%', height: '200px', objectFit: 'contain' }}
+                />
               </div>
               <input ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
 
               <FormControlLabel
                 value="start"
-                style={{ marginLeft: '84%'}}
+                style={{ marginLeft: '84%' }}
                 control={
                   <Checkbox
                     defaultChecked={visibleCheck}
@@ -250,14 +248,18 @@ export default function Toolbar({
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={()=>{
-                handleClose()
-              }}>취소</Button>
+              <Button
+                onClick={() => {
+                  handleClose();
+                }}
+              >
+                취소
+              </Button>
               <Link to="/">
                 <Button
                   onClick={async () => {
                     handleClose();
-                    
+
                     let docUrl = await captureToFirebase();
                     createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck, docUrl);
                   }}
@@ -286,7 +288,7 @@ export default function Toolbar({
         <Input
           value={title}
           placeholder="제목을 입력하세요."
-          style={{ backgroundColor: 'white', borderRadius: '10px',padding:"4px",paddingLeft:"10px" }}
+          style={{ backgroundColor: 'white', borderRadius: '10px', padding: '4px', paddingLeft: '10px' }}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
@@ -294,8 +296,7 @@ export default function Toolbar({
       </FormControl>
       {isEditable ? (
         <></>
-      ) :
-      like ? (
+      ) : like ? (
         <img
           alt="unlike"
           style={{ width: '30px', height: '30px', marginLeft: '70px' }}
