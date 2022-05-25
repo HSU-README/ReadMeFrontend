@@ -24,6 +24,7 @@ export const Container = styled.div`
   }
 
   .profile-image-container {
+    width: 30px;
   }
 
   .pofol-thumbnail-container {
