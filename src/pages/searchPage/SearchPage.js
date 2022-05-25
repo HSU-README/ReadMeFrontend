@@ -1,6 +1,5 @@
-
-import React, { useEffect, useState,useCallback } from 'react';
-import {Container} from '../select/styles';
+import React, { useEffect, useState, useCallback } from 'react';
+import { Container } from '../select/styles';
 import SelectCard from 'components/selectCard';
 import { searchResult } from 'apis/portfolioApi';
 import Modal from 'components/modal/index.jsx';
@@ -15,6 +14,7 @@ import NewGenerateSelectCard from 'components/newGenerateCard';
 import basicSelect from 'localData/basicSelect.json';
 import { FormGroup } from '@mui/material';
 import './SearchPage.css';
+import MainSelectCard from 'components/mainSelectCard';
 const datas = basicSelect.data;
 const SamplePrevArrow = (props) => {
   const { className, style, onClick } = props;
@@ -30,7 +30,6 @@ const SamplePrevArrow = (props) => {
 };
 
 const SampleNextArrow = (props) => {
-  
   const { className, style, onClick } = props;
   return (
     <img
@@ -48,116 +47,81 @@ const settings = {
   infinite: true,
   speed: 500,
   slidesToShow: 3,
-  rows:2,
+  rows: 2,
   slidesToScroll: 1,
   nextArrow: <SampleNextArrow />,
   prevArrow: <SamplePrevArrow />,
 };
-const SearchPage =()=>{
-    const [searchPortfolio, setSearchPortfolio] = useState([{}]);
-    const [selectedFormat, setSelectedFormat] = useState('');
-    const [showDetailForm, setShowDetailForm] = useState(false);
-    const [size, setSize]= useState(0);
-    const [detailFormId, setDetailFormId] = useState('');
-    const openDetailForm = (data) => {
-      console.log(data.docId)
-      setSelectedFormat(data);
-      setDetailFormId(data.docId);
-      setShowDetailForm(true)
-    };
-    const closeDetailForm = () => {
-      setShowDetailForm(false);
-      setDetailFormId('');
-      setSelectedFormat('');
-    };
-     useEffect(()=>{
-      async function getSearhResult(){
-        const searchParams = new URLSearchParams(window.location.search);
-        var text;
-        for (const param of searchParams) {
-          text=param[1];
-        }
-        const datas = await searchResult(`${text}`)
-        await setSearchPortfolio(datas);
-
+const SearchPage = () => {
+  const [searchPortfolio, setSearchPortfolio] = useState([{}]);
+  const [selectedFormat, setSelectedFormat] = useState('');
+  const [showDetailForm, setShowDetailForm] = useState(false);
+  const [size, setSize] = useState(0);
+  const [detailFormId, setDetailFormId] = useState('');
+  const openDetailForm = (data) => {
+    console.log(data.docId);
+    setSelectedFormat(data);
+    setDetailFormId(data.docId);
+    setShowDetailForm(true);
+  };
+  const closeDetailForm = () => {
+    setShowDetailForm(false);
+    setDetailFormId('');
+    setSelectedFormat('');
+  };
+  useEffect(() => {
+    async function getSearhResult() {
+      const searchParams = new URLSearchParams(window.location.search);
+      var text;
+      for (const param of searchParams) {
+        text = param[1];
       }
-      getSearhResult();
-      console.log(searchPortfolio)
-    },[])
-   
-    return (
-      <>
-        <Header />
-        <hr style={{ backgroundColor: '#F57842' }} />
-        {showDetailForm === true ? (
-          <Modal
-            detailFormId={detailFormId}
-            previewId={detailFormId}
-            dummyData={selectedFormat}
-            closeDetailForm={closeDetailForm}
-          />
-        ) : (
-          <></>
-        )}
-        {
-          <div style={{ width: '100%', height: '100vh', marginTop: '100px' }}>
-            {console.log('searchPortfolio:', searchPortfolio.length)}
-            {console.log(searchPortfolio)}
-            {searchPortfolio.length !== undefined ? (
-              searchPortfolio.length !== 0 ? (
-                <Slider {...settings} style={{ marginRight: '15%', marginLeft: '15%' }}>
-                  {searchPortfolio.map(
-                    (data, index) =>
-                      data.visibility === 'PUBLIC' && (
-                        <span
-                          onClick={() => {
-                            openDetailForm(data);
-                          }}
-                          key={data.docId}
-                        >
-                          <SelectCard
-                            id={data.docId}
-                            key={data.docId}
-                            format={data}
-                            selectedFormat={selectedFormat}
-                            setSelectedFormat={setSelectedFormat}
-                            isSelected={index !== selectedFormat ? false : true}
-                          />
-                        </span>
-                      ),
-                  )}
-                </Slider>
-              ) : (
-                <div style={{ fontSize: '40px', marginTop: '300px' }}>
-                  <img
-                    src={require('../../assets/images/not_found_icon.png')}
-                    style={{ width: '200px', height: '200px' }}
-                  />
-                  찾으시는 포트폴리오가 없어요!
-                </div>
-              )
+      const datas = await searchResult(`${text}`);
+      await setSearchPortfolio(datas);
+    }
+    getSearhResult();
+    console.log(searchPortfolio);
+  }, []);
+
+  return (
+    <>
+      <Header />
+      <hr style={{ backgroundColor: '#F57842' }} />
+      {showDetailForm === true ? (
+        <Modal
+          detailFormId={detailFormId}
+          previewId={detailFormId}
+          dummyData={selectedFormat}
+          closeDetailForm={closeDetailForm}
+        />
+      ) : (
+        <></>
+      )}
+      {
+        <div style={{ width: '100%', height: '100vh', marginTop: '100px' }}>
+          {searchPortfolio.length !== undefined ? (
+            searchPortfolio.length !== 0 ? (
+              <Slider {...settings} style={{ marginRight: '15%', marginLeft: '15%' }}>
+                {searchPortfolio.map((data, index) => data.visibility === 'PUBLIC' && <MainSelectCard data={data} />)}
+              </Slider>
             ) : (
-              <span
-                onClick={() => {
-                  openDetailForm(searchPortfolio);
-                }}
-                key={searchPortfolio.docId}
-              >
-                <SelectCard
-                  id={searchPortfolio.docId}
-                  key={searchPortfolio.docId}
-                  format={searchPortfolio}
-                  selectedFormat={selectedFormat}
-                  setSelectedFormat={setSelectedFormat}
-                  isSelected={1 !== selectedFormat ? false : true}
+              <div style={{ fontSize: '40px', marginTop: '300px' }}>
+                <img
+                  src={require('../../assets/images/not_found_icon.png')}
+                  style={{ width: '200px', height: '200px' }}
+                  alt={'empty'}
                 />
-              </span>
-            )}
-          </div>
-        }
-        <Footer />
-      </>
-    );
-}
+                찾으시는 포트폴리오가 없어요!
+              </div>
+            )
+          ) : (
+            <></>
+          )}
+        </div>
+      }
+      <Footer />
+    </>
+  );
+};
 
 export default SearchPage;
