@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'pages/myPage/myPortfolio/styles';
 import SelectCard from 'components/selectCard';
+import MainSelectCard from 'components/mainSelectCard';
 import { getUserPortfolio } from 'apis/portfolioApi';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,7 +10,7 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 
-const MyPortfolio = (props) => {
+const MyPortfolio = () => {
   const [userPortfolio, setUserPortfolio] = useState([{}]);
   const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
 
@@ -17,13 +18,10 @@ const MyPortfolio = (props) => {
     async function fetchUserPortfolioData() {
       const datas = await getUserPortfolio(userId);
       await setUserPortfolio(datas);
+      console.log(datas);
     }
     fetchUserPortfolioData();
   }, []);
-
-  const setSelectedFormat = (selectedFormat) => {
-    props.setSelectedFormat(selectedFormat);
-  };
 
   if (userPortfolio.length === 0) {
     return (
@@ -52,13 +50,7 @@ const MyPortfolio = (props) => {
           >
             {userPortfolio.map((data, index) => (
               <SwiperSlide>
-                <SelectCard
-                  id={index}
-                  key={index}
-                  length={userPortfolio.length}
-                  format={data}
-                  setSelectedFormat={setSelectedFormat}
-                />
+                <MainSelectCard key={index} length={userPortfolio.length} data={data} />
               </SwiperSlide>
             ))}
           </Swiper>
