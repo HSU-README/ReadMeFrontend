@@ -122,23 +122,18 @@ export default function Toolbar({
   };
 
   const captureToFirebase = async () => {
-    const canvas = await capture();
-    var dataUrl = canvas.toDataURL('image/png', 1.0);
-    const result = dataURLtoFile(dataUrl, 'test.png');
-    const storageRef = ref(storage, `preview${userId}`);
+    // const canvas = await capture();
+    // var dataUrl = canvas.toDataURL('image/png', 1.0);
+    // const result = dataURLtoFile(dataUrl, 'test.png');
 
+    const storageRef = ref(storage, image.name);
     //upload the file
-    const uploadTask = await uploadBytesResumable(storageRef, result);
+    const uploadTask = await uploadBytesResumable(storageRef, image);
     const url = await getDownloadURL(uploadTask.ref);
 
     return url;
   };
-  const styles = {
-    dialogPaper: {
-      minHeight: '80vh',
-      maxHeight: '80vh',
-    },
-  };
+
   useEffect(() => {
     async function fetchUserLikePortfolioData() {
       const datas = await getUserLikePortfolio(userId);
@@ -158,7 +153,7 @@ export default function Toolbar({
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
-      setImage(URL.createObjectURL(event.target.files[0]));
+      setImage(event.target.files[0]);
     }
   };
   return (
