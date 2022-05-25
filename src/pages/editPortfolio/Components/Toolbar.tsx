@@ -94,8 +94,9 @@ export default function Toolbar({
   const { actions } = useContext(CanvasContext);
   const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
+  const [imageName, setImageName] = useState('');
   const tumbsImageRef = useRef<HTMLImageElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
+  const imageRef = useRef<HTMLInputElement>(null);
   const [like, setLike] = useState(false);
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
@@ -108,7 +109,6 @@ export default function Toolbar({
   const handleClose = () => {
     setOpenDialog(false);
   };
-
   const dataURLtoFile = (dataurl, fileName) => {
     var arr = dataurl.split(','),
       mime = arr[0].match(/:(.*?);/)[1],
@@ -146,6 +146,7 @@ export default function Toolbar({
     }
     fetchUserLikePortfolioData();
   }, []);
+
   useEffect(() => {
     setTitle(docTitle);
   }, [docTitle]);
@@ -153,9 +154,11 @@ export default function Toolbar({
 
   const onImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
-      setImage(event.target.files[0]);
+      setImage(URL.createObjectURL(event.target.files[0]));
+      setImageName(event.target.files[0]);
     }
   };
+
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -227,7 +230,7 @@ export default function Toolbar({
                   style={{ textAlign: 'center', width: '100%', height: '200px', objectFit: 'contain' }}
                 />
               </div>
-              <input type="file" onChange={onImageChange} className="filetype" />
+              <input ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
 
               <FormControlLabel
                 value="start"
@@ -245,16 +248,23 @@ export default function Toolbar({
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>취소</Button>
+              <Button
+                onClick={() => {
+                  handleClose();
+                }}
+              >
+                취소
+              </Button>
               <Link to="/">
                 <Button
                   onClick={async () => {
                     handleClose();
+
                     let docUrl = await captureToFirebase();
                     createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck, docUrl);
                   }}
                 >
-                  저장
+                  확인
                 </Button>
               </Link>
             </DialogActions>
