@@ -95,6 +95,7 @@ export default function Toolbar({
   const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
   const tumbsImageRef = useRef<HTMLImageElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
   const [like, setLike] = useState(false);
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
@@ -132,7 +133,12 @@ export default function Toolbar({
 
     return url;
   };
-
+  const styles = {
+    dialogPaper: {
+        minHeight: '80vh',
+        maxHeight: '80vh',
+    },
+};
   useEffect(() => {
     async function fetchUserLikePortfolioData() {
       const datas = await getUserLikePortfolio(userId);
@@ -148,6 +154,13 @@ export default function Toolbar({
   useEffect(() => {
     setTitle(docTitle);
   }, [docTitle]);
+    const [image, setImage] = useState(null)
+
+    const onImageChange = (event) => {
+      if (event.target.files && event.target.files[0]) {
+        setImage(URL.createObjectURL(event.target.files[0]));
+      }
+    }
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -177,12 +190,14 @@ export default function Toolbar({
       <span>
         <img
           onClick={() => {
+            console.log(title);
             handleOpen();
           }}
           src={require('../../../assets/images/saveIcon.png')}
           alt="저장"
           style={{ marginRight: '20px', width: '30px', height: '30px', cursor: 'pointer' }}
         ></img>
+
         {!isEditable ? (
           <Dialog open={openDialog} onClose={handleClose}>
             <DialogContent>
@@ -201,9 +216,34 @@ export default function Toolbar({
             </DialogActions>
           </Dialog>
         ) : (
-          <Dialog open={openDialog} onClose={handleClose}>
+          <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '35%' } }}>
             <DialogContent>
-              <DialogContentText>양식을 저장하시겠습니까?</DialogContentText>
+              <DialogContentText style={{ textAlign: 'center', fontSize: '30px',color:"black" }}>
+                {title}
+                <div style={{textAlign:"right",fontSize:"15px"}}>
+                  수정 시간 : {new Date().getFullYear()}: {new Date().getMonth()+1}: {new Date().getDate()}: {new Date().getHours()}: {new Date().getMinutes()}
+                </div>
+              </DialogContentText>
+
+              <div style={{width:"100%", height:"200px"}}>
+                <img src={image}  style={{ textAlign:"center",width: '100%', height: '200px', objectFit: 'contain' }} />
+              </div>
+              <input type="file" onChange={onImageChange} className="filetype" />
+
+              <FormControlLabel
+                value="start"
+                style={{ marginLeft: '84%'}}
+                control={
+                  <Checkbox
+                    defaultChecked={visibleCheck}
+                    onChange={(e) => {
+                      setVisibleCheck(e.target.checked);
+                    }}
+                  />
+                }
+                label="공개"
+                labelPlacement="start"
+              />
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>취소</Button>
@@ -215,7 +255,7 @@ export default function Toolbar({
                     createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck, docUrl);
                   }}
                 >
-                  확인
+                  저장
                 </Button>
               </Link>
             </DialogActions>
@@ -238,29 +278,17 @@ export default function Toolbar({
       <FormControl variant="standard" style={{ marginLeft: '90px', width: '50%' }}>
         <Input
           value={title}
-          placeholder="  제목을 입력하세요."
-          style={{ backgroundColor: 'white', borderRadius: '10px' }}
+          placeholder="제목을 입력하세요."
+          style={{ backgroundColor: 'white', borderRadius: '10px',padding:"4px",paddingLeft:"10px" }}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
         />
       </FormControl>
       {isEditable ? (
-        <FormControlLabel
-          value="start"
-          style={{ marginLeft: '70px' }}
-          control={
-            <Checkbox
-              defaultChecked={visibleCheck}
-              onChange={(e) => {
-                setVisibleCheck(e.target.checked);
-              }}
-            />
-          }
-          label="공개"
-          labelPlacement="start"
-        />
-      ) : like ? (
+        <></>
+      ) :
+      like ? (
         <img
           alt="unlike"
           style={{ width: '30px', height: '30px', marginLeft: '70px' }}

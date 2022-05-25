@@ -1,4 +1,4 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import {Select,FormControl,MenuItem,InputLabel,ListSubheader} from '@mui/material';
 const LineAndDepartment=({setMajor})=>{
     const lines=["인문", "사회","교육","자연","공학","예체능","의약"]
@@ -14,6 +14,7 @@ const LineAndDepartment=({setMajor})=>{
     const [lineIndex, setLineIndex] = useState(0);
     const [lineName,setLineName]= useState('')
     const [departmentName,setDepartmentName]= useState('')
+
     const ChooseLineAndDepartment=({name,lineLists,departmentLists})=>{
         return (
           <FormControl sx={{ m: 1, minWidth: 140 }} size="small">
