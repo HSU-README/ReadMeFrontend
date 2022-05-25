@@ -151,7 +151,7 @@ const Home = () => {
             marginLeft: '18px',
           }}
         >
-          + 더보기
+          <h6 style={{ color: colors.gray, lineHeight: '40px' }}>+ 더보기 </h6>
         </Link>
       </div>
       <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
