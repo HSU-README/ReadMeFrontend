@@ -63,7 +63,7 @@ export default function MainSelectCard({ data }) {
           <div className="docDate">{docDate}</div>
         </div>
 
-        <hr style={{ margin: '0px auto' }} />
+        <hr style={{ margin: '0px auto', color: 'lightgrey' }} />
         <div className="bottom-info-container">
           <div className="user-info-container">
             <div className="profile-image-container">

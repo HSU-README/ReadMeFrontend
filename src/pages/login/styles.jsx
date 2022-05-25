@@ -4,6 +4,7 @@ import { maxWidth } from 'styles/mixin';
 
 export const Container = styled.div`
   ${maxWidth}
+  background-color: #f8f9fa;
 `;
 
 export const LoginContainer = styled.div`
@@ -48,7 +49,7 @@ export const LoginContainer = styled.div`
     justify-content: center;
     margin: 0px auto;
     padding: 30px 0px 20px 0px;
-    max-width: 800px;
+    max-width: 400px;
   }
 
   .login-find {
@@ -93,7 +94,7 @@ export const Button = styled.button`
   user-select: none;
   outline: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 `;
 

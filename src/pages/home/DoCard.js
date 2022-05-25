@@ -1,27 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import dummy1 from '../../assets/images/dummy4.png';
-import {Card, CardActionArea, CardMedia,Dialog,DialogContent,DialogActions,DialogContentText,Button } from '@mui/material';
+import {
+  Card,
+  CardActionArea,
+  CardMedia,
+  Dialog,
+  DialogContent,
+  DialogActions,
+  DialogContentText,
+  Button,
+} from '@mui/material';
 import Slider from 'react-slick';
 import 'index.css';
 const DocCard = (props) => {
   // const tags = props.pofolInfo.tag;
   const [openDialog, setOpenDialog] = useState(false);
   const clickForm = () => {
-    console.log(props)
+    console.log(props);
     console.log(props.id);
     props.openDetailForm(props.id);
   };
-  
-  const handleOpen=()=>{
-    setOpenDialog(true)
-  }
-  const handleClose=()=>{
+
+  const handleOpen = () => {
+    setOpenDialog(true);
+  };
+  const handleClose = () => {
     setOpenDialog(false);
-  }
-  useEffect(()=>{
-    console.log(props.isLogin)
-  },[])
+  };
+  useEffect(() => {
+    console.log(props.isLogin);
+  }, []);
   return (
     <div
       style={{
@@ -39,11 +48,11 @@ const DocCard = (props) => {
             component="img"
             height="190"
             image={dummy1}
-            onClick={()=>{
-              if(props.isLogin==="false"){
-                handleOpen()
-              }else{
-                 clickForm()
+            onClick={() => {
+              if (props.isLogin === 'false') {
+                handleOpen();
+              } else {
+                clickForm();
               }
             }}
           />
@@ -53,20 +62,20 @@ const DocCard = (props) => {
                 <Button
                   size="small"
                   style={{
-                    color:"black",
-                    fontSize:"13px",
-                    fontWeight:"700",
-                    borderRadius:"7px",
-                    backgroundColor:"#ced4da",
-                    marginLeft:"5px",
-                    marginRight:"5px"
+                    color: 'black',
+                    fontSize: '13px',
+                    fontWeight: '700',
+                    borderRadius: '7px',
+                    backgroundColor: '#ced4da',
+                    marginLeft: '5px',
+                    marginRight: '5px',
                   }}
                   key={index}
                   onClick={() => {
-                    document.location.href=`/search?where=${data}`
+                    document.location.href = `/search?where=${data}`;
                   }}
                 >
-                  #{data+" "} 
+                  #{data + ' '}
                 </Button>
               );
             })}
@@ -74,8 +83,8 @@ const DocCard = (props) => {
         </CardActionArea>
       </Card>
 
-            {/* 로그인 안내창 */}
-            <Dialog open={openDialog} onClose={handleClose}>
+      {/* 로그인 안내창 */}
+      <Dialog open={openDialog} onClose={handleClose}>
         <DialogContent>
           <DialogContentText style={{ fontSize: '20px', color: 'black' }}>
             로그인 후 이용 가능한 서비스입니다.

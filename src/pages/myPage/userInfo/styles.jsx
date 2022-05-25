@@ -35,19 +35,21 @@ export const Container = styled.div`
   .nickName {
     width: 180px;
     border-bottom: 1px solid;
-    border-color: ${colors.gray};
+    border-color: black;
     text-align: center;
     font-size: 24px;
     font-weight: bold;
+    display: flex;
   }
 
   .section-update {
+    color: black;
   }
 
   .inputBorder {
     border: 2px solid;
     border-radius: 4px;
-    border-color: ${colors.gray};
+    border-color: black;
     padding: 5px 20px 5px 20px;
     margin: 30px 0px 30px 0px;
   }
@@ -56,7 +58,7 @@ export const Container = styled.div`
   }
 
   .inputName {
-    color: #a7a7a7;
+    color: black;
     font-size: 24px;
   }
 
@@ -88,19 +90,19 @@ export const Input = styled.input`
 
 export const Button = styled.button`
   margin-bottom: 12px;
-  width: 60%;
-  height: 45px;
+  width: 40%;
+
   max-width: 540px;
   max-height: 80px;
   color: #fff;
-  background-color: ${colors.loginButton};
+  background-color: black;
   border: none;
   font-size: 30px;
-  padding: 0 16px 0px;
+  padding: 5px 16px 5px 16px;
   transition: all 80ms linear;
   user-select: none;
   outline: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 5px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
 `;
