@@ -29,7 +29,7 @@ const Home = () => {
   const [alertMessageVisible, setAlertMessageVisible] = useState(false);
   const { loginCheck } = useSelector((state) => state.loginCheck);
   const dummyData = homeDummyData.data;
-  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
+
   const openDetailForm = (id) => {
     console.log(id);
     setShowDetailForm(true);
@@ -65,8 +65,10 @@ const Home = () => {
       setAllPortfolioCnt(datas.length);
     }
     async function fetchMajorPortfolioData() {
-      const datas = await getMajorPortfolio(userId);
-      console.log(datas);
+      if (localStorage.getItem('readme_userInfo') != null) {
+        const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
+        await getMajorPortfolio(userId);
+      }
     }
     fetchMostLikePortfolioData();
     fetchAllPortfolioData();

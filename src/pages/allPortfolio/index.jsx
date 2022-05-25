@@ -1,41 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'pages/allPortfolio/styles';
-import SelectCard from 'components/selectCard';
 import Header from 'components/header';
 import Footer from 'components/footer/index.jsx';
 import Modal from 'components/modal/index.jsx';
-import { getUserPortfolio } from 'apis/portfolioApi';
+import { getAllPortfolio } from 'apis/portfolioApi';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Grid, Pagination } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
+import MainSelectCard from 'components/mainSelectCard';
 
 const AllPortfolio = (props) => {
   const [userPortfolio, setUserPortfolio] = useState([{}]);
-  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
-
-  const [selectedFormat, setSelectedFormat] = useState('');
-  const [detailFormId, setDetailFormId] = useState('');
-  const [showDetailForm, setShowDetailForm] = useState(false);
-
-  const openDetailForm = (id) => {
-    setShowDetailForm(true);
-    setDetailFormId(id);
-  };
-
-  const closeDetailForm = () => {
-    setShowDetailForm(false);
-    setDetailFormId('');
-    setSelectedFormat('');
-  };
+  const [allPortfolio, setAllPortfolio] = useState([]);
+  const [allPortfolioCnt, setAllPortfolioCnt] = useState(0);
 
   useEffect(() => {
-    async function fetchUserPortfolioData() {
-      const datas = await getUserPortfolio(userId);
-      await setUserPortfolio(datas);
+    async function fetchAllPortfolioData() {
+      const datas = await getAllPortfolio();
+      setAllPortfolio(datas);
+      setAllPortfolioCnt(datas.length);
     }
-    fetchUserPortfolioData();
+    fetchAllPortfolioData();
   }, []);
 
   if (userPortfolio.length === 0) {
@@ -50,11 +37,6 @@ const AllPortfolio = (props) => {
   return (
     <>
       <Container>
-        {selectedFormat !== '' ? (
-          <Modal detailFormId={detailFormId} previewId={selectedFormat} closeDetailForm={closeDetailForm} />
-        ) : (
-          <></>
-        )}
         <Header />
         <div>
           <Swiper
@@ -69,15 +51,9 @@ const AllPortfolio = (props) => {
             modules={[Grid, Pagination]}
             className="mySwiper"
           >
-            {userPortfolio.map((data, index) => (
+            {allPortfolio.map((data, index) => (
               <SwiperSlide>
-                <SelectCard
-                  id={index}
-                  key={index}
-                  length={userPortfolio.length}
-                  format={data}
-                  setSelectedFormat={setSelectedFormat}
-                />
+                <MainSelectCard id={index} key={index} length={allPortfolio.length} data={data} />
               </SwiperSlide>
             ))}
           </Swiper>
