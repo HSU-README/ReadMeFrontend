@@ -112,12 +112,7 @@ const Home = () => {
     prevArrow: <SamplePrevArrow />,
   };
   return (
-    <div style={{ position: 'relative' }}>
-      {showDetailForm === true ? (
-        <Modal detailFormId={detailFormId} dummyData={dummyData} closeDetailForm={closeDetailForm} />
-      ) : (
-        <></>
-      )}
+    <div style={{ position: 'relative', backgroundColor: '#F8F9FA' }}>
       <Header />
       <div>
         <Banner />
