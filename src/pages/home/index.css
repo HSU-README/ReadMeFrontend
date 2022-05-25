@@ -47,15 +47,16 @@
 }
 
 .pofolBtn {
-  background-color: #f57842;
+  background-color: black;
   color: white;
   font-weight: 900;
   font: bold;
   font-size: 25px;
-  width: 30%;
+  width: 20%;
   height: 60px;
   border: 0px;
   border-radius: 16px;
+  margin-top: 20px;
 }
 
 .pofolBtnHeader {

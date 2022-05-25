@@ -5,6 +5,7 @@ import { maxWidth } from 'styles/mixin';
 export const Container = styled.div`
   ${maxWidth}
   min-width: 800px;
+  background-color: #f8f9fa;
 `;
 
 export const SignupContainer = styled.div`
@@ -49,7 +50,7 @@ export const SignupContainer = styled.div`
     justify-content: center;
     margin: 0px auto;
     padding: 30px 0px 20px 0px;
-    max-width: 800px;
+    max-width: 380px;
   }
 
   .login-find {

@@ -4,7 +4,7 @@ import colors from '../../styles/colors';
 
 export const headerFont = {
   fontSize: '16px',
-  color: '#646464',
+  color: 'black',
   marginRight: '15px',
   cursor: 'pointer',
 };
@@ -17,6 +17,7 @@ export const Container = styled.div`
   gap: 20px;
   border-bottom: 1px solid;
   border-color: ${colors.footerLine};
+  background-color: #f8f9fa;
 
   .copyright {
     font-size: 18px;

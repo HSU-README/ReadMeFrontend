@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './Header.css';
 import logo from 'assets/images/logo.jpg';
-import { Button ,Link} from '@mui/material';
+import { Button, Link } from '@mui/material';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Searchbar from './Searchbar.js';
 import { useSelector, useDispatch } from 'react-redux';
@@ -85,43 +85,48 @@ const Header = () => {
 
   return (
     <div className="headerMain">
-      <div className="inner" style={{ marginBottom: '20px'}}>
+      <div className="inner" style={{ marginBottom: '20px' }}>
         <NavLink to="/" className="logoNav">
-          <img
-            src={logo}
-            className="logo"
-          />
+          <img src={logo} className="logo" />
         </NavLink>
         <Searchbar />
 
         {/* 로그인시 출력 컴포넌트 */}
         {isLoggedIn ? (
           <span className="buttonFamily">
-            <Button disabled style={{ color: '#1976d2', marginTop: '9%', fontSize: '16px' }}>
+            <Button disabled style={{ color: '#000000', marginTop: '9%', fontSize: '18px' }}>
               {JSON.parse(userInfo).name}님
             </Button>
             <Button
-              style={{ marginTop: '9%', fontSize: '16px' }}
+              style={{ color: '#000000', marginTop: '9%', fontSize: '18px' }}
               onClick={() => {
                 signOut();
                 setUserInfo(undefined);
                 localStorage.clear();
               }}
             >
-              <NavLink style={{textDecoration:'none'}} to="/login">로그아웃</NavLink>
+              <NavLink style={{ color: '#1B262C', textDecoration: 'none', fontSize: '18px' }} to="/login">
+                로그아웃
+              </NavLink>
             </Button>
-            <Button style={{ marginTop: '9%', fontSize: '16px' }}>
-              <NavLink style={{textDecoration:'none'}} to="/mypage">마이페이지</NavLink>
+            <Button style={{ marginTop: '9%', fontSize: '18px' }}>
+              <NavLink style={{ color: '#1B262C', textDecoration: 'none' }} to="/mypage">
+                마이페이지
+              </NavLink>
             </Button>
           </span>
         ) : (
           //  로그아웃시 출력 컴포넌트
           <span className="buttonFamily">
-            <Button  style={{ marginTop: '9%', fontSize: '16px' }}>
-              <NavLink style={{textDecoration:'none'}} to="/login">로그인</NavLink>
+            <Button style={{ marginTop: '9%', fontSize: '18px' }}>
+              <NavLink style={{ textDecoration: 'none', color: '#1B262C' }} to="/login">
+                로그인
+              </NavLink>
             </Button>
-            <Button style={{marginTop: '9%', fontSize: '16px' }}>
-                 <NavLink style={{textDecoration:'none'}} to="/signup">회원가입</NavLink>
+            <Button style={{ marginTop: '9%', fontSize: '18px' }}>
+              <NavLink style={{ color: '#1B262C', textDecoration: 'none' }} to="/signup">
+                회원가입
+              </NavLink>
             </Button>
           </span>
         )}

@@ -15,8 +15,8 @@ const LogIn = () => {
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
   const [logInError, setLogInError] = useState(false);
-  const [emailValidation,setEmailValidation] = useState("hidden")
-  const [passwordValidation, setPasswordValidation] = useState("hidden")
+  const [emailValidation, setEmailValidation] = useState('hidden');
+  const [passwordValidation, setPasswordValidation] = useState('hidden');
   const navigate = useNavigate();
   const serverApi = axios.create({
     baseURL: `${API_ENDPOINT}`,
@@ -51,28 +51,28 @@ const LogIn = () => {
       });
   };
 
-  const validation=()=>{
-    let chk=true;
-    if(email==="" || /\S+@\S+\.\S+/.test(email)===false){
-      setEmailValidation("")
-      chk=false;
-    }else{
-      setEmailValidation("hidden")
+  const validation = () => {
+    let chk = true;
+    if (email === '' || /\S+@\S+\.\S+/.test(email) === false) {
+      setEmailValidation('');
+      chk = false;
+    } else {
+      setEmailValidation('hidden');
     }
-    if(password===""){
-      console.log("here")
-      setPasswordValidation("")
-      chk=false;
-    }else{
-      setPasswordValidation("hidden")
+    if (password === '') {
+      console.log('here');
+      setPasswordValidation('');
+      chk = false;
+    } else {
+      setPasswordValidation('hidden');
     }
-    return chk
-  }
+    return chk;
+  };
 
   const onSubmit = useCallback(
     (e) => {
       e.preventDefault();
-      if(validation()){
+      if (validation()) {
         setLogInError(false);
         login();
       }
@@ -85,7 +85,7 @@ const LogIn = () => {
       <Header />
       <LoginContainer>
         <div className="logo-wrapper">
-          <img className="logo" style={{cursor:"default"}}src={Logo} alt="logo" />
+          <img className="logo" style={{ cursor: 'default' }} src={Logo} alt="logo" />
         </div>
         <div className="input-wrapper">
           <Input
@@ -96,9 +96,19 @@ const LogIn = () => {
             value={email}
             onChange={onChangeEmail}
             placeholder="이메일 주소"
-            style={{marginBottom:"10px"}}
+            style={{ marginBottom: '10px' }}
           />
-          <div style={{textAlign:"left",width:"800px", margin:"0 auto",color:"red", visibility:`${emailValidation}`}}>올바른 이메일을 입력해주세요</div>
+          <div
+            style={{
+              textAlign: 'left',
+              width: '800px',
+              margin: '0 auto',
+              color: 'red',
+              visibility: `${emailValidation}`,
+            }}
+          >
+            올바른 이메일을 입력해주세요
+          </div>
           <Input
             style={{ marginBottom: '10px' }}
             variant="outlined"
@@ -109,7 +119,17 @@ const LogIn = () => {
             onChange={onChangePassword}
             placeholder="비밀번호"
           />
-          <div style={{textAlign:"left",width:"800px", margin:"0 auto",color:"red",visibility:`${passwordValidation}`}}>올바른 비밀번호를 입력해주세요</div>
+          <div
+            style={{
+              textAlign: 'left',
+              width: '800px',
+              margin: '0 auto',
+              color: 'red',
+              visibility: `${passwordValidation}`,
+            }}
+          >
+            올바른 비밀번호를 입력해주세요
+          </div>
         </div>
         <div className="checkbox-wrapper">
           <FormControlLabel control={<Checkbox />} label="로그인 상태 유지" />
