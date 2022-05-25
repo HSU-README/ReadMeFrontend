@@ -10,6 +10,7 @@ export const Container = styled.footer`
   margin-top: auto;
   border-top: 1px solid;
   border-color: ${colors.footerLine};
+  background-color: #f8f9fa;
 
   .copyright {
     font-size: 12px;

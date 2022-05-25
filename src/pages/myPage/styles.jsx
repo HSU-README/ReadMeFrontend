@@ -4,6 +4,7 @@ import { maxWidth } from 'styles/mixin';
 
 export const Container = styled.div`
   ${maxWidth}
+  background-color: #f8f9fa;
 `;
 
 export const MyPageContainer = styled.div`
@@ -29,7 +30,7 @@ export const MenuContainer = styled.div`
     margin: 40px 0px 20px 0px;
     text-align: center;
     font-size: 24px;
-    color: ${colors.gray};
+    color: black;
     :hover {
       cursor: pointer;
       border-right: 5px solid;

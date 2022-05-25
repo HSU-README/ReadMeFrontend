@@ -25,7 +25,7 @@ export default function Header() {
       <div className="section-login">
         {isLoggedIn ? (
           <>
-            <div style={headerFont}>
+            <div style={{ marginRight: '15px', color: '#1B262C', fontSize: '16px' }}>
               <p>{JSON.parse(userInfo).name}님</p>
             </div>
             <Link

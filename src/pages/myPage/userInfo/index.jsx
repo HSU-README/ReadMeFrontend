@@ -81,22 +81,38 @@ const UserInfo = () => {
         ref={fileInput}
       />
       <div className="nickName">
-        <input value={name} onChange={onChangeName} style={{ width: '180px', fontWeight: 'bold' }} />
+        <input
+          value={name}
+          onChange={onChangeName}
+          style={{ width: '180px', fontWeight: 'bold', backgroundColor: '#f8f9fa' }}
+        />
       </div>
       <div className="section-update">
         <div className="inputBorder university">
           <div>
             <span className="inputName">학교명 : </span>
-            <input value={university} onChange={onChangeUniversity}></input>
+            <input
+              value={university}
+              onChange={onChangeUniversity}
+              style={{ backgroundColor: '#f8f9fa', fontWeight: 'bold' }}
+            ></input>
           </div>
           <div>
             <span className="inputName">전공 : </span>
-            <input value={major} onChange={onChangeMajor}></input>
+            <input
+              value={major}
+              onChange={onChangeMajor}
+              style={{ backgroundColor: '#f8f9fa', fontWeight: 'bold' }}
+            ></input>
           </div>
         </div>
         <div className="inputBorder">
           <span className="inputName">관심분야 : </span>
-          <input value={interests} onChange={onChangeInterests} style={{ width: '350px', fontWeight: 'bold' }}></input>
+          <input
+            value={interests}
+            onChange={onChangeInterests}
+            style={{ width: '350px', fontWeight: 'bold', backgroundColor: '#f8f9fa' }}
+          ></input>
         </div>
       </div>
       <div className="button-wrapper">

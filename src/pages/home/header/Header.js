@@ -98,7 +98,7 @@ const Header = () => {
               {JSON.parse(userInfo).name}님
             </Button>
             <Button
-              style={{ color: '#000000', marginTop: '9%', fontSize: '16px' }}
+              style={{ color: '#000000', marginTop: '9%', fontSize: '18px' }}
               onClick={() => {
                 signOut();
                 setUserInfo(undefined);
@@ -118,12 +118,12 @@ const Header = () => {
         ) : (
           //  로그아웃시 출력 컴포넌트
           <span className="buttonFamily">
-            <Button style={{ color: '#1B262C', marginTop: '9%', fontSize: '18px' }}>
-              <NavLink style={{ textDecoration: 'none' }} to="/login">
+            <Button style={{ marginTop: '9%', fontSize: '18px' }}>
+              <NavLink style={{ textDecoration: 'none', color: '#1B262C' }} to="/login">
                 로그인
               </NavLink>
             </Button>
-            <Button style={{ marginTop: '9%', fontSize: '16px' }}>
+            <Button style={{ marginTop: '9%', fontSize: '18px' }}>
               <NavLink style={{ color: '#1B262C', textDecoration: 'none' }} to="/signup">
                 회원가입
               </NavLink>
