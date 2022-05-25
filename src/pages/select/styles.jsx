@@ -6,6 +6,7 @@ export const Container = styled.div`
   ${maxWidth}
   position: relative;
   padding: '0px 24px 48px';
+  background-color: #f8f9fa;
 
   a {
     flex: 1;
