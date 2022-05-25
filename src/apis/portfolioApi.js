@@ -72,7 +72,7 @@ export const getMostLikePortfolio = async () => {
 
 //학과별 문서 불러오기
 export const getMajorPortfolio = async (memberId) => {
-  const response = await serverApi.get(`/api/v1/home/docs/memberMajor`);
+  const response = await serverApi.get(`/api/v1/home/docs/major`, { params: { memberId: memberId } });
   console.log(response);
   try {
     console.log('response', response.data.result);
