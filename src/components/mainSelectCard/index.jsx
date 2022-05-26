@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 
-export default function MainSelectCard({ data }) {
+export default function MainSelectCard({ data, length }) {
   const [docId, setDocId] = useState(0);
   const [userName, setUserName] = useState('');
   const [profileImg, setProfileImg] = useState(
@@ -15,8 +15,6 @@ export default function MainSelectCard({ data }) {
   const [tags, setTags] = useState([]);
 
   useEffect(() => {
-    console.log(data.docDate);
-
     const date = data.docDate;
     const year = date.substring(0, 4);
     const month = date.substring(5, 7);
@@ -37,7 +35,7 @@ export default function MainSelectCard({ data }) {
   return (
     //TODO link url 변경 필요
 
-    <Container>
+    <Container length={length}>
       <Link to={`/preview/${docId}`} style={{ textDecoration: 'none', color: 'black', width: '300px' }}>
         <div className="pofol-thumbnail-container">
           <img

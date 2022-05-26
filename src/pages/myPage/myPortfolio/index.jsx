@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'pages/myPage/myPortfolio/styles';
-import SelectCard from 'components/selectCard';
 import MainSelectCard from 'components/mainSelectCard';
 import { getUserPortfolio } from 'apis/portfolioApi';
 
@@ -18,7 +17,6 @@ const MyPortfolio = () => {
     async function fetchUserPortfolioData() {
       const datas = await getUserPortfolio(userId);
       await setUserPortfolio(datas);
-      console.log(datas);
     }
     fetchUserPortfolioData();
   }, []);
@@ -51,7 +49,7 @@ const MyPortfolio = () => {
           >
             {userPortfolio.map((data, index) => (
               <SwiperSlide>
-                <MainSelectCard key={index} data={data} />
+                <MainSelectCard key={index} data={data} length={userPortfolio.length} />
               </SwiperSlide>
             ))}
           </Swiper>

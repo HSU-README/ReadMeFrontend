@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'pages/myPage/pickPofol/styles';
-import SelectCard from 'components/selectCard';
+import MainSelectCard from 'components/mainSelectCard';
 import { getUserLikePortfolio } from 'apis/likeApi';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -10,7 +10,7 @@ import 'swiper/css/grid';
 import 'swiper/css/pagination';
 
 const PickPofol = (props) => {
-  const [userLikePortfolio, setUserLikePortfolio] = useState([{}]);
+  const [userLikePortfolio, setUserLikePortfolio] = useState([]);
   const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
 
   useEffect(() => {
@@ -22,15 +22,11 @@ const PickPofol = (props) => {
     fetchUserLikePortfolioData();
   }, []);
 
-  const setSelectedFormat = (selectedFormat) => {
-    props.setSelectedFormat(selectedFormat);
-  };
-
   if (userLikePortfolio.length === 0) {
     return (
       <div style={{ fontSize: '40px', margin: '220px 300px' }}>
         <img src={require('assets/images/not_found_icon.png')} style={{ width: '507px', height: '301px' }} />
-        <br/>
+        <br />
         <strong>찾으시는 포트폴리오가 없어요!</strong>
       </div>
     );
@@ -39,7 +35,6 @@ const PickPofol = (props) => {
   return (
     <>
       <Container>
-        {console.log(userLikePortfolio)}
         <div style={{ width: '1200px', margin: '100px 0px 100px 100px', overflow: 'auto', display: 'flex' }}>
           <Swiper
             slidesPerView={5}
@@ -55,13 +50,7 @@ const PickPofol = (props) => {
           >
             {userLikePortfolio.map((data, index) => (
               <SwiperSlide>
-                <SelectCard
-                  id={index}
-                  key={index}
-                  length={userLikePortfolio.length}
-                  format={data}
-                  setSelectedFormat={setSelectedFormat}
-                />
+                <MainSelectCard key={index} data={data} length={userLikePortfolio.length} />
               </SwiperSlide>
             ))}
           </Swiper>
