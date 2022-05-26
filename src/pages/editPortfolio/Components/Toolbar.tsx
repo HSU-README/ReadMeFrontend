@@ -9,6 +9,7 @@ import { likePortfolio, unlikePortfolio, getUserLikePortfolio } from 'apis/likeA
 import { storage } from '../../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { tagsState } from 'recoil/atoms';
+import plus_icon from '../../../assets/images/plus_icons.png';
 import {
   FormControl,
   Input,
@@ -101,6 +102,7 @@ export default function Toolbar({
   const imageRef = useRef<HTMLInputElement>(null);
   const [like, setLike] = useState(false);
   const [tagText, setTagText] = useState("");
+  const [changeImageCss, setChangeImageCss]= useState("beforeImage")
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
     actions?.addElement(type);
@@ -149,10 +151,11 @@ export default function Toolbar({
   useEffect(() => {
     setTitle(docTitle);
   }, [docTitle]);
-  const [image, setImage] = useState(null);
-
+  const [image, setImage] = useState(plus_icon);
   const onImageChange = (event) => {
+    
     if (event.target.files && event.target.files[0]) {
+      setChangeImageCss("afterImage");
       setImage(URL.createObjectURL(event.target.files[0]));
       setImageName(event.target.files[0]);
     }
@@ -160,6 +163,20 @@ export default function Toolbar({
   const documentId = ()=>{
     console.log(document.location.search);
   }
+  const beforeImage = {
+    textAlign: 'center',
+    width: '100%',
+    height: '200px',
+    objectFit: 'contain',
+    border: '1px solid black',
+  };
+  const afterImage = {
+    textAlign: 'center',
+    width: '100%',
+    height: '200px',
+    objectFit: 'fill',
+    border: '1px solid black',
+  };
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -228,24 +245,12 @@ export default function Toolbar({
             <DialogContent>
               <DialogContentText style={{ textAlign: 'center', fontSize: '30px', color: 'black' }}>
                 {title}
-                {/* <FormControlLabel
-                value="start"
-                style={{ marginLeft: '85%' }}
-                control={
-                  <Checkbox
-                    defaultChecked={visibleCheck}
-                    onChange={(e) => {
-                      setVisibleCheck(e.target.checked);
-                    }}
-                  />
-                }
-                label="공개"
-                labelPlacement="start"
-              /> */}
                 <FormControl style={{marginLeft:"65%"}}>
-                  <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
-                    <FormControlLabel value="female" control={<Radio size="small" />} label="공개" />
-                    <FormControlLabel value="male" control={<Radio size="small" />} label="비공개" />
+                  <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group"
+                  onChange={(e)=>{
+                    e.target.value==="true"?setVisibleCheck(true):setVisibleCheck(false)}}>
+                    <FormControlLabel value="true" control={<Radio size="small" />} label="공개" />
+                    <FormControlLabel value="false"  control={<Radio size="small" />} label="비공개" />
                   </RadioGroup>
                 </FormControl>
                 <div style={{ textAlign: 'right', fontSize: '15px' }}>
@@ -255,10 +260,10 @@ export default function Toolbar({
               </DialogContentText>
 
               <div style={{ width: '100%', height: '200px' }}>
-                <img src={image} style={{ textAlign: 'center', width: '100%', height: '200px', objectFit: 'fill' }} />
+                <img src={image} />
               </div>
               <input ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
-
+              <div></div>
               <TextField
                 id="outlined-basic"
                 label="태그"
