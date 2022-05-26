@@ -55,8 +55,8 @@ const SearchPage = () => {
     arrows: true,
     infinite: true,
     speed: 300,
-    sliderPerRow:3,
-    slidesToShow: searchPortfolio.length>3? 3:2,
+    sliderPerRow: 3,
+    slidesToShow: searchPortfolio.length > 3 ? 3 : 2,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
@@ -101,7 +101,7 @@ const SearchPage = () => {
         <></>
       )}
       {
-        <span>
+        <div>
           {searchPortfolio.length !== undefined ? (
             searchPortfolio.length !== 0 ? (
               <Slider {...settings} className="slick">
@@ -121,7 +121,7 @@ const SearchPage = () => {
           ) : (
             <></>
           )}
-       </span>
+        </div>
       }
       <Footer />
     </>
