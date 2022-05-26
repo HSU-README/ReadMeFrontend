@@ -16,7 +16,7 @@ const serverApi = axios.create({
 
 //유저의 문서들 불러오기
 export const getUserPortfolio = async (userId) => {
-  const response = await serverApi.get(`/api/v1/member/${userId}/docs`);
+  const response = await serverApi.get(`/api/v1/members/${userId}/docs`);
   try {
     return response.data.result;
   } catch (error) {

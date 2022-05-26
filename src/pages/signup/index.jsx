@@ -76,7 +76,7 @@ const Signup = () => {
     console.log(validationResult);
     if (validationResult) {
       await serverApi
-        .post('/api/v1/member/new', {
+        .post('/api/v1/members/new', {
           name: `${name}`,
           email: `${email}`,
           password: `${password}`,

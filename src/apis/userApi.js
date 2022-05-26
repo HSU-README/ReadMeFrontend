@@ -9,7 +9,7 @@ const serverApi = axios.create({
 });
 
 export const getUser = async (userId) => {
-  const response = await serverApi.get(`/api/v1/member/${userId}`);
+  const response = await serverApi.get(`/api/v1/members/${userId}`);
   try {
     return response.data.result;
   } catch (error) {
@@ -18,7 +18,7 @@ export const getUser = async (userId) => {
 };
 
 export const updateUser = async (userId, name, image, university, major, interests) => {
-  const response = await serverApi.put(`/api/v1/member/${userId}`, {
+  const response = await serverApi.put(`/api/v1/members/${userId}`, {
     name: name,
     profileUrl: image,
     university: university,
