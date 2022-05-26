@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CanvasContext } from '../CanvasContainer';
 import { NavLink } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
+import { TextField,RadioGroup,Radio,FormLabel } from '@mui/material';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 import { likePortfolio, unlikePortfolio, getUserLikePortfolio } from 'apis/likeApi';
 import { storage } from '../../../firebase';
@@ -99,6 +100,7 @@ export default function Toolbar({
   const tumbsImageRef = useRef<HTMLImageElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
   const [like, setLike] = useState(false);
+  const [tagText, setTagText] = useState("");
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
     actions?.addElement(type);
@@ -185,55 +187,50 @@ export default function Toolbar({
         </div>
       )}
       <span>
-        <img
-          onClick={() => {
-            console.log(title);
-            handleOpen();
-          }}
-          src={require('../../../assets/images/saveIcon.png')}
-          alt="저장"
-          style={{ marginRight: '20px', width: '30px', height: '30px', cursor: 'pointer' }}
-        ></img>
+        {!isEditable ? (
+          <img
+            onClick={() => {
+              console.log(title);
+              handleOpen();
+            }}
+            src={require('../../../assets/images/import.png')}
+            alt="저장"
+            style={{ marginRight: '20px', width: '35px', height: '35px', cursor: 'pointer' }}
+          />
+        ) : (
+          <img
+            onClick={() => {
+              console.log(title);
+              handleOpen();
+            }}
+            src={require('../../../assets/images/saveIcon.png')}
+            alt="저장"
+            style={{ marginRight: '20px', width: '30px', height: '30px', cursor: 'pointer' }}
+          />
+        )}
 
         {!isEditable ? (
           <Dialog open={openDialog} onClose={handleClose}>
             <DialogContent>
-              <DialogContentText>나의 양식에 추가하시겠습니까?</DialogContentText>
+              <DialogContentText>문서를 불러오시겠습니까?</DialogContentText>
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>취소</Button>
-              <Button
-                onClick={() => {
-                  alert('나의 양식에 추가.');
-                  handleClose();
-                }}
-              >
-                확인
+              <Button>
+                <NavLink to={`/generate/${docId}`} style={{ textDecoration: 'none', marginLeft: '5px' }}>
+                  불러오기
+                </NavLink>
               </Button>
             </DialogActions>
           </Dialog>
         ) : (
-          <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '35%' } }}>
+          <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '50%' } }}>
             <DialogContent>
               <DialogContentText style={{ textAlign: 'center', fontSize: '30px', color: 'black' }}>
                 {title}
-                <div style={{ textAlign: 'right', fontSize: '15px' }}>
-                  수정 시간 : {new Date().getFullYear()}: {new Date().getMonth() + 1}: {new Date().getDate()}:{' '}
-                  {new Date().getHours()}: {new Date().getMinutes()}
-                </div>
-              </DialogContentText>
-
-              <div style={{ width: '100%', height: '200px' }}>
-                <img
-                  src={image}
-                  style={{ textAlign: 'center', width: '100%', height: '200px', objectFit: 'contain' }}
-                />
-              </div>
-              <input ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
-
-              <FormControlLabel
+                {/* <FormControlLabel
                 value="start"
-                style={{ marginLeft: '84%' }}
+                style={{ marginLeft: '85%' }}
                 control={
                   <Checkbox
                     defaultChecked={visibleCheck}
@@ -244,6 +241,34 @@ export default function Toolbar({
                 }
                 label="공개"
                 labelPlacement="start"
+              /> */}
+                <FormControl style={{marginLeft:"65%"}}>
+                  <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
+                    <FormControlLabel value="female" control={<Radio size="small" />} label="공개" />
+                    <FormControlLabel value="male" control={<Radio size="small" />} label="비공개" />
+                  </RadioGroup>
+                </FormControl>
+                <div style={{ textAlign: 'right', fontSize: '15px' }}>
+                  수정 시간 : {new Date().getFullYear()}: {new Date().getMonth() + 1}: {new Date().getDate()}:{' '}
+                  {new Date().getHours()}: {new Date().getMinutes()}
+                </div>
+              </DialogContentText>
+
+              <div style={{ width: '100%', height: '200px' }}>
+                <img src={image} style={{ textAlign: 'center', width: '100%', height: '200px', objectFit: 'fill' }} />
+              </div>
+              <input ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
+
+              <TextField
+                id="outlined-basic"
+                label="태그"
+                value={tagText}
+                variant="outlined"
+                size="small"
+                style={{ width: '100%', marginTop: '15px' }}
+                onChange={(e) => {
+                  setTagText(e.target.value);
+                }}
               />
             </DialogContent>
             <DialogActions>
@@ -297,36 +322,30 @@ export default function Toolbar({
         <></>
       ) : like ? (
         <>
-        <Button>
-        <NavLink to={`/generate/${docId}`}>문서 불러오기</NavLink>
-        </Button>
-        <img
-          alt="unlike"
-          style={{ width: '30px', height: '30px', marginLeft: '70px' }}
-          src={require('../../../assets/images/likeon.png')}
-          ref={tumbsImageRef}
-          onClick={() => {
-            setLike(false);
-            unlikePortfolio(userId, docId);
-          }}
-        />
+          <img
+            alt="unlike"
+            style={{ width: '30px', height: '30px', marginLeft: '30px', cursor: 'pointer' }}
+            src={require('../../../assets/images/likeon.png')}
+            ref={tumbsImageRef}
+            onClick={() => {
+              setLike(false);
+              unlikePortfolio(userId, docId);
+            }}
+          />
         </>
       ) : (
         <>
-        <Button>
-          <NavLink to={`/generate/${docId}`} style={{textDecoration:"none",marginLeft:'5px'}} >문서 가져오기</NavLink>
-        </Button>
-        <img
-          alt="like"
-          style={{ width: '30px', height: '30px', marginLeft: '10px' }}
-          src={require('../../../assets/images/likeoff.png')}
-          ref={tumbsImageRef}
-          onClick={() => {
-            setLike(true);
-            likePortfolio(userId, docId);
-          }}
-        />
-    </>
+          <img
+            alt="like"
+            style={{ width: '30px', height: '30px', marginLeft: '30px', cursor: 'pointer' }}
+            src={require('../../../assets/images/likeoff.png')}
+            ref={tumbsImageRef}
+            onClick={() => {
+              setLike(true);
+              likePortfolio(userId, docId);
+            }}
+          />
+        </>
       )}
     </div>
   );
