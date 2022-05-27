@@ -125,7 +125,7 @@ export default function Toolbar({
   const captureToFirebase = async () => {
     const storageRef = ref(storage, imageName.name);
     //upload the file
-    const uploadTask = await uploadBytesResumable(storageRef, imageName)
+    const uploadTask = await uploadBytesResumable(storageRef, imageName);
     const url = await getDownloadURL(uploadTask.ref);
 
     return url;
@@ -155,9 +155,9 @@ export default function Toolbar({
       setImageName(event.target.files[0]);
     }
   };
-  const documentId = ()=>{
+  const documentId = () => {
     console.log(document.location.search);
-  }
+  };
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -297,36 +297,34 @@ export default function Toolbar({
         <></>
       ) : like ? (
         <>
-        <Button>
-        <NavLink to={`/generate/${docId}`}>문서 불러오기</NavLink>
-        </Button>
-        <img
-          alt="unlike"
-          style={{ width: '30px', height: '30px', marginLeft: '70px' }}
-          src={require('../../../assets/images/likeon.png')}
-          ref={tumbsImageRef}
-          onClick={() => {
-            setLike(false);
-            unlikePortfolio(userId, docId);
-          }}
-        />
+          <Button>
+            <NavLink to={`/generate/${docId}`}>문서 불러오기</NavLink>
+          </Button>
+          <img
+            alt="unlike"
+            style={{ width: '30px', height: '30px', marginLeft: '70px' }}
+            src={require('../../../assets/images/likeon.png')}
+            ref={tumbsImageRef}
+            onClick={() => {
+              setLike(false);
+              unlikePortfolio(userId, docId);
+            }}
+          />
         </>
       ) : (
         <>
-        <Button>
-          <NavLink to={`/generate/${docId}`} style={{textDecoration:"none",marginLeft:'5px'}} >문서 가져오기</NavLink>
-        </Button>
-        <img
-          alt="like"
-          style={{ width: '30px', height: '30px', marginLeft: '10px' }}
-          src={require('../../../assets/images/likeoff.png')}
-          ref={tumbsImageRef}
-          onClick={() => {
-            setLike(true);
-            likePortfolio(userId, docId);
-          }}
-        />
-    </>
+          <Button href={`/generate/${docId}`}>문서 가져오기</Button>
+          <img
+            alt="like"
+            style={{ width: '30px', height: '30px', marginLeft: '10px' }}
+            src={require('../../../assets/images/likeoff.png')}
+            ref={tumbsImageRef}
+            onClick={() => {
+              setLike(true);
+              likePortfolio(userId, docId);
+            }}
+          />
+        </>
       )}
     </div>
   );
