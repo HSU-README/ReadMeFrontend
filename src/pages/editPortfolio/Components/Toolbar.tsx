@@ -162,15 +162,10 @@ export default function Toolbar({
       setImageName(event.target.files[0]);
     }
   };
-<<<<<<< HEAD
   
 
 
-=======
-  const documentId = () => {
-    console.log(document.location.search);
-<<<<<<< HEAD
-  }
+
   const beforeImage = {
     textAlign: 'center',
     width: '100%',
@@ -184,10 +179,7 @@ export default function Toolbar({
     height: '200px',
     objectFit: 'fill',
     border: '1px solid black',
-=======
->>>>>>> 2e5257f08e5c260112309eed06c75f949c1a7cc2
   };
->>>>>>> 91b42eb40c7cf48cf185e15e34a6df0d8ecb99f4
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -357,18 +349,13 @@ export default function Toolbar({
         <></>
       ) : like ? (
         <>
-<<<<<<< HEAD
-          <img
-            alt="unlike"
-            style={{ width: '30px', height: '30px', marginLeft: '30px', cursor: 'pointer' }}
-=======
+
           <Button>
             <NavLink to={`/generate/${docId}`}>문서 불러오기</NavLink>
           </Button>
           <img
             alt="unlike"
             style={{ width: '30px', height: '30px', marginLeft: '70px' }}
->>>>>>> 2e5257f08e5c260112309eed06c75f949c1a7cc2
             src={require('../../../assets/images/likeon.png')}
             ref={tumbsImageRef}
             onClick={() => {
@@ -379,16 +366,11 @@ export default function Toolbar({
         </>
       ) : (
         <>
-<<<<<<< HEAD
-          <img
-            alt="like"
-            style={{ width: '30px', height: '30px', marginLeft: '30px', cursor: 'pointer' }}
-=======
+
           <Button href={`/generate/${docId}`}>문서 가져오기</Button>
           <img
             alt="like"
             style={{ width: '30px', height: '30px', marginLeft: '10px' }}
->>>>>>> 2e5257f08e5c260112309eed06c75f949c1a7cc2
             src={require('../../../assets/images/likeoff.png')}
             ref={tumbsImageRef}
             onClick={() => {
