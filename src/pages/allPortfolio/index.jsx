@@ -38,11 +38,12 @@ const AllPortfolio = (props) => {
     <>
       <Container>
         <Header />
+        <div className="sectionFont">전체 포트폴리오</div>
         <div
           style={{
             width: '1600px',
-            margin: '25px 0px 50px 100px',
-            height: '90vh',
+            margin: '-30px 0px 50px 100px',
+            height: '85vh',
           }}
         >
           <Swiper

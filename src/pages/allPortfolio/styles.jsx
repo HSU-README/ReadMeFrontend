@@ -6,6 +6,16 @@ export const Container = styled.div`
   ${maxWidth}
   background-color: #f8f9fa;
 
+  .sectionFont {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 30px;
+    margin-left: 100px;
+    font-weight: bold;
+    color: black;
+    font-size: 35px;
+  }
+
   .swiper {
     width: 100%;
     height: 100%;
