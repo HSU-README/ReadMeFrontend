@@ -4,8 +4,6 @@ import { maxWidth } from 'styles/mixin';
 
 export const Container = styled.div`
   ${maxWidth}
-  position: relative;
-  padding: '0px 24px 48px';
   background-color: #f8f9fa;
 
   .swiper {
@@ -18,7 +16,7 @@ export const Container = styled.div`
   .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background-color: #f8f9fa;
+    background: #f8f9fa;
     height: calc((100% - 50px) / 2) !important;
 
     /* Center slide text vertically */
