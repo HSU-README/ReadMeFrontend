@@ -13,8 +13,6 @@ export default function NewGenerateCard() {
         </div>
         <div className="pofol-title">새 양식</div>
         <div className="top-info-container"></div>
-
-        <hr style={{ margin: '0px auto', color: 'lightgrey' }} />
       </Link>
     </Container>
   );

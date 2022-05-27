@@ -28,4 +28,18 @@ export const Container = styled.div`
     color: black;
     text-align: left;
   }
+
+  .top-info-container {
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin: 5px 0px 0px 0px;
+    padding: 0px 20px 0px 20px;
+  }
+
+  .hashtag-container {
+    display: flex;
+    margin-top: 5px;
+  }
 `;
