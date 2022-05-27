@@ -1,16 +1,21 @@
-import { Container, OpacityBlack } from './styles';
-export default function NewGenerateSelectCard(props) {
-  const linkToGenerate = () => {
-    window.location.href = '/generate';
-  };
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Container } from './styles';
+
+export default function NewGenerateCard() {
   return (
     //TODO link url 변경 필요
-    <Container isSelected={props.isSelected} onClick={linkToGenerate}>
-      <OpacityBlack />
-      <div className="card-content">
-        <div className="card-head"></div>
-        <div className="card-title">새로운 양식</div>
-      </div>
+
+    <Container>
+      <Link to={`/generate`} style={{ textDecoration: 'none', color: 'black', width: '300px' }}>
+        <div className="pofol-thumbnail-container">
+          <img style={{ width: '100%', height: '100%' }} className="pofol-thumbnail" src="" alt="thumbnail"></img>
+        </div>
+        <div className="pofol-title">새 양식</div>
+        <div className="top-info-container"></div>
+
+        <hr style={{ margin: '0px auto', color: 'lightgrey' }} />
+      </Link>
     </Container>
   );
 }
