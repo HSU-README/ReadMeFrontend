@@ -83,7 +83,7 @@ export const getMajorPortfolio = async (memberId) => {
 };
 
 //문서 검색
-export const searchResult = async (searchText) => {
+export const getSearchPortfolio = async (searchText) => {
   console.log(searchText);
   if (searchText === '전통 양식') {
     console.log('come here');

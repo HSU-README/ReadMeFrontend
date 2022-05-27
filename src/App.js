@@ -8,7 +8,7 @@ import Select from './pages/select';
 import DownloadPortfolio from './pages/editPortfolio/DownloadPortfolio.js';
 import Preview from 'pages/editPortfolio/Preview';
 
-import SearchPage from './pages/searchPage/SearchPage.js';
+import SearchPage from './pages/searchPage';
 import { RecoilRoot } from 'recoil';
 function App() {
   return (
