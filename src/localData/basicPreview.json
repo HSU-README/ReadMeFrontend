@@ -1,0 +1,59 @@
+{
+  "data": [
+    {
+      "code": "S200",
+      "message": "문서 정보 조회 성공",
+      "result": {
+        "id": 1001,
+        "title": "전통 양식",
+        "docUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/basicPofol.png?alt=media&token=4b90417b-ccb0-4313-989e-266704a031f5",
+        "designer": "Propofol",
+        "tags": ["IT", "General"]
+      }
+    },
+    {
+      "code": "S200",
+      "message": "문서 정보 조회 성공",
+      "result": {
+        "id": 1002,
+        "title": "픽토그램 양식",
+        "docUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/picktogramPofol.png?alt=media&token=12bdf7f3-c4ec-49c6-a72c-b86641d7c36f",
+        "designer": "Propofol",
+        "tags": ["IT", "Design"]
+      }
+    },
+    {
+      "code": "S200",
+      "message": "문서 정보 조회 성공",
+      "result": {
+        "id": 1003,
+        "title": "프로젝트 양식1",
+        "docUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/project.png?alt=media&token=e112fb57-e561-48ec-8fcb-c98c2a4d25af",
+        "designer": "Propofol",
+        "tags": ["IT", "Design"]
+      }
+    },
+    {
+      "code": "S200",
+      "message": "문서 정보 조회 성공",
+      "result": {
+        "id": 1004,
+        "title": "프로젝트 양식2",
+        "docUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/project2.PNG?alt=media&token=e7013644-7ce5-4f7c-842b-bff557259d3d",
+        "designer": "Propofol",
+        "tags": ["IT", "Design"]
+      }
+    },
+    {
+      "code": "S200",
+      "message": "문서 정보 조회 성공",
+      "result": {
+        "id": 1005,
+        "title": "포트폴리오5",
+        "docUrl": "https://arxiv.org/pdf/quant-ph/0410100.pdf",
+        "designer": "designer",
+        "tags": ["IT5", "IT_add_5"]
+      }
+    }
+  ]
+}

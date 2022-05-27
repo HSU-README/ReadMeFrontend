@@ -4,12 +4,12 @@ import Signup from './pages/signup';
 import Login from './pages/login';
 import MyPage from './pages/myPage';
 import Main from './pages/home';
-import Select from './pages/select';
 import DownloadPortfolio from './pages/editPortfolio/DownloadPortfolio.js';
 import Preview from 'pages/editPortfolio/Preview';
-
+import SelectPortfolio from './pages/selectPage';
 import SearchPage from './pages/searchPage';
 import { RecoilRoot } from 'recoil';
+
 function App() {
   return (
     <div className="App">
@@ -21,7 +21,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/mypage" element={<MyPage />}></Route>
-            <Route path="/select" element={<Select />} />
+            <Route path="/select" element={<SelectPortfolio />} />
             <Route path="/generate" element={<DownloadPortfolio />} /> {/*포트폴리오 제작 페이지 라우트*/}
             <Route path="/generate/:docId" element={<DownloadPortfolio />} /> {/*포트폴리오 제작 페이지 라우트*/}
             <Route path="/preview" element={<Preview />} /> {/*포트폴리오 제작 페이지 라우트*/}
