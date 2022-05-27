@@ -36,7 +36,7 @@ export const unlikePortfolio = async (userId, docId) => {
 
 //유저가 좋아요한 문서들 불러오기
 export const getUserLikePortfolio = async (userId) => {
-  const response = await serverApi.get(`/api/v1/members/${userId}/docs/like`);
+  const response = await serverApi.get(`/api/v1/member/${userId}/docs/like`);
   try {
     return response.data.result;
   } catch (error) {
