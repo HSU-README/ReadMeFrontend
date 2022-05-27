@@ -9,6 +9,7 @@ import { likePortfolio, unlikePortfolio, getUserLikePortfolio } from 'apis/likeA
 import { storage } from '../../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { tagsState } from 'recoil/atoms';
+import './Toolbar.css';
 import plus_icon from '../../../assets/images/plus_icons.png';
 import {
   FormControl,
@@ -95,6 +96,7 @@ export default function Toolbar({
   const [tags, setTags] = useRecoilState(tagsState);
   const [tagsArray, setTagsArray] = useState([]);
   const { actions } = useContext(CanvasContext);
+  const tagBoxRef = useRef<HTMLDivElement>(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
   const [imageName, setImageName] = useState('');
@@ -160,23 +162,9 @@ export default function Toolbar({
       setImageName(event.target.files[0]);
     }
   };
-  const documentId = ()=>{
-    console.log(document.location.search);
-  }
-  const beforeImage = {
-    textAlign: 'center',
-    width: '100%',
-    height: '200px',
-    objectFit: 'contain',
-    border: '1px solid black',
-  };
-  const afterImage = {
-    textAlign: 'center',
-    width: '100%',
-    height: '200px',
-    objectFit: 'fill',
-    border: '1px solid black',
-  };
+  
+
+
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -217,7 +205,6 @@ export default function Toolbar({
         ) : (
           <img
             onClick={() => {
-              console.log(title);
               handleOpen();
             }}
             src={require('../../../assets/images/saveIcon.png')}
@@ -241,16 +228,16 @@ export default function Toolbar({
             </DialogActions>
           </Dialog>
         ) : (
-          <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '50%' } }}>
+          <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '52%' } }}>
             <DialogContent>
               <DialogContentText style={{ textAlign: 'center', fontSize: '30px', color: 'black' }}>
                 {title}
-                <FormControl style={{marginLeft:"65%"}}>
+                <FormControl style={{marginLeft:"68%"}}>
                   <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group"
                   onChange={(e)=>{
                     e.target.value==="true"?setVisibleCheck(true):setVisibleCheck(false)}}>
-                    <FormControlLabel value="true" control={<Radio size="small" />} label="공개" />
-                    <FormControlLabel value="false"  control={<Radio size="small" />} label="비공개" />
+                    <FormControlLabel value="true" aria-label="A" control={<Radio size="small" />} label="공개" />
+                    <FormControlLabel value="false" aria-label="A" control={<Radio size="small" />} label="비공개" />
                   </RadioGroup>
                 </FormControl>
                 <div style={{ textAlign: 'right', fontSize: '15px' }}>
@@ -259,11 +246,14 @@ export default function Toolbar({
                 </div>
               </DialogContentText>
 
-              <div style={{ width: '100%', height: '200px' }}>
-                <img src={image} />
+              <input style={{position:'absolute',marginLeft:"200px",marginTop:"90px",opacity:"0"}} ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
+              <div style={{ width: '100%', height: '200px' }} >
+
+              
+                <img src={image} className={changeImageCss} onChange={()=>{setChangeImageCss("afterImage")}}/>
+                
               </div>
-              <input ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
-              <div></div>
+              <div ref={tagBoxRef} style={{color:"#50bcdf",fontWeight:"600",marginTop:"10px"}}></div>
               <TextField
                 id="outlined-basic"
                 label="태그"
@@ -271,24 +261,38 @@ export default function Toolbar({
                 variant="outlined"
                 size="small"
                 style={{ width: '100%', marginTop: '15px' }}
+                onKeyPress={(e)=>{
+                  console.log(e);
+                  if(tagBoxRef.current.innerText.split("#").length<=4){
+                    if(e.key==='Enter'){
+                      tagBoxRef.current.innerHTML += `#${tagText} `
+                      setTagText("")
+                    }
+
+                }else{
+                  alert('태그는 4개까지 선택 가능합니다.')
+                }
+                }}
                 onChange={(e) => {
-                  setTagText(e.target.value);
+                    setTagText(e.target.value);
                 }}
               />
             </DialogContent>
             <DialogActions>
               <Button
+
+                style={{backgroundColor:"black", color:"white",marginRight:"10px"}}
                 onClick={() => {
                   handleClose();
                 }}
               >
                 취소
               </Button>
-              <Link to="/">
+              <Link to="/" style={{textDecoration:"none"}}>
                 <Button
+                  style={{backgroundColor:"black", color:"white"}}
                   onClick={async () => {
                     handleClose();
-
                     let docUrl = await captureToFirebase();
                     createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck, docUrl);
                   }}
@@ -301,7 +305,6 @@ export default function Toolbar({
         )}
       </span>
       <span>
-        {/*   <ReactToPrint pageStyle={pageStyle} trigger={() => <img src={require('../../../assets/images/exportPdf.png')} alt="출력" style={{width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} /> */}
         <ReactToPrint
           trigger={() => (
             <img
@@ -319,7 +322,11 @@ export default function Toolbar({
           placeholder="제목을 입력하세요."
           style={{ backgroundColor: 'white', borderRadius: '10px', padding: '4px', paddingLeft: '10px' }}
           onChange={(e) => {
-            setTitle(e.target.value);
+            if(title.length<=13){
+              setTitle(e.target.value);
+            }else{
+              alert('제목은 최대 13글자까지 입력 가능합니다.')
+            }
           }}
         />
       </FormControl>

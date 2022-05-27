@@ -13,8 +13,7 @@ const EditPortfolio = () => {
     <div>
       <Header />
       <div style={{ backgroundColor: 'lightgray', display: 'flex' }}>
-        <TagComponent />
-        <div style={{ display: 'flex',marginLeft:"1%"}}>
+        <div style={{ display: 'flex',marginLeft:"27%"}}>
           <div ref={canvasBox}>
             <CanvasContainer isEditable={true} createElement={createElement} />
           </div>

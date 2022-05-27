@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import logo from 'assets/images/logo.jpg';
 import { Link, useNavigate } from 'react-router-dom';
 import { FormControl, TextField, Input } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 import { Container, headerFont } from '../../components/header/styles';
 import prevIcon from '../../assets/images/backArrow.png';
 export default function Header() {
@@ -33,11 +34,12 @@ export default function Header() {
         onClick={() => {history(-1)}}
         style={{ width: '15px', height: '15px', marginTop: '10px', marginLeft: '15px',cursor:"pointer" }}
       />
+      <NavLink to="/">
       <img
         src={logo}
-        onClick={moveHome}
         style={{ cursor: 'pointer', width: '85px', height: '36px', marginLeft: '250px' }}
       />
+      </NavLink>  
 
       <div className="section-login">
         {isLoggedIn ? (
