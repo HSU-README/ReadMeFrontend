@@ -56,7 +56,7 @@ const SearchPage = () => {
     infinite: true,
     speed: 300,
     sliderPerRow: 3,
-    slidesToShow: searchPortfolio.length > 3 ? 3 : 2,
+    slidesToShow: searchPortfolio.length > 3 ? 3 : 1,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,

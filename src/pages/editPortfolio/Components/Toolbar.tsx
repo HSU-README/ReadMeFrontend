@@ -282,6 +282,7 @@ export default function Toolbar({
                     if(e.key==='Enter'){
                       tagBoxRef.current.innerHTML += `#${tagText} `
                       setTagText("")
+                      setTagsArray(tagBoxRef.current.innerText.replace(/\#/g,"").split(" "));
                     }
 
                 }else{
@@ -298,6 +299,7 @@ export default function Toolbar({
 
                 style={{backgroundColor:"black", color:"white",marginRight:"10px"}}
                 onClick={() => {
+                  
                   handleClose();
                 }}
               >
@@ -309,7 +311,7 @@ export default function Toolbar({
                   onClick={async () => {
                     handleClose();
                     let docUrl = await captureToFirebase();
-                    createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck, docUrl);
+                    createPortfolio(userId, title, canvasData,tagsArray, visibleCheck, docUrl);
                   }}
                 >
                   확인
