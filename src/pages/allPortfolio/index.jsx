@@ -41,8 +41,8 @@ const AllPortfolio = (props) => {
         <div
           style={{
             width: '1600px',
-            margin: '50px 0px 50px 100px',
-            height: '80vh',
+            margin: '25px 0px 50px 100px',
+            height: '90vh',
           }}
         >
           <Swiper
@@ -50,7 +50,7 @@ const AllPortfolio = (props) => {
             grid={{
               rows: 2,
             }}
-            spaceBetween={50}
+            spaceBetween={40}
             pagination={{
               clickable: true,
             }}
