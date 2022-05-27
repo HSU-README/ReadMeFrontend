@@ -187,3 +187,20 @@ export const createPortfolio = async (memberId, title, components, tags, visible
     ToastError(errorMessage);
   }
 };
+
+//문서 삭제
+export const deletePortfolio = async (docId) => {
+  const response = await serverApi
+    .post(`/api/v1/doc/delete/${docId}`, {
+      docId: docId,
+    })
+    .catch(console.log(docId));
+  try {
+    const successMessage = JSON.stringify(response.data.message);
+    ToastSuccess(successMessage);
+    return docId;
+  } catch (error) {
+    const errorMessage = JSON.stringify(error.response.data.errorMessage);
+    ToastError(errorMessage);
+  }
+};
