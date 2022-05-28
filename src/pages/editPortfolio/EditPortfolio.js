@@ -12,8 +12,8 @@ const EditPortfolio = () => {
   return (
     <div>
       <Header />
-      <div style={{ backgroundColor: 'lightgray', display: 'flex' }}>
-        <div style={{ display: 'flex',marginLeft:"27%"}}>
+      <div style={{ backgroundColor: '#f8f9fa', display: 'flex' }}>
+        <div style={{ display: 'flex', marginLeft: '27%' }}>
           <div ref={canvasBox}>
             <CanvasContainer isEditable={true} createElement={createElement} />
           </div>
