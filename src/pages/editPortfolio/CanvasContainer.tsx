@@ -69,7 +69,7 @@ const getInitialData = (data: any[], type: string = 'TEXT') => {
     content: type === 'TEXT' ? '두 번 클릭하여 텍스트를 입력하세요.' : '',
   };
 };
-var isDataChanged = false;
+
 const CanvasContainer = ({ isEditable, createElement }) => {
   const [canvasData, setCanvasData] = useState<ICanvasData[]>([]);
   const [activeSelection, setActiveSelection] = useState<Set<string>>(new Set());
@@ -111,7 +111,7 @@ const CanvasContainer = ({ isEditable, createElement }) => {
       var str = createElement.split(' ');
       addElement(str[0]);
     }
-    if (Number(docId) !== undefined && isDataChanged === false) {
+    if (Number(docId) !== undefined) {
       async function fetchPortfolioData() {
         const datas = await getPortfolio(docId);
         //console.log("datas",datas)
@@ -185,7 +185,6 @@ const CanvasContainer = ({ isEditable, createElement }) => {
         await setCanvasData(componentArray);
       }
       fetchPortfolioData();
-      isDataChanged = true;
     }
   }, [createElement]);
 
