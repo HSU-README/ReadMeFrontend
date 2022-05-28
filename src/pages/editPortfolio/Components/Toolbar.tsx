@@ -104,6 +104,7 @@ export default function Toolbar({
   const imageRef = useRef<HTMLInputElement>(null);
   const [like, setLike] = useState(false);
   const [tagText, setTagText] = useState("");
+  const [tagButtonsArray, setTagButtonsArray]= useState("");
   const [changeImageCss, setChangeImageCss]= useState("beforeImage")
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
@@ -153,6 +154,9 @@ export default function Toolbar({
   useEffect(() => {
     setTitle(docTitle);
   }, [docTitle]);
+
+ 
+
   const [image, setImage] = useState(plus_icon);
   const onImageChange = (event) => {
     
@@ -163,7 +167,9 @@ export default function Toolbar({
     }
   };
   
-
+  useEffect(()=>{
+    console.log(tagsArray);
+  },[tagsArray])
 
 
   const beforeImage = {
@@ -210,7 +216,6 @@ export default function Toolbar({
         {!isEditable ? (
           <img
             onClick={() => {
-              console.log(title);
               handleOpen();
             }}
             src={require('../../../assets/images/import.png')}
@@ -248,7 +253,7 @@ export default function Toolbar({
               <DialogContentText style={{ textAlign: 'center', fontSize: '30px', color: 'black' }}>
                 {title}
                 <FormControl style={{marginLeft:"68%"}}>
-                  <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group"
+                  <RadioGroup defaultValue={"false"} row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group"
                   onChange={(e)=>{
                     e.target.value==="true"?setVisibleCheck(true):setVisibleCheck(false)}}>
                     <FormControlLabel value="true" aria-label="A" control={<Radio size="small" />} label="공개" />
@@ -268,7 +273,19 @@ export default function Toolbar({
                 <img src={image} className={changeImageCss} onChange={()=>{setChangeImageCss("afterImage")}}/>
                 
               </div>
-              <div ref={tagBoxRef} style={{color:"#50bcdf",fontWeight:"600",marginTop:"10px"}}></div>
+              {/* <div ref={tagBoxRef} style={{color:"#50bcdf",fontWeight:"600",marginTop:"10px"}}>
+                   
+
+              </div> */}
+              {
+                      tagsArray.map((data,index)=>{
+                        return <Button  style={{minWidth:"50px",marginTop:"5px",padding:"0px", marginBottom:"5px"}}key={index} onClick={()=>{
+                          if(window.confirm(`${data}태그를 삭제 하시겠어요?`)){
+                            tagsArray.splice(index,1);  
+                          }
+                        }}>{data}</Button>
+                      })
+              }
               <TextField
                 id="outlined-basic"
                 label="태그"
@@ -278,11 +295,14 @@ export default function Toolbar({
                 style={{ width: '100%', marginTop: '15px' }}
                 onKeyPress={(e)=>{
                   console.log(e);
-                  if(tagBoxRef.current.innerText.split("#").length<=4){
+                  if(tagsArray.length<4){
                     if(e.key==='Enter'){
-                      tagBoxRef.current.innerHTML += `#${tagText} `
+                      var tmpText = tagText.split('\n')
+                      var sendText = `#${tmpText}`
+                      console.log("tmpText : ", tmpText);
                       setTagText("")
-                      setTagsArray(tagBoxRef.current.innerText.replace(/\#/g,"").split(" "));
+                      setTagsArray([...tagsArray, sendText]);
+                      
                     }
 
                 }else{
@@ -343,6 +363,7 @@ export default function Toolbar({
               setTitle(e.target.value);
             }else{
               alert('제목은 최대 13글자까지 입력 가능합니다.')
+              setTitle(title.substr(0,12))
             }
           }}
         />
