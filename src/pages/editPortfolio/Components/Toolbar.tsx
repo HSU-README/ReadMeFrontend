@@ -229,14 +229,14 @@ export default function Toolbar({
         )}
 
         {!isEditable ? (
-          <Dialog open={openDialog} onClose={handleClose}>
+          <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { textAlign:"center",width: '15%', height: '10%',}}}>
             <DialogContent>
-              <DialogContentText>문서를 불러오시겠습니까?</DialogContentText>
+              <DialogContentText style={{color:"black",fontSize:"18px",fontWeight:"600" }}>문서를 불러오시겠습니까?</DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button onClick={handleClose}>취소</Button>
-              <Button>
-                <NavLink to={`/generate/${docId}`} style={{ textDecoration: 'none', marginLeft: '5px' }}>
+              <Button style={{backgroundColor:"black", color:"white",marginRight:"10px",fontWeight:"600" }} onClick={handleClose}>취소</Button>
+              <Button style={{backgroundColor:"black", color:"white"}}>
+                <NavLink to={`/generate/${docId}`} style={{ textDecoration: 'none',color:"white", marginLeft: '5px',fontWeight:"600" }}>
                   불러오기
                 </NavLink>
               </Button>
@@ -351,10 +351,6 @@ export default function Toolbar({
         <></>
       ) : like ? (
         <>
-
-          <Button>
-            <NavLink to={`/generate/${docId}`}>문서 불러오기</NavLink>
-          </Button>
           <img
             alt="unlike"
             style={{ width: '30px', height: '30px', marginLeft: '70px' }}
@@ -368,11 +364,9 @@ export default function Toolbar({
         </>
       ) : (
         <>
-
-          <Button href={`/generate/${docId}`}>문서 가져오기</Button>
           <img
             alt="like"
-            style={{ width: '30px', height: '30px', marginLeft: '10px' }}
+            style={{ width: '30px', height: '30px', marginLeft: '70px' }}
             src={require('../../../assets/images/likeoff.png')}
             ref={tumbsImageRef}
             onClick={() => {
