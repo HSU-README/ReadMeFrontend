@@ -45,6 +45,7 @@ export default function BasicSelectCard({ data, length }) {
               alt="thumbnail"
             ></img>
           </div>
+          <hr style={{ margin: '0px' }}></hr>
           <div className="pofol-title">{title}</div>
           <div className="top-info-container">
             <div className="hashtag-container">

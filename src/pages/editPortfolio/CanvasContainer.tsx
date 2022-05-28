@@ -106,9 +106,6 @@ const CanvasContainer = ({ isEditable, createElement }) => {
     setCanvasData([...(canvasData || [])]);
   };
 
-
-
-
   useEffect(() => {
     if (createElement !== '') {
       var str = createElement.split(' ');

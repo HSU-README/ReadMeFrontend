@@ -28,8 +28,10 @@ export const getPortfolio = async (docId) => {
     return basicSelect.data[2].result;
   } else if (docId == 1004) {
     return basicSelect.data[3].result;
+  } else if (docId == 1005) {
+    return basicSelect.data[4].result;
   } else {
-    console.log(docId)
+    console.log(docId);
     const response = await serverApi.get(`/api/v1/doc/${docId}`);
     console.log(response);
     try {
@@ -171,13 +173,13 @@ export const createPortfolio = async (memberId, title, components, tags, visible
       components: componentArray,
       title: title,
       docUrl: docUrl,
-      tags:tags,
+      tags: tags,
       visibility: visibleCheck === true ? 'public' : 'private',
       major: JSON.parse(localStorage.getItem('readme_userInfo')).major,
     })
     .catch(console.log(memberId));
   try {
-    console.log("tags:",tags);
+    console.log('tags:', tags);
     console.log(response.data.tags);
     const successMessage = JSON.stringify(response.data.message);
     const docId = JSON.stringify(response.data.result.docId);
