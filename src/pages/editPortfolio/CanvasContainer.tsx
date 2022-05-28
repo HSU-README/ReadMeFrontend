@@ -106,19 +106,12 @@ const CanvasContainer = ({ isEditable, createElement }) => {
     setCanvasData([...(canvasData || [])]);
   };
 
-
-
-
   useEffect(() => {
     if (createElement !== '') {
       var str = createElement.split(' ');
       addElement(str[0]);
     }
-<<<<<<< HEAD
-  {
-=======
     if (Number(docId) !== undefined) {
->>>>>>> f7a2c0b18bad4135dcbdb9ee1b3f3ed45a08808f
       async function fetchPortfolioData() {
         const datas = await getPortfolio(docId);
         //console.log("datas",datas)
