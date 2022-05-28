@@ -3,11 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CanvasContext } from '../CanvasContainer';
 import { NavLink } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
+import { TextField,RadioGroup,Radio,FormLabel } from '@mui/material';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 import { likePortfolio, unlikePortfolio, getUserLikePortfolio } from 'apis/likeApi';
 import { storage } from '../../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { tagsState } from 'recoil/atoms';
+import './Toolbar.css';
+import plus_icon from '../../../assets/images/plus_icons.png';
 import {
   FormControl,
   Input,
@@ -93,12 +96,15 @@ export default function Toolbar({
   const [tags, setTags] = useRecoilState(tagsState);
   const [tagsArray, setTagsArray] = useState([]);
   const { actions } = useContext(CanvasContext);
+  const tagBoxRef = useRef<HTMLDivElement>(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
   const [imageName, setImageName] = useState('');
   const tumbsImageRef = useRef<HTMLImageElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
   const [like, setLike] = useState(false);
+  const [tagText, setTagText] = useState("");
+  const [changeImageCss, setChangeImageCss]= useState("beforeImage")
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
     actions?.addElement(type);
@@ -147,16 +153,32 @@ export default function Toolbar({
   useEffect(() => {
     setTitle(docTitle);
   }, [docTitle]);
-  const [image, setImage] = useState(null);
-
+  const [image, setImage] = useState(plus_icon);
   const onImageChange = (event) => {
+    
     if (event.target.files && event.target.files[0]) {
+      setChangeImageCss("afterImage");
       setImage(URL.createObjectURL(event.target.files[0]));
       setImageName(event.target.files[0]);
     }
   };
-  const documentId = () => {
-    console.log(document.location.search);
+  
+
+
+
+  const beforeImage = {
+    textAlign: 'center',
+    width: '100%',
+    height: '200px',
+    objectFit: 'contain',
+    border: '1px solid black',
+  };
+  const afterImage = {
+    textAlign: 'center',
+    width: '100%',
+    height: '200px',
+    objectFit: 'fill',
+    border: '1px solid black',
   };
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
@@ -185,82 +207,111 @@ export default function Toolbar({
         </div>
       )}
       <span>
-        <img
-          onClick={() => {
-            console.log(title);
-            handleOpen();
-          }}
-          src={require('../../../assets/images/saveIcon.png')}
-          alt="저장"
-          style={{ marginRight: '20px', width: '30px', height: '30px', cursor: 'pointer' }}
-        ></img>
+        {!isEditable ? (
+          <img
+            onClick={() => {
+              console.log(title);
+              handleOpen();
+            }}
+            src={require('../../../assets/images/import.png')}
+            alt="저장"
+            style={{ marginRight: '20px', width: '35px', height: '35px', cursor: 'pointer' }}
+          />
+        ) : (
+          <img
+            onClick={() => {
+              handleOpen();
+            }}
+            src={require('../../../assets/images/saveIcon.png')}
+            alt="저장"
+            style={{ marginRight: '20px', width: '30px', height: '30px', cursor: 'pointer' }}
+          />
+        )}
 
         {!isEditable ? (
           <Dialog open={openDialog} onClose={handleClose}>
             <DialogContent>
-              <DialogContentText>나의 양식에 추가하시겠습니까?</DialogContentText>
+              <DialogContentText>문서를 불러오시겠습니까?</DialogContentText>
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose}>취소</Button>
-              <Button
-                onClick={() => {
-                  alert('나의 양식에 추가.');
-                  handleClose();
-                }}
-              >
-                확인
+              <Button>
+                <NavLink to={`/generate/${docId}`} style={{ textDecoration: 'none', marginLeft: '5px' }}>
+                  불러오기
+                </NavLink>
               </Button>
             </DialogActions>
           </Dialog>
         ) : (
-          <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '35%' } }}>
+          <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '52%' } }}>
             <DialogContent>
               <DialogContentText style={{ textAlign: 'center', fontSize: '30px', color: 'black' }}>
                 {title}
+                <FormControl style={{marginLeft:"68%"}}>
+                  <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group"
+                  onChange={(e)=>{
+                    e.target.value==="true"?setVisibleCheck(true):setVisibleCheck(false)}}>
+                    <FormControlLabel value="true" aria-label="A" control={<Radio size="small" />} label="공개" />
+                    <FormControlLabel value="false" aria-label="A" control={<Radio size="small" />} label="비공개" />
+                  </RadioGroup>
+                </FormControl>
                 <div style={{ textAlign: 'right', fontSize: '15px' }}>
                   수정 시간 : {new Date().getFullYear()}: {new Date().getMonth() + 1}: {new Date().getDate()}:{' '}
                   {new Date().getHours()}: {new Date().getMinutes()}
                 </div>
               </DialogContentText>
 
-              <div style={{ width: '100%', height: '200px' }}>
-                <img
-                  src={image}
-                  style={{ textAlign: 'center', width: '100%', height: '200px', objectFit: 'contain' }}
-                />
-              </div>
-              <input ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
+              <input style={{position:'absolute',marginLeft:"200px",marginTop:"90px",opacity:"0"}} ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
+              <div style={{ width: '100%', height: '200px' }} >
 
-              <FormControlLabel
-                value="start"
-                style={{ marginLeft: '84%' }}
-                control={
-                  <Checkbox
-                    defaultChecked={visibleCheck}
-                    onChange={(e) => {
-                      setVisibleCheck(e.target.checked);
-                    }}
-                  />
+              
+                <img src={image} className={changeImageCss} onChange={()=>{setChangeImageCss("afterImage")}}/>
+                
+              </div>
+              <div ref={tagBoxRef} style={{color:"#50bcdf",fontWeight:"600",marginTop:"10px"}}></div>
+              <TextField
+                id="outlined-basic"
+                label="태그"
+                value={tagText}
+                variant="outlined"
+                size="small"
+                style={{ width: '100%', marginTop: '15px' }}
+                onKeyPress={(e)=>{
+                  console.log(e);
+                  if(tagBoxRef.current.innerText.split("#").length<=4){
+                    if(e.key==='Enter'){
+                      tagBoxRef.current.innerHTML += `#${tagText} `
+                      setTagText("")
+                      setTagsArray(tagBoxRef.current.innerText.replace(/\#/g,"").split(" "));
+                    }
+
+                }else{
+                  alert('태그는 4개까지 선택 가능합니다.')
                 }
-                label="공개"
-                labelPlacement="start"
+                }}
+                onChange={(e) => {
+                    setTagText(e.target.value);
+                }}
               />
             </DialogContent>
             <DialogActions>
               <Button
+
+                style={{backgroundColor:"black", color:"white",marginRight:"10px"}}
                 onClick={() => {
+                  
                   handleClose();
                 }}
               >
                 취소
               </Button>
-              <Link to="/">
+              <Link to="/" style={{textDecoration:"none"}}>
                 <Button
+                  style={{backgroundColor:"black", color:"white"}}
                   onClick={async () => {
                     handleClose();
-
                     let docUrl = await captureToFirebase();
-                    createPortfolio(userId, title, canvasData, tags.split(','), visibleCheck, docUrl);
+                    createPortfolio(userId, title, canvasData,tagsArray, visibleCheck, docUrl);
                   }}
                 >
                   확인
@@ -271,7 +322,6 @@ export default function Toolbar({
         )}
       </span>
       <span>
-        {/*   <ReactToPrint pageStyle={pageStyle} trigger={() => <img src={require('../../../assets/images/exportPdf.png')} alt="출력" style={{width:"30px", height:"30px",cursor:'pointer'}}></img>} content={() => canvasBox.current} /> */}
         <ReactToPrint
           trigger={() => (
             <img
@@ -289,7 +339,11 @@ export default function Toolbar({
           placeholder="제목을 입력하세요."
           style={{ backgroundColor: 'white', borderRadius: '10px', padding: '4px', paddingLeft: '10px' }}
           onChange={(e) => {
-            setTitle(e.target.value);
+            if(title.length<=13){
+              setTitle(e.target.value);
+            }else{
+              alert('제목은 최대 13글자까지 입력 가능합니다.')
+            }
           }}
         />
       </FormControl>
@@ -297,6 +351,7 @@ export default function Toolbar({
         <></>
       ) : like ? (
         <>
+
           <Button>
             <NavLink to={`/generate/${docId}`}>문서 불러오기</NavLink>
           </Button>
@@ -313,6 +368,7 @@ export default function Toolbar({
         </>
       ) : (
         <>
+
           <Button href={`/generate/${docId}`}>문서 가져오기</Button>
           <img
             alt="like"

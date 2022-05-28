@@ -29,6 +29,7 @@ export const getPortfolio = async (docId) => {
   } else if (docId == 1004) {
     return basicSelect.data[3].result;
   } else {
+    console.log(docId)
     const response = await serverApi.get(`/api/v1/doc/${docId}`);
     console.log(response);
     try {
@@ -99,7 +100,6 @@ export const getSearchPortfolio = async (searchText) => {
 //문서 만들기
 export const createPortfolio = async (memberId, title, components, tags, visibleCheck, docUrl) => {
   const componentArray = new Array();
-  await tags.pop();
   await components.map((component, index) => {
     console.log(component);
     switch (component.type) {
@@ -171,12 +171,14 @@ export const createPortfolio = async (memberId, title, components, tags, visible
       components: componentArray,
       title: title,
       docUrl: docUrl,
-      tags: tags,
+      tags:tags,
       visibility: visibleCheck === true ? 'public' : 'private',
       major: JSON.parse(localStorage.getItem('readme_userInfo')).major,
     })
     .catch(console.log(memberId));
   try {
+    console.log("tags:",tags);
+    console.log(response.data.tags);
     const successMessage = JSON.stringify(response.data.message);
     const docId = JSON.stringify(response.data.result.docId);
     console.log(JSON.stringify(response.data.result));
