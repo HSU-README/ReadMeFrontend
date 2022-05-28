@@ -1,22 +1,16 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Container } from '../select/styles';
-import SelectCard from 'components/selectCard';
-import { searchResult } from 'apis/portfolioApi';
-import Modal from 'components/modal/index.jsx';
+import { getSearchPortfolio } from 'apis/portfolioApi';
+
 import Header from '../home/header/Header.js';
 import colors from 'styles/colors.js';
 import Slider from 'react-slick';
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
-import DocCard from 'pages/home/DoCard';
 import Footer from 'components/footer/index.jsx';
-import NewGenerateSelectCard from 'components/newGenerateCard';
-import basicSelect from 'localData/basicSelect.json';
-import { FormGroup } from '@mui/material';
+
 import './SearchPage.css';
 import MainSelectCard from 'components/mainSelectCard';
-const datas = basicSelect.data;
 const SamplePrevArrow = (props) => {
   const { className, style, onClick } = props;
   return (
@@ -61,17 +55,7 @@ const SearchPage = () => {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
-  const openDetailForm = (data) => {
-    console.log(data.docId);
-    setSelectedFormat(data);
-    setDetailFormId(data.docId);
-    setShowDetailForm(true);
-  };
-  const closeDetailForm = () => {
-    setShowDetailForm(false);
-    setDetailFormId('');
-    setSelectedFormat('');
-  };
+
   useEffect(() => {
     async function getSearhResult() {
       const searchParams = new URLSearchParams(window.location.search);
@@ -79,7 +63,7 @@ const SearchPage = () => {
       for (const param of searchParams) {
         text = param[1];
       }
-      const datas = await searchResult(`${text}`);
+      const datas = await getSearchPortfolio(`${text}`);
       await setSearchPortfolio(datas);
     }
     getSearhResult();
@@ -90,18 +74,9 @@ const SearchPage = () => {
     <>
       <Header />
       <hr style={{ backgroundColor: '#F57842' }} />
-      {showDetailForm === true ? (
-        <Modal
-          detailFormId={detailFormId}
-          previewId={detailFormId}
-          dummyData={selectedFormat}
-          closeDetailForm={closeDetailForm}
-        />
-      ) : (
-        <></>
-      )}
+
       {
-        <div>
+        <div style={{ marginTop: '120px', marginBottom: '160px' }}>
           {searchPortfolio.length !== undefined ? (
             searchPortfolio.length !== 0 ? (
               <Slider {...settings} className="slick">

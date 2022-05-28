@@ -7,7 +7,7 @@ import Main from './pages/home';
 import DownloadPortfolio from './pages/editPortfolio/DownloadPortfolio.js';
 import Preview from 'pages/editPortfolio/Preview';
 import SelectPortfolio from './pages/selectPage';
-import SearchPage from './pages/searchPage';
+import SearchPage from './pages/searchPage/SearchPage.js';
 import { RecoilRoot } from 'recoil';
 
 function App() {
