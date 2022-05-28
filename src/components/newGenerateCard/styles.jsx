@@ -11,8 +11,8 @@ export const Container = styled.div`
   top: ${(props) => (props.length === 1 ? '70px' : '0px')};
 
   .pofol-thumbnail-container {
-    height: 80%;
-    margin: 0px 0px 10px 0px;
+    height: 70%;
+    margin: 50px 0px 10px 0px;
   }
 
   .pofol-thumbnail {
@@ -22,7 +22,7 @@ export const Container = styled.div`
 
   .pofol-title {
     height: 10%;
-    padding: 0px 20px 0px 20px;
+    padding: 15px 20px 0px 20px;
     font-size: 20px;
     font-weight: bold;
     color: black;
