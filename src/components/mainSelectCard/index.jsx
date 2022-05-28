@@ -34,57 +34,61 @@ export default function MainSelectCard({ data, length }) {
 
   return (
     //TODO link url 변경 필요
-
-    <Container length={length}>
-      <Link to={`/preview/${docId}`} style={{ textDecoration: 'none', color: 'black', width: '300px' }}>
-        <div className="pofol-thumbnail-container">
-          <img
-            style={{ width: '100%', height: '100%' }}
-            className="pofol-thumbnail"
-            src={thumbnail}
-            alt="thumbnail"
-          ></img>
-        </div>
-        <div className="pofol-title">{title}</div>
-        <div className="top-info-container">
-          <div className="hashtag-container">
-            {tags.map((data, index) => {
-              return (
-                <Link to={`/search?searchtag=${data.name.slice(1)}`} style={{ textDecoration: 'none', color: 'black' }}>
-                  <div style={{ color: 'gray', marginRight: '5px', fontSize: '14px' }} key={index}>
-                    {data.name}
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-          <div className="docDate">{docDate}</div>
-        </div>
-
-        <hr style={{ margin: '0px auto', color: 'lightgrey' }} />
-        <div className="bottom-info-container">
-          <div className="user-info-container">
-            <div className="profile-image-container">
-              <img
-                style={{ width: '30px', height: '30px', objectFit: 'contain', borderRadius: '50%' }}
-                className="profile-image"
-                src={profileImg}
-                alt="thumbnail"
-              ></img>
-            </div>
-            <div className="user-name">{userName}</div>
-          </div>
-          <div className="like-container">
+    <>
+      <Container length={length}>
+        <Link to={`/preview/${docId}`} style={{ textDecoration: 'none', color: 'black', width: '300px' }}>
+          <div className="pofol-thumbnail-container">
             <img
-              style={{ width: '20px', height: '20px' }}
-              className="like-img"
-              src={require('assets/images/heart.png')}
-              alt="like"
+              style={{ width: '100%', height: '100%' }}
+              className="pofol-thumbnail"
+              src={thumbnail}
+              alt="thumbnail"
             ></img>
-            <div className="likeCnt">{likeCnt}</div>
           </div>
-        </div>
-      </Link>
-    </Container>
+          <div className="pofol-title">{title}</div>
+          <div className="top-info-container">
+            <div className="hashtag-container">
+              {tags.map((data, index) => {
+                return (
+                  <Link
+                    to={`/search?searchtag=${data.name.slice(1)}`}
+                    style={{ textDecoration: 'none', color: 'black' }}
+                  >
+                    <div style={{ color: 'gray', marginRight: '5px', fontSize: '14px' }} key={index}>
+                      {data.name}
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+            <div className="docDate">{docDate}</div>
+          </div>
+
+          <hr style={{ margin: '0px auto', color: 'lightgrey' }} />
+          <div className="bottom-info-container">
+            <div className="user-info-container">
+              <div className="profile-image-container">
+                <img
+                  style={{ width: '30px', height: '30px', objectFit: 'contain', borderRadius: '50%' }}
+                  className="profile-image"
+                  src={profileImg}
+                  alt="thumbnail"
+                ></img>
+              </div>
+              <div className="user-name">{userName}</div>
+            </div>
+            <div className="like-container">
+              <img
+                style={{ width: '20px', height: '20px' }}
+                className="like-img"
+                src={require('assets/images/heart.png')}
+                alt="like"
+              ></img>
+              <div className="likeCnt">{likeCnt}</div>
+            </div>
+          </div>
+        </Link>
+      </Container>
+    </>
   );
 }
