@@ -177,14 +177,12 @@ export default function Toolbar({
     width: '100%',
     height: '200px',
     objectFit: 'contain',
-    border: '1px solid black',
   };
   const afterImage = {
     textAlign: 'center',
     width: '100%',
     height: '200px',
     objectFit: 'fill',
-    border: '1px solid black',
   };
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
@@ -250,7 +248,7 @@ export default function Toolbar({
         ) : (
           <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '52%' } }}>
             <DialogContent>
-              <DialogContentText style={{ textAlign: 'center', fontSize: '30px', color: 'black' }}>
+              <DialogContentText style={{ textAlign: 'center', fontSize: '30px', color: 'black',fontWeight:"600"}}>
                 {title}
                 <FormControl style={{marginLeft:"68%"}}>
                   <RadioGroup defaultValue={"false"} row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group"
@@ -260,7 +258,7 @@ export default function Toolbar({
                     <FormControlLabel value="false" aria-label="A" control={<Radio size="small" />} label="비공개" />
                   </RadioGroup>
                 </FormControl>
-                <div style={{ textAlign: 'right', fontSize: '15px' }}>
+                <div style={{ textAlign: 'right', fontSize: '13px' }}>
                   수정 시간 : {new Date().getFullYear()}: {new Date().getMonth() + 1}: {new Date().getDate()}:{' '}
                   {new Date().getHours()}: {new Date().getMinutes()}
                 </div>
@@ -273,15 +271,11 @@ export default function Toolbar({
                 <img src={image} className={changeImageCss} onChange={()=>{setChangeImageCss("afterImage")}}/>
                 
               </div>
-              {/* <div ref={tagBoxRef} style={{color:"#50bcdf",fontWeight:"600",marginTop:"10px"}}>
-                   
-
-              </div> */}
               {
                       tagsArray.map((data,index)=>{
                         return <Button  style={{minWidth:"50px",marginTop:"5px",padding:"0px", marginBottom:"5px"}}key={index} onClick={()=>{
                           if(window.confirm(`${data}태그를 삭제 하시겠어요?`)){
-                            tagsArray.splice(index,1);  
+                            setTagsArray(tagsArray.filter((it)=>it !== data)) 
                           }
                         }}>{data}</Button>
                       })
@@ -289,6 +283,7 @@ export default function Toolbar({
               <TextField
                 id="outlined-basic"
                 label="태그"
+                placeholder="태그를 입력해주세요."
                 value={tagText}
                 variant="outlined"
                 size="small"
@@ -356,8 +351,8 @@ export default function Toolbar({
       <FormControl variant="standard" style={{ marginLeft: '90px', width: '50%' }}>
         <Input
           value={title}
-          placeholder="제목을 입력하세요."
-          style={{ backgroundColor: 'white', borderRadius: '10px', padding: '4px', paddingLeft: '10px' }}
+          placeholder="제목을 입력해주세요."
+          style={{ backgroundColor: 'white', padding: '4px', paddingLeft: '10px' }}
           onChange={(e) => {
             if(title.length<=13){
               setTitle(e.target.value);

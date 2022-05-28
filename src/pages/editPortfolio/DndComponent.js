@@ -54,6 +54,7 @@ const DndComponent = (props) => {
             <ImageList sx={{ width: 280, height: 150 }} cols={2} rowHeight={5}>
               {Line.map((item, index) => {
                 return (
+                  <span style={{border:"1px solid black", padding:"12px",borderRadius:"15px"}}>
                   <ImageListItem key={item.label}>
                     <div key={`${item.label} ${index}`}>
                       <img
@@ -64,6 +65,7 @@ const DndComponent = (props) => {
                       />
                     </div>
                   </ImageListItem>
+                  </span>
                 );
               })}
             </ImageList>
