@@ -35,13 +35,13 @@ const PickPofol = (props) => {
   return (
     <>
       <Container>
-        <div style={{ width: '1200px', margin: '100px 0px 100px 100px', overflow: 'auto', display: 'flex' }}>
+        <div style={{ width: '1600px', margin: '100px 0px 100px 180px', overflow: 'auto', display: 'flex' }}>
           <Swiper
             slidesPerView={5}
             grid={{
               rows: 2,
             }}
-            spaceBetween={20}
+            spaceBetween={50}
             pagination={{
               clickable: true,
             }}

@@ -6,6 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: ${colors.background};
 
   .swiper {
     width: 100%;
@@ -17,7 +18,7 @@ export const Container = styled.div`
   .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #fff;
+    background: ${colors.background};
     height: calc((100% - 50px) / 2) !important;
 
     /* Center slide text vertically */

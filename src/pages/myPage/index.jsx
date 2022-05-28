@@ -1,6 +1,4 @@
-import React, { useCallback, useState } from 'react';
-import axios from 'axios';
-import useInput from 'hooks/useInput';
+import React, { useState } from 'react';
 import {
   Container,
   MyPageContainer,
@@ -11,39 +9,16 @@ import {
   MyPortfolioMenu,
 } from 'pages/myPage/styles';
 import Footer from 'components/footer/index.jsx';
-import { Link, useNavigate } from 'react-router-dom';
-import { ToastError, ToastSuccess } from 'hooks/toastHook';
-import { API_ENDPOINT } from 'apis/constant';
 import Header from 'components/header';
 import UserInfo from 'pages/myPage/userInfo';
 import MyPortfolio from './myPortfolio';
 import PickPofol from './pickPofol';
-import Modal from 'components/modal/index.jsx';
 
-const MyPage = (props) => {
+const MyPage = () => {
   const [currentMyPage, setCurrentMyPage] = useState('userInfo');
-  const [selectedFormat, setSelectedFormat] = useState('');
-  const [detailFormId, setDetailFormId] = useState('');
-  const [showDetailForm, setShowDetailForm] = useState(false);
-
-  const openDetailForm = (id) => {
-    setShowDetailForm(true);
-    setDetailFormId(id);
-  };
-
-  const closeDetailForm = () => {
-    setShowDetailForm(false);
-    setDetailFormId('');
-    setSelectedFormat('');
-  };
 
   return (
     <Container>
-      {selectedFormat !== '' ? (
-        <Modal detailFormId={detailFormId} previewId={selectedFormat} closeDetailForm={closeDetailForm} />
-      ) : (
-        <></>
-      )}
       <Header />
       <MyPageContainer>
         <MenuContainer>
@@ -55,7 +30,6 @@ const MyPage = (props) => {
               setCurrentMyPage('userInfo');
             }}
           >
-            {' '}
             사용자 정보
           </UserInfoMenu>
           <PickPofolMenu
