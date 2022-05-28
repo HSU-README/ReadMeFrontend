@@ -3,20 +3,17 @@ import Header from './header/Header.js';
 import 'react-toastify/dist/ReactToastify.css';
 import { getMostLikePortfolio, getAllPortfolio, getMajorPortfolio } from 'apis/portfolioApi';
 import './index.css';
-import DocCard from './DoCard.js';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import prevArrow from '../../assets/images/prevArrow.png';
 import nextArrow from '../../assets/images/nextArrow.png';
 import { useSelector, useDispatch } from 'react-redux';
-import Modal from 'components/modal/index.jsx';
 import { Link, NavLink } from 'react-router-dom';
 import Footer from 'components/footer/index.jsx';
 import Banner from './header/Banner.js';
 import MainSelectCard from 'components/mainSelectCard/index.jsx';
 import colors from 'styles/colors.js';
-import homeDummyData from 'localData/homeDummyData.json';
 
 const Home = () => {
   const [mostLikePortfolio, setMostLikePortfolio] = useState([]);
@@ -28,7 +25,6 @@ const Home = () => {
   const [detailFormId, setDetailFormId] = useState(0);
   const [alertMessageVisible, setAlertMessageVisible] = useState(false);
   const { loginCheck } = useSelector((state) => state.loginCheck);
-  const dummyData = homeDummyData.data;
 
   const openDetailForm = (id) => {
     console.log(id);

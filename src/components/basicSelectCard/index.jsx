@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 
-export default function MainSelectCard({ data, length }) {
+export default function BasicSelectCard({ data, length }) {
   const [docId, setDocId] = useState(0);
   const [userName, setUserName] = useState('');
   const [profileImg, setProfileImg] = useState(
@@ -60,31 +60,6 @@ export default function MainSelectCard({ data, length }) {
                   </Link>
                 );
               })}
-            </div>
-            <div className="docDate">{docDate}</div>
-          </div>
-
-          <hr style={{ margin: '0px auto', color: 'lightgrey' }} />
-          <div className="bottom-info-container">
-            <div className="user-info-container">
-              <div className="profile-image-container">
-                <img
-                  style={{ width: '30px', height: '30px', objectFit: 'contain', borderRadius: '50%' }}
-                  className="profile-image"
-                  src={profileImg}
-                  alt="thumbnail"
-                ></img>
-              </div>
-              <div className="user-name">{userName}</div>
-            </div>
-            <div className="like-container">
-              <img
-                style={{ width: '20px', height: '20px' }}
-                className="like-img"
-                src={require('assets/images/heart.png')}
-                alt="like"
-              ></img>
-              <div className="likeCnt">{likeCnt}</div>
             </div>
           </div>
         </Link>

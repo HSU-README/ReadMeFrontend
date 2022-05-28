@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
+import { deletePortfolio } from 'apis/portfolioApi';
 
-export default function MainSelectCard({ data, length }) {
+export default function DeleteSelectCard({ data, changeUserPortfolio }) {
   const [docId, setDocId] = useState(0);
   const [userName, setUserName] = useState('');
   const [profileImg, setProfileImg] = useState(
@@ -13,6 +14,8 @@ export default function MainSelectCard({ data, length }) {
   const [thumbnail, setThumbnail] = useState('');
   const [likeCnt, setLikeCnt] = useState(0);
   const [tags, setTags] = useState([]);
+
+  const [hide, setHide] = useState(true);
 
   useEffect(() => {
     const date = data.docDate;
@@ -35,7 +38,27 @@ export default function MainSelectCard({ data, length }) {
   return (
     //TODO link url 변경 필요
     <>
-      <Container length={length}>
+      <Container
+        onMouseEnter={() => {
+          setHide(false);
+        }}
+        onMouseLeave={() => {
+          setHide(true);
+        }}
+      >
+        {hide ? (
+          <></>
+        ) : (
+          <div
+            style={{ position: 'relative', left: '20px' }}
+            onClick={() => {
+              deletePortfolio(docId);
+              changeUserPortfolio(docId);
+            }}
+          >
+            test
+          </div>
+        )}
         <Link to={`/preview/${docId}`} style={{ textDecoration: 'none', color: 'black', width: '300px' }}>
           <div className="pofol-thumbnail-container">
             <img

@@ -58,11 +58,14 @@ const AllPortfolio = (props) => {
             modules={[Grid, Pagination]}
             className="mySwiper"
           >
-            {userLikePortfolio.map((data, index) => (
-              <SwiperSlide>
-                <MainSelectCard key={index} data={data} length={userLikePortfolio.length} />
-              </SwiperSlide>
-            ))}
+            {userLikePortfolio.map(
+              (data, index) =>
+                data.visibility === 'PUBLIC' && (
+                  <SwiperSlide>
+                    <MainSelectCard key={index} data={data} length={userLikePortfolio.length} />
+                  </SwiperSlide>
+                ),
+            )}
           </Swiper>
         </div>
         <Footer />

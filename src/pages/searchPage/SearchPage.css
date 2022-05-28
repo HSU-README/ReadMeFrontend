@@ -1,28 +1,27 @@
 .select-wrapper {
-    display: flex;
-    flex-direction: row;
-    height:100vh;
-    margin: 60px auto;
-    justify-content: center;
-    border:1px solid black;
-  }
+  display: flex;
+  flex-direction: row;
+  height: 100vh;
+  margin: 60px auto;
+  justify-content: center;
+  border: 1px solid black;
+}
 
 .sectionSelect {
-    background-color: green;
-    width:90%;
-    height:100vh;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-   
-  }
+  background-color: green;
+  width: 90%;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 
 .slick {
-    margin: 30px 300px;
-  }
-.arrow{
-    cursor:pointer;
-    width:20px;
-    height:20px;
-    margin:auto auto;
+  margin: 30px 300px;
+}
+.arrow {
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin: auto auto;
 }

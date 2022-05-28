@@ -4,12 +4,13 @@ import { maxWidth } from 'styles/mixin';
 
 export const Container = styled.div`
   ${maxWidth}
-  background-color: #f8f9fa;
+  background: ${colors.background};
 `;
 
 export const MyPageContainer = styled.div`
   display: flex;
   height: 90vh;
+  background: ${colors.background};
 `;
 
 export const MenuContainer = styled.div`
@@ -41,7 +42,7 @@ export const MenuContainer = styled.div`
 
 export const ViewContainer = styled.div`
   display: flex;
-  flex: 3;
+  flex: 5;
 `;
 
 export const UserInfoMenu = styled.div`
