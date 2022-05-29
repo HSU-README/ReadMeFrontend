@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { deletePortfolio } from 'apis/portfolioApi';
+import exit from 'assets/images/exit.png';
 
 export default function DeleteSelectCard({ data, changeUserPortfolio }) {
   const [docId, setDocId] = useState(0);
@@ -39,6 +40,7 @@ export default function DeleteSelectCard({ data, changeUserPortfolio }) {
     //TODO link url 변경 필요
     <>
       <Container
+        hide={hide}
         onMouseEnter={() => {
           setHide(false);
         }}
@@ -49,16 +51,27 @@ export default function DeleteSelectCard({ data, changeUserPortfolio }) {
         {hide ? (
           <></>
         ) : (
-          <div
-            style={{ position: 'relative', left: '20px' }}
+          <img
+            className="deleteImg"
+            alt="delete"
+            src={exit}
+            style={{
+              width: '35px',
+              height: '35px',
+              backgroundColor: 'black',
+              position: 'absolute',
+              left: '230px',
+              top: '15px',
+              float: 'right',
+              zIndex: '999',
+            }}
             onClick={() => {
               deletePortfolio(docId);
               changeUserPortfolio(docId);
             }}
-          >
-            test
-          </div>
+          ></img>
         )}
+
         <Link to={`/preview/${docId}`} style={{ textDecoration: 'none', color: 'black', width: '300px' }}>
           <div className="pofol-thumbnail-container">
             <img
