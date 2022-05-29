@@ -14,7 +14,8 @@ const MyPortfolio = () => {
   const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
 
   const changeUserPortfolio = (docId) => {
-    setUserPortfolio(userPortfolio.filter((data) => console.log(data.docId)));
+    userPortfolio.filter((data) => console.log(data.docId));
+    //setUserPortfolio(userPortfolio.filter((data) => console.log(data.docId)));
     console.log('test');
   };
 

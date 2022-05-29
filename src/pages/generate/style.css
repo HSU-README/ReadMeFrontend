@@ -18,6 +18,7 @@
   }
   .parent > div > details > button:hover{
     cursor: pointer;
+
   }
 
   /*아이템 박스*/
@@ -134,19 +135,25 @@ summary::-webkit-details-marker {
 .menu1 {
   text-align: left;
   margin-left: 10px;
-  color: blue;
+  color: rgb(68, 68, 210);
+  background-color: #e9ecef;
+  margin-bottom: 10px;
 }
 
 .menu2 {
   text-align: left;
   margin-left: 10px;
   color: rgb(21, 184, 0);
+  background-color: #e9ecef;
+  margin-bottom: 10px;
 }
 
 .menu3 {
   text-align: left;
   margin-left: 10px;
   color: black;
+  background-color: #e9ecef;
+  margin-bottom: 10px;
 }
 
 /* 구분선 소 메뉴 */

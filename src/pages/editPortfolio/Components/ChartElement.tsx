@@ -6,8 +6,8 @@ import { chartState } from 'recoil/atoms';
 const ChartElement = (props: ICanvasComponent) => {
   const { id, chart } = props;
   const [strArr, setStrArr] = useState(new Array(36).fill(''));
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(150);
+  const [height, setHeight] = useState(100);
   const { actions } = useContext(CanvasContext);
   const tableRef = useRef(null);
   const [text, setText] = useState('');
@@ -24,14 +24,24 @@ const ChartElement = (props: ICanvasComponent) => {
   };
   const resetState = useResetRecoilState(chartState);
   useEffect(() => {
-    setWidth(Number(props.dimension.width) / chart.col);
-    setHeight(Number(props.dimension.height) / chart.row);
+    setWidth(150 / chart.col);
+    setHeight(100 / chart.row);
     if (chart.tableContent) {
       setStrArr(chart.tableContent);
     }
     resetState();
   }, []);
-
+  useEffect(()=>{
+    console.log(props.dimension.width.slice(0,-2))
+    console.log(chart.col)
+    console.log(Number(props.dimension.width) / chart.col)
+    setWidth(Number(props.dimension.width.slice(0,-2)) / chart.col);
+    setHeight(Number(props.dimension.height.slice(0,-2)) / chart.row);
+    if (chart.tableContent) {
+      setStrArr(chart.tableContent);
+    }
+    resetState();
+  },[props.dimension.width,props.dimension.height])
   return (
     <>
       <div
@@ -42,7 +52,7 @@ const ChartElement = (props: ICanvasComponent) => {
       >
         {
           <table style={{ border: '1px solid black' }} ref={tableRef}>
-            <tbody>
+            <tbody style={{width:props.dimension.width, height:props.dimension.height}}>
               {Array(chart.row)
                 .fill(null)
                 .map((tr, index) => {
@@ -53,18 +63,11 @@ const ChartElement = (props: ICanvasComponent) => {
                         .map((td, i) => {
                           return (
                             <td
-                              style={{ border: '1px solid black', width: `${width}px`, height: `${height}px` }}
+                              style={{ border: '1px solid black', width: `${width}px`,resize:"none", height: `${height}px` }}
                               key={i}
                             >
-                              {/* <div style={{width:"100%" , height:"100%"}} contentEditable ref={ref}
-                                            onInput={((value)=>{
-                                                console.log(ref.current.innerText)
-                                                strArr[index][i]= chartRef.current.innerText;
-                                                updateChartValue(chartRef.current.innerHTML)
-                                            })}
-                                         >{strArr[index][i]}</div> */}
                               <textarea
-                                style={{ width: '100%', resize: 'none', height: '100%' }}
+                                style={{ width: '100%',  height: '100%' }}
                                 value={strArr[index * 6 + i]}
                                 onChange={(e) => {
                                   let newStrArr = [...strArr];
