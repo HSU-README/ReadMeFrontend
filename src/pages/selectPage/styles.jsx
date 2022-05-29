@@ -17,30 +17,16 @@ export const Container = styled.div`
   }
 
   .swiper {
-    width: 100%;
-    height: 100%;
+    width: 95%;
+    height: 85%;
     margin-left: auto;
     margin-right: auto;
   }
 
   .swiper-slide {
-    text-align: center;
-    font-size: 18px;
     background-color: ${colors.background};
-    height: calc((100% - 50px) / 2) !important;
+    height: calc((100% - 60px) / 2) !important;
 
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
+  
   }
 `;
