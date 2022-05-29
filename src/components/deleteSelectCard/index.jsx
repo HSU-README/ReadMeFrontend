@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { deletePortfolio } from 'apis/portfolioApi';
+import closeBtn from 'assets/images/close-button.png';
 
-export default function DeleteSelectCard({ data, changeUserPortfolio }) {
+export default function DeleteSelectCard({ data, length, changeUserPortfolio }) {
   const [docId, setDocId] = useState(0);
   const [userName, setUserName] = useState('');
   const [profileImg, setProfileImg] = useState(
@@ -27,18 +28,40 @@ export default function DeleteSelectCard({ data, changeUserPortfolio }) {
     if (data.designerUrl !== '') {
       setProfileImg(data.designerUrl);
     }
-
+    console.log(length)
+    console.log("docTitle", data.title)
     setDocDate(`${year}년 ${month}월 ${day}일`);
     setTitle(data.title);
     setThumbnail(data.docUrl);
     setLikeCnt(data.likeCnt);
     setTags(data.tags);
   }, []);
-
+  
+  useEffect(()=>{
+    const date = data.docDate;
+    const year = date.substring(0, 4);
+    const month = date.substring(5, 7);
+    const day = date.substring(8, 10);
+    setDocId(data.docId);
+    setUserName(data.designer);
+    if (data.designerUrl !== '') {
+      setProfileImg(data.designerUrl);
+    }
+    console.log(length)
+    console.log("docTitle", data.title)
+    setDocDate(`${year}년 ${month}월 ${day}일`);
+    setTitle(data.title);
+    setThumbnail(data.docUrl);
+    setLikeCnt(data.likeCnt);
+    setTags(data.tags);
+    console.log("data abcde:",data)
+  },[data])
   return (
     //TODO link url 변경 필요
     <>
       <Container
+        length={length}
+        hide={hide}
         onMouseEnter={() => {
           setHide(false);
         }}
@@ -49,16 +72,23 @@ export default function DeleteSelectCard({ data, changeUserPortfolio }) {
         {hide ? (
           <></>
         ) : (
-          <div
-            style={{ position: 'relative', left: '20px' }}
-            onClick={() => {
-              deletePortfolio(docId);
-              changeUserPortfolio(docId);
+          <img
+            className="deleteImg"
+            alt="delete"
+            src={closeBtn}
+            style={{
+              width: '45px',
+              height: '45px',
+
+              position: 'absolute',
+              left: '230px',
+              top: '10px',
+              float: 'right',
+              zIndex: '999',
             }}
-          >
-            test
-          </div>
+          ></img>
         )}
+
         <Link to={`/preview/${docId}`} style={{ textDecoration: 'none', color: 'black', width: '300px' }}>
           <div className="pofol-thumbnail-container">
             <img

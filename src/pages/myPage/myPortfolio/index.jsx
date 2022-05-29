@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'pages/myPage/myPortfolio/styles';
 import { getUserPortfolio } from 'apis/portfolioApi';
-
+import { deletePortfolio } from 'apis/portfolioApi';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Grid, Pagination } from 'swiper';
 import 'swiper/css';
@@ -14,18 +14,26 @@ const MyPortfolio = () => {
   const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
 
   const changeUserPortfolio = (docId) => {
-    userPortfolio.filter((data) => console.log(data.docId));
-    //setUserPortfolio(userPortfolio.filter((data) => console.log(data.docId)));
-    console.log('test');
+    var result = userPortfolio.filter((data) => 
+      data.docId !== docId
+    )
+    setUserPortfolio(result);
+    console.log(docId);
   };
 
   useEffect(() => {
     async function fetchUserPortfolioData() {
       const datas = await getUserPortfolio(userId);
       await setUserPortfolio(datas);
+      console.log("datas:",datas);
     }
     fetchUserPortfolioData();
-  }, [userPortfolio]);
+  }, []);
+
+
+  useEffect(()=>{
+    console.log(userPortfolio)
+  },[userPortfolio])
 
   if (userPortfolio.length === 0) {
     return (
@@ -36,7 +44,6 @@ const MyPortfolio = () => {
       </div>
     );
   }
-
   return (
     <>
       <Container>
@@ -53,11 +60,28 @@ const MyPortfolio = () => {
             modules={[Grid, Pagination]}
             className="mySwiper"
           >
-            {userPortfolio.map((data, index) => (
+       {userPortfolio.map((data, index) => {
+         return(
               <SwiperSlide>
-                <DeleteSelectCard key={index} data={data} changeUserPortfolio={changeUserPortfolio} />
+                <div
+                  key={index}
+                  onClick={async () => {
+                    console.log('Test',data.docId);
+                    await changeUserPortfolio(data.docId);
+                    // await deletePortfolio(data.docId);
+                  }}
+                >
+                  {data.docId}
+                </div>
+                <DeleteSelectCard
+                  key={index}
+                  data={data}
+                  length={userPortfolio.length}
+                  changeUserPortfolio={changeUserPortfolio}
+                />
               </SwiperSlide>
-            ))}
+         )
+})}
           </Swiper>
         </div>
       </Container>

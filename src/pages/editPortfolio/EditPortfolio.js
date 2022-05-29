@@ -13,9 +13,9 @@ const EditPortfolio = () => {
   return (
     <div>
       <Header />
-      <div style={{ backgroundColor: 'lightgray', display: 'flex' }}>
-        <div style={{ display: 'flex',marginLeft:"11%"}}>
-          <DNDImageComponent setCreateElement={setCreateElement}/>
+      <div style={{ backgroundColor: '#f8f9fa', display: 'flex' }}>
+        <DNDImageComponent/>
+        <div style={{ display: 'flex'}}>
           <div ref={canvasBox}>
             <CanvasContainer isEditable={true} createElement={createElement} />
           </div>

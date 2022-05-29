@@ -6,8 +6,8 @@ import { chartState } from 'recoil/atoms';
 const ChartElement = (props: ICanvasComponent) => {
   const { id, chart } = props;
   const [strArr, setStrArr] = useState(new Array(36).fill(''));
-  const [width, setWidth] = useState(150);
-  const [height, setHeight] = useState(100);
+  const [width, setWidth] = useState(300);
+  const [height, setHeight] = useState(150);
   const { actions } = useContext(CanvasContext);
   const tableRef = useRef(null);
   const [text, setText] = useState('');
@@ -24,23 +24,24 @@ const ChartElement = (props: ICanvasComponent) => {
   };
   const resetState = useResetRecoilState(chartState);
   useEffect(() => {
-    setWidth(150 / chart.col);
-    setHeight(100 / chart.row);
+    setWidth(Number(props.dimension.width)/chart.col);
+    setHeight(Number(props.dimension.width)/chart.row);
     if (chart.tableContent) {
       setStrArr(chart.tableContent);
     }
     resetState();
+    updateChartValue(chartRef.current.innerHTML);
   }, []);
   useEffect(()=>{
-    console.log(props.dimension.width.slice(0,-2))
-    console.log(chart.col)
-    console.log(Number(props.dimension.width) / chart.col)
-    setWidth(Number(props.dimension.width.slice(0,-2)) / chart.col);
-    setHeight(Number(props.dimension.height.slice(0,-2)) / chart.row);
-    if (chart.tableContent) {
-      setStrArr(chart.tableContent);
+    if (props.dimension.width.indexOf('px') !== -1 && props.dimension.height.indexOf('px') !== -1) {
+      console.log("hrere");
+      setWidth(Number(props.dimension.width.slice(0, -2)) / chart.col);
+      setHeight(Number(props.dimension.height.slice(0, -2)) / chart.row);
+      if (chart.tableContent) {
+        setStrArr(chart.tableContent);
+      }
+      resetState();
     }
-    resetState();
   },[props.dimension.width,props.dimension.height])
   return (
     <>
@@ -52,7 +53,7 @@ const ChartElement = (props: ICanvasComponent) => {
       >
         {
           <table style={{ border: '1px solid black' }} ref={tableRef}>
-            <tbody style={{width:props.dimension.width, height:props.dimension.height}}>
+            <tbody>
               {Array(chart.row)
                 .fill(null)
                 .map((tr, index) => {
@@ -63,11 +64,11 @@ const ChartElement = (props: ICanvasComponent) => {
                         .map((td, i) => {
                           return (
                             <td
-                              style={{ border: '1px solid black', width: `${width}px`,resize:"none", height: `${height}px` }}
+                              style={{ border: '1px solid black', width: `${width}px`, height: `${height}px` }}
                               key={i}
                             >
                               <textarea
-                                style={{ width: '100%',  height: '100%' }}
+                                style={{ width: '100%',  height: '100%',resize:"none" }}
                                 value={strArr[index * 6 + i]}
                                 onChange={(e) => {
                                   let newStrArr = [...strArr];
