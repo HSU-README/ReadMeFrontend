@@ -2,8 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { deletePortfolio } from 'apis/portfolioApi';
+import closeBtn from 'assets/images/close-button.png';
 
-export default function DeleteSelectCard({ data, changeUserPortfolio }) {
+export default function DeleteSelectCard({ data, length, changeUserPortfolio }) {
   const [docId, setDocId] = useState(0);
   const [userName, setUserName] = useState('');
   const [profileImg, setProfileImg] = useState(
@@ -39,6 +40,8 @@ export default function DeleteSelectCard({ data, changeUserPortfolio }) {
     //TODO link url 변경 필요
     <>
       <Container
+        length={length}
+        hide={hide}
         onMouseEnter={() => {
           setHide(false);
         }}
@@ -49,16 +52,23 @@ export default function DeleteSelectCard({ data, changeUserPortfolio }) {
         {hide ? (
           <></>
         ) : (
-          <div
-            style={{ position: 'relative', left: '20px' }}
-            onClick={() => {
-              deletePortfolio(docId);
-              changeUserPortfolio(docId);
+          <img
+            className="deleteImg"
+            alt="delete"
+            src={closeBtn}
+            style={{
+              width: '45px',
+              height: '45px',
+
+              position: 'absolute',
+              left: '230px',
+              top: '10px',
+              float: 'right',
+              zIndex: '999',
             }}
-          >
-            test
-          </div>
+          ></img>
         )}
+
         <Link to={`/preview/${docId}`} style={{ textDecoration: 'none', color: 'black', width: '300px' }}>
           <div className="pofol-thumbnail-container">
             <img

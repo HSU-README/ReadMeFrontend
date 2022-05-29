@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import colors from 'styles/colors';
+
 export const Container = styled.div`
   position: relative;
   height: 300px;
@@ -11,6 +12,11 @@ export const Container = styled.div`
   top: ${(props) => (props.length === 1 ? '70px' : '0px')};
 
   .pofol-thumbnail-container {
+    ${(props) =>
+      props.hide === false &&
+      css`
+        opacity: 0.5;
+      `}
     height: 50%;
     margin: 0px 0px 10px 0px;
   }

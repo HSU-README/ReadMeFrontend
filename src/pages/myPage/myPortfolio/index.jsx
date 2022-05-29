@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container } from 'pages/myPage/myPortfolio/styles';
 import { getUserPortfolio } from 'apis/portfolioApi';
-
+import { deletePortfolio } from 'apis/portfolioApi';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Grid, Pagination } from 'swiper';
 import 'swiper/css';
@@ -14,8 +14,12 @@ const MyPortfolio = () => {
   const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
 
   const changeUserPortfolio = (docId) => {
-    setUserPortfolio(userPortfolio.filter((data) => console.log(data.docId)));
-    console.log('test');
+    setUserPortfolio(
+      userPortfolio.filter((data) => {
+        data.docId !== docId && console.log(data.docId);
+      }),
+    );
+    console.log(docId);
   };
 
   useEffect(() => {
@@ -24,7 +28,7 @@ const MyPortfolio = () => {
       await setUserPortfolio(datas);
     }
     fetchUserPortfolioData();
-  }, [userPortfolio]);
+  }, []);
 
   if (userPortfolio.length === 0) {
     return (
@@ -54,7 +58,21 @@ const MyPortfolio = () => {
           >
             {userPortfolio.map((data, index) => (
               <SwiperSlide>
-                <DeleteSelectCard key={index} data={data} changeUserPortfolio={changeUserPortfolio} />
+                <div
+                  onClick={async () => {
+                    console.log('Test');
+                    await changeUserPortfolio(data.docId);
+                    await deletePortfolio(data.docId);
+                  }}
+                >
+                  test
+                </div>
+                <DeleteSelectCard
+                  key={index}
+                  data={data}
+                  length={userPortfolio.length}
+                  changeUserPortfolio={changeUserPortfolio}
+                />
               </SwiperSlide>
             ))}
           </Swiper>
