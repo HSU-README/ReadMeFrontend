@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'pages/generate/style.css';
-import { image, emoji, emoji2, Picktogram, Line } from 'pages/generate/arrays';
+import { image, emoji, emoji2, Picktogram, widthLine,verticalLine } from 'pages/generate/arrays';
 import TableDND from './Table/TableDND';
 import { ImageList, ImageListItem } from '@mui/material';
 import { CardContent } from '@mui/material';
@@ -49,26 +49,48 @@ const DndComponent = (props) => {
         </div>
         <div className="itemBoxCss">
           <details>
-            <summary >구분선</summary>
+            <summary>구분선</summary>
+          <details>
+            <summary >가로 구분선</summary>
             <br />
-            <ImageList sx={{ width: 280, height: 150 }} cols={2} rowHeight={5}>
-              {Line.map((item, index) => {
+            <ImageList sx={{ width: 280, height: 50,overflow:"hidden" }} cols={2}  >
+              {widthLine.map((item, index) => {
                 return (
-                  <span style={{border:"1px solid black", padding:"12px",borderRadius:"15px"}}>
-                  <ImageListItem key={item.label}>
-                    <div key={`${item.label} ${index}`}>
+                  <ImageListItem key={item.label} >
+                   <div >
                       <img
                         src={item.val}
                         onClick={() => {
                           createCommand(`IMOGE ${item.val}`);
                         }}
                       />
-                    </div>
+                      </div>
                   </ImageListItem>
-                  </span>
                 );
               })}
             </ImageList>
+            </details>
+            <details>
+            <summary >세로 구분선</summary>
+            <br />
+            <ImageList sx={{ width: 280, height: 100,overflow:"hidden" }} cols={2} rowHeight={50}>
+              {verticalLine.map((item, index) => {
+                return (
+                  <ImageListItem key={item.label} >
+                   <div>
+                      <img
+                        src={item.val}
+                        style={{objectFit:"fill",height:"110px"}}
+                        onClick={() => {
+                          createCommand(`IMOGE ${item.val}`);
+                        }}
+                      />
+                      </div>
+                  </ImageListItem>
+                );
+              })}
+            </ImageList>
+          </details>
           </details>
         </div>
         <div className="itemBoxCss">

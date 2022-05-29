@@ -264,11 +264,12 @@ export default function Toolbar({
                 </div>
               </DialogContentText>
 
-              <input style={{position:'absolute',marginLeft:"200px",marginTop:"90px",opacity:"0"}} ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
+              <input id="file-upload" style={{display:"none"}} ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
               <div style={{ width: '100%', height: '200px' }} >
 
-              
+                <label htmlFor="file-upload" style={{width:"100%"}}>
                 <img src={image} className={changeImageCss} onChange={()=>{setChangeImageCss("afterImage")}}/>
+                </label>
                 
               </div>
               {
