@@ -22,7 +22,7 @@ export const Container = styled.div`
 
   .pofol-title {
     height: 10%;
-    padding: 0px 20px 0px 20px;
+    padding: 15px 20px 0px 20px;
     font-size: 20px;
     font-weight: bold;
     color: black;
