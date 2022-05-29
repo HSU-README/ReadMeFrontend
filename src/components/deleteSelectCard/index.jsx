@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import { deletePortfolio } from 'apis/portfolioApi';
-import exit from 'assets/images/exit.png';
+import closeBtn from 'assets/images/close-button.png';
 
-export default function DeleteSelectCard({ data, changeUserPortfolio }) {
+export default function DeleteSelectCard({ data, length, changeUserPortfolio }) {
   const [docId, setDocId] = useState(0);
   const [userName, setUserName] = useState('');
   const [profileImg, setProfileImg] = useState(
@@ -40,6 +40,7 @@ export default function DeleteSelectCard({ data, changeUserPortfolio }) {
     //TODO link url 변경 필요
     <>
       <Container
+        length={length}
         hide={hide}
         onMouseEnter={() => {
           setHide(false);
@@ -54,20 +55,16 @@ export default function DeleteSelectCard({ data, changeUserPortfolio }) {
           <img
             className="deleteImg"
             alt="delete"
-            src={exit}
+            src={closeBtn}
             style={{
-              width: '35px',
-              height: '35px',
-              backgroundColor: 'black',
+              width: '45px',
+              height: '45px',
+
               position: 'absolute',
               left: '230px',
-              top: '15px',
+              top: '10px',
               float: 'right',
               zIndex: '999',
-            }}
-            onClick={() => {
-              deletePortfolio(docId);
-              changeUserPortfolio(docId);
             }}
           ></img>
         )}
