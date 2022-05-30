@@ -109,7 +109,7 @@
   },
   "scripts": {
     "start": "node scripts/start.js",
-    "build": "babel src -d lib",
+    "build": "react-scripts build",
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
