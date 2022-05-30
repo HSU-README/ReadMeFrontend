@@ -29,7 +29,7 @@ const MyPortfolio = () => {
 
   if (userPortfolio.length === 0) {
     return (
-      <div style={{ fontSize: '40px', margin: '220px 500px' }}>
+      <div style={{ fontSize: '40px', margin: '220px 600px' }}>
         <img src={require('assets/images/not_found_icon.png')} style={{ width: '507px', height: '301px' }} />
         <br />
         <strong>찾으시는 포트폴리오가 없어요!</strong>
@@ -40,7 +40,7 @@ const MyPortfolio = () => {
   return (
     <>
       <Container>
-        <div style={{ width: '1600px', margin: '100px 0px 100px 100px', overflow: 'auto', display: 'flex' }}>
+        <div style={{ width: '1600px', margin: '100px 0px 100px 190px', overflow: 'auto', display: 'flex' }}>
           <Swiper
             slidesPerView={5}
             grid={{
