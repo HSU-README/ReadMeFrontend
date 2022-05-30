@@ -76,7 +76,7 @@ const SearchPage = () => {
       <hr style={{ backgroundColor: '#F57842' }} />
 
       {
-        <div style={{ marginTop: '120px', marginBottom: '160px' }}>
+        <div style={{ marginTop: '120px', marginBottom: '350px' }}>
           {searchPortfolio.length !== undefined ? (
             searchPortfolio.length !== 0 ? (
               <Slider {...settings} className="slick">
