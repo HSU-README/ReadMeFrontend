@@ -36,11 +36,11 @@ const DNDImageComponent = (props) => {
                 <img
                   src={require('../../assets/images/imageIcon.png')}
                   style={{
-                    border: '1px solid lightgray',
-                    borderRadius: '15px',
+                    //   border: '1px solid lightgray',
+                    //   borderRadius: '15px',
                     width: '100px',
                     height: '100px',
-                    margin: 'auto auto',
+                    //   margin: 'auto auto',
                   }}
                   onClick={() => createCommand('IMAGE')}
                 />
