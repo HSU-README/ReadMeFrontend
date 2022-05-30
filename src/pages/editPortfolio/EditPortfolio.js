@@ -11,7 +11,7 @@ const EditPortfolio = () => {
   const [createElement, setCreateElement] = useState('');
   const canvasBox = useRef(null);
   return (
-    <div>
+    <div style={{marginTop:"5px"}}>
       <Header />
       <div style={{ backgroundColor: '#e9ecef', display: 'flex' }}>
         <DNDImageComponent setCreateElement={setCreateElement}/>

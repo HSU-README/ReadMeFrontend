@@ -14,16 +14,15 @@
   .parent > div {
     width: 300px;
     margin-bottom: 30px;
-    background-color: white;
+    background-color: #f9f9fa;
   }
   .parent > div > details > button:hover{
     cursor: pointer;
-
   }
 
   /*아이템 박스*/
   .itemBoxCss {
-      border: 3px solid rgb(99, 85, 85);
+      border: 3px solid rgba(99, 85, 85,0.5);
       border-radius: 15px;
       padding: 10px;
       box-sizing: border-box;
