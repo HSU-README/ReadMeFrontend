@@ -53,12 +53,16 @@ const DndComponent = (props) => {
             <details>
               <summary className="menu1">가로 구분선</summary>
               <br />
-              <ImageList sx={{ width: 280, height: 50, overflow: 'hidden' }} cols={2}>
+              <ImageList sx={{ width: 280, height: 100, overflow: 'hidden' }} cols={2}>
                 {widthLine.map((item, index) => {
                   return (
                     <ImageListItem key={item.label}>
                       <div>
                         <img
+                          style={{
+                            width: '100%',
+                            height: '30px',
+                          }}
                           src={item.val}
                           onClick={() => {
                             createCommand(`IMOGE ${item.val}`);
@@ -73,14 +77,14 @@ const DndComponent = (props) => {
             <details>
               <summary className="menu2">세로 구분선</summary>
               <br />
-              <ImageList sx={{ width: 280, height: 100, overflow: 'hidden' }} cols={2} rowHeight={50}>
+              <ImageList sx={{ width: 280, height: 100, overflow: 'hidden' }} cols={4} rowHeight={50}>
                 {verticalLine.map((item, index) => {
                   return (
                     <ImageListItem key={item.label}>
                       <div>
                         <img
                           src={item.val}
-                          style={{ objectFit: 'fill', height: '110px' }}
+                          style={{ width: '50%', objectFit: 'fill', height: '110px' }}
                           onClick={() => {
                             createCommand(`IMOGE ${item.val}`);
                           }}

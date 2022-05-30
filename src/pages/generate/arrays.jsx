@@ -205,6 +205,17 @@ const widthLine = [
     val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fline_weight.png?alt=media&token=9f841b0b-d376-4639-9f2f-212d4c37da3d',
     label:'7px line',
   },
+
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fblack.png?alt=media&token=e8c3ab42-1d54-4df2-b5f5-ce832b70dec9',
+    label:'black line',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fred.png?alt=media&token=73a0bc11-a464-484c-9b01-13411ace33fa',
+    label:'red line',
+  },
  
 ];
 
@@ -219,6 +230,16 @@ const verticalLine=[
     cmd: 'insertImage',
     val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Flinesero_7.png?alt=media&token=bb89927b-6122-4647-9a71-0aed7a6ff1f3',
     label:'sero 7px line',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fblack_sero.png?alt=media&token=89c63ef0-83bd-4d3d-ba44-c55f8f2e2f00',
+    label:'blakc sero',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fred_sero.png?alt=media&token=b124bd10-f58f-47dc-8d19-b6d418474618',
+    label:'red sero',
   },
 ]
 export {image, emoji, emoji2, Picktogram, widthLine,verticalLine};
