@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import ShowPortfolio from './EditPortfolio.js';
+import ShowPortfolio from './Editdocument';
 
 const ExportPdf = () => {
   const componentRef = useRef(null);
