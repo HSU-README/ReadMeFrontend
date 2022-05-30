@@ -107,11 +107,7 @@ const CanvasContainer = ({ isEditable, createElement }) => {
   };
 
   useEffect(() => {
-    if (createElement !== '') {
-      var str = createElement.split(' ');
-      addElement(str[0]);
-    }
-    if (Number(docId) ) {
+    if (Number(docId)) {
       async function fetchPortfolioData() {
         const datas = await getPortfolio(docId);
         //console.log("datas",datas)
@@ -185,6 +181,13 @@ const CanvasContainer = ({ isEditable, createElement }) => {
         await setCanvasData(componentArray);
       }
       fetchPortfolioData();
+    }
+  }, []);
+
+  useEffect(() => {
+    if (createElement !== '') {
+      var str = createElement.split(' ');
+      addElement(str[0]);
     }
   }, [createElement]);
 
