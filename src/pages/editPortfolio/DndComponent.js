@@ -56,10 +56,11 @@ const DndComponent = (props) => {
             <ImageList sx={{ width: 280, height: 50,overflow:"hidden" }} cols={2}  >
               {widthLine.map((item, index) => {
                 return (
-                  <ImageListItem key={item.label} >
-                   <div >
+                  <ImageListItem key={`${item.label}+${index}`} >
+                   <div key={item.label}>
                       <img
                         src={item.val}
+                        key={index}
                         onClick={() => {
                           createCommand(`IMOGE ${item.val}`);
                         }}
@@ -77,9 +78,10 @@ const DndComponent = (props) => {
               {verticalLine.map((item, index) => {
                 return (
                   <ImageListItem key={item.label} >
-                   <div>
+                   <div key={`${item.label}+${index}`}  >
                       <img
                         src={item.val}
+                        key={index}
                         style={{objectFit:"fill",height:"110px"}}
                         onClick={() => {
                           createCommand(`IMOGE ${item.val}`);
@@ -97,7 +99,7 @@ const DndComponent = (props) => {
           <details>
             <summary>표</summary>
             <br />
-            <div style={{ border: '1px solid black', alignContent: 'center' }}>
+            <div style={{ border: '1px solid lightgray',borderRadius:"10px", alignContent: 'center' }}>
               <TableDND setCreateElement={props.setCreateElement} />
             </div>
           </details>

@@ -31,9 +31,10 @@ const DNDImageComponent=(props)=>{
             <details>
               <summary>이미지</summary>
               <br />
-              {image.map((item) => {
+              {image.map((item,index) => {
                 return (
                   <img
+                    key={index}
                     src={require('../../assets/images/imageIcon.png')}
                     style={{
                       border: '1px solid lightgray',
@@ -62,6 +63,7 @@ const DNDImageComponent=(props)=>{
                         <div style={{ border: '1px solid lightgray' }} key={`${item.label} ${index}`}>
                           <img
                             src={item.val}
+                            key={index}
                             onClick={() => {
                               createCommand(`IMOGE ${item.val}`);
                             }}
@@ -97,11 +99,12 @@ const DNDImageComponent=(props)=>{
               <details>
                 <summary className="menu3">픽토그램</summary>
                 <ImageList sx={{ width: 280, height: 200 }} cols={3} rowHeight={100}>
-                  {Picktogram.map((item) => {
+                  {Picktogram.map((item,index) => {
                     return (
                       <ImageListItem key={item.label}>
                         <div style={{ border: '1px solid lightgray' }} key={item.label}>
                           <img
+                            key={index}
                             src={item.val}
                             onClick={() => {
                               createCommand(`IMOGE ${item.val}`);

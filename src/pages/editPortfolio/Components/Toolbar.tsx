@@ -219,7 +219,7 @@ export default function Toolbar({
             src={require('../../../assets/images/import.png')}
             alt="저장"
             style={{ marginRight: '20px', width: '35px', height: '35px', cursor: 'pointer' }}
-          />
+          /> 
         ) : (
           <img
             onClick={() => {
@@ -228,7 +228,7 @@ export default function Toolbar({
             src={require('../../../assets/images/saveIcon.png')}
             alt="저장"
             style={{ marginRight: '20px', width: '30px', height: '30px', cursor: 'pointer' }}
-          />
+          /> 
         )}
 
         {!isEditable ? (
@@ -353,7 +353,7 @@ export default function Toolbar({
         <Input
           value={title}
           placeholder="제목을 입력해주세요."
-          style={{ backgroundColor: 'white', padding: '4px', paddingLeft: '10px' }}
+          style={{ backgroundColor: 'white',border:"1px solid black",borderRadius:"5px", padding: '4px', paddingLeft: '10px' }}
           onChange={(e) => {
             if(title.length<=13){
               setTitle(e.target.value);

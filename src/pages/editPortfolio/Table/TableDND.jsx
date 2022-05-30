@@ -11,7 +11,7 @@ const TableDND = ({setCreateElement}) => {
   const [tableInput, setTableInput] = useState(
     Array.from({ length: 6 }, () =>
       Array.from({ length: 6 }, (v, i) => ({
-        bg: "lightGray",
+        bg: "black",
         column: i
       }))
     )
@@ -22,7 +22,7 @@ const TableDND = ({setCreateElement}) => {
         bg:
           row + 1 <= tableData.row && col + 1 <= tableData.column
             ? "orange"
-            : "lightgray",
+            : "black",
         column: col
       }))
     );
