@@ -22,9 +22,9 @@ const SelectPortfolio = () => {
         <div className="sectionFont">양식 선택</div>
         <div
           style={{
-            width: '1600px',
+            width: '60%',
             margin: '-30px 0px 50px 400px',
-            height: '90vh',
+            height: '130vh',
             backgroundColor: '#f8f9fa',
           }}
         >
