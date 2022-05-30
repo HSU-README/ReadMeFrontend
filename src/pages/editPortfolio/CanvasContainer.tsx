@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import CanvasComponent from './components/canvascomponents';
-import Toolbar from './components/Toolbar';
+import CanvasComponent from './component/canvascomponents';
+import Toolbar from './component/Toolbar';
 import './Canvas.css';
 import { createPortfolio, getPortfolio } from 'apis/portfolioApi';
 import html2canvas from 'html2canvas';
