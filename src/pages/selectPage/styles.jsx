@@ -10,10 +10,10 @@ export const Container = styled.div`
     display: flex;
     justify-content: flex-start;
     margin-top: 30px;
-    margin-left: 100px;
+    margin-left: 200px;
     font-weight: bold;
     color: black;
-    font-size: 35px;
+    font-size: 40px;
   }
 
   .swiper {
@@ -26,7 +26,5 @@ export const Container = styled.div`
   .swiper-slide {
     background-color: ${colors.background};
     height: calc((100% - 60px) / 2) !important;
-
-  
   }
 `;

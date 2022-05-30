@@ -25,9 +25,9 @@
 }
 .sectionFont {
   display: flex;
-  margin-top: 30px;
-  margin-bottom: 20px;
-  padding: 8px;
+  margin-top: 50px;
+  margin-bottom: 0px;
+  padding: 8px 8px 0px 8px;
   border-radius: 15px;
   margin-right: 200px;
   font-weight: bold;
