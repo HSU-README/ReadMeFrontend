@@ -6,8 +6,8 @@ import { chartState } from 'recoil/atoms';
 const ChartElement = (props: ICanvasComponent) => {
   const { id, chart } = props;
   const [strArr, setStrArr] = useState(new Array(36).fill(''));
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [width, setWidth] = useState(300);
+  const [height, setHeight] = useState(150);
   const { actions } = useContext(CanvasContext);
   const tableRef = useRef(null);
   const [text, setText] = useState('');
@@ -24,14 +24,25 @@ const ChartElement = (props: ICanvasComponent) => {
   };
   const resetState = useResetRecoilState(chartState);
   useEffect(() => {
-    setWidth(Number(props.dimension.width) / chart.col);
-    setHeight(Number(props.dimension.height) / chart.row);
+    setWidth(Number(props.dimension.width)/chart.col);
+    setHeight(Number(props.dimension.width)/chart.row);
     if (chart.tableContent) {
       setStrArr(chart.tableContent);
     }
     resetState();
+    updateChartValue(chartRef.current.innerHTML);
   }, []);
+  useEffect(()=>{
+    if (props.dimension.width.indexOf('px') !== -1 && props.dimension.height.indexOf('px') !== -1) {
 
+      setWidth(Number(props.dimension.width.slice(0, -2)) / chart.col);
+      setHeight(Number(props.dimension.height.slice(0, -2)) / chart.row);
+      if (chart.tableContent) {
+        setStrArr(chart.tableContent);
+      }
+      resetState();
+    }
+  },[props.dimension.width,props.dimension.height])
   return (
     <>
       <div
@@ -56,15 +67,8 @@ const ChartElement = (props: ICanvasComponent) => {
                               style={{ border: '1px solid black', width: `${width}px`, height: `${height}px` }}
                               key={i}
                             >
-                              {/* <div style={{width:"100%" , height:"100%"}} contentEditable ref={ref}
-                                            onInput={((value)=>{
-                                                console.log(ref.current.innerText)
-                                                strArr[index][i]= chartRef.current.innerText;
-                                                updateChartValue(chartRef.current.innerHTML)
-                                            })}
-                                         >{strArr[index][i]}</div> */}
                               <textarea
-                                style={{ width: '100%', resize: 'none', height: '100%' }}
+                                style={{ width: '100%',  height: '100%',resize:"none" }}
                                 value={strArr[index * 6 + i]}
                                 onChange={(e) => {
                                   let newStrArr = [...strArr];

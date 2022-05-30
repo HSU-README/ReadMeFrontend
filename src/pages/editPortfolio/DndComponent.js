@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'pages/generate/style.css';
-import { image, emoji, emoji2, Picktogram, Line } from 'pages/generate/arrays';
+import { image, emoji, emoji2, Picktogram, widthLine, verticalLine } from 'pages/generate/arrays';
 import TableDND from './Table/TableDND';
 import { ImageList, ImageListItem } from '@mui/material';
 import { CardContent } from '@mui/material';
@@ -29,16 +29,16 @@ const DndComponent = (props) => {
       <div className="parent">
         <div className="itemBoxCss">
           <details>
-            <summary>텍스트</summary>
+            <summary>텍스트 상자</summary>
             <br />
             <img
-              src={require('../../assets/images/textboxIcon.jpg')}
+              src={require('../../assets/images/textboxIcon.png')}
               style={{
-                border: '1px solid black',
-                borderRadius: '15px',
+                //   border: '1px solid black',
+                //   borderRadius: '15px',
                 width: '100px',
                 height: '100px',
-                margin: 'auto auto',
+                //   margin: 'auto auto',
               }}
               onClick={() => {
                 createCommand('TEXT');
@@ -49,26 +49,52 @@ const DndComponent = (props) => {
         </div>
         <div className="itemBoxCss">
           <details>
-            <summary >구분선</summary>
-            <br />
-            <ImageList sx={{ width: 280, height: 150 }} cols={2} rowHeight={5}>
-              {Line.map((item, index) => {
-                return (
-                  <span style={{border:"1px solid black", padding:"12px",borderRadius:"15px"}}>
-                  <ImageListItem key={item.label}>
-                    <div key={`${item.label} ${index}`}>
-                      <img
-                        src={item.val}
-                        onClick={() => {
-                          createCommand(`IMOGE ${item.val}`);
-                        }}
-                      />
-                    </div>
-                  </ImageListItem>
-                  </span>
-                );
-              })}
-            </ImageList>
+            <summary>구분선</summary>
+            <details>
+              <summary className="menu1">가로 구분선</summary>
+              <br />
+              <ImageList sx={{ width: 280, height: 100, overflow: 'hidden' }} cols={2}>
+                {widthLine.map((item, index) => {
+                  return (
+                    <ImageListItem key={item.label}>
+                      <div>
+                        <img
+                          style={{
+                            width: '100%',
+                            height: '30px',
+                          }}
+                          src={item.val}
+                          onClick={() => {
+                            createCommand(`IMOGE ${item.val}`);
+                          }}
+                        />
+                      </div>
+                    </ImageListItem>
+                  );
+                })}
+              </ImageList>
+            </details>
+            <details>
+              <summary className="menu2">세로 구분선</summary>
+              <br />
+              <ImageList sx={{ width: 280, height: 100, overflow: 'hidden' }} cols={4} rowHeight={50}>
+                {verticalLine.map((item, index) => {
+                  return (
+                    <ImageListItem key={item.label}>
+                      <div>
+                        <img
+                          src={item.val}
+                          style={{ width: '50%', objectFit: 'fill', height: '110px' }}
+                          onClick={() => {
+                            createCommand(`IMOGE ${item.val}`);
+                          }}
+                        />
+                      </div>
+                    </ImageListItem>
+                  );
+                })}
+              </ImageList>
+            </details>
           </details>
         </div>
         <div className="itemBoxCss">
@@ -78,95 +104,6 @@ const DndComponent = (props) => {
             <div style={{ border: '1px solid black', alignContent: 'center' }}>
               <TableDND setCreateElement={props.setCreateElement} />
             </div>
-          </details>
-        </div>
-
-        <div className="itemBoxCss">
-          <details>
-            <summary>사진</summary>
-            <br />
-            {image.map((item) => {
-              return (
-                <img
-                  src={require('../../assets/images/imageIcon.png')}
-                  style={{
-                    border: '1px solid black',
-                    borderRadius: '15px',
-                    width: '100px',
-                    height: '100px',
-                    margin: 'auto auto',
-                  }}
-                  onClick={() => createCommand('IMAGE')}
-                />
-              );
-            })}
-          </details>
-        </div>
-
-        <div className="itemBoxCss">
-          <details>
-            <summary>이모티콘</summary>
-            <br />
-            <details>
-              <summary className="menu1">상상부기</summary>
-              <ImageList sx={{ width: 280, height: 200 }} cols={3} rowHeight={164}>
-                {emoji.map((item, index) => {
-                  return (
-                    <ImageListItem key={item.label}>
-                      <div style={{ border: '1px solid black' }} key={`${item.label} ${index}`}>
-                        <img
-                          src={item.val}
-                          onClick={() => {
-                            createCommand(`IMOGE ${item.val}`);
-                          }}
-                        />
-                      </div>
-                    </ImageListItem>
-                  );
-                })}
-              </ImageList>
-            </details>
-            <br />
-            <details>
-              <summary className="menu2">상상부기 프렌즈</summary>
-              <ImageList sx={{ width: 280, height: 200 }} cols={3} rowHeight={164}>
-                {emoji2.map((item, index) => {
-                  return (
-                    <ImageListItem key={item.label}>
-                      <div style={{ border: '1px solid black' }} key={`${item.label} ${index}`}>
-                        <img
-                          src={item.val}
-                          onClick={() => {
-                            createCommand(`IMOGE ${item.val}`);
-                          }}
-                        />
-                      </div>
-                    </ImageListItem>
-                  );
-                })}
-              </ImageList>
-            </details>
-
-            <br />
-            <details>
-              <summary className="menu3">픽토그램</summary>
-              <ImageList sx={{ width: 280, height: 200 }} cols={3} rowHeight={164}>
-                {Picktogram.map((item) => {
-                  return (
-                    <ImageListItem key={item.label}>
-                      <div style={{ border: '1px solid black' }} key={item.label}>
-                        <img
-                          src={item.val}
-                          onClick={() => {
-                            createCommand(`IMOGE ${item.val}`);
-                          }}
-                        />
-                      </div>
-                    </ImageListItem>
-                  );
-                })}
-              </ImageList>
-            </details>
           </details>
         </div>
       </div>

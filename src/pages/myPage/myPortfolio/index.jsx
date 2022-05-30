@@ -29,7 +29,7 @@ const MyPortfolio = () => {
 
   if (userPortfolio.length === 0) {
     return (
-      <div style={{ fontSize: '40px', margin: '220px 300px' }}>
+      <div style={{ fontSize: '40px', margin: '220px 500px' }}>
         <img src={require('assets/images/not_found_icon.png')} style={{ width: '507px', height: '301px' }} />
         <br />
         <strong>찾으시는 포트폴리오가 없어요!</strong>

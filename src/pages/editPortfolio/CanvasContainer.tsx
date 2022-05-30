@@ -88,7 +88,7 @@ const CanvasContainer = ({ isEditable, createElement }) => {
     const updatedData = { ...canvasData?.[currentDataIndex], ...data };
 
     var wid = updatedData.dimension.width.substring(0, 3);
-    var hei = updatedData.dimension.width.substring(0, 3);
+    var hei = updatedData.dimension.height.substring(0, 3);
     //캔버스 밖으로 벗어나는거 방지.
     if (updatedData.position.left < 0) {
       updatedData.position.left = 0;
@@ -96,10 +96,10 @@ const CanvasContainer = ({ isEditable, createElement }) => {
     if (updatedData.position.top < 0) {
       updatedData.position.top = 0;
     }
-    if (updatedData.position.left + Number(wid) >= canvasBox.current.clientWidth) {
+    if (updatedData.position.left + Number(wid) > canvasBox.current.clientWidth) {
       updatedData.position.left = canvasBox.current.clientWidth - Number(wid);
     }
-    if (updatedData.position.top + Number(hei) >= canvasBox.current.clientHeight) {
+    if (updatedData.position.top + Number(hei) > canvasBox.current.clientHeight) {
       updatedData.position.top = canvasBox.current.clientHeight - Number(hei) - 100;
     }
     canvasData.splice(currentDataIndex, 1, updatedData);
@@ -111,7 +111,7 @@ const CanvasContainer = ({ isEditable, createElement }) => {
       var str = createElement.split(' ');
       addElement(str[0]);
     }
-    if (Number(docId) !== undefined) {
+    if (Number(docId) ) {
       async function fetchPortfolioData() {
         const datas = await getPortfolio(docId);
         //console.log("datas",datas)

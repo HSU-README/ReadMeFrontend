@@ -28,7 +28,8 @@ export default function DeleteSelectCard({ data, length, changeUserPortfolio }) 
     if (data.designerUrl !== '') {
       setProfileImg(data.designerUrl);
     }
-
+    console.log(length);
+    console.log('docTitle', data.title);
     setDocDate(`${year}년 ${month}월 ${day}일`);
     setTitle(data.title);
     setThumbnail(data.docUrl);

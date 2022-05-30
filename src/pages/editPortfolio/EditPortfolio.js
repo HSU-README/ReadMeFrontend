@@ -6,14 +6,16 @@ import Footer from 'components/footer/index.jsx';
 import DndComponent from './DndComponent';
 import ReactToPrint from 'react-to-print';
 import TagComponent from 'pages/editPortfolio/TagComponent';
+import DNDImageComponent from './DNDImageComponent';
 const EditPortfolio = () => {
   const [createElement, setCreateElement] = useState('');
   const canvasBox = useRef(null);
   return (
-    <div>
+    <div style={{marginTop:"5px"}}>
       <Header />
       <div style={{ backgroundColor: '#f8f9fa', display: 'flex' }}>
-        <div style={{ display: 'flex', marginLeft: '27%' }}>
+        <DNDImageComponent setCreateElement={setCreateElement} />
+        <div style={{ display: 'flex'}}>
           <div ref={canvasBox}>
             <CanvasContainer isEditable={true} createElement={createElement} />
           </div>
