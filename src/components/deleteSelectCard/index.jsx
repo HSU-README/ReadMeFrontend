@@ -28,34 +28,15 @@ export default function DeleteSelectCard({ data, length, changeUserPortfolio }) 
     if (data.designerUrl !== '') {
       setProfileImg(data.designerUrl);
     }
-    console.log(length)
-    console.log("docTitle", data.title)
+    console.log(length);
+    console.log('docTitle', data.title);
     setDocDate(`${year}년 ${month}월 ${day}일`);
     setTitle(data.title);
     setThumbnail(data.docUrl);
     setLikeCnt(data.likeCnt);
     setTags(data.tags);
-  }, []);
-  
-  useEffect(()=>{
-    const date = data.docDate;
-    const year = date.substring(0, 4);
-    const month = date.substring(5, 7);
-    const day = date.substring(8, 10);
-    setDocId(data.docId);
-    setUserName(data.designer);
-    if (data.designerUrl !== '') {
-      setProfileImg(data.designerUrl);
-    }
-    console.log(length)
-    console.log("docTitle", data.title)
-    setDocDate(`${year}년 ${month}월 ${day}일`);
-    setTitle(data.title);
-    setThumbnail(data.docUrl);
-    setLikeCnt(data.likeCnt);
-    setTags(data.tags);
-    console.log("data abcde:",data)
-  },[data])
+  }, [data]);
+
   return (
     //TODO link url 변경 필요
     <>
@@ -85,6 +66,10 @@ export default function DeleteSelectCard({ data, length, changeUserPortfolio }) 
               top: '10px',
               float: 'right',
               zIndex: '999',
+            }}
+            onClick={async () => {
+              await changeUserPortfolio(data.docId);
+              await deletePortfolio(data.docId);
             }}
           ></img>
         )}

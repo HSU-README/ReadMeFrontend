@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { CanvasContext } from '../CanvasContainer';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
-import { TextField,RadioGroup,Radio,FormLabel } from '@mui/material';
+import { TextField, RadioGroup, Radio, FormLabel } from '@mui/material';
 import { useRecoilState, useResetRecoilState } from 'recoil';
 import { likePortfolio, unlikePortfolio, getUserLikePortfolio } from 'apis/likeApi';
 import { storage } from '../../../firebase';
@@ -14,13 +13,13 @@ import plus_icon from '../../../assets/images/plus_icons.png';
 import {
   FormControl,
   Input,
-  Checkbox,
   FormControlLabel,
   Dialog,
   DialogContent,
   DialogActions,
   DialogContentText,
   Button,
+  CircularProgress,
 } from '@mui/material';
 export const sizeList = [
   '8px',
@@ -103,9 +102,10 @@ export default function Toolbar({
   const tumbsImageRef = useRef<HTMLImageElement>(null);
   const imageRef = useRef<HTMLInputElement>(null);
   const [like, setLike] = useState(false);
-  const [tagText, setTagText] = useState("");
-  const [tagButtonsArray, setTagButtonsArray]= useState("");
-  const [changeImageCss, setChangeImageCss]= useState("beforeImage")
+  const [tagText, setTagText] = useState('');
+  const [tagButtonsArray, setTagButtonsArray] = useState('');
+  const [changeImageCss, setChangeImageCss] = useState('beforeImage');
+  const [generateState, setGenerateState] = useState(false);
   const pageStyle = `{ size: 2.5in 4in }`;
   const addElement = (type: string) => {
     actions?.addElement(type);
@@ -138,10 +138,11 @@ export default function Toolbar({
     return url;
   };
 
+  let navigate = useNavigate();
+
   useEffect(() => {
     async function fetchUserLikePortfolioData() {
       const datas = await getUserLikePortfolio(userId);
-      console.log(docId);
       await datas.map((data) => {
         if (data.docId == docId) {
           setLike(true);
@@ -155,35 +156,19 @@ export default function Toolbar({
     setTitle(docTitle);
   }, [docTitle]);
 
- 
-
   const [image, setImage] = useState(plus_icon);
   const onImageChange = (event) => {
-    
     if (event.target.files && event.target.files[0]) {
-      setChangeImageCss("afterImage");
+      setChangeImageCss('afterImage');
       setImage(URL.createObjectURL(event.target.files[0]));
       setImageName(event.target.files[0]);
     }
   };
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     console.log(tagsArray);
-  },[tagsArray])
+  }, [tagsArray]);
 
-
-  const beforeImage = {
-    textAlign: 'center',
-    width: '100%',
-    height: '200px',
-    objectFit: 'contain',
-  };
-  const afterImage = {
-    textAlign: 'center',
-    width: '100%',
-    height: '200px',
-    objectFit: 'fill',
-  };
   return (
     <div style={{ width: '250mm', textAlign: 'left', margin: 'auto', marginTop: '20px', marginBottom: '10px' }}>
       {isEditEnable && (
@@ -232,28 +217,52 @@ export default function Toolbar({
         )}
 
         {!isEditable ? (
-          <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { textAlign:"center",width: '15%', height: '10%',}}}>
+          <Dialog
+            open={openDialog}
+            onClose={handleClose}
+            PaperProps={{ sx: { textAlign: 'center', width: '20%', height: '16%', padding: '10px' } }}
+          >
             <DialogContent>
-              <DialogContentText style={{color:"black",fontSize:"18px",fontWeight:"600" }}>문서를 불러오시겠습니까?</DialogContentText>
+              <DialogContentText style={{ color: 'black', fontSize: '28px', fontWeight: 'bold' }}>
+                문서를 불러오시겠습니까?
+              </DialogContentText>
             </DialogContent>
             <DialogActions>
-              <Button style={{backgroundColor:"black", color:"white",marginRight:"10px",fontWeight:"600" }} onClick={handleClose}>취소</Button>
-              <Button style={{backgroundColor:"black", color:"white"}}>
-                <NavLink to={`/generate/${docId}`} style={{ textDecoration: 'none',color:"white", marginLeft: '5px',fontWeight:"600" }}>
+              <Button
+                style={{ backgroundColor: 'black', color: 'white', marginRight: '10px', fontWeight: 'bold' }}
+                onClick={handleClose}
+              >
+                취소
+              </Button>
+              <Button style={{ backgroundColor: 'black', color: 'white' }}>
+                <NavLink
+                  to={`/generate/${docId}`}
+                  style={{ textDecoration: 'none', color: 'white', marginLeft: '5px', fontWeight: 'bold' }}
+                >
                   불러오기
                 </NavLink>
               </Button>
             </DialogActions>
           </Dialog>
         ) : (
-          <Dialog open={openDialog} onClose={handleClose} PaperProps={{ sx: { width: '30%', height: '52%' } }}>
+          <Dialog
+            open={openDialog}
+            onClose={handleClose}
+            PaperProps={{ sx: { width: '30%', height: '45%', padding: '10px' } }}
+          >
             <DialogContent>
-              <DialogContentText style={{ textAlign: 'center', fontSize: '30px', color: 'black',fontWeight:"600"}}>
+              <DialogContentText style={{ textAlign: 'center', fontSize: '30px', color: 'black', fontWeight: 'bold' }}>
                 {title}
-                <FormControl style={{marginLeft:"68%"}}>
-                  <RadioGroup defaultValue={"false"} row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group"
-                  onChange={(e)=>{
-                    e.target.value==="true"?setVisibleCheck(true):setVisibleCheck(false)}}>
+                <FormControl style={{ marginLeft: '68%' }}>
+                  <RadioGroup
+                    defaultValue={'false'}
+                    row
+                    aria-labelledby="demo-row-radio-buttons-group-label"
+                    name="row-radio-buttons-group"
+                    onChange={(e) => {
+                      e.target.value === 'true' ? setVisibleCheck(true) : setVisibleCheck(false);
+                    }}
+                  >
                     <FormControlLabel value="true" aria-label="A" control={<Radio size="small" />} label="공개" />
                     <FormControlLabel value="false" aria-label="A" control={<Radio size="small" />} label="비공개" />
                   </RadioGroup>
@@ -264,23 +273,38 @@ export default function Toolbar({
                 </div>
               </DialogContentText>
 
-              <input id="file-upload" style={{display:"none"}} ref={imageRef} type="file" onChange={onImageChange} className="filetype" />
-              <div style={{ width: '100%', height: '200px' }} >
-
-                <label htmlFor="file-upload" style={{width:"100%"}}>
-                <img src={image} className={changeImageCss} onChange={()=>{setChangeImageCss("afterImage")}}/>
-                </label>
-                
+              <input
+                style={{ position: 'absolute', marginLeft: '200px', marginTop: '90px', opacity: '0' }}
+                ref={imageRef}
+                type="file"
+                onChange={onImageChange}
+                className="filetype"
+              />
+              <div style={{ width: '100%', height: '200px' }}>
+                <img
+                  alt="importImg"
+                  src={image}
+                  className={changeImageCss}
+                  onChange={() => {
+                    setChangeImageCss('afterImage');
+                  }}
+                />
               </div>
-              {
-                      tagsArray.map((data,index)=>{
-                        return <Button  style={{minWidth:"50px",marginTop:"5px",padding:"0px", marginBottom:"5px"}}key={index} onClick={()=>{
-                          if(window.confirm(`${data}태그를 삭제 하시겠어요?`)){
-                            setTagsArray(tagsArray.filter((it)=>it !== data)) 
-                          }
-                        }}>{data}</Button>
-                      })
-              }
+              {tagsArray.map((data, index) => {
+                return (
+                  <Button
+                    style={{ minWidth: '50px', marginTop: '5px', padding: '0px', marginBottom: '5px' }}
+                    key={index}
+                    onClick={() => {
+                      if (window.confirm(`${data}태그를 삭제 하시겠어요?`)) {
+                        setTagsArray(tagsArray.filter((it) => it !== data));
+                      }
+                    }}
+                  >
+                    {data}
+                  </Button>
+                );
+              })}
               <TextField
                 id="outlined-basic"
                 label="태그"
@@ -289,52 +313,71 @@ export default function Toolbar({
                 variant="outlined"
                 size="small"
                 style={{ width: '100%', marginTop: '15px' }}
-                onKeyPress={(e)=>{
+                onKeyPress={(e) => {
                   console.log(e);
-                  if(tagsArray.length<4){
-                    if(e.key==='Enter'){
-                      var tmpText = tagText.split('\n')
-                      var sendText = `#${tmpText}`
-                      console.log("tmpText : ", tmpText);
-                      setTagText("")
+                  if (tagsArray.length < 4) {
+                    if (e.key === 'Enter') {
+                      var tmpText = tagText.split('\n');
+                      var sendText = `#${tmpText}`;
+                      console.log('tmpText : ', tmpText);
+                      setTagText('');
                       setTagsArray([...tagsArray, sendText]);
-                      
                     }
-
-                }else{
-                  alert('태그는 4개까지 선택 가능합니다.')
-                }
+                  } else {
+                    alert('태그는 4개까지 선택 가능합니다.');
+                  }
                 }}
                 onChange={(e) => {
-                    setTagText(e.target.value);
+                  setTagText(e.target.value);
                 }}
               />
             </DialogContent>
             <DialogActions>
               <Button
-
-                style={{backgroundColor:"black", color:"white",marginRight:"10px"}}
+                style={{ backgroundColor: 'black', color: 'white', marginRight: '10px' }}
                 onClick={() => {
-                  
                   handleClose();
                 }}
               >
                 취소
               </Button>
-              <Link to="/" style={{textDecoration:"none"}}>
-                <Button
-                  style={{backgroundColor:"black", color:"white"}}
-                  onClick={async () => {
-                    handleClose();
-                    let docUrl = await captureToFirebase();
-                    createPortfolio(userId, title, canvasData,tagsArray, visibleCheck, docUrl);
-                  }}
-                >
-                  확인
-                </Button>
-              </Link>
+              <Button
+                style={{ backgroundColor: 'black', color: 'white' }}
+                onClick={async () => {
+                  handleClose();
+                  await setGenerateState(true);
+                  let docUrl = await captureToFirebase();
+                  await createPortfolio(userId, title, canvasData, tagsArray, visibleCheck, docUrl);
+                  await setGenerateState(false);
+                  navigate('/');
+                }}
+              >
+                확인
+              </Button>
             </DialogActions>
           </Dialog>
+        )}
+        {generateState ? (
+          <>
+            <Dialog
+              open={true}
+              onClose={handleClose}
+              PaperProps={{ sx: { textAlign: 'center', width: '19%', height: '20%' } }}
+            >
+              <DialogContent>
+                <DialogContentText
+                  style={{ color: 'black', fontSize: '40px', fontWeight: 'bold', marginBottom: '40px' }}
+                >
+                  저장 중..
+                </DialogContentText>
+                <DialogContentText>
+                  <CircularProgress size={80} />
+                </DialogContentText>
+              </DialogContent>
+            </Dialog>
+          </>
+        ) : (
+          <></>
         )}
       </span>
       <span>
@@ -355,11 +398,11 @@ export default function Toolbar({
           placeholder="제목을 입력해주세요."
           style={{ backgroundColor: 'white', padding: '4px', paddingLeft: '10px' }}
           onChange={(e) => {
-            if(title.length<=13){
+            if (title.length <= 13) {
               setTitle(e.target.value);
-            }else{
-              alert('제목은 최대 13글자까지 입력 가능합니다.')
-              setTitle(title.substr(0,12))
+            } else {
+              alert('제목은 최대 13글자까지 입력 가능합니다.');
+              setTitle(title.substr(0, 12));
             }
           }}
         />

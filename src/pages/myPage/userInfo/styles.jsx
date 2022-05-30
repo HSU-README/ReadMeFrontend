@@ -6,7 +6,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 8% 50px 0px 20%;
+  margin: 8% 50px 0px 30%;
 
   input {
     border: none;
