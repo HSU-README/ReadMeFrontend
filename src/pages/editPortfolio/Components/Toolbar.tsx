@@ -2,8 +2,7 @@ import React, { useEffect, useRef, useContext, useState } from 'react';
 import { CanvasContext } from '../CanvasContainer';
 import { NavLink, useNavigate } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
-import { TextField, RadioGroup, Radio, FormLabel } from '@mui/material';
-import { useRecoilState, useResetRecoilState } from 'recoil';
+import { TextField, RadioGroup, Radio } from '@mui/material';
 import { likePortfolio, unlikePortfolio, getUserLikePortfolio } from 'apis/likeApi';
 import { storage } from '../../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
@@ -92,7 +91,6 @@ export default function Toolbar({
   capture,
 }: IToolbarProps) {
   const [title, setTitle] = useState(docTitle);
-  const [tags, setTags] = useRecoilState(tagsState);
   const [tagsArray, setTagsArray] = useState([]);
   const { actions } = useContext(CanvasContext);
   const tagBoxRef = useRef<HTMLDivElement>(null);
