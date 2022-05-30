@@ -174,7 +174,7 @@ export const createPortfolio = async (memberId, title, components, tags, visible
       title: title,
       docUrl: docUrl,
       tags: tags,
-      visibility: visibleCheck === true ? 'public' : 'private',
+      visibility: visibleCheck === true ? 'PUBLIC' : 'PRIVATE',
       major: JSON.parse(localStorage.getItem('readme_userInfo')).major,
     })
     .catch(console.log(memberId));

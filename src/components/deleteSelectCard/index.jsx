@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { deletePofolState, deletePofolDocIdState, openDialogState } from 'recoil/atoms';
+import { useRecoilState } from 'recoil';
 import { Container } from './styles';
-import { deletePortfolio } from 'apis/portfolioApi';
 import closeBtn from 'assets/images/close-button.png';
 
-export default function DeleteSelectCard({ data, length, changeUserPortfolio }) {
-  const [docId, setDocId] = useState(0);
+export default function DeleteSelectCard({ data, length }) {
+  const [docId, setDocId] = useRecoilState(deletePofolDocIdState);
   const [userName, setUserName] = useState('');
   const [profileImg, setProfileImg] = useState(
     'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
@@ -17,6 +18,8 @@ export default function DeleteSelectCard({ data, length, changeUserPortfolio }) 
   const [tags, setTags] = useState([]);
 
   const [hide, setHide] = useState(true);
+  const [deleteState, setDeleteState] = useRecoilState(deletePofolState);
+  const [openDialog, setOpenDialog] = useRecoilState(openDialogState);
 
   useEffect(() => {
     const date = data.docDate;
@@ -28,8 +31,7 @@ export default function DeleteSelectCard({ data, length, changeUserPortfolio }) 
     if (data.designerUrl !== '') {
       setProfileImg(data.designerUrl);
     }
-    console.log(length);
-    console.log('docTitle', data.title);
+
     setDocDate(`${year}년 ${month}월 ${day}일`);
     setTitle(data.title);
     setThumbnail(data.docUrl);
@@ -68,8 +70,9 @@ export default function DeleteSelectCard({ data, length, changeUserPortfolio }) 
               zIndex: '999',
             }}
             onClick={async () => {
-              await changeUserPortfolio(data.docId);
-              await deletePortfolio(data.docId);
+              await setDocId(data.docId);
+              await setDeleteState(true);
+              setOpenDialog(true);
             }}
           ></img>
         )}
