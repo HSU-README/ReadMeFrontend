@@ -134,6 +134,11 @@ const emoji2 = [
 const Picktogram = [
   { 
     cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fsmile.png?alt=media&token=ac218a7a-5343-4781-b029-e9a37f24240f',
+    label:'smile',
+  },
+  { 
+    cmd: 'insertImage',
     val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fphone.png?alt=media&token=2b88439d-07ae-447e-ba8c-6ba45eb50a91',
     label:'전화',
   },
@@ -156,6 +161,36 @@ const Picktogram = [
     cmd: 'insertImage',
     val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fschool.png?alt=media&token=12663f1c-3570-4bbb-aac3-f5c1edc90e93',
     label:'학교',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fcomputer.png?alt=media&token=510e4a74-6e34-4cfe-9e82-e865856509b3',
+    label:'pc',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fsmartphone-call.png?alt=media&token=b6d0fd41-0c45-4528-9d17-fe8bbdaaa3ad',
+    label:'mobile',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fhtml.png?alt=media&token=983ea5fc-1994-4157-b4ed-33a848ccc855',
+    label:'html',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fcss-3.png?alt=media&token=bd925d38-ef91-4d32-9b0e-e2bc4490f051',
+    label:'css3',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fjs.png?alt=media&token=a26ccfd4-4097-48b8-8e6a-d2664db4721b',
+    label:'js',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fphysics.png?alt=media&token=7006535b-f6ec-481e-82ce-72609080de7a',
+    label:'react',
   },
 ];
 
