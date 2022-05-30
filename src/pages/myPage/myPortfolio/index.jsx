@@ -14,11 +14,8 @@ const MyPortfolio = () => {
   const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
 
   const changeUserPortfolio = (docId) => {
-    setUserPortfolio(
-      userPortfolio.filter((data) => {
-        data.docId !== docId && console.log(data.docId);
-      }),
-    );
+    setUserPortfolio(userPortfolio.filter((data) => data.docId !== docId));
+
     console.log(docId);
   };
 
@@ -43,7 +40,7 @@ const MyPortfolio = () => {
   return (
     <>
       <Container>
-        <div style={{ width: '1600px', margin: '100px 0px 100px 180px', overflow: 'auto', display: 'flex' }}>
+        <div style={{ width: '1600px', margin: '100px 0px 100px 100px', overflow: 'auto', display: 'flex' }}>
           <Swiper
             slidesPerView={5}
             grid={{
@@ -58,15 +55,6 @@ const MyPortfolio = () => {
           >
             {userPortfolio.map((data, index) => (
               <SwiperSlide>
-                <div
-                  onClick={async () => {
-                    console.log('Test');
-                    await changeUserPortfolio(data.docId);
-                    await deletePortfolio(data.docId);
-                  }}
-                >
-                  test
-                </div>
                 <DeleteSelectCard
                   key={index}
                   data={data}

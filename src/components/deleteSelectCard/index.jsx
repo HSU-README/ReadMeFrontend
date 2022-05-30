@@ -34,7 +34,7 @@ export default function DeleteSelectCard({ data, length, changeUserPortfolio }) 
     setThumbnail(data.docUrl);
     setLikeCnt(data.likeCnt);
     setTags(data.tags);
-  }, []);
+  }, [data]);
 
   return (
     //TODO link url 변경 필요
@@ -65,6 +65,10 @@ export default function DeleteSelectCard({ data, length, changeUserPortfolio }) 
               top: '10px',
               float: 'right',
               zIndex: '999',
+            }}
+            onClick={async () => {
+              await changeUserPortfolio(data.docId);
+              await deletePortfolio(data.docId);
             }}
           ></img>
         )}
