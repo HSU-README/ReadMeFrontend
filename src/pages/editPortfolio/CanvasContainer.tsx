@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import CanvasComponent from './components/canvascomponent';
+import CanvasComponent from './components/canvascomponents';
 import Toolbar from './components/Toolbar';
 import './Canvas.css';
 import { createPortfolio, getPortfolio } from 'apis/portfolioApi';
