@@ -40,8 +40,8 @@ const ImogeElement = (props: ICanvasComponent) => {
       id,
       content: content,
       dimension: {
-        width: '150px',
-        height: '150px',
+        width: '64px',
+        height: '64px',
       },
     });
   },[imogeRef])

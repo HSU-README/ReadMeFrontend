@@ -139,27 +139,27 @@ const Picktogram = [
   },
   { 
     cmd: 'insertImage',
-    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fphone.png?alt=media&token=2b88439d-07ae-447e-ba8c-6ba45eb50a91',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fphone-call.png?alt=media&token=3c859a9e-350c-4f61-a57b-d7c27d564ad6',
     label:'전화',
   },
   { 
     cmd: 'insertImage',
-    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fgithub.png?alt=media&token=d157ea6d-1b09-4dfb-aa6b-7ed31bb5b9c3',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fgithub.png?alt=media&token=16ea438e-c3cf-4618-b921-60c61261e19f',
     label:'깃허브',
   },
   { 
     cmd: 'insertImage',
-    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Femail.png?alt=media&token=1eac9b7f-c7d1-41ed-a7f8-e3d304609c8b',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Femail.png?alt=media&token=4a3e77ca-89b8-4ea9-941f-93a7c1aa087e',
     label:'이메일',
   },
   { 
     cmd: 'insertImage',
-    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fhome.png?alt=media&token=960dbd31-099d-4763-a024-20dce2a6e3b9',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Faddress.png?alt=media&token=8d237e9b-4367-4343-98c8-eb8367f29e86',
     label:'주소',
   },
   { 
     cmd: 'insertImage',
-    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fschool.png?alt=media&token=12663f1c-3570-4bbb-aac3-f5c1edc90e93',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fschool.png?alt=media&token=ca3f63a8-8e89-4dcd-a345-f2d3def625fc',
     label:'학교',
   },
   { 
