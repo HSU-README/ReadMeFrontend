@@ -96,6 +96,11 @@ const LogIn = () => {
             value={email}
             onChange={onChangeEmail}
             placeholder="이메일 주소"
+            onKeyDown={(e)=>{
+              if(e.key==='Enter'){
+                onSubmit()
+              }
+            }}
             style={{ marginBottom: '10px' }}
           />
           <div
@@ -118,6 +123,11 @@ const LogIn = () => {
             value={password}
             onChange={onChangePassword}
             placeholder="비밀번호"
+            onKeyDown={(e)=>{
+              if(e.key==='Enter'){
+                onSubmit()
+              }
+            }}
           />
           <div
             style={{

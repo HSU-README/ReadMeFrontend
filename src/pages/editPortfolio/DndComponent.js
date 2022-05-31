@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'pages/generate/style.css';
-import { image, emoji, emoji2, Picktogram, widthLine,verticalLine } from 'pages/generate/arrays';
+import { image, emoji, emoji2, Picktogram, widthLine, verticalLine } from 'pages/generate/arrays';
 import TableDND from './Table/TableDND';
 import { ImageList, ImageListItem } from '@mui/material';
 import { CardContent } from '@mui/material';
@@ -29,16 +29,16 @@ const DndComponent = (props) => {
       <div className="parent">
         <div className="itemBoxCss">
           <details>
-            <summary>텍스트</summary>
+            <summary>텍스트 상자</summary>
             <br />
             <img
-              src={require('../../assets/images/textboxIcon.jpg')}
+              src={require('../../assets/images/textboxIcon.png')}
               style={{
-                border: '1px solid black',
-                borderRadius: '15px',
+                //   border: '1px solid black',
+                //   borderRadius: '15px',
                 width: '100px',
                 height: '100px',
-                margin: 'auto auto',
+                //   margin: 'auto auto',
               }}
               onClick={() => {
                 createCommand('TEXT');
@@ -66,10 +66,10 @@ const DndComponent = (props) => {
                         }}
                       />
                       </div>
-                  </ImageListItem>
-                );
-              })}
-            </ImageList>
+                    </ImageListItem>
+                  );
+                })}
+              </ImageList>
             </details>
             <details>
             <summary className="menu2">세로 구분선</summary>
@@ -88,11 +88,11 @@ const DndComponent = (props) => {
                         }}
                       />
                       </div>
-                  </ImageListItem>
-                );
-              })}
-            </ImageList>
-          </details>
+                    </ImageListItem>
+                  );
+                })}
+              </ImageList>
+            </details>
           </details>
         </div>
         <div className="itemBoxCss">
@@ -104,7 +104,6 @@ const DndComponent = (props) => {
             </div>
           </details>
         </div>
-
       </div>
     </div>
   );

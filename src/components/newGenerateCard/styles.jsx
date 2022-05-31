@@ -11,13 +11,14 @@ export const Container = styled.div`
   top: ${(props) => (props.length === 1 ? '70px' : '0px')};
 
   .pofol-thumbnail-container {
-    height: 70%;
-    margin: 50px 0px 10px 0px;
+    height: 80%;
+    margin: 0px 0px 10px 0px;
   }
 
   .pofol-thumbnail {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    margin-top: 50px;
   }
 
   .pofol-title {

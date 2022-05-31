@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'pages/generate/style.css';
-import { image, emoji, emoji2, Picktogram, widthLine,verticalLine } from 'pages/generate/arrays';
+import { image, emoji, emoji2, Picktogram, widthLine, verticalLine } from 'pages/generate/arrays';
 import TableDND from './Table/TableDND';
 import { ImageList, ImageListItem } from '@mui/material';
 import { CardContent } from '@mui/material';
@@ -10,8 +10,8 @@ const doCommand = (cmd) => {
   document.execCommand(cmd.cmd, true, val || '');
 };
 
-const DNDImageComponent=(props)=>{
-    const [chartBackgroundColor, setChartBackgroundColor] = useState('1px solid black');
+const DNDImageComponent = (props) => {
+  const [chartBackgroundColor, setChartBackgroundColor] = useState('1px solid black');
   const handleBtnClick = (item) => {
     doCommand(item);
   };
@@ -24,33 +24,35 @@ const DNDImageComponent=(props)=>{
       props.setCreateElement(command);
     });
   };
-    return (
-      <div style={{ marginRight: '40px',marginLeft:"16%" }}>
-        <div className="parent">
-          <div className="itemBoxCss">
-            <details>
-              <summary>이미지</summary>
-              <br />
-              {image.map((item,index) => {
-                return (
-                  <img
-                    key={index}
-                    src={require('../../assets/images/imageIcon.png')}
-                    style={{
-                      border: '1px solid lightgray',
-                      borderRadius: '15px',
-                      width: '100px',
-                      height: '100px',
-                      margin: 'auto auto',
-                    }}
-                    onClick={() => createCommand('IMAGE')}
-                  />
-                );
-              })}
-            </details>
-          </div>
+  return (
+    <div style={{ marginRight: '40px', marginLeft: '16%' }}>
+      <div className="parent">
+        <div className="itemBoxCss">
+          <details>
+            <summary>로컬 이미지 업로드</summary>
+            <br />
+            {image.map((item) => {
+              return (
+                <img
+                  src={require('../../assets/images/imageIcon.png')}
+                  style={{
+                    //   border: '1px solid lightgray',
+                    //   borderRadius: '15px',
+                    width: '100px',
+                    height: '100px',
+                    marginLeft:"11px"
+                  }}
+                  onClick={() => createCommand('IMAGE')}
+                />
+              );
+            })}
+          </details>
+        </div>
 
-          <div className="itemBoxCss">
+        <div className="itemBoxCss">
+          <details>
+            <summary>이모티콘</summary>
+            <br />
             <details>
               <summary>이모티콘</summary>
               <br />
@@ -117,10 +119,11 @@ const DNDImageComponent=(props)=>{
                 </ImageList>
               </details>
             </details>
-          </div>
+          </details>
         </div>
       </div>
-    );
-}
+    </div>
+  );
+};
 
 export default DNDImageComponent;

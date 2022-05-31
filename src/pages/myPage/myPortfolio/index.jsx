@@ -14,10 +14,8 @@ const MyPortfolio = () => {
   const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
 
   const changeUserPortfolio = (docId) => {
-    var result = userPortfolio.filter((data) => 
-      data.docId !== docId
-    )
-    setUserPortfolio(result);
+    setUserPortfolio(userPortfolio.filter((data) => data.docId !== docId));
+
     console.log(docId);
   };
 
@@ -25,29 +23,24 @@ const MyPortfolio = () => {
     async function fetchUserPortfolioData() {
       const datas = await getUserPortfolio(userId);
       await setUserPortfolio(datas);
-      console.log("datas:",datas);
     }
     fetchUserPortfolioData();
   }, []);
 
-
-  useEffect(()=>{
-    console.log(userPortfolio)
-  },[userPortfolio])
-
   if (userPortfolio.length === 0) {
     return (
-      <div style={{ fontSize: '40px', margin: '220px 300px' }}>
+      <div style={{ fontSize: '40px', margin: '220px 600px' }}>
         <img src={require('assets/images/not_found_icon.png')} style={{ width: '507px', height: '301px' }} />
         <br />
         <strong>찾으시는 포트폴리오가 없어요!</strong>
       </div>
     );
   }
+
   return (
     <>
       <Container>
-        <div style={{ width: '1600px', margin: '100px 0px 100px 180px', overflow: 'auto', display: 'flex' }}>
+        <div style={{ width: '1600px', margin: '100px 0px 100px 190px', overflow: 'auto', display: 'flex' }}>
           <Swiper
             slidesPerView={5}
             grid={{
@@ -60,19 +53,8 @@ const MyPortfolio = () => {
             modules={[Grid, Pagination]}
             className="mySwiper"
           >
-       {userPortfolio.map((data, index) => {
-         return(
+            {userPortfolio.map((data, index) => (
               <SwiperSlide>
-                <div
-                  key={index}
-                  onClick={async () => {
-                    console.log('Test',data.docId);
-                    await changeUserPortfolio(data.docId);
-                    // await deletePortfolio(data.docId);
-                  }}
-                >
-                  {data.docId}
-                </div>
                 <DeleteSelectCard
                   key={index}
                   data={data}
@@ -80,8 +62,7 @@ const MyPortfolio = () => {
                   changeUserPortfolio={changeUserPortfolio}
                 />
               </SwiperSlide>
-         )
-})}
+            ))}
           </Swiper>
         </div>
       </Container>

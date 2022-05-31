@@ -69,11 +69,7 @@ const Signup = () => {
     return chk;
   };
   const sign = async () => {
-    console.log(name);
-    console.log(password);
-    console.log(email);
     const validationResult = validation();
-    console.log(validationResult);
     if (validationResult) {
       await serverApi
         .post('/api/v1/member/new', {
@@ -114,6 +110,11 @@ const Signup = () => {
           onChange={(event) => {
             setName(event.target.value);
           }}
+          onKeyPress={(e)=>{
+            if(e.key==='Enter'){
+              sign();
+            }
+          }}
         />
         <div
           style={{
@@ -136,6 +137,11 @@ const Signup = () => {
           style={{ margin: '8px', width: '300px' }}
           onChange={(event) => {
             setEmail(event.target.value);
+          }}
+          onKeyPress={(e)=>{
+            if(e.key==='Enter'){
+              sign();
+            }
           }}
         />
         <div
@@ -162,6 +168,11 @@ const Signup = () => {
           onChange={(event) => {
             setPassword(event.target.value);
           }}
+          onKeyPress={(e)=>{
+            if(e.key==='Enter'){
+              sign();
+            }
+          }}
         />
         <div
           style={{
@@ -184,6 +195,12 @@ const Signup = () => {
           style={{ margin: '8px', width: '300px' }}
           onChange={(event) => {
             setUniversity(event.target.value);
+          }}
+          onKeyDown={(e)=>{
+            if(e.key==='Enter'){
+              
+              sign();
+            }
           }}
         />
         <div

@@ -134,28 +134,63 @@ const emoji2 = [
 const Picktogram = [
   { 
     cmd: 'insertImage',
-    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fphone.png?alt=media&token=2b88439d-07ae-447e-ba8c-6ba45eb50a91',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fsmile.png?alt=media&token=ac218a7a-5343-4781-b029-e9a37f24240f',
+    label:'smile',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fphone-call.png?alt=media&token=3c859a9e-350c-4f61-a57b-d7c27d564ad6',
     label:'전화',
   },
   { 
     cmd: 'insertImage',
-    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fgithub.png?alt=media&token=d157ea6d-1b09-4dfb-aa6b-7ed31bb5b9c3',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fgithub.png?alt=media&token=16ea438e-c3cf-4618-b921-60c61261e19f',
     label:'깃허브',
   },
   { 
     cmd: 'insertImage',
-    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Femail.png?alt=media&token=1eac9b7f-c7d1-41ed-a7f8-e3d304609c8b',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Femail.png?alt=media&token=4a3e77ca-89b8-4ea9-941f-93a7c1aa087e',
     label:'이메일',
   },
   { 
     cmd: 'insertImage',
-    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fhome.png?alt=media&token=960dbd31-099d-4763-a024-20dce2a6e3b9',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Faddress.png?alt=media&token=8d237e9b-4367-4343-98c8-eb8367f29e86',
     label:'주소',
   },
   { 
     cmd: 'insertImage',
-    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fschool.png?alt=media&token=12663f1c-3570-4bbb-aac3-f5c1edc90e93',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fschool.png?alt=media&token=ca3f63a8-8e89-4dcd-a345-f2d3def625fc',
     label:'학교',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fcomputer.png?alt=media&token=510e4a74-6e34-4cfe-9e82-e865856509b3',
+    label:'pc',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fsmartphone-call.png?alt=media&token=b6d0fd41-0c45-4528-9d17-fe8bbdaaa3ad',
+    label:'mobile',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fhtml.png?alt=media&token=983ea5fc-1994-4157-b4ed-33a848ccc855',
+    label:'html',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fcss-3.png?alt=media&token=bd925d38-ef91-4d32-9b0e-e2bc4490f051',
+    label:'css3',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fjs.png?alt=media&token=a26ccfd4-4097-48b8-8e6a-d2664db4721b',
+    label:'js',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fphysics.png?alt=media&token=7006535b-f6ec-481e-82ce-72609080de7a',
+    label:'react',
   },
 ];
 
@@ -169,6 +204,17 @@ const widthLine = [
     cmd: 'insertImage',
     val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fline_weight.png?alt=media&token=9f841b0b-d376-4639-9f2f-212d4c37da3d',
     label:'7px line',
+  },
+
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fblack.png?alt=media&token=e8c3ab42-1d54-4df2-b5f5-ce832b70dec9',
+    label:'black line',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fred.png?alt=media&token=73a0bc11-a464-484c-9b01-13411ace33fa',
+    label:'red line',
   },
  
 ];
@@ -184,6 +230,16 @@ const verticalLine=[
     cmd: 'insertImage',
     val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Flinesero_7.png?alt=media&token=bb89927b-6122-4647-9a71-0aed7a6ff1f3',
     label:'sero 7px line',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fblack_sero.png?alt=media&token=89c63ef0-83bd-4d3d-ba44-c55f8f2e2f00',
+    label:'blakc sero',
+  },
+  { 
+    cmd: 'insertImage',
+    val:'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fred_sero.png?alt=media&token=b124bd10-f58f-47dc-8d19-b6d418474618',
+    label:'red sero',
   },
 ]
 export {image, emoji, emoji2, Picktogram, widthLine,verticalLine};
