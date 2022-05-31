@@ -119,11 +119,11 @@ const Home = () => {
         <>
           <br />
           <div className="pofolBtnHeader">
-            <button className="pofolBtn">
               <NavLink className="pofolBtn" to="/select" style={{ textDecoration: 'none', color: 'white' }}>
+              <button className="pofolBtn">
                 포트폴리오 만들기
+                </button>
               </NavLink>
-            </button>
           </div>
         </>
       )}

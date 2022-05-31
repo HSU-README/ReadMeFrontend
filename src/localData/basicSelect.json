@@ -25,7 +25,7 @@
             "textContent": "<p><strong style=\"font-size: 32px;\">[ 프로젝트 제목 ]</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -39,7 +39,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -53,7 +53,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -67,7 +67,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -81,7 +81,7 @@
             "textContent": "<p><span style=\"color: rgb(187, 187, 187);\">&lt;프로젝트 대표 이미지 소개&gt;</span></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -95,7 +95,7 @@
             "textContent": "<p><strong style=\"font-size: 14px;\">요약</strong></p><ul><li><span style=\"font-size: 14px;\"> 프로젝트 내용 요약</span></li></ul>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -109,7 +109,7 @@
             "textContent": "<p><strong style=\"font-size: 14px;\">역할</strong></p><ul><li><span style=\"font-size: 14px;\">프로젝트 전체 인원</span></li><li><span style=\"font-size: 14px;\">나의 역할과 기여도</span></li></ul>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -123,7 +123,7 @@
             "textContent": "<p><strong style=\"font-size: 14px;\">성과</strong></p><ul><li><span style=\"font-size: 14px;\">성과는 구체적이고 정량적으로 표현</span></li></ul>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -137,7 +137,7 @@
             "textContent": "<p><strong style=\"font-size: 14px;\">시기</strong></p><ul><li><span style=\"font-size: 14px;\">프로젝트 진행 기간 (Ex. 2022.03 ~</span></li></ul>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -151,7 +151,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           }
         ]
@@ -183,7 +183,7 @@
             "textContent": "<p class=\"ql-align-center\"><strong style=\"font-size: 36px;\">기본적인 이력서</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -197,7 +197,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -211,7 +211,7 @@
             "textContent": "<p><strong style=\"font-size: 20px;\">학력</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -225,7 +225,7 @@
             "textContent": "<p><strong style=\"font-size: 20px;\">외부 활동 (인턴)</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -239,7 +239,7 @@
             "textContent": "<p><strong style=\"font-size: 20px;\">자격증</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -253,7 +253,7 @@
             "textContent": "<p><strong style=\"font-size: 20px;\">수상 내역</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -267,7 +267,7 @@
             "textContent": "<p><span style=\"font-size: 14px;\">한성대학교 컴퓨터공학부 빅데이터 트랙 </span><strong style=\"font-size: 14px;\"><em> </em></strong>\t\t\t\t\t<strong style=\"font-size: 12px;\"><em>2019 ~ 2023</em></strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -281,7 +281,7 @@
             "textContent": "<p><span style=\"font-size: 14px;\">정보처리기사 </span> \t\t\t\t<strong style=\"font-size: 12px;\"><em>한국산업인력공단</em></strong></p><p><span style=\"font-size: 14px;\">TOPCIT </span>\t\t\t\t\t\t\t<strong style=\"font-size: 12px;\"><em>정보통신기획평가원</em></strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -295,7 +295,7 @@
             "textContent": "<p><span style=\"font-size: 14px;\">멋쟁이사자처럼 대학 10기</span> <strong style=\"font-size: 12px;\"><em>2022.03 ~ 2022.12</em></strong></p><p><span style=\"font-size: 14px;\">소프트웨어마에스트로 13기</span><strong style=\"font-size: 12px;\"><em> </em></strong> <strong style=\"font-size: 12px;\"><em>2022.04 ~ 2022.12</em></strong></p><p><span style=\"font-size: 14px;\">차세대 보안리더 양성프로그램 11기</span><strong style=\"font-size: 12px;\"><em> </em></strong> <strong style=\"font-size: 12px;\"><em>2022.07 ~ 2023.03</em></strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -309,7 +309,7 @@
             "textContent": "<p><span style=\"font-size: 14px;\">엄청 멋진 정부 대회 대상</span> <strong style=\"font-size: 12px;\"><em>2022.07</em></strong></p><p><span style=\"font-size: 14px;\">한성대학교 공학경진대회 대상</span><strong style=\"font-size: 12px;\"><em> </em></strong> <strong style=\"font-size: 12px;\"><em>2022.08</em></strong></p><p><span style=\"font-size: 14px;\">한성대학교 프로그래밍 경진대회 1등</span><strong style=\"font-size: 12px;\"><em> 2022.10</em></strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -323,7 +323,7 @@
             "textContent": "<p><strong style=\"font-size: 14px;\">이름 : 이한성</strong></p><p><br></p><p><strong style=\"font-size: 14px;\">생년월일 :  2022.05.12</strong></p><p><br></p><p><strong style=\"font-size: 14px;\">전화번호 : 010-1234-5678</strong></p><p><strong style=\"font-size: 14px;\"> </strong></p><p><strong style=\"font-size: 14px;\">주소 : 서울시 성북구 한성대학교</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -337,7 +337,7 @@
             "textContent": "<p><strong style=\"font-size: 14px;\">성별 : 남</strong></p><p><br></p><p><strong style=\"font-size: 14px;\">이메일 : best@hansung.ac.kr</strong></p><p><br></p><p><strong style=\"font-size: 14px;\">학점 : 4.5 / 4.5</strong></p><p><br></p><p><strong style=\"font-size: 14px;\">병역 사항 : 병역 필</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           }
         ]
@@ -369,7 +369,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -383,7 +383,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -397,7 +397,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -411,7 +411,7 @@
             "textContent": "<p><strong style=\"font-size: 32px;\">[ 프로젝트 명 기재 ]</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -425,7 +425,7 @@
             "textContent": "<p><strong style=\"font-size: 20px; font-family: Tahoma;\">요약</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -439,7 +439,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -453,7 +453,7 @@
             "textContent": "<p><span style=\"color: rgb(136, 136, 136);\">프로젝트 이미지 설명</span></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -467,7 +467,7 @@
             "textContent": "<p><span style=\"font-size: 12px;\">프로젝트를 요약 설명해주세요.</span></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -481,7 +481,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -495,7 +495,7 @@
             "textContent": "<p><strong style=\"font-family: Tahoma; font-size: 20px;\">역할</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -509,7 +509,7 @@
             "textContent": "<ol><li>프로젝트 인원 </li><li>나의 역할</li><li>기여도 ( 25 % / 100 % )</li></ol>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -523,7 +523,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -537,7 +537,7 @@
             "textContent": "<p><strong style=\"font-family: Tahoma; font-size: 20px;\">성과</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -551,7 +551,7 @@
             "textContent": "<p>성과는 구체적이고 정량적으로 표현</p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -565,7 +565,7 @@
             "textContent": "<p><strong style=\"font-family: Tahoma; font-size: 20px;\">수행 기간</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -579,7 +579,7 @@
             "textContent": "<p>프로젝트 진행 기간 (Ex 2022.03 ~</p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -593,7 +593,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           }
         ]
@@ -610,22 +610,203 @@
         "tags": [{ "name": "#심플" }, { "name": "#모던" }],
         "major": null,
         "likeCnt": 0,
-        "docUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/picktogramPofol.png?alt=media&token=12bdf7f3-c4ec-49c6-a72c-b86641d7c36f",
+        "docUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-05-30%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%208.02.07.png?alt=media&token=0ac5045c-3c47-4826-9c94-d37537d74d33",
         "designer": "Propofol",
         "designerUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/logo.jpg?alt=media&token=9fc3aa2d-3e21-4f0f-b182-35e0d94c48d5",
         "components": [
           {
-            "type": "icon",
-            "x": 90.0,
-            "y": 55.0,
-            "height": 150,
-            "width": 150,
+            "type": "table",
+            "x": 67.0,
+            "y": 31.0,
+            "height": 181,
+            "width": 167,
             "imgUrl": null,
-            "iconUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2F%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B0%201.png?alt=media&token=713113eb-fef8-4d71-b52f-40d2b686ef88",
+            "iconUrl": null,
             "textContent": null,
-            "tableCol": 0,
-            "tableRow": 0,
-            "tableContent": null,
+            "tableCol": 1,
+            "tableRow": 1,
+            "tableContents": [
+              {
+                "row": 0,
+                "column": 0,
+                "content": ""
+              },
+              {
+                "row": 0,
+                "column": 1,
+                "content": ""
+              },
+              {
+                "row": 0,
+                "column": 2,
+                "content": ""
+              },
+              {
+                "row": 0,
+                "column": 3,
+                "content": ""
+              },
+              {
+                "row": 0,
+                "column": 4,
+                "content": ""
+              },
+              {
+                "row": 0,
+                "column": 5,
+                "content": ""
+              },
+              {
+                "row": 1,
+                "column": 0,
+                "content": ""
+              },
+              {
+                "row": 1,
+                "column": 1,
+                "content": ""
+              },
+              {
+                "row": 1,
+                "column": 2,
+                "content": ""
+              },
+              {
+                "row": 1,
+                "column": 3,
+                "content": ""
+              },
+              {
+                "row": 1,
+                "column": 4,
+                "content": ""
+              },
+              {
+                "row": 1,
+                "column": 5,
+                "content": ""
+              },
+              {
+                "row": 2,
+                "column": 0,
+                "content": ""
+              },
+              {
+                "row": 2,
+                "column": 1,
+                "content": ""
+              },
+              {
+                "row": 2,
+                "column": 2,
+                "content": ""
+              },
+              {
+                "row": 2,
+                "column": 3,
+                "content": ""
+              },
+              {
+                "row": 2,
+                "column": 4,
+                "content": ""
+              },
+              {
+                "row": 2,
+                "column": 5,
+                "content": ""
+              },
+              {
+                "row": 3,
+                "column": 0,
+                "content": ""
+              },
+              {
+                "row": 3,
+                "column": 1,
+                "content": ""
+              },
+              {
+                "row": 3,
+                "column": 2,
+                "content": ""
+              },
+              {
+                "row": 3,
+                "column": 3,
+                "content": ""
+              },
+              {
+                "row": 3,
+                "column": 4,
+                "content": ""
+              },
+              {
+                "row": 3,
+                "column": 5,
+                "content": ""
+              },
+              {
+                "row": 4,
+                "column": 0,
+                "content": ""
+              },
+              {
+                "row": 4,
+                "column": 1,
+                "content": ""
+              },
+              {
+                "row": 4,
+                "column": 2,
+                "content": ""
+              },
+              {
+                "row": 4,
+                "column": 3,
+                "content": ""
+              },
+              {
+                "row": 4,
+                "column": 4,
+                "content": ""
+              },
+              {
+                "row": 4,
+                "column": 5,
+                "content": ""
+              },
+              {
+                "row": 5,
+                "column": 0,
+                "content": ""
+              },
+              {
+                "row": 5,
+                "column": 1,
+                "content": ""
+              },
+              {
+                "row": 5,
+                "column": 2,
+                "content": ""
+              },
+              {
+                "row": 5,
+                "column": 3,
+                "content": ""
+              },
+              {
+                "row": 5,
+                "column": 4,
+                "content": ""
+              },
+              {
+                "row": 5,
+                "column": 5,
+                "content": ""
+              }
+            ],
             "zindex": 0
           },
           {
@@ -639,161 +820,189 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
-            "zindex": 0
-          },
-          {
-            "type": "text",
-            "x": 227.0,
-            "y": 62.0,
-            "height": 140,
-            "width": 531,
-            "imgUrl": null,
-            "iconUrl": null,
-            "textContent": "<p><span style=\"font-size: 28px;\">세상을 바꾸는 소프트웨어를 만들고 싶은</span></p><p><br></p><p><span style=\"font-size: 28px;\">개발자 </span><strong style=\"font-size: 36px; color: rgb(0, 102, 204);\">상상부기</strong><span style=\"font-size: 28px;\">입니다.</span></p>",
-            "tableCol": 0,
-            "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
             "type": "icon",
-            "x": 91.0,
-            "y": 421.0,
-            "height": 50,
-            "width": 100,
+            "x": 94.0,
+            "y": 35.0,
+            "height": 64,
+            "width": 64,
+            "imgUrl": null,
+            "iconUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2F%EC%83%81%EC%83%81%EB%B6%80%EA%B8%B0%201.png?alt=media&token=713113eb-fef8-4d71-b52f-40d2b686ef88",
+            "textContent": null,
+            "tableCol": 0,
+            "tableRow": 0,
+            "tableContents": null,
+            "zindex": 0
+          },
+          {
+            "type": "text",
+            "x": 281.0,
+            "y": 62.0,
+            "height": 121,
+            "width": 391,
+            "imgUrl": null,
+            "iconUrl": null,
+            "textContent": "<p><span style=\"font-size: 32px;\">세상을 바꾸는 개발자</span></p><p><strong style=\"font-size: 40px; color: rgb(0, 102, 204);\">상상부기</strong><span style=\"font-size: 32px;\">입니다.</span></p>",
+            "tableCol": 0,
+            "tableRow": 0,
+            "tableContents": null,
+            "zindex": 0
+          },
+          {
+            "type": "icon",
+            "x": 1.0,
+            "y": 236.0,
+            "height": 64,
+            "width": 64,
+            "imgUrl": null,
+            "iconUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Shape%2Fred.png?alt=media&token=73a0bc11-a464-484c-9b01-13411ace33fa",
+            "textContent": null,
+            "tableCol": 0,
+            "tableRow": 0,
+            "tableContents": null,
+            "zindex": 0
+          },
+          {
+            "type": "icon",
+            "x": 73.0,
+            "y": 476.0,
+            "height": 64,
+            "width": 64,
             "imgUrl": null,
             "iconUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Femail.png?alt=media&token=1eac9b7f-c7d1-41ed-a7f8-e3d304609c8b",
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
             "type": "icon",
-            "x": 89.0,
-            "y": 544.0,
-            "height": 50,
-            "width": 100,
-            "imgUrl": null,
-            "iconUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fhome.png?alt=media&token=960dbd31-099d-4763-a024-20dce2a6e3b9",
-            "textContent": null,
-            "tableCol": 0,
-            "tableRow": 0,
-            "tableContent": null,
-            "zindex": 0
-          },
-          {
-            "type": "icon",
-            "x": 85.0,
-            "y": 686.0,
-            "height": 50,
-            "width": 100,
+            "x": 67.0,
+            "y": 743.0,
+            "height": 64,
+            "width": 64,
             "imgUrl": null,
             "iconUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fschool.png?alt=media&token=12663f1c-3570-4bbb-aac3-f5c1edc90e93",
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
             "type": "icon",
-            "x": 87.0,
-            "y": 813.0,
-            "height": 50,
-            "width": 100,
+            "x": 68.0,
+            "y": 873.0,
+            "height": 64,
+            "width": 64,
             "imgUrl": null,
             "iconUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fgithub.png?alt=media&token=d157ea6d-1b09-4dfb-aa6b-7ed31bb5b9c3",
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
             "type": "text",
-            "x": 178.0,
-            "y": 296.0,
+            "x": 183.0,
+            "y": 350.0,
             "height": 50,
-            "width": 300,
+            "width": 185,
             "imgUrl": null,
             "iconUrl": null,
-            "textContent": "<p><strong style=\"font-size: 24px;\">010-1234-5678</strong></p>",
+            "textContent": "<p><strong style=\"font-size: 24px;\">010-9922-7792</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
             "type": "text",
-            "x": 176.0,
-            "y": 435.0,
+            "x": 187.0,
+            "y": 494.0,
             "height": 50,
-            "width": 300,
+            "width": 150,
             "imgUrl": null,
             "iconUrl": null,
-            "textContent": "<p><strong style=\"font-size: 16px;\">testaccount@hansung.ac.kr</strong></p>",
+            "textContent": "<p><span style=\"font-size: 20px;\">test@test.com</span></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
             "type": "text",
-            "x": 173.0,
-            "y": 556.0,
+            "x": 185.0,
+            "y": 626.0,
             "height": 50,
-            "width": 300,
+            "width": 317,
             "imgUrl": null,
             "iconUrl": null,
-            "textContent": "<p><strong style=\"font-size: 16px;\">서울시 성북구 한성대학교</strong></p>",
+            "textContent": "<p><span style=\"font-size: 20px;\">서울특별시 성북구 한성대학교</span></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
             "type": "text",
-            "x": 178.0,
-            "y": 697.0,
+            "x": 187.0,
+            "y": 758.0,
             "height": 50,
-            "width": 335,
+            "width": 345,
             "imgUrl": null,
             "iconUrl": null,
-            "textContent": "<p><strong style=\"font-size: 16px;\">한성대학교 컴퓨터공학부 웹 공학 </strong><strong style=\"font-size: 12px;\">(졸)</strong></p>",
+            "textContent": "<p><span style=\"font-size: 20px;\">한성대학교 컴퓨터공학부 웹 공학 </span><span style=\"font-size: 14px;\">(졸)</span></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
             "type": "text",
-            "x": 178.0,
-            "y": 826.0,
-            "height": 50,
-            "width": 260,
-            "imgUrl": null,
-            "iconUrl": null,
-            "textContent": "<p><strong style=\"font-size: 16px;\">https://github.com/HSU-README</strong></p>",
-            "tableCol": 0,
-            "tableRow": 0,
-            "tableContent": null,
-            "zindex": 0
-          },
-          {
-            "type": "text",
-            "x": 661.0,
-            "y": 1020.0,
+            "x": 191.0,
+            "y": 894.0,
             "height": 50,
             "width": 100,
             "imgUrl": null,
             "iconUrl": null,
-            "textContent": "<p>서명 (인)</p>",
+            "textContent": "<p><span style=\"font-size: 16px;\">github.com</span></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
+            "zindex": 0
+          },
+          {
+            "type": "icon",
+            "x": 72.0,
+            "y": 338.0,
+            "height": 64,
+            "width": 64,
+            "imgUrl": null,
+            "iconUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Fphone-call.png?alt=media&token=3c859a9e-350c-4f61-a57b-d7c27d564ad6",
+            "textContent": null,
+            "tableCol": 0,
+            "tableRow": 0,
+            "tableContents": null,
+            "zindex": 0
+          },
+          {
+            "type": "icon",
+            "x": 69.0,
+            "y": 612.0,
+            "height": 64,
+            "width": 64,
+            "imgUrl": null,
+            "iconUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Imoji%2Faddress.png?alt=media&token=8d237e9b-4367-4343-98c8-eb8367f29e86",
+            "textContent": null,
+            "tableCol": 0,
+            "tableRow": 0,
+            "tableContents": null,
             "zindex": 0
           }
         ]
@@ -825,7 +1034,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -839,7 +1048,7 @@
             "textContent": "<p><strong style=\"font-size: 24px;\">팀명</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -853,7 +1062,7 @@
             "textContent": "<ul><li><strong style=\"font-size: 16px; color: rgb(230, 0, 0);\">기대효과</strong></li></ul>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -867,7 +1076,7 @@
             "textContent": "<ul><li><strong style=\"font-size: 16px; color: rgb(230, 0, 0);\">개발도구</strong></li></ul>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -881,7 +1090,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -895,7 +1104,7 @@
             "textContent": "<p><strong style=\"font-size: 24px;\">작품 한 줄 소개를 작성해보세요.</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -909,7 +1118,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -923,7 +1132,7 @@
             "textContent": "<p><span style=\"font-size: 12px;\">지도교수 : 황누구 </span></p><p><span style=\"font-size: 12px;\">박누구 : 팀장이 한 일</span></p><p><span style=\"font-size: 12px;\">유누구 : 팀원이 한 일</span></p><p><span style=\"font-size: 12px;\">이누구 : 팀원이 한 일</span></p><p><span style=\"font-size: 12px;\">이누구 : 팀원이 한 일</span></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -937,7 +1146,7 @@
             "textContent": "<ul><li><strong style=\"font-size: 18px; color: rgb(230, 0, 0);\">작품개요</strong></li></ul><p><br></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -951,7 +1160,7 @@
             "textContent": "<p><span style=\"font-size: 14px;\">작품에 대한 개요를 작성하는 곳 입니다.</span></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -965,7 +1174,7 @@
             "textContent": null,
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -979,7 +1188,7 @@
             "textContent": "<p><span style=\"font-size: 10px;\">&lt;메인페이지 이미지를 넣어보세요!&gt;</span></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -993,7 +1202,7 @@
             "textContent": "<ul><li><strong style=\"color: rgb(230, 0, 0); font-size: 18px;\">서비스 구조도</strong></li></ul><p><br></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           },
           {
@@ -1007,7 +1216,7 @@
             "textContent": "<ul><li><strong style=\"font-size: 18px; color: rgb(230, 0, 0);\">작품 설명</strong></li></ul><p><br></p>",
             "tableCol": 0,
             "tableRow": 0,
-            "tableContent": null,
+            "tableContents": null,
             "zindex": 0
           }
         ]

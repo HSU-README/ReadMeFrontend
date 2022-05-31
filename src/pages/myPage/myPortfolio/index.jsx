@@ -8,24 +8,11 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import DeleteSelectCard from 'components/deleteSelectCard';
+import { userPortfolioState } from 'recoil/atoms';
+import { useRecoilState } from 'recoil';
 
 const MyPortfolio = () => {
-  const [userPortfolio, setUserPortfolio] = useState([]);
-  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
-
-  const changeUserPortfolio = (docId) => {
-    setUserPortfolio(userPortfolio.filter((data) => data.docId !== docId));
-
-    console.log(docId);
-  };
-
-  useEffect(() => {
-    async function fetchUserPortfolioData() {
-      const datas = await getUserPortfolio(userId);
-      await setUserPortfolio(datas);
-    }
-    fetchUserPortfolioData();
-  }, []);
+  const [userPortfolio, setUserPortfolio] = useRecoilState(userPortfolioState);
 
   if (userPortfolio.length === 0) {
     return (
@@ -55,12 +42,7 @@ const MyPortfolio = () => {
           >
             {userPortfolio.map((data, index) => (
               <SwiperSlide>
-                <DeleteSelectCard
-                  key={index}
-                  data={data}
-                  length={userPortfolio.length}
-                  changeUserPortfolio={changeUserPortfolio}
-                />
+                <DeleteSelectCard key={index} data={data} length={userPortfolio.length} />
               </SwiperSlide>
             ))}
           </Swiper>
