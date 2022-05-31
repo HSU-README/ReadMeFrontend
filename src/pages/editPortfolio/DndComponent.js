@@ -50,21 +50,24 @@ const DndComponent = (props) => {
         <div className="itemBoxCss">
           <details>
             <summary>구분선</summary>
-          <details>
-            <summary className="menu1">가로 구분선</summary>
-            <br />
-            <ImageList sx={{ width: 280, height: 50,overflow:"hidden" }} cols={2}  >
-              {widthLine.map((item, index) => {
-                return (
-                  <ImageListItem key={`${item.label}+${index}`} >
-                   <div key={item.label}>
-                      <img
-                        src={item.val}
-                        key={index}
-                        onClick={() => {
-                          createCommand(`IMOGE ${item.val}`);
-                        }}
-                      />
+            <details>
+              <summary className="menu1">가로 구분선</summary>
+              <br />
+              <ImageList sx={{ width: 280, height: 100, overflow: 'hidden' }} cols={2}>
+                {widthLine.map((item, index) => {
+                  return (
+                    <ImageListItem key={item.label}>
+                      <div>
+                        <img
+                          style={{
+                            width: '100%',
+                            height: '30px',
+                          }}
+                          src={item.val}
+                          onClick={() => {
+                            createCommand(`IMOGE ${item.val}`);
+                          }}
+                        />
                       </div>
                     </ImageListItem>
                   );
@@ -72,21 +75,20 @@ const DndComponent = (props) => {
               </ImageList>
             </details>
             <details>
-            <summary className="menu2">세로 구분선</summary>
-            <br />
-            <ImageList sx={{ width: 280, height: 100,overflow:"hidden" }} cols={2} rowHeight={50}>
-              {verticalLine.map((item, index) => {
-                return (
-                  <ImageListItem key={item.label} >
-                   <div key={`${item.label}+${index}`}  >
-                      <img
-                        src={item.val}
-                        key={index}
-                        style={{objectFit:"fill",height:"110px"}}
-                        onClick={() => {
-                          createCommand(`IMOGE ${item.val}`);
-                        }}
-                      />
+              <summary className="menu2">세로 구분선</summary>
+              <br />
+              <ImageList sx={{ width: 280, height: 100, overflow: 'hidden' }} cols={4} rowHeight={50}>
+                {verticalLine.map((item, index) => {
+                  return (
+                    <ImageListItem key={item.label}>
+                      <div>
+                        <img
+                          src={item.val}
+                          style={{ width: '50%', objectFit: 'fill', height: '110px' }}
+                          onClick={() => {
+                            createCommand(`IMOGE ${item.val}`);
+                          }}
+                        />
                       </div>
                     </ImageListItem>
                   );
@@ -99,7 +101,7 @@ const DndComponent = (props) => {
           <details>
             <summary>표</summary>
             <br />
-            <div style={{ border: '1px solid lightgray',borderRadius:"10px", alignContent: 'center' }}>
+            <div style={{ border: '1px solid black', alignContent: 'center' }}>
               <TableDND setCreateElement={props.setCreateElement} />
             </div>
           </details>
