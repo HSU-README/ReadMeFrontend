@@ -48,6 +48,7 @@ export const Container = styled.div`
   .hashtag-container {
     display: flex;
     margin-top: 5px;
+    height: 21px;
   }
 
   .bottom-info-container {
