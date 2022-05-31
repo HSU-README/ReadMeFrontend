@@ -130,10 +130,13 @@ export default function Toolbar({
   const captureToFirebase = async () => {
     const storageRef = ref(storage, imageName.name);
     //upload the file
-    const uploadTask = await uploadBytesResumable(storageRef, imageName);
-    const url = await getDownloadURL(uploadTask.ref);
-
-    return url;
+    if (imageName !== '') {
+      const uploadTask = await uploadBytesResumable(storageRef, imageName);
+      const url = await getDownloadURL(uploadTask.ref);
+      return url;
+    } else {
+      return 'https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/thumnail.png?alt=media&token=ce69dedd-6098-44aa-aba5-202383541bc2';
+    }
   };
 
   let navigate = useNavigate();
