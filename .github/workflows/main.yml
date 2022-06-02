@@ -13,6 +13,9 @@ jobs:
       - name: Deploy react app to github pages
         uses: tanwanimohit/deploy-react-to-ghpages@v1.0.1
 
+      - name: Install Dependence
+        run: yarn install
+
       - name: Build app
         run: yarn build
         env:
