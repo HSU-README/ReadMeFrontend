@@ -13,7 +13,6 @@ import Footer from 'components/footer';
 
 const AllPortfolio = (props) => {
   const [userLikePortfolio, setUserLikePortfolio] = useState([]);
-  const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
 
   useEffect(() => {
     async function fetchUserLikePortfolioData() {

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Header.css';
-import logo from 'assets/images/logo.jpg';
 import { InputAdornment } from '@mui/material';
 import { TextField } from '@material-ui/core';
 import Search from '@mui/icons-material/Search';

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Slider from 'react-slick';
 import banner1 from 'assets/images/banner1.png';
 import banner2 from 'assets/images/banner2.png';
 import banner3 from 'assets/images/banner3.png';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 const Banner = () => {
   const settings = {
     dots: true,

@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getSearchPortfolio } from 'apis/portfolioApi';
 
 import Header from '../home/header/Header.js';
-import colors from 'styles/colors.js';
 import Slider from 'react-slick';
 import 'swiper/css';
 import 'swiper/css/grid';
@@ -76,7 +75,7 @@ const SearchPage = () => {
       <hr style={{ backgroundColor: '#F57842' }} />
 
       {
-        <div style={{ marginTop: '120px', marginBottom: '160px' }}>
+        <div style={{ marginTop: '120px', marginBottom: '350px' }}>
           {searchPortfolio.length !== undefined ? (
             searchPortfolio.length !== 0 ? (
               <Slider {...settings} className="slick">

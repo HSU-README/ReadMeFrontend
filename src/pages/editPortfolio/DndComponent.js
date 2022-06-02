@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import 'pages/generate/style.css';
-import { image, emoji, emoji2, Picktogram, widthLine, verticalLine } from 'pages/generate/arrays';
+import { widthLine, verticalLine } from 'pages/generate/arrays';
 import TableDND from './Table/TableDND';
 import { ImageList, ImageListItem } from '@mui/material';
-import { CardContent } from '@mui/material';
+
 const doCommand = (cmd) => {
   const val = typeof cmd.val !== 'undefined' ? prompt('Value for ' + cmd.cmd + '?', cmd.val) : '';
 

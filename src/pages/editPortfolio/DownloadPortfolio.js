@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import EditPortfolio from './EditPortfolio';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import ExportPdf from './DownloadPdf.js';
 const DownloadPortfolio = () => {
-  const [title, setTitle] = useState('');
   return (
     <div>
       <ExportPdf />
