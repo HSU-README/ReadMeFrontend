@@ -1,8 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getSearchPortfolio } from 'apis/portfolioApi';
 
 import Header from '../home/header/Header.js';
-import colors from 'styles/colors.js';
 import Slider from 'react-slick';
 import 'swiper/css';
 import 'swiper/css/grid';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container } from 'pages/selectPage/styles';
 
 import { Swiper, SwiperSlide } from 'swiper/react';

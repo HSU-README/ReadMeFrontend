@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container } from 'pages/myPage/myPortfolio/styles';
-import { getUserPortfolio } from 'apis/portfolioApi';
-import { deletePortfolio } from 'apis/portfolioApi';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Grid, Pagination } from 'swiper';
 import 'swiper/css';

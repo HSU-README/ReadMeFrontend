@@ -9,7 +9,7 @@ import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
 
-const PickPofol = (props) => {
+const PickPofol = () => {
   const [userLikePortfolio, setUserLikePortfolio] = useState([]);
   const userId = JSON.parse(localStorage.getItem('readme_userInfo')).id;
 

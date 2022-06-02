@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import Header from 'components/header';
 import Footer from 'components/footer/index.jsx';
 import { TextField } from '@mui/material';
-import { ToastContainer, toast } from 'react-toastify';
 import { ToastError, ToastSuccess } from '../../hooks/toastHook';
 import Logo from 'assets/images/logo.jpg';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,13 +12,10 @@ import LineAndDepartment from './LineAndDepartment';
 import { Container, SignupContainer, Button } from 'pages/signup/styles';
 const Signup = () => {
   const [name, setName] = useState('');
-  const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const [nickname, setNickname] = useState('');
   const [email, setEmail] = useState('');
   const [university, setUniversity] = useState('');
   const [major, setMajor] = useState('');
-  const [loginSuccess, setLoginSuccess] = useState(true);
   const navigate = useNavigate();
   const [nameValidation, setNameValidation] = useState('hidden');
   const [emailValidation, setEmailValidation] = useState('hidden');
@@ -110,8 +106,8 @@ const Signup = () => {
           onChange={(event) => {
             setName(event.target.value);
           }}
-          onKeyPress={(e)=>{
-            if(e.key==='Enter'){
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
               sign();
             }
           }}
@@ -138,8 +134,8 @@ const Signup = () => {
           onChange={(event) => {
             setEmail(event.target.value);
           }}
-          onKeyPress={(e)=>{
-            if(e.key==='Enter'){
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
               sign();
             }
           }}
@@ -168,8 +164,8 @@ const Signup = () => {
           onChange={(event) => {
             setPassword(event.target.value);
           }}
-          onKeyPress={(e)=>{
-            if(e.key==='Enter'){
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') {
               sign();
             }
           }}
@@ -196,9 +192,8 @@ const Signup = () => {
           onChange={(event) => {
             setUniversity(event.target.value);
           }}
-          onKeyDown={(e)=>{
-            if(e.key==='Enter'){
-              
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
               sign();
             }
           }}
