@@ -34,7 +34,7 @@ const ChartElement = (props: ICanvasComponent) => {
   }, []);
   useEffect(()=>{
     if (props.dimension.width.indexOf('px') !== -1 && props.dimension.height.indexOf('px') !== -1) {
-
+      
       setWidth(Number(props.dimension.width.slice(0, -2)) / chart.col);
       setHeight(Number(props.dimension.height.slice(0, -2)) / chart.row);
       if (chart.tableContent) {

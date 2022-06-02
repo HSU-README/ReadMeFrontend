@@ -204,7 +204,7 @@ export default function Toolbar({
             }}
             src={require('../../../assets/images/import.png')}
             alt="저장"
-            style={{ marginRight: '20px', width: '35px', height: '35px', cursor: 'pointer' }}
+            style={{ marginRight: '20px', width: '40px', height: '40px', cursor: 'pointer' }}
           />
         ) : (
           <img
@@ -213,7 +213,7 @@ export default function Toolbar({
             }}
             src={require('../../../assets/images/saveIcon.png')}
             alt="저장"
-            style={{ marginRight: '20px', width: '30px', height: '30px', cursor: 'pointer' }}
+            style={{ marginRight: '20px', width: '35px', height: '35px', cursor: 'pointer' }}
           />
         )}
 
@@ -306,6 +306,7 @@ export default function Toolbar({
                   </Button>
                 );
               })}
+
               <TextField
                 id="outlined-basic"
                 label="태그"
@@ -387,7 +388,7 @@ export default function Toolbar({
             <img
               src={require('../../../assets/images/exportPdf.png')}
               alt="출력"
-              style={{ width: '30px', height: '30px', cursor: 'pointer' }}
+              style={{ width: '35px', height: '35px', cursor: 'pointer' }}
             ></img>
           )}
           content={() => canvasBox.current}
@@ -397,13 +398,23 @@ export default function Toolbar({
         <Input
           value={title}
           placeholder="제목을 입력해주세요."
-          style={{ backgroundColor: 'white', padding: '4px', paddingLeft: '10px' }}
+          style={{
+            backgroundColor: 'white',
+            border: '1px solid black',
+            borderRadius: '5px',
+            padding: '4px',
+            paddingLeft: '10px',
+          }}
           onChange={(e) => {
-            if (title.length <= 13) {
-              setTitle(e.target.value);
-            } else {
-              alert('제목은 최대 13글자까지 입력 가능합니다.');
-              setTitle(title.substr(0, 12));
+            if (isEditable) {
+              if (title.length <= 13) {
+                setTitle(e.target.value);
+              } else {
+                alert('제목은 최대 13글자까지 입력 가능합니다.');
+                setTitle(title.substr(0, 12));
+              }
+            }else{
+              alert('미리보기에서는 변경할 수 없습니다.')
             }
           }}
         />
@@ -414,7 +425,7 @@ export default function Toolbar({
         <>
           <img
             alt="unlike"
-            style={{ width: '30px', height: '30px', marginLeft: '70px' }}
+            style={{ width: '35px', height: '35px', marginLeft: '100px' }}
             src={require('../../../assets/images/likeon.png')}
             ref={tumbsImageRef}
             onClick={() => {
@@ -427,7 +438,7 @@ export default function Toolbar({
         <>
           <img
             alt="like"
-            style={{ width: '30px', height: '30px', marginLeft: '70px' }}
+            style={{ width: '35px', height: '35px', marginLeft: '100px' }}
             src={require('../../../assets/images/likeoff.png')}
             ref={tumbsImageRef}
             onClick={() => {
