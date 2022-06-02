@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import 'pages/generate/style.css';
-import { FormGroup, FormControlLabel, Checkbox, Button } from '@mui/material';
+import { FormGroup, Button } from '@mui/material';
 import { useRecoilState } from 'recoil';
 import { tagsState } from 'recoil/atoms';
 

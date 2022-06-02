@@ -17,20 +17,3 @@ export const getPreview = async (docId) => {
     console.log(error);
   }
 };
-
-// export const updateUser = async (userId, name, image, university, major, interests) => {
-//   const response = await serverApi.put(`/api/v1/member/${userId}`, {
-//     name: name,
-//     profileUrl: image,
-//     university: university,
-//     major: major,
-//     interests: interests,
-//   });
-//   try {
-//     const successMessage = JSON.stringify(response.data.message);
-//     ToastSuccess(successMessage);
-//   } catch (error) {
-//     const errorMessage = JSON.stringify(error.response.data.errorMessage);
-//     ToastError(errorMessage);
-//   }
-// };

@@ -6,7 +6,6 @@ import { TextField, RadioGroup, Radio } from '@mui/material';
 import { likePortfolio, unlikePortfolio, getUserLikePortfolio } from 'apis/likeApi';
 import { storage } from '../../../firebase';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { tagsState } from 'recoil/atoms';
 import './Toolbar.css';
 import plus_icon from '../../../assets/images/plus_icons.png';
 import {
@@ -93,7 +92,6 @@ export default function Toolbar({
   const [title, setTitle] = useState(docTitle);
   const [tagsArray, setTagsArray] = useState([]);
   const { actions } = useContext(CanvasContext);
-  const tagBoxRef = useRef<HTMLDivElement>(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [visibleCheck, setVisibleCheck] = useState(true);
   const [imageName, setImageName] = useState('');
@@ -101,30 +99,14 @@ export default function Toolbar({
   const imageRef = useRef<HTMLInputElement>(null);
   const [like, setLike] = useState(false);
   const [tagText, setTagText] = useState('');
-  const [tagButtonsArray, setTagButtonsArray] = useState('');
   const [changeImageCss, setChangeImageCss] = useState('beforeImage');
   const [generateState, setGenerateState] = useState(false);
-  const pageStyle = `{ size: 2.5in 4in }`;
-  const addElement = (type: string) => {
-    actions?.addElement(type);
-  };
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
+
   const handleOpen = () => {
     setOpenDialog(true);
   };
   const handleClose = () => {
     setOpenDialog(false);
-  };
-  const dataURLtoFile = (dataurl, fileName) => {
-    var arr = dataurl.split(','),
-      mime = arr[0].match(/:(.*?);/)[1],
-      bstr = atob(arr[1]),
-      n = bstr.length,
-      u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n);
-    }
-    return new File([u8arr], fileName, { type: mime });
   };
 
   const captureToFirebase = async () => {
@@ -413,8 +395,8 @@ export default function Toolbar({
                 alert('제목은 최대 13글자까지 입력 가능합니다.');
                 setTitle(title.substr(0, 12));
               }
-            }else{
-              alert('미리보기에서는 변경할 수 없습니다.')
+            } else {
+              alert('미리보기에서는 변경할 수 없습니다.');
             }
           }}
         />

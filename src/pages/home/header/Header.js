@@ -5,7 +5,6 @@ import { Button, Link } from '@mui/material';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Searchbar from './Searchbar.js';
 import { useSelector, useDispatch } from 'react-redux';
-import Banner from './Banner.js';
 import { useLocation } from 'react-router-dom';
 
 const Header = () => {
@@ -58,14 +57,6 @@ const Header = () => {
       setUserInfo(readme_userInfo);
       signIn();
     }
-    //로그인이 되었는지 안되었는지 판단
-    // if (location.state !== null) {
-    //   if (location.state.isLoginSuccess === true) {
-    //     signIn();
-    //   }
-    // } else {
-    //   signOut();
-    // }
   }, []);
 
   const dummeyKeywords = [
@@ -151,9 +142,6 @@ const Header = () => {
           </div>
         </div>
       )}
-      {/* <div>
-        <Banner />
-      </div> */}
     </div>
   );
 };

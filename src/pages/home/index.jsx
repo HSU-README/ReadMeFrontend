@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './header/Header.js';
 import 'react-toastify/dist/ReactToastify.css';
 import { getMostLikePortfolio, getAllPortfolio, getMajorPortfolio } from 'apis/portfolioApi';
@@ -8,7 +8,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import prevArrow from '../../assets/images/prevArrow.png';
 import nextArrow from '../../assets/images/nextArrow.png';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import Footer from 'components/footer/index.jsx';
 import Banner from './header/Banner.js';
@@ -17,25 +17,9 @@ import colors from 'styles/colors.js';
 
 const Home = () => {
   const [mostLikePortfolio, setMostLikePortfolio] = useState([]);
-  const [mostLikePortfolioCnt, setMostLikePortfolioCnt] = useState(0);
   const [allPortfolio, setAllPortfolio] = useState([]);
-  const [allPortfolioCnt, setAllPortfolioCnt] = useState(0);
 
-  const [showDetailForm, setShowDetailForm] = useState(false);
-  const [detailFormId, setDetailFormId] = useState(0);
-  const [alertMessageVisible, setAlertMessageVisible] = useState(false);
   const { loginCheck } = useSelector((state) => state.loginCheck);
-
-  const openDetailForm = (id) => {
-    console.log(id);
-    setShowDetailForm(true);
-    setDetailFormId(1);
-  };
-
-  const closeDetailForm = () => {
-    setShowDetailForm(false);
-    setDetailFormId('');
-  };
 
   const [sliderCount, setSliderCount] = useState(4); //기본화면에서 4개
   useEffect(() => {
@@ -53,12 +37,10 @@ const Home = () => {
     async function fetchMostLikePortfolioData() {
       const datas = await getMostLikePortfolio();
       setMostLikePortfolio(datas);
-      setMostLikePortfolioCnt(datas.length);
     }
     async function fetchAllPortfolioData() {
       const datas = await getAllPortfolio();
       setAllPortfolio(datas);
-      setAllPortfolioCnt(datas.length);
     }
     async function fetchMajorPortfolioData() {
       if (localStorage.getItem('readme_userInfo') != null) {
@@ -119,18 +101,18 @@ const Home = () => {
         <>
           <br />
           <div className="pofolBtnHeader">
-              <NavLink className="pofolBtn" to="/select" style={{ textDecoration: 'none', color: 'white' }}>
-              <button className="pofolBtn">
-                포트폴리오 만들기
-                </button>
-              </NavLink>
+            <NavLink className="pofolBtn" to="/select" style={{ textDecoration: 'none', color: 'white' }}>
+              <button className="pofolBtn">포트폴리오 만들기</button>
+            </NavLink>
           </div>
         </>
       )}
 
       <div className="sectionFont">인기 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
-        {mostLikePortfolio.map((data, index) => data.visibility === 'PUBLIC' && <MainSelectCard loginCheck={loginCheck} data={data} />)}
+        {mostLikePortfolio.map(
+          (data, index) => data.visibility === 'PUBLIC' && <MainSelectCard loginCheck={loginCheck} data={data} />,
+        )}
       </Slider>
 
       <div className="sectionFont">
@@ -149,12 +131,16 @@ const Home = () => {
         </Link>
       </div>
       <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
-        {allPortfolio.map((data, index) => data.visibility === 'PUBLIC' && <MainSelectCard data={data} loginCheck={loginCheck} />)}
+        {allPortfolio.map(
+          (data, index) => data.visibility === 'PUBLIC' && <MainSelectCard data={data} loginCheck={loginCheck} />,
+        )}
       </Slider>
 
       <div className="sectionFont">학과별 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
-        {allPortfolio.map((data, index) => data.visibility === 'PUBLIC' && <MainSelectCard data={data} loginCheck={loginCheck} />)}
+        {allPortfolio.map(
+          (data, index) => data.visibility === 'PUBLIC' && <MainSelectCard data={data} loginCheck={loginCheck} />,
+        )}
       </Slider>
 
       <br />

@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import 'pages/generate/style.css';
-import { image, emoji, emoji2, Picktogram, widthLine, verticalLine } from 'pages/generate/arrays';
-import TableDND from './Table/TableDND';
+import { image, emoji, emoji2, Picktogram } from 'pages/generate/arrays';
 import { ImageList, ImageListItem } from '@mui/material';
-import { CardContent } from '@mui/material';
 const doCommand = (cmd) => {
   const val = typeof cmd.val !== 'undefined' ? prompt('Value for ' + cmd.cmd + '?', cmd.val) : '';
 
@@ -11,11 +9,6 @@ const doCommand = (cmd) => {
 };
 
 const DNDImageComponent = (props) => {
-  const [chartBackgroundColor, setChartBackgroundColor] = useState('1px solid black');
-  const handleBtnClick = (item) => {
-    doCommand(item);
-  };
-
   const createCommand = (command) => {
     new Promise((resolve, rejects) => {
       props.setCreateElement('');

@@ -5,8 +5,6 @@ import Toolbar from './Components/Toolbar';
 import './Canvas.css';
 import { createPortfolio, getPortfolio } from 'apis/portfolioApi';
 import html2canvas from 'html2canvas';
-import { useRecoilState } from 'recoil';
-import { chartState } from 'recoil/atoms';
 export const CanvasContext = React.createContext<ICanvasContext>({});
 
 export interface ICanvasData {

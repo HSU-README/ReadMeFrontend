@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 import newDocument from 'assets/images/newDocument.png';
