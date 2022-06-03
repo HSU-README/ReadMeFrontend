@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from './styles';
 
-export default function MainSelectCard({ data, length }) {
   const [docId, setDocId] = useState(0);
   const [userName, setUserName] = useState('');
   const [profileImg, setProfileImg] = useState(
@@ -36,11 +35,6 @@ export default function MainSelectCard({ data, length }) {
     //TODO link url 변경 필요
     <>
       <Container length={length}>
-        <Link
-          to={localStorage.getItem('readme_userInfo') != null ? `/preview/${docId}` : '/login'}
-          onClick={() => localStorage.getItem('readme_userInfo') == null && alert('로그인 후 이용 가능합니다.')}
-          style={{ textDecoration: 'none', color: 'black', width: '300px' }}
-        >
           <div className="pofol-thumbnail-container">
             <img
               style={{ width: '100%', height: '100%' }}

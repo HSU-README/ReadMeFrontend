@@ -610,7 +610,7 @@
         "tags": [{ "name": "#심플" }, { "name": "#모던" }],
         "major": null,
         "likeCnt": 0,
-        "docUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202022-05-30%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%208.02.07.png?alt=media&token=0ac5045c-3c47-4826-9c94-d37537d74d33",
+        "docUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/Image%2Fpicktogram.png?alt=media&token=fa4af7d8-0387-418a-bb83-14a61848121a",
         "designer": "Propofol",
         "designerUrl": "https://firebasestorage.googleapis.com/v0/b/fir-readme-storage.appspot.com/o/logo.jpg?alt=media&token=9fc3aa2d-3e21-4f0f-b182-35e0d94c48d5",
         "components": [
@@ -915,7 +915,7 @@
             "width": 185,
             "imgUrl": null,
             "iconUrl": null,
-            "textContent": "<p><strong style=\"font-size: 24px;\">010-9922-7792</strong></p>",
+            "textContent": "<p><strong style=\"font-size: 24px;\">010-1234-5678</strong></p>",
             "tableCol": 0,
             "tableRow": 0,
             "tableContents": null,
