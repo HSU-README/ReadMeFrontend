@@ -25,7 +25,7 @@ const DNDImageComponent = (props) => {
     });
   };
   return (
-    <div style={{ marginRight: '40px', marginLeft: '16%' }}>
+    <div style={{ marginRight: '40px', marginLeft: '10%' }}>
       <div className="parent">
         <div className="itemBoxCss">
           <details>

@@ -275,18 +275,21 @@ export default function Toolbar({
                 style={{ position: 'absolute', marginLeft: '200px', marginTop: '90px', opacity: '0' }}
                 ref={imageRef}
                 type="file"
+                id="fileSave"
                 onChange={onImageChange}
                 className="filetype"
               />
               <div style={{ width: '100%', height: '200px' }}>
-                <img
-                  alt="importImg"
-                  src={image}
-                  className={changeImageCss}
-                  onChange={() => {
-                    setChangeImageCss('afterImage');
-                  }}
-                />
+                <label htmlFor="fileSave">
+                  <img
+                    alt="importImg"
+                    src={image}
+                    className={changeImageCss}
+                    onChange={() => {
+                      setChangeImageCss('afterImage');
+                    }}
+                  />
+                </label>
               </div>
               {tagsArray.map((data, index) => {
                 return (
