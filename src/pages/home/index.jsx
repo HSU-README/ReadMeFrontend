@@ -128,13 +128,12 @@ const Home = () => {
         </Link>
       </div>
       <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
+        {allPortfolio.map((data, index) => data.visibility === 'PUBLIC' && <MainSelectCard data={data} />)}
       </Slider>
 
       <div className="sectionFont">학과별 포트폴리오</div>
       <Slider {...settings} style={{ marginLeft: '10%', marginRight: '9%' }}>
-        {allPortfolio.map(
-          (data, index) => data.visibility === 'PUBLIC' && <MainSelectCard data={data} loginCheck={loginCheck} />,
-        )}
+        {allPortfolio.map((data, index) => data.visibility === 'PUBLIC' && <MainSelectCard data={data} />)}
       </Slider>
 
       <br />
