@@ -1,4 +1,4 @@
-import React, { useContext, useRef,useEffect } from "react";
+import React, { useContext, useRef } from "react";
 import { ResizeEnable, Rnd } from "react-rnd";
 import { CanvasContext, ICanvasComponent } from "../CanvasContainer";
 import { resizeHandleClasses } from "../canvasUtils";
