@@ -1,9 +1,0 @@
-diff a/package.json b/package.json	(rejected hunks)
-@@ -10,7 +10,6 @@
-     "@mui/icons-material": "^5.5.1",
-     "@mui/material": "^5.4.4",
-     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.3",
-    "@react-pdf/renderer": "^2.1.1",
-     "@svgr/webpack": "^5.5.0",
-     "@testing-library/jest-dom": "^5.16.2",
-     "@testing-library/react": "^12.1.3",
