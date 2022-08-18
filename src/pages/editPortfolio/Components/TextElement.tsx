@@ -1,12 +1,10 @@
-import { ConnectingAirportsOutlined } from "@mui/icons-material";
-import React, { useContext,useEffect,useRef,useState } from "react";
+import React, { useContext,useRef } from "react";
 import ReactHtmlParser from "react-html-parser";
 import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { CanvasContext, ICanvasComponent } from "../CanvasContainer";
 import { fontList, sizeList } from "./Toolbar";
 import '../Canvas.css';
-import { text } from "body-parser";
 const Size = Quill.import("attributors/style/size");
 Size.whitelist = sizeList
 
