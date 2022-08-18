@@ -86,7 +86,7 @@ const Header = () => {
         {isLoggedIn ? (
           <span className="buttonFamily">
             <Button disabled style={{ color: '#000000', marginTop: '9%', fontSize: '18px' }}>
-              {JSON.parse(userInfo).name}님
+              {JSON.parse(userInfo).name}님&nbsp;&nbsp;|
             </Button>
             <Button
               style={{ color: '#000000', marginTop: '9%', fontSize: '18px' }}
@@ -96,12 +96,12 @@ const Header = () => {
                 localStorage.clear();
               }}
             >
-              <NavLink style={{ color: '#1B262C', textDecoration: 'none', fontSize: '18px' }} to="/login">
-                로그아웃
+              <NavLink className="headerText" to="/login">
+                로그아웃&nbsp;&nbsp;|
               </NavLink>
             </Button>
             <Button style={{ marginTop: '9%', fontSize: '18px' }}>
-              <NavLink style={{ color: '#1B262C', textDecoration: 'none' }} to="/mypage">
+              <NavLink className="headerMypage" to="/mypage">
                 마이페이지
               </NavLink>
             </Button>
@@ -110,12 +110,12 @@ const Header = () => {
           //  로그아웃시 출력 컴포넌트
           <span className="buttonFamily">
             <Button style={{ marginTop: '9%', fontSize: '18px' }}>
-              <NavLink style={{ textDecoration: 'none', color: '#1B262C' }} to="/login">
-                로그인
+              <NavLink className="headerText" to="/login">
+                로그인&nbsp;&nbsp;|
               </NavLink>
             </Button>
             <Button style={{ marginTop: '9%', fontSize: '18px' }}>
-              <NavLink style={{ color: '#1B262C', textDecoration: 'none' }} to="/signup">
+              <NavLink className="headerText" to="/signup">
                 회원가입
               </NavLink>
             </Button>

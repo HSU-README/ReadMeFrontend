@@ -3,17 +3,16 @@ import { maxWidth } from '../../styles/mixin';
 import colors from '../../styles/colors';
 
 export const Container = styled.footer`
-  ${maxWidth}
   display: flex;
-  justify-content: flex-end;
-  padding: 20px;
-  margin-top: auto;
-  border-top: 1px solid;
-  border-color: ${colors.footerLine};
-  background-color: #f8f9fa;
+  flex-direction: column;
 
   .copyright {
-    font-size: 12px;
-    margin-right: 40px;
+    flex: 1;
+    font-size: 32px;
+    color: white;
+    text-align: center;
+    line-height: 100px;
+    background-color: #f24444;
+    font-weight: 700;
   }
 `;

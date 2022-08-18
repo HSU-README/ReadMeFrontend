@@ -15,6 +15,14 @@ const GlobalStyle = createGlobalStyle`
     letter-spacing: -0.5px;
     touch-action: pan-y;
     -webkit-font-smoothing: antialiased;
+    width: 100%;
+    height: 100%;
+    margin: 0; padding: 0;
+  }
+  html {
+    width: 100%;
+    height: 100%;
+    margin: 0; padding: 0;
   }
 `;
 

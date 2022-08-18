@@ -47,15 +47,15 @@
 }
 
 .pofolBtn {
-  background-color: black;
+  background-color: #f22222;
   color: white;
-  font-weight: 900;
+  font-weight: 600;
   font: bold;
-  font-size: 25px;
-  width: 20%;
+  font-size: 24px;
+  width: 340px;
   height: 60px;
   border: 0px;
-  border-radius: 16px;
+  border-radius: 15px;
   margin-top: 20px;
 }
 
@@ -82,4 +82,21 @@
   gap: 10px;
   padding: 10px;
   display: inline-block;
+}
+
+/* header text */
+.headerText {
+  color: black;
+  margin-top: '9%';
+  font-size: '18px';
+  text-decoration-line: none;
+  font-weight: 700;
+}
+
+.headerMypage {
+  color: #f24444;
+  margin-top: '9%';
+  font-size: '18px';
+  text-decoration-line: none;
+  font-weight: 700;
 }
